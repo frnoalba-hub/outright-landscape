@@ -1,8 +1,6 @@
-
-import React from 'react';
-import Head from 'next/head';
-import Image from 'next/image';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import SEO from '@/components/SEO';
 import JsonLd from '@/components/JsonLd';
 
 const locationsData = {
@@ -41,16 +39,14 @@ export default function LocationPage({ cityKey }) {
 
     return (
         <>
-            <Head>
-                <title>{pageTitle}</title>
-                <meta name="description" content={metaDescription} />
-                <link rel="canonical" href={canonicalUrl} />
-                <meta property="og:title" content={pageTitle} />
-                <meta property="og:description" content={metaDescription} />
-                <meta property="og:url" content={canonicalUrl} />
-                <meta property="og:image" content="https://outrightlandscape.com/og-image.jpg" /> {/* Replace with actual OG image */}
-                <JsonLd city={name} />
-            </Head>
+            <SEO 
+                title={pageTitle}
+                description={metaDescription}
+                canonicalUrl={canonicalUrl}
+                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
+                keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, CSLB 1073845`}
+            />
+            <JsonLd city={name} />
             <div className="container mx-auto px-4 py-12">
                 <header className="text-center mb-12">
                     <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">Landscaping in {name}, CA</h1>
