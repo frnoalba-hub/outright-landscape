@@ -161,50 +161,43 @@ export default function Layout({ children }) {
           <div className="flex items-center justify-between">
             <a
               href={createPageUrl("Home")}
-              className="flex flex-col items-center gap-1 sm:flex-row sm:gap-3 group"
+              className="flex items-center gap-2 group"
               aria-label="Outright Landscape Home">
 
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
-                alt="Outright Landscape Construction Logo"
-                className="h-14 sm:h-[92px] lg:h-[115px] w-auto object-contain group-hover:scale-105 transition-transform duration-200 mt-1 mb-2 sm:mt-0 sm:mb-0"
-                width="115"
-                height="115"
+                alt="Outright Landscape Construction - CSLB #1073845"
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+                width="96"
+                height="96"
                 fetchpriority="high"
                 decoding="async" />
-
-              <div className="flex flex-col items-center sm:items-start gap-0">
-                <h1 className="text-gray-900 text-lg sm:text-sm lg:text-base font-semibold text-center sm:text-left normal-case leading-tight">
-                  Outright Landscape
-                </h1>
-                <p className="text-xs text-gray-600 font-semibold tracking-wide leading-tight">CSLB #1073845</p>
-              </div>
             </a>
             
-            <ul className="hidden lg:flex items-center space-x-7">
+            <ul className="hidden lg:flex items-center space-x-6">
               {navigationItems.map((item) => <li key={item.title}>
                   <a
                     href={item.href}
-                    className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-[1.1rem] md:text-[1.25rem] tracking-wide py-2">
+                    className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-base tracking-wide py-2">
                     {item.title}
                   </a>
                 </li>
               )}
+              <li>
+                <a
+                  href="#contact"
+                  className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-base tracking-wide py-2">
+                  Contact
+                </a>
+              </li>
             </ul>
             
-            <div className="hidden lg:flex items-center gap-3">
-                <Button asChild variant="outline" className="border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold px-5 py-2 rounded-full transition-all hover:scale-105 text-sm">
-                  <a href="#contact" aria-label="Contact Outright Landscape">
-                    Contact Us
-                  </a>
-                </Button>
-                <Button asChild className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-5 py-2 rounded-full shadow-lg transition-all hover:scale-105 border-0 text-sm">
-                  <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
-                    <Phone className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
-                    Call Now
-                  </a>
-                </Button>
-              </div>
+            <Button asChild className="hidden lg:inline-flex bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-5 py-2 rounded-full shadow-lg transition-all hover:scale-105 border-0 text-sm">
+              <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
+                <Phone className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
+                (626) 343-6028
+              </a>
+            </Button>
 
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild className="lg:hidden">
@@ -233,13 +226,12 @@ export default function Layout({ children }) {
                   <div className="text-center pb-6 border-b border-gray-700 mt-6">
                     <img
                       src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
-                      alt="Outright Landscape Construction Logo"
-                      className="w-16 h-16 mx-auto mb-3"
-                      width="64"
-                      height="64"
+                      alt="Outright Landscape Construction - CSLB #1073845"
+                      className="w-20 h-20 mx-auto mb-3"
+                      width="80"
+                      height="80"
                       loading="lazy"
                       decoding="async" />
-                    <h3 className="text-lg font-bold text-white">Outright Landscape</h3>
                     <p className="text-sm text-green-400 font-medium">(626) 343-6028</p>
                   </div>
 
@@ -255,6 +247,15 @@ export default function Layout({ children }) {
                         </SheetClose>
                       </li>
                     )}
+                    <li>
+                      <SheetClose asChild>
+                        <a
+                        href="#contact"
+                        className="block text-lg p-4 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors duration-200">
+                          Contact
+                        </a>
+                      </SheetClose>
+                    </li>
                   </ul>
 
                   <div className="mt-auto">
