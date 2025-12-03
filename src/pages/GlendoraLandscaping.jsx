@@ -1,14 +1,11 @@
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle2, Phone, MapPin, Hammer, Home, Fence, Award, ArrowRight, Sparkles } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { CheckCircle2, Hammer, Home, Fence, Award, ArrowRight } from "lucide-react";
 import { createPageUrl } from "@/utils";
 import SEO from "@/components/SEO";
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import SharedHero from '@/components/SharedHero';
+import ContactForm from '@/components/ContactForm';
 
 const services = [
   {
@@ -40,15 +37,15 @@ const services = [
 const projects = [
   {
     image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
-    title: "Curved Paver Patio",
+    title: "Backyard Paver Patio",
     description: "Custom hardscaping in Glendora",
-    alt: "Outright Landscape – Curved Paver Patio in Glendora"
+    alt: "Outright Landscape – Backyard Paver Patio in Glendora"
   },
   {
     image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
-    title: "Landscape & Irrigation",
-    description: "Complete outdoor renovation",
-    alt: "Outright Landscape – Landscape & Irrigation in Glendora"
+    title: "Irrigation Installation",
+    description: "Professional sprinkler system",
+    alt: "Outright Landscape – Irrigation Installation in Glendora"
   },
   {
     image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
@@ -59,25 +56,6 @@ const projects = [
 ];
 
 export default function GlendoraLandscaping() {
-  const [formData, setFormData] = useState({
-    name: "", phone: "", email: "", city: "Glendora", message: "", service_type: "hardscaping"
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      await base44.entities.ContactInquiry.create(formData);
-      setIsSubmitted(true);
-    } catch (err) {
-      console.error("Submission failed", err);
-      alert("Sorry, couldn't send your request. Please call (626) 343-6028.");
-    }
-    setIsSubmitting(false);
-  };
-
   const trackPhoneClick = (location) => {
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -295,70 +273,7 @@ export default function GlendoraLandscaping() {
       </section>
 
       {/* Contact Form */}
-      <section id="contact" className="py-20 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Get Your Free Hardscaping Estimate
-            </h2>
-            <p className="text-xl text-gray-300">
-              Ready to transform your Glendora outdoor space? Contact us today!
-            </p>
-          </div>
-
-          {isSubmitted ? (
-            <div className="text-center p-12 bg-green-600 rounded-2xl">
-              <CheckCircle2 className="w-20 h-20 mx-auto mb-4" />
-              <h3 className="text-3xl font-bold mb-2">Thank You!</h3>
-              <p className="text-xl">We'll contact you shortly to discuss your hardscaping project.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  type="text"
-                  placeholder="Full Name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="bg-gray-800 border-gray-700 text-white h-14 rounded-lg"
-                />
-                <Input
-                  type="tel"
-                  placeholder="Phone"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="bg-gray-800 border-gray-700 text-white h-14 rounded-lg"
-                />
-              </div>
-              <Input
-                type="email"
-                placeholder="Email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="bg-gray-800 border-gray-700 text-white h-14 rounded-lg"
-              />
-              <Textarea
-                placeholder="Tell us about your hardscaping project..."
-                required
-                value={formData.message}
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
-                className="bg-gray-800 border-gray-700 text-white rounded-lg p-4 h-32"
-              />
-              <Button
-                type="submit"
-                size="lg"
-                disabled={isSubmitting}
-                className="w-full bg-green-600 hover:bg-green-700 font-bold text-xl h-16 rounded-full"
-              >
-                {isSubmitting ? "Sending..." : "Get Free Quote"}
-              </Button>
-            </form>
-          )}
-        </div>
-      </section>
+      <ContactForm cityName="Glendora" darkMode={true} />
     </div>
   );
 }

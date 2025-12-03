@@ -9,8 +9,7 @@ const navigationItems = [
 { title: "Home", href: createPageUrl("Home") },
 { title: "Services", href: createPageUrl("Home") + "#services" },
 { title: "Our Work", href: createPageUrl("Home") + "#work" },
-{ title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
-{ title: "Contact", href: createPageUrl("Home") + "#contact" }];
+{ title: "Service Areas", href: createPageUrl("Home") + "#service-areas" }];
 
 
 export default function Layout({ children }) {
@@ -193,12 +192,19 @@ export default function Layout({ children }) {
               )}
             </ul>
             
-            <Button asChild className="hidden lg:inline-flex bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-5 py-2 rounded-full shadow-lg transition-all hover:scale-105 border-0 text-sm">
-              <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
-                <Phone className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
-                (626) 343-6028
-              </a>
-            </Button>
+            <div className="hidden lg:flex items-center gap-3">
+                <Button asChild variant="outline" className="border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold px-5 py-2 rounded-full transition-all hover:scale-105 text-sm">
+                  <a href="#contact" aria-label="Contact Outright Landscape">
+                    Contact Us
+                  </a>
+                </Button>
+                <Button asChild className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-5 py-2 rounded-full shadow-lg transition-all hover:scale-105 border-0 text-sm">
+                  <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
+                    <Phone className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
+                    Call Now
+                  </a>
+                </Button>
+              </div>
 
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild className="lg:hidden">
