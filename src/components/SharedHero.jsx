@@ -94,7 +94,7 @@ export default function SharedHero({
                         </div>
 
                         <div className="flex flex-col gap-3 sm:flex-row sm:gap-4 items-center w-full sm:w-auto">
-                            <a href="tel:626-343-6028" aria-label="Call Outright Landscape for free estimate" onClick={() => onPhoneClick('hero_quote_button')} className="w-full sm:w-auto">
+                            <a href="#contact" aria-label="Get your free estimate" onClick={() => onPhoneClick('hero_quote_button')} className="w-full sm:w-auto">
                                 <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-white bg-black/30 backdrop-blur-sm text-white hover:bg-white hover:text-gray-900 font-bold text-sm sm:text-lg px-6 py-5 sm:px-10 sm:py-7 rounded-full shadow-xl transition-all duration-300">
                                     <span className="whitespace-nowrap">Get Your Free Quote</span>
                                 </Button>

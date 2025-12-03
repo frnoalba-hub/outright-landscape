@@ -6,10 +6,11 @@ import { createPageUrl } from "@/utils";
 import GlobalSchema from "@/components/GlobalSchema";
 
 const navigationItems = [
-{ title: "Home", href: createPageUrl("Home") },
-{ title: "Services", href: createPageUrl("Home") + "#services" },
-{ title: "Our Work", href: createPageUrl("Home") + "#work" },
-{ title: "Service Areas", href: createPageUrl("Home") + "#service-areas" }];
+  { title: "Home", href: createPageUrl("Home") },
+  { title: "Services", href: createPageUrl("Home") + "#services" },
+  { title: "Our Work", href: createPageUrl("Home") + "#work" },
+  { title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
+  { title: "Contact", href: createPageUrl("Home") + "#contact" }];
 
 
 export default function Layout({ children }) {
@@ -166,12 +167,17 @@ export default function Layout({ children }) {
 
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
-                alt="Outright Landscape Construction - CSLB #1073845"
-                className="h-20 sm:h-24 lg:h-28 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
-                width="112"
-                height="112"
+                alt="Outright Landscape Construction Logo"
+                className="h-14 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+                width="80"
+                height="80"
                 fetchpriority="high"
                 decoding="async" />
+                
+              <div className="flex flex-col">
+                <span className="font-bold text-lg sm:text-xl leading-tight text-gray-900">Outright Landscape</span>
+                <span className="text-xs sm:text-sm text-green-600 font-bold tracking-wide">CSLB #1073845</span>
+              </div>
             </a>
             
             <ul className="hidden lg:flex items-center space-x-7">
@@ -183,25 +189,18 @@ export default function Layout({ children }) {
                   </a>
                 </li>
               )}
-              <li>
-                <a
-                  href="#contact"
-                  className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-base tracking-wide py-2">
-                  Contact
-                </a>
-              </li>
             </ul>
             
             <div className="hidden lg:flex items-center gap-3">
                 <Button asChild variant="outline" className="border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold px-5 py-2 rounded-full transition-all hover:scale-105 text-sm">
-                  <a href="#contact" aria-label="Contact Outright Landscape">
-                    Contact Us
+                  <a href="#contact" aria-label="Get a free quote">
+                    Get Quote
                   </a>
                 </Button>
                 <Button asChild className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-5 py-2 rounded-full shadow-lg transition-all hover:scale-105 border-0 text-sm">
                   <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
                     <Phone className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
-                    Call Now
+                    (626) 343-6028
                   </a>
                 </Button>
               </div>

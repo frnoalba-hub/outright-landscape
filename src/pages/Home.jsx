@@ -4,7 +4,8 @@ import { createPageUrl } from '@/utils';
 import { MapPin, Phone, CheckCircle2, Award, Users, Clock, Droplets, Sprout, Home as HomeIcon, Sparkles } from 'lucide-react';
 import SEO from '@/components/SEO';
 import ServiceSchema from '@/components/ServiceSchema';
-import SharedHero from '@/components/SharedHero'; // Import the new SharedHero component
+import SharedHero from '@/components/SharedHero';
+import ContactForm from '@/components/ContactForm';
 
 const serviceCities = [
     { name: 'Covina', page: 'CovinaLandscaping' },
@@ -369,35 +370,8 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Call to Action */}
-            <section id="contact" className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-green-600 to-green-800 text-white relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute inset-0" style={{
-                        backgroundImage: "url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c2ea722a1_2024-11-20.jpg')",
-                        backgroundSize: "cover",
-                        backgroundPosition: "center"
-                    }}></div>
-                </div>
-                <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
-                        Ready to Transform Your Outdoor Space?
-                    </h2>
-                    <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-10 text-green-50 px-4">
-                        Contact us today for your free consultation and estimate. Serving Covina, Glendora, San Dimas & beyond!
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                        <a href="tel:626-343-6028" aria-label="Call Outright Landscape at 626-343-6028" onClick={() => handlePhoneClick('cta_section')}>
-                            <Button size="lg" className="w-full sm:w-auto bg-white text-green-700 hover:bg-gray-100 font-bold text-lg sm:text-xl px-10 sm:px-12 py-6 sm:py-8 rounded-full shadow-2xl transform transition hover:scale-105">
-                                <Phone className="mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6" aria-hidden="true" />
-                                <span className="whitespace-nowrap">(626) 343-6028</span>
-                            </Button>
-                        </a>
-                    </div>
-                    <p className="mt-6 sm:mt-8 text-green-100 text-sm sm:text-base md:text-lg px-4">
-                        📧 outrightlandscape@yahoo.com | 📍 Covina, CA 91722 | CSLB #1073845
-                    </p>
-                </div>
-            </section>
+            {/* Contact Form */}
+            <ContactForm cityName="Covina & San Gabriel Valley" />
         </div>
     );
 }
