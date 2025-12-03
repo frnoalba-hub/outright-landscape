@@ -1,14 +1,11 @@
-
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle2, Phone, MapPin, Droplets, Sprout, Hammer, Award, ArrowRight, Sparkles } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { CheckCircle2, Droplets, Sprout, Hammer, Award, ArrowRight } from "lucide-react";
 import { createPageUrl } from "@/utils";
 import SEO from "@/components/SEO";
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import SharedHero from '@/components/SharedHero';
+import ContactForm from '@/components/ContactForm';
 
 const services = [
   {
@@ -59,46 +56,6 @@ const projects = [
 ];
 
 export default function CovinaLandscaping() {
-  const [formData, setFormData] = useState({
-    name: "", phone: "", email: "", city: "Covina", message: "", service_type: "sod_installation"
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      await base44.entities.ContactInquiry.create(formData);
-      
-      // Track form submission
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          event: 'form_submission',
-          event_category: 'conversion',
-          event_label: 'contact_form_covina',
-          form_name: 'Contact Inquiry',
-          city: 'Covina',
-          service_type: formData.service_type
-        });
-      }
-      if (window.gtag) {
-        window.gtag('event', 'generate_lead', {
-          event_category: 'conversion',
-          event_label: 'contact_form_covina',
-          value: 1
-        });
-      }
-      
-      setIsSubmitted(true);
-    } catch (err) {
-      console.error("Submission failed", err);
-      alert("Sorry, couldn't send your request. Please call (626) 343-6028.");
-    }
-    setIsSubmitting(false);
-  };
-
   const trackPhoneClick = (location) => {
     if (window.dataLayer) {
       window.dataLayer.push({
@@ -317,70 +274,7 @@ export default function CovinaLandscaping() {
       </section>
 
       {/* Contact Form */}
-      <section id="contact" className="py-20 bg-gray-900 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Get Your Free Estimate
-            </h2>
-            <p className="text-xl text-gray-300">
-              Ready to transform your Covina lawn? Contact us today!
-            </p>
-          </div>
-
-          {isSubmitted ? (
-            <div className="text-center p-12 bg-green-600 rounded-2xl">
-              <CheckCircle2 className="w-20 h-20 mx-auto mb-4" />
-              <h3 className="text-3xl font-bold mb-2">Thank You!</h3>
-              <p className="text-xl">We'll contact you shortly to discuss your project.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input
-                  type="text"
-                  placeholder="Full Name"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="bg-gray-800 border-gray-700 text-white h-14 rounded-lg"
-                />
-                <Input
-                  type="tel"
-                  placeholder="Phone"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  className="bg-gray-800 border-gray-700 text-white h-14 rounded-lg"
-                />
-              </div>
-              <Input
-                type="email"
-                placeholder="Email"
-                required
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="bg-gray-800 border-gray-700 text-white h-14 rounded-lg"
-              />
-              <Textarea
-                placeholder="Tell us about your project..."
-                required
-                value={formData.message}
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
-                className="bg-gray-800 border-gray-700 text-white rounded-lg p-4 h-32"
-              />
-              <Button
-                type="submit"
-                size="lg"
-                disabled={isSubmitting}
-                className="w-full bg-green-600 hover:bg-green-700 font-bold text-xl h-16 rounded-full"
-              >
-                {isSubmitting ? "Sending..." : "Get Free Quote"}
-              </Button>
-            </form>
-          )}
-        </div>
-      </section>
+      <ContactForm cityName="Covina" darkMode={true} />
     </div>
   );
 }
