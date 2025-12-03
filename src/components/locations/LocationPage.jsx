@@ -38,7 +38,7 @@ const projectImages = [
     },
     {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
-        title: "Elegant Paver Walkway",
+        title: "Paver Walkway",
         alt: "Paver walkway installation by Outright Landscape"
     },
     {
@@ -48,7 +48,7 @@ const projectImages = [
     },
     {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
-        title: "Professional Irrigation System",
+        title: "Irrigation System Installation",
         alt: "Irrigation system installation by Outright Landscape"
     },
     {
@@ -58,8 +58,8 @@ const projectImages = [
     },
     {
         src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
-        title: "Expert Irrigation Work",
-        alt: "Expert irrigation work by Outright Landscape"
+        title: "Irrigation Trenching",
+        alt: "Irrigation trenching by Outright Landscape"
     }
 ];
 

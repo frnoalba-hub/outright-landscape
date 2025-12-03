@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { createPageUrl } from '@/utils';
@@ -65,55 +64,55 @@ const projects = [
         title: "Premium Turf Installation",
         location: "Covina, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
-        alt: "bbdea4e3f_2025-05-281.jpg - Outright Landscape Covina"
+        alt: "Premium Turf Installation - Outright Landscape Covina"
     },
     {
-        title: "Elegant Paver Walkway",
+        title: "Paver Walkway",
         location: "West Covina, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
-        alt: "6633fbff6_2025-05-286.jpg - Outright Landscape West Covina"
+        alt: "Paver Walkway - Outright Landscape West Covina"
     },
     {
         title: "Backyard Paver Patio",
         location: "Glendora, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
-        alt: "670c050ff_2025-05-284.jpg - Outright Landscape Glendora"
+        alt: "Backyard Paver Patio - Outright Landscape Glendora"
     },
     {
-        title: "Professional Irrigation System",
+        title: "Irrigation System Installation",
         location: "San Dimas, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
-        alt: "805f8b55a_2025-05-282.jpg - Outright Landscape San Dimas"
+        alt: "Irrigation System Installation - Outright Landscape San Dimas"
     },
     {
-        title: "Front Yard Redesign",
+        title: "Turf & Sprinkler System",
         location: "Pasadena, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
-        alt: "cb31aa31a_467984156 - Outright Landscape Pasadena"
+        alt: "Turf & Sprinkler System - Outright Landscape Pasadena"
     },
     {
-        title: "Turf & Drainage Installation",
+        title: "Sod & Drainage Installation",
         location: "Diamond Bar, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
-        alt: "022683aad_2025-05-283.jpg - Outright Landscape Diamond Bar"
+        alt: "Sod & Drainage Installation - Outright Landscape Diamond Bar"
     },
     {
         title: "Complete Backyard Makeover",
         location: "Covina, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
-        alt: "37a148223_2025-05-288.jpg - Outright Landscape Covina"
+        alt: "Complete Backyard Makeover - Outright Landscape Covina"
     },
     {
-        title: "Expert Irrigation Work",
+        title: "Irrigation Trenching",
         location: "Glendora, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
-        alt: "954e6bafa_2024-09-04.jpg - Outright Landscape Glendora"
+        alt: "Irrigation Trenching - Outright Landscape Glendora"
     },
     {
-        title: "Front Yard Sprinkler System",
+        title: "Sprinkler System Install",
         location: "San Dimas, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
-        alt: "d1c4f81c9_2024-08-29.jpg - Outright Landscape San Dimas"
+        alt: "Sprinkler System Install - Outright Landscape San Dimas"
     }
 ];
 
