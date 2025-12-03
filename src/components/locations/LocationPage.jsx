@@ -1,28 +1,78 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Phone, MapPin, CheckCircle2, ArrowRight } from 'lucide-react';
+import { createPageUrl } from '@/utils';
 import SEO from '@/components/SEO';
-import JsonLd from '@/components/JsonLd';
+import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import SharedHero from '@/components/SharedHero';
+import ContactForm from '@/components/ContactForm';
 
 const locationsData = {
-    covina: { name: "Covina", faqs: [] },
-    'west-covina': { name: "West Covina", faqs: [] },
-    glendora: { name: "Glendora", faqs: [] },
-    azusa: { name: "Azusa", faqs: [] },
-    pasadena: { name: "Pasadena", faqs: [] },
-    'diamond-bar': { name: "Diamond Bar", faqs: [] },
-    'charter-oak': { name: "Charter Oak", faqs: [] },
-    'san-dimas': { name: "San Dimas", faqs: [] },
-    'la-verne': { name: "La Verne", faqs: [] },
-    walnut: { name: "Walnut", faqs: [] },
-    'baldwin-park': { name: "Baldwin Park", faqs: [] },
-    'el-monte': { name: "El Monte", faqs: [] },
-    monrovia: { name: "Monrovia", faqs: [] },
-    arcadia: { name: "Arcadia", faqs: [] },
-    'temple-city': { name: "Temple City", faqs: [] },
-    'rowland-heights': { name: "Rowland Heights", faqs: [] },
-    pomona: { name: "Pomona", faqs: [] },
-    claremont: { name: "Claremont", faqs: [] },
+    covina: { name: "Covina", page: "CovinaLandscaping" },
+    'west-covina': { name: "West Covina", page: "WestCovinaLandscaping" },
+    glendora: { name: "Glendora", page: "GlendoraLandscaping" },
+    azusa: { name: "Azusa", page: "AzusaLandscaping" },
+    pasadena: { name: "Pasadena", page: "PasadenaLandscaping" },
+    'diamond-bar': { name: "Diamond Bar", page: "DiamondBarLandscaping" },
+    'charter-oak': { name: "Charter Oak", page: "CharterOakLandscaping" },
+    'san-dimas': { name: "San Dimas", page: "SanDimasLandscaping" },
+    'la-verne': { name: "La Verne", page: "LaVerneLandscaping" },
+    walnut: { name: "Walnut", page: "WalnutLandscaping" },
+    'baldwin-park': { name: "Baldwin Park", page: "BaldwinParkLandscaping" },
+    'el-monte': { name: "El Monte", page: "ElMonteLandscaping" },
+    monrovia: { name: "Monrovia", page: "MonroviaLandscaping" },
+    arcadia: { name: "Arcadia", page: "ArcadiaLandscaping" },
+    'temple-city': { name: "Temple City", page: "TempleCityLandscaping" },
+    'rowland-heights': { name: "Rowland Heights", page: "RowlandHeightsLandscaping" },
+    pomona: { name: "Pomona", page: "PomonaLandscaping" },
+    claremont: { name: "Claremont", page: "ClaremontLandscaping" },
+    duarte: { name: "Duarte", page: "DuarteLandscaping" },
+    'san-gabriel-valley': { name: "San Gabriel Valley", page: "SanGabrielValleyLandscaping" },
 };
+
+const projectImages = [
+    {
+        src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+        title: "Premium Turf Installation",
+        alt: "Premium turf installation by Outright Landscape"
+    },
+    {
+        src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
+        title: "Elegant Paver Walkway",
+        alt: "Paver walkway installation by Outright Landscape"
+    },
+    {
+        src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+        title: "Backyard Paver Patio",
+        alt: "Paver patio installation by Outright Landscape"
+    },
+    {
+        src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+        title: "Professional Irrigation System",
+        alt: "Irrigation system installation by Outright Landscape"
+    },
+    {
+        src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+        title: "Complete Backyard Makeover",
+        alt: "Backyard makeover by Outright Landscape"
+    },
+    {
+        src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+        title: "Expert Irrigation Work",
+        alt: "Expert irrigation work by Outright Landscape"
+    }
+];
+
+const nearbyCities = [
+    { name: 'Covina', page: 'CovinaLandscaping' },
+    { name: 'West Covina', page: 'WestCovinaLandscaping' },
+    { name: 'Glendora', page: 'GlendoraLandscaping' },
+    { name: 'San Dimas', page: 'SanDimasLandscaping' },
+    { name: 'La Verne', page: 'LaVerneLandscaping' },
+    { name: 'Azusa', page: 'AzusaLandscaping' },
+    { name: 'Diamond Bar', page: 'DiamondBarLandscaping' },
+    { name: 'Pasadena', page: 'PasadenaLandscaping' },
+];
 
 export default function LocationPage({ cityKey }) {
     const cityData = locationsData[cityKey];
@@ -34,79 +84,211 @@ export default function LocationPage({ cityKey }) {
     const slug = name.toLowerCase().replace(/ /g, '-');
 
     const pageTitle = `${name} Landscaping & Hardscaping | Outright Landscape`;
-    const metaDescription = `Licensed C-27 in ${name}. Pavers, turf, irrigation, design & installs. Free estimate: (626) 343-6028. CSLB #1073845.`;
+    const metaDescription = `Licensed C-27 landscape contractor in ${name}. Expert pavers, turf installation, irrigation systems & complete landscape design. Free estimate: (626) 343-6028. CSLB #1073845.`;
     const canonicalUrl = `https://outrightlandscape.com/${slug}-landscaping`;
 
+    const breadcrumbItems = [
+        { name: "Home", url: "https://outrightlandscape.com" },
+        { name: "Service Areas", url: "https://outrightlandscape.com/#service-areas" },
+        { name: `${name} Landscaping`, url: canonicalUrl }
+    ];
+
+    const trackPhoneClick = (location) => {
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'phone_click',
+                event_category: 'engagement',
+                event_label: `${slug}_${location}`,
+                phone_number: '626-343-6028'
+            });
+        }
+    };
+
+    // Filter nearby cities to exclude current city
+    const filteredNearbyCities = nearbyCities.filter(city => 
+        city.name.toLowerCase() !== name.toLowerCase()
+    ).slice(0, 6);
+
     return (
-        <>
+        <div className="bg-white">
             <SEO 
                 title={pageTitle}
                 description={metaDescription}
                 canonicalUrl={canonicalUrl}
                 ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
-                keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, CSLB 1073845`}
+                keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`}
             />
-            <JsonLd city={name} />
-            <div className="container mx-auto px-4 py-12">
-                <header className="text-center mb-12">
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">Landscaping in {name}, CA</h1>
-                    <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-                        Your local, licensed C-27 landscape contractor (CSLB #1073845) specializing in pavers, turf, irrigation, and complete design/build services for beautiful, lasting outdoor spaces in {name}.
-                    </p>
-                    <a href="tel:626-343-6028">
-                        <Button size="lg" className="mt-6 bg-green-600 hover:bg-green-700 text-white font-bold text-xl px-12 py-8 rounded-full shadow-2xl">
-                           Free Estimate: (626) 343-6028
-                        </Button>
-                    </a>
-                </header>
+            <BreadcrumbSchema items={breadcrumbItems} />
 
-                <section id="services" className="mb-16">
-                    <h2 className="text-3xl font-bold text-center mb-8">Our Core Services in {name}</h2>
-                    <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                        <li className="bg-gray-50 p-6 rounded-lg shadow">Pavers & Hardscaping</li>
-                        <li className="bg-gray-50 p-6 rounded-lg shadow">Turf & Sod Installation</li>
-                        <li className="bg-gray-50 p-6 rounded-lg shadow">Irrigation & Sprinkler Systems</li>
-                        <li className="bg-gray-50 p-6 rounded-lg shadow">Landscape Design & Build</li>
-                        <li className="bg-gray-50 p-6 rounded-lg shadow">Yard Cleanup & Demolition</li>
-                        <li className="bg-gray-50 p-6 rounded-lg shadow">Free Estimates</li>
-                    </ul>
-                </section>
+            {/* Hero Section */}
+            <SharedHero 
+                title={<>Transform Your<br /><span className="text-green-400">Outdoor Living Space</span></>}
+                subtitle={`Licensed C-27 landscape contractor serving ${name} & the San Gabriel Valley`}
+                onPhoneClick={trackPhoneClick}
+                onViewServicesClick={() => {}}
+            />
 
-                <section id="gallery" className="mb-16">
-                     <h2 className="text-3xl font-bold text-center mb-8">Project Gallery in {name}</h2>
-                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                        {/* Placeholder for images using next/image */}
-                        <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center"><span className="text-gray-400">Project Image 1</span></div>
-                        <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center"><span className="text-gray-400">Project Image 2</span></div>
-                        <div className="bg-gray-200 h-64 rounded-lg flex items-center justify-center"><span className="text-gray-400">Project Image 3</span></div>
-                     </div>
-                </section>
+            {/* Services Section */}
+            <section className="py-16 sm:py-20 bg-gray-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                            Professional Landscaping Services in {name}
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                            From premium turf installation to complete landscape design, we deliver exceptional results for {name} homeowners and businesses.
+                        </p>
+                    </div>
 
-                <section id="contact-info" className="grid md:grid-cols-2 gap-8 bg-gray-100 p-8 rounded-lg">
-                    <div>
-                        <h2 className="text-3xl font-bold mb-4">Contact Your {name} Experts</h2>
-                        <div className="space-y-3">
-                            <p><strong>Name:</strong> Outright Landscape</p>
-                            <p><strong>Phone:</strong> <a href="tel:626-343-6028" className="text-green-600 hover:underline">(626) 343-6028</a></p>
-                            <p><strong>Email:</strong> <a href="mailto:outrightlandscape@yahoo.com" className="text-green-600 hover:underline">outrightlandscape@yahoo.com</a></p>
-                            <p><strong>Hours:</strong> Mon – Sat, 8:00 AM – 6:00 PM</p>
-                            <p><strong>License:</strong> CSLB #1073845</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {[
+                            { title: "Pavers & Hardscaping", desc: "Expert paver patios, walkways, and retaining walls built to last." },
+                            { title: "Turf & Sod Installation", desc: "Premium Marathon tall fescue and Bermuda grass for lush lawns." },
+                            { title: "Irrigation Systems", desc: "Professional sprinkler and drip irrigation for water efficiency." },
+                            { title: "Landscape Design", desc: "Complete design and build services from concept to completion." },
+                            { title: "Yard Cleanup", desc: "Demolition, debris removal, and site preparation services." },
+                            { title: "Free Estimates", desc: "Honest, competitive pricing with no hidden fees." }
+                        ].map((service, idx) => (
+                            <div key={idx} className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                                <CheckCircle2 className="w-8 h-8 text-green-500 mb-4" />
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                                <p className="text-gray-600">{service.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Project Gallery */}
+            <section className="py-16 sm:py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                            Our Work in {name} & Surrounding Areas
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-600">
+                            See our expert landscaping and hardscaping projects
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        {projectImages.map((project, index) => (
+                            <div key={index} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square">
+                                <img 
+                                    src={project.src} 
+                                    alt={`${project.alt} - ${name}`}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    loading="lazy"
+                                    width="600"
+                                    height="600"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                                    <h3 className="text-xl sm:text-2xl font-bold">{project.title}</h3>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Why Choose Us */}
+            <section className="py-16 sm:py-20 bg-green-800 text-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                            Why {name} Trusts Outright Landscape
+                        </h2>
+                        <p className="text-lg sm:text-xl text-green-100">
+                            Local expertise, quality craftsmanship, and outstanding customer service
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                        {[
+                            { title: "Licensed & Insured", desc: "CSLB #1073845" },
+                            { title: "10+ Years Experience", desc: "Expert craftsmanship" },
+                            { title: "Free Estimates", desc: "Honest pricing" },
+                            { title: "Local Experts", desc: "We know your area" }
+                        ].map((item, idx) => (
+                            <div key={idx} className="text-center p-4">
+                                <CheckCircle2 className="w-10 h-10 sm:w-12 sm:h-12 text-green-400 mx-auto mb-3 sm:mb-4" />
+                                <h3 className="text-lg sm:text-xl font-bold mb-1 sm:mb-2">{item.title}</h3>
+                                <p className="text-green-100 text-sm sm:text-base">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Nearby Service Areas */}
+            <section className="py-12 sm:py-16 bg-gray-50">
+                <div className="max-w-4xl mx-auto px-4 text-center">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
+                        Also Serving Nearby Communities
+                    </h2>
+                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                        {filteredNearbyCities.map(city => (
+                            <a key={city.name} href={createPageUrl(city.page)} className="group">
+                                <div className="bg-white hover:bg-green-500 border-2 border-gray-200 hover:border-green-500 transition-all duration-300 rounded-xl px-4 sm:px-6 py-2 sm:py-3 group-hover:scale-105 group-hover:shadow-lg">
+                                    <span className="font-semibold text-sm sm:text-base text-gray-700 group-hover:text-white transition-colors flex items-center gap-2">
+                                        {city.name}
+                                        <ArrowRight className="w-4 h-4" />
+                                    </span>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Contact Form */}
+            <ContactForm cityName={name} darkMode={true} />
+
+            {/* Contact Info & Map */}
+            <section className="py-12 sm:py-16 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="bg-gray-50 p-6 sm:p-8 rounded-2xl">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Contact Your {name} Experts</h2>
+                            <div className="space-y-4">
+                                <div className="flex items-center gap-3">
+                                    <Phone className="w-5 h-5 text-green-600 flex-shrink-0" />
+                                    <a href="tel:626-343-6028" onClick={() => trackPhoneClick('contact_info')} className="text-green-600 hover:underline font-semibold text-lg">(626) 343-6028</a>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-green-600">📧</span>
+                                    <a href="mailto:outrightlandscape@yahoo.com" className="text-green-600 hover:underline">outrightlandscape@yahoo.com</a>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <MapPin className="w-5 h-5 text-green-600 flex-shrink-0" />
+                                    <span className="text-gray-700">Serving {name} & San Gabriel Valley</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-green-600">🕒</span>
+                                    <span className="text-gray-700">Mon – Sat, 8:00 AM – 6:00 PM</span>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="text-green-600">🏗️</span>
+                                    <span className="text-gray-700">CSLB #1073845</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="rounded-2xl overflow-hidden shadow-xl h-80 md:h-auto">
+                            <iframe
+                                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106167.77073!2d-117.9!3d34.09!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2dae3d1d4f715%3A0x2f9d5d33a33e5b8e!2s${encodeURIComponent(name)}%2C%20CA!5e0!3m2!1sen!2sus!4v1234567890`}
+                                width="100%"
+                                height="100%"
+                                style={{ border: 0, minHeight: '320px' }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                                title={`Outright Landscape ${name} Service Area`}
+                            ></iframe>
                         </div>
                     </div>
-                    <div>
-                        <div className="bg-gray-300 w-full h-80 rounded-lg flex items-center justify-center">
-                            <p className="text-gray-500">Service Area Map for {name}</p>
-                        </div>
-                    </div>
-                </section>
-                
-                 <section id="faq" className="mt-16">
-                    <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
-                    <div className="max-w-3xl mx-auto">
-                        <p className="text-center text-gray-500">(FAQ content to be added here)</p>
-                    </div>
-                </section>
-            </div>
-        </>
+                </div>
+            </section>
+        </div>
     );
 }
