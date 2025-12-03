@@ -30,18 +30,18 @@ const serviceCities = [
 
 const services = [
     {
-        title: "Premium Turf & Sod Installation",
-        description: "Lush, healthy lawns with premium Marathon tall fescue and hybrid Bermuda grass varieties.",
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
-        icon: Sprout,
-        features: ["Premium Sod", "Artificial Turf", "Lawn Renovation"]
-    },
-    {
         title: "Professional Irrigation Systems",
         description: "Expert irrigation and sprinkler system installation for efficient watering and water conservation.",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
         icon: Droplets,
         features: ["Drip Systems", "Smart Controllers", "Water-Efficient Design"]
+    },
+    {
+        title: "Premium Turf & Sod Installation",
+        description: "Lush, healthy lawns with premium Marathon tall fescue and hybrid Bermuda grass varieties.",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+        icon: Sprout,
+        features: ["Premium Sod", "Artificial Turf", "Lawn Renovation"]
     },
     {
         title: "Hardscaping & Paver Installation",
