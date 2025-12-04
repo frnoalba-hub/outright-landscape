@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
 import GlobalSchema from "@/components/GlobalSchema";
+import { locations } from '@/components/locations/data';
 
 const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
@@ -49,15 +50,18 @@ export default function Layout({ children }) {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    // Preconnect to critical origins for performance
+    const preconnectDomains = ['https://app.base44.com'];
+    preconnectDomains.forEach(domain => {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = domain;
+      document.head.appendChild(link);
+    });
+
     // Initialize dataLayer immediately for event tracking
     window.dataLayer = window.dataLayer || [];
     
-    // Add Preconnect for performance
-    const link1 = document.createElement('link');
-    link1.rel = 'preconnect';
-    link1.href = 'https://app.base44.com';
-    document.head.appendChild(link1);
-
     // Defer GTM/GA loading by 2 seconds after window load
     const loadAnalytics = () => {
       setTimeout(() => {
@@ -312,27 +316,20 @@ export default function Layout({ children }) {
             </div>
 
             <div className="lg:col-span-2">
-              <h4 className="font-bold text-lg mb-4 text-green-400">Service Areas - All 19 Cities</h4>
+              <h4 className="font-bold text-lg mb-4 text-green-400">Service Areas - All {locations.length} Cities</h4>
               <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-                <a href={createPageUrl('CovinaLandscaping')} className="text-gray-400 hover:text-white transition-colors">Covina</a>
-                <a href={createPageUrl('WestCovinaLandscaping')} className="text-gray-400 hover:text-white transition-colors">West Covina</a>
-                <a href={createPageUrl('GlendoraLandscaping')} className="text-gray-400 hover:text-white transition-colors">Glendora</a>
-                <a href={createPageUrl('SanDimasLandscaping')} className="text-gray-400 hover:text-white transition-colors">San Dimas</a>
-                <a href={createPageUrl('LaVerneLandscaping')} className="text-gray-400 hover:text-white transition-colors">La Verne</a>
-                <a href={createPageUrl('PasadenaLandscaping')} className="text-gray-400 hover:text-white transition-colors">Pasadena</a>
-                <a href={createPageUrl('AzusaLandscaping')} className="text-gray-400 hover:text-white transition-colors">Azusa</a>
-                <a href={createPageUrl('DiamondBarLandscaping')} className="text-gray-400 hover:text-white transition-colors">Diamond Bar</a>
-                <a href={createPageUrl('WalnutLandscaping')} className="text-gray-400 hover:text-white transition-colors">Walnut</a>
-                <a href={createPageUrl('TempleCityLandscaping')} className="text-gray-400 hover:text-white transition-colors">Temple City</a>
-                <a href={createPageUrl('RowlandHeightsLandscaping')} className="text-gray-400 hover:text-white transition-colors">Rowland Heights</a>
-                <a href={createPageUrl('PomonaLandscaping')} className="text-gray-400 hover:text-white transition-colors">Pomona</a>
-                <a href={createPageUrl('BaldwinParkLandscaping')} className="text-gray-400 hover:text-white transition-colors">Baldwin Park</a>
-                <a href={createPageUrl('MonroviaLandscaping')} className="text-gray-400 hover:text-white transition-colors">Monrovia</a>
-                <a href={createPageUrl('ArcadiaLandscaping')} className="text-gray-400 hover:text-white transition-colors">Arcadia</a>
-                <a href={createPageUrl('CharterOakLandscaping')} className="text-gray-400 hover:text-white transition-colors">Charter Oak</a>
-                <a href={createPageUrl('ClaremontLandscaping')} className="text-gray-400 hover:text-white transition-colors">Claremont</a>
-                <a href={createPageUrl('DuarteLandscaping')} className="text-gray-400 hover:text-white transition-colors">Duarte</a>
-                <a href={createPageUrl('SanGabrielValleyLandscaping')} className="text-gray-400 hover:text-white transition-colors col-span-2">San Gabriel Valley</a>
+                {locations.map(city => {
+                  const pageName = city.name.replace(/ /g, '') + 'Landscaping';
+                  return (
+                    <a 
+                      key={city.name}
+                      href={createPageUrl(pageName)} 
+                      className={`text-gray-400 hover:text-white transition-colors ${city.slug === 'san-gabriel-valley' ? 'col-span-2' : ''}`}
+                    >
+                      {city.name}
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>

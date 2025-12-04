@@ -6,28 +6,7 @@ import SEO from '@/components/SEO';
 import ServiceSchema from '@/components/ServiceSchema';
 import SharedHero from '@/components/SharedHero';
 import ContactForm from '@/components/ContactForm';
-
-const serviceCities = [
-    { name: 'Covina', page: 'CovinaLandscaping' },
-    { name: 'West Covina', page: 'WestCovinaLandscaping' },
-    { name: 'Glendora', page: 'GlendoraLandscaping' },
-    { name: 'San Dimas', page: 'SanDimasLandscaping' },
-    { name: 'La Verne', page: 'LaVerneLandscaping' },
-    { name: 'Pasadena', page: 'PasadenaLandscaping' },
-    { name: 'Azusa', page: 'AzusaLandscaping' },
-    { name: 'Diamond Bar', page: 'DiamondBarLandscaping' },
-    { name: 'Walnut', page: 'WalnutLandscaping' },
-    { name: 'Temple City', page: 'TempleCityLandscaping' },
-    { name: 'Rowland Heights', page: 'RowlandHeightsLandscaping' },
-    { name: 'Pomona', page: 'PomonaLandscaping' },
-    { name: 'Baldwin Park', page: 'BaldwinParkLandscaping' },
-    { name: 'Monrovia', page: 'MonroviaLandscaping' },
-    { name: 'Arcadia', page: 'ArcadiaLandscaping' },
-    { name: 'Charter Oak', page: 'CharterOakLandscaping' },
-    { name: 'Claremont', page: 'ClaremontLandscaping' },
-    { name: 'Duarte', page: 'DuarteLandscaping' },
-    { name: 'San Gabriel Valley', page: 'SanGabrielValleyLandscaping' }
-];
+import { locations } from '@/components/locations/data';
 
 const services = [
     {
@@ -303,21 +282,24 @@ export default function Home() {
                     </div>
 
                     <nav aria-label="Service areas" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-                        {serviceCities.map(city => (
-                            <a
-                                href={createPageUrl(city.page)}
-                                key={city.name}
-                                className="group"
-                                aria-label={`Landscaping services in ${city.name}`}
-                            >
-                                <div className="bg-white hover:bg-green-500 border-2 border-gray-200 hover:border-green-500 transition-all duration-300 rounded-xl p-3 sm:p-4 text-center group-hover:scale-105 group-hover:shadow-lg">
-                                    <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-green-600 group-hover:text-white transition-colors" aria-hidden="true" />
-                                    <span className="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-white transition-colors">
-                                        {city.name}
-                                    </span>
-                                </div>
-                            </a>
-                        ))}
+                        {locations.map(city => {
+                            const pageName = city.name.replace(/ /g, '') + 'Landscaping';
+                            return (
+                                <a
+                                    href={createPageUrl(pageName)}
+                                    key={city.name}
+                                    className="group"
+                                    aria-label={`Landscaping services in ${city.name}`}
+                                >
+                                    <div className="bg-white hover:bg-green-500 border-2 border-gray-200 hover:border-green-500 transition-all duration-300 rounded-xl p-3 sm:p-4 text-center group-hover:scale-105 group-hover:shadow-lg">
+                                        <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-green-600 group-hover:text-white transition-colors" aria-hidden="true" />
+                                        <span className="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-white transition-colors">
+                                            {city.name}
+                                        </span>
+                                    </div>
+                                </a>
+                            );
+                        })}
                     </nav>
                 </div>
             </section>
