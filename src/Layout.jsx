@@ -4,7 +4,8 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
 import GlobalSchema from "@/components/GlobalSchema";
-import { locations } from '@/components/locations/data';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
 
 const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
@@ -17,6 +18,12 @@ const navigationItems = [
 export default function Layout({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const { data: locations = [] } = useQuery({
+    queryKey: ['locations'],
+    queryFn: () => base44.entities.Location.list({ limit: 100 }),
+    initialData: []
+  });
 
   useEffect(() => {
     const handleScroll = () => {

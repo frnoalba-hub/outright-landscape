@@ -6,7 +6,8 @@ import SEO from '@/components/SEO';
 import ServiceSchema from '@/components/ServiceSchema';
 import SharedHero from '@/components/SharedHero';
 import ContactForm from '@/components/ContactForm';
-import { locations } from '@/components/locations/data';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
 
 const services = [
     {
@@ -97,6 +98,12 @@ const projects = [
 ];
 
 export default function Home() {
+    const { data: locations = [] } = useQuery({
+        queryKey: ['locations'],
+        queryFn: () => base44.entities.Location.list({ limit: 100 }),
+        initialData: []
+    });
+
     // Track button clicks
     const trackEvent = (eventName, eventData = {}) => {
         if (typeof window !== 'undefined' && window.dataLayer) {

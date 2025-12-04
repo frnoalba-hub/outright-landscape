@@ -6,7 +6,8 @@ import SEO from '@/components/SEO';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import SharedHero from '@/components/SharedHero';
 import ContactForm from '@/components/ContactForm';
-import { locations } from './data';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
 
 // Map string names to Lucide components
 const iconMap = {
@@ -60,8 +61,17 @@ const defaultProjects = [
 ];
 
 export default function LocationPage({ cityKey }) {
-    // Find city data from centralized file
-    const cityData = locations.find(l => l.slug === cityKey);
+    // Fetch city data from database
+    const { data: locations = [], isLoading } = useQuery({
+        queryKey: ['location', cityKey],
+        queryFn: () => base44.entities.Location.filter({ slug: cityKey }),
+    });
+
+    const cityData = locations.length > 0 ? locations[0] : null;
+
+    if (isLoading) {
+        return <div className="p-20 text-center">Loading...</div>;
+    }
     
     if (!cityData) {
         return <div className="p-20 text-center">City not found: {cityKey}</div>;
