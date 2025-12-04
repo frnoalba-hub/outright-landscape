@@ -152,28 +152,43 @@ export default function Layout({ children }) {
       </noscript>
 
       <style>{`
-        html { scroll-behavior: smooth; }
-        section[id] { scroll-margin-top: 70px; }
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+        :root {
+          --font-primary: 'Outfit', sans-serif;
+        }
+
+        html { 
+          scroll-behavior: smooth; 
+          font-family: var(--font-primary);
+        }
+
+        body {
+          font-family: var(--font-primary);
+          @apply text-slate-900 bg-stone-50;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          font-weight: 600;
+          letter-spacing: -0.02em;
+        }
+
+        section[id] { scroll-margin-top: 80px; }
+
         img { 
           content-visibility: auto;
         }
+
         * {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
-        
-        /* Performance optimizations */
-        @media (prefers-reduced-motion: reduce) {
-          *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-          }
-        }
       `}</style>
 
-      <header className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-1 sm:py-2' : 'bg-white/80 backdrop-blur-sm py-1.5 sm:py-2'}`
+      <header className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
+      scrolled 
+        ? 'bg-white/95 backdrop-blur-xl border-gray-200/50 py-3' 
+        : 'bg-white/80 backdrop-blur-sm border-transparent py-4'}`
       }>
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -185,15 +200,15 @@ export default function Layout({ children }) {
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
                 alt="Outright Landscape Construction Logo"
-                className="h-14 sm:h-16 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
-                width="80"
-                height="80"
+                className="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-sm"
+                width="64"
+                height="64"
                 fetchpriority="high"
                 decoding="async" />
-                
+
               <div className="flex flex-col">
-                <span className="font-bold text-lg sm:text-xl leading-tight text-gray-900">Outright Landscape</span>
-                <span className="text-xs sm:text-sm text-green-600 font-bold tracking-wide">CSLB #1073845</span>
+                <span className="font-bold text-lg sm:text-xl leading-tight text-slate-900 tracking-tight">Outright Landscape</span>
+                <span className="text-[10px] sm:text-xs text-green-700 font-bold tracking-widest uppercase bg-green-50 px-1.5 py-0.5 rounded w-fit">CSLB #1073845</span>
               </div>
             </a>
             
@@ -293,22 +308,27 @@ export default function Layout({ children }) {
 
       <main className="flex-1">{children}</main>
 
-      <footer className="bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <footer className="bg-stone-950 text-white border-t border-stone-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24">
             <div className="lg:col-span-1">
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
                 alt="Outright Landscape Construction Logo"
-                className="h-20 w-auto mb-4"
+                className="h-16 w-auto mb-6 brightness-0 invert opacity-90"
                 width="80"
                 height="80"
                 loading="lazy"
                 decoding="async" />
 
-              <p className="text-gray-400 text-sm leading-relaxed">
-                Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas and the San Gabriel Valley.
+              <p className="text-stone-400 text-sm leading-relaxed mb-6">
+                Elevating outdoor living spaces across the San Gabriel Valley with precision craftsmanship and sustainable design.
               </p>
+
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-stone-900 rounded-full border border-stone-800">
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                  <span className="text-xs font-medium text-stone-300">Lic. C-27 #1073845</span>
+              </div>
             </div>
 
             <div>
