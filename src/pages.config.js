@@ -33,6 +33,8 @@ import ClaremontLandscaping from './pages/ClaremontLandscaping';
 import Sitemap from './pages/Sitemap';
 import Robots from './pages/Robots';
 import AdminLeads from './pages/AdminLeads';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import __Layout from './Layout.jsx';
 
 
@@ -72,6 +74,8 @@ export const PAGES = {
     "Sitemap": Sitemap,
     "Robots": Robots,
     "AdminLeads": AdminLeads,
+    "Blog": Blog,
+    "BlogPost": BlogPost,
 }
 
 export const pagesConfig = {
