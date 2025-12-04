@@ -1,6 +1,6 @@
-
+import React from 'react';
 import LocationPage from '@/components/locations/LocationPage';
 
 export default function ElMonteLandscaping() {
-    return <LocationPage cityKey="el-monte" />;
+  return <LocationPage citySlug="el-monte" />;
 }
