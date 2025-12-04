@@ -165,7 +165,8 @@ export default function Layout({ children }) {
 
         body {
           font-family: var(--font-primary);
-          @apply text-slate-900 bg-stone-50;
+          background-color: #fafaf9;
+          color: #0f172a;
         }
 
         h1, h2, h3, h4, h5, h6 {
