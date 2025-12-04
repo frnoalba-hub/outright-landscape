@@ -49,18 +49,15 @@ export default function Layout({ children }) {
   }, [isMenuOpen]);
 
   useEffect(() => {
-    // Preconnect to critical origins for performance
-    const preconnectDomains = ['https://app.base44.com'];
-    preconnectDomains.forEach(domain => {
-      const link = document.createElement('link');
-      link.rel = 'preconnect';
-      link.href = domain;
-      document.head.appendChild(link);
-    });
-
     // Initialize dataLayer immediately for event tracking
     window.dataLayer = window.dataLayer || [];
     
+    // Add Preconnect for performance
+    const link1 = document.createElement('link');
+    link1.rel = 'preconnect';
+    link1.href = 'https://app.base44.com';
+    document.head.appendChild(link1);
+
     // Defer GTM/GA loading by 2 seconds after window load
     const loadAnalytics = () => {
       setTimeout(() => {
