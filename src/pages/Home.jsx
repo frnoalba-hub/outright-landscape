@@ -33,7 +33,7 @@ const services = [
     {
         title: "Professional Irrigation Systems",
         description: "Expert irrigation and sprinkler system installation for efficient watering and water conservation.",
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
         icon: Droplets,
         features: ["Drip Systems", "Smart Controllers", "Water-Efficient Design"]
     },
@@ -68,10 +68,10 @@ const projects = [
         alt: "Premium Turf Installation - Outright Landscape Covina"
     },
     {
-        title: "Irrigation Main Line Installation",
+        title: "Irrigation Trenching",
         location: "West Covina, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
-        alt: "Irrigation Main Line Installation - Outright Landscape West Covina"
+        alt: "Irrigation Trenching - Outright Landscape West Covina"
     },
     {
         title: "Front Yard Driveway Pavers",
@@ -80,10 +80,10 @@ const projects = [
         alt: "Front Yard Driveway Pavers - Outright Landscape Glendora"
     },
     {
-        title: "Lush Lawn & Irrigation",
+        title: "Irrigation System Installation",
         location: "San Dimas, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
-        alt: "Lush Lawn & Irrigation - Outright Landscape San Dimas"
+        alt: "Irrigation System Installation - Outright Landscape San Dimas"
     },
     {
         title: "Turf & Sprinkler System",
@@ -98,10 +98,10 @@ const projects = [
         alt: "Sod & Drainage Installation - Outright Landscape Diamond Bar"
     },
     {
-        title: "Front Yard Driveway Renovation",
+        title: "Front Yard Landscaping",
         location: "Covina, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
-        alt: "Front Yard Driveway Renovation - Outright Landscape Covina"
+        alt: "Front Yard Landscaping - Outright Landscape Covina"
     },
     {
         title: "Irrigation Trenching",
@@ -110,10 +110,10 @@ const projects = [
         alt: "Irrigation Trenching - Outright Landscape Glendora"
     },
     {
-        title: "Sprinkler System Install",
+        title: "Side Yard Irrigation",
         location: "San Dimas, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
-        alt: "Sprinkler System Install - Outright Landscape San Dimas"
+        alt: "Side Yard Irrigation - Outright Landscape San Dimas"
     }
 ];
 
