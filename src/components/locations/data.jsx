@@ -1,9 +1,56 @@
+import { Sprout, Droplets, Hammer, Award, CheckCircle2 } from "lucide-react";
 
 export const locations = [
   {
     slug: 'covina',
     name: 'Covina',
     intro: 'When it comes to landscaping in Covina, residents trust Outright Landscape Construction for professional, reliable service. Nestled in the heart of the San Gabriel Valley, we understand the local climate and soil, allowing us to create stunning and sustainable outdoor spaces. From intricate paver patios and driveways to lush new sod installations and water-wise irrigation systems, our licensed and insured team handles it all. We specialize in full-scale projects, including demolition and hauling of old concrete or turf. As a local, family-run crew, we pride ourselves on clear communication and leaving every job site immaculate. We offer fast scheduling for free, detailed estimates. Let us transform your Covina property into the oasis you’ve always dreamed of.',
+    services: [
+      {
+        iconName: "Sprout",
+        title: "Turf Installation in Covina",
+        description: "Premium Marathon tall fescue and Bermuda grass varieties for lush, healthy lawns that thrive in Covina's climate.",
+        keywords: "sod installation, turf installation, lawn installation"
+      },
+      {
+        iconName: "Droplets",
+        title: "Irrigation Systems Covina",
+        description: "Professional sprinkler and drip irrigation installation designed for water efficiency and optimal lawn health.",
+        keywords: "irrigation, sprinkler systems, water management"
+      },
+      {
+        iconName: "Hammer",
+        title: "Hardscaping Experts Near Covina",
+        description: "Expert paver patios, walkways, retaining walls, and outdoor living spaces built to last.",
+        keywords: "hardscaping, pavers, patios, walkways"
+      },
+      {
+        iconName: "Award",
+        title: "Landscape Design Covina",
+        description: "Complete landscape design and construction services from concept to completion.",
+        keywords: "landscape design, landscape construction, yard makeover"
+      }
+    ],
+    projects: [
+      {
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+        title: "Premium Sod Installation",
+        description: "Lush lawn transformation in Covina",
+        alt: "Outright Landscape – Premium Sod Installation in Covina"
+      },
+      {
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+        title: "Complete Backyard Makeover",
+        description: "Full landscape renovation with fresh turf",
+        alt: "Outright Landscape – Complete Backyard Makeover in Covina"
+      },
+      {
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+        title: "Irrigation System Installation",
+        description: "Custom sprinkler system for optimal coverage",
+        alt: "Outright Landscape – Irrigation System in Covina"
+      }
+    ],
     faqs: [
         { q: 'Do you offer free estimates in Covina?', a: 'Yes, absolutely. We provide fast, free, and detailed estimates for all landscaping projects in Covina, typically within 24-48 hours of your request. Just fill out our form or give us a call to schedule.' },
         { q: 'Can you handle demo and hauling?', a: 'Yes, our services include complete demolition and hauling. We can safely remove and dispose of old turf, failing retaining walls, cracked concrete patios, planters, and more to prepare for your new landscape.' },

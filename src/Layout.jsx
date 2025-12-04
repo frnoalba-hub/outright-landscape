@@ -49,6 +49,15 @@ export default function Layout({ children }) {
   }, [isMenuOpen]);
 
   useEffect(() => {
+    // Preconnect to critical origins for performance
+    const preconnectDomains = ['https://app.base44.com'];
+    preconnectDomains.forEach(domain => {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = domain;
+      document.head.appendChild(link);
+    });
+
     // Initialize dataLayer immediately for event tracking
     window.dataLayer = window.dataLayer || [];
     
