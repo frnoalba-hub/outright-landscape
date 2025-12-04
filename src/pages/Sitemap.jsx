@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
+import { locations } from '@/components/locations/data';
 
 export default function Sitemap() {
   useEffect(() => {
-    import { locations } from '@/components/locations/data';
-
     const pages = [
       { url: '', priority: '1.0', changefreq: 'weekly' },
       ...locations.map(city => ({

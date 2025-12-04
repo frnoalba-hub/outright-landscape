@@ -1,4 +1,3 @@
-
 import { Sprout, Droplets, Hammer, Award, CheckCircle2 } from "lucide-react";
 
 const generateMapUrl = (lat, lng, query) => 
@@ -62,6 +61,23 @@ export const locations = [
         { q: 'Can you handle demo and hauling?', a: 'Yes, our services include complete demolition and hauling. We can safely remove and dispose of old turf, failing retaining walls, and cracked concrete patios.' },
         { q: 'How long does a typical project take?', a: 'Project timelines vary. A small cleanup or planting job might take 1-3 days. A larger hardscape installation with pavers and irrigation could take 1-2 weeks.' },
         { q: 'Do you warranty your work?', a: 'We do. We stand by our workmanship and use high-quality materials. Many products, like pavers, also come with manufacturer warranties that we pass on to you.' },
+    ],
+    projects: [
+        {
+            title: "Premium Turf Installation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "Premium Turf Installation - Outright Landscape Covina"
+        },
+        {
+            title: "Front Yard Landscaping",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            alt: "Front Yard Landscaping - Outright Landscape Covina"
+        },
+        {
+            title: "Paver Walkway & Sod",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Paver Walkway and Sod Installation Covina"
+        }
     ]
   },
   {
@@ -75,6 +91,23 @@ export const locations = [
         { q: 'Can you handle demo and hauling?', a: 'Yes, our services include complete demolition and hauling of old turf, concrete, and debris.' },
         { q: 'How long does a typical project take?', a: 'Timelines vary by scope. Simple cleanups take 1-3 days, while major hardscaping projects may take 1-2 weeks.' },
         { q: 'Do you warranty your work?', a: 'Yes, we provide comprehensive warranties on our workmanship and honor all manufacturer guarantees on materials.' },
+    ],
+    projects: [
+        {
+            title: "Irrigation Trenching",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
+            alt: "Irrigation Trenching - Outright Landscape West Covina"
+        },
+        {
+             title: "Complete Backyard Makeover",
+             image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+             alt: "Complete Backyard Makeover West Covina"
+        },
+        {
+             title: "Sod Installation",
+             image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+             alt: "Sod Installation West Covina"
+        }
     ]
   },
   {
@@ -88,6 +121,23 @@ export const locations = [
         { q: 'Can you handle demo and hauling?', a: 'Yes, we specialize in safe and efficient demolition and removal of old landscapes and concrete.' },
         { q: 'How long does a typical project take?', a: 'Most residential projects in Glendora are completed within 3-10 days, depending on complexity.' },
         { q: 'Do you warranty your work?', a: 'We stand behind our quality with solid workmanship warranties and material guarantees.' },
+    ],
+    projects: [
+        {
+            title: "Front Yard Driveway Pavers",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Front Yard Driveway Pavers - Outright Landscape Glendora"
+        },
+        {
+            title: "Irrigation Trenching",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            alt: "Irrigation Trenching - Outright Landscape Glendora"
+        },
+        {
+            title: "Turf Renovation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "Turf Renovation Glendora"
+        }
     ]
   },
   {
@@ -112,6 +162,23 @@ export const locations = [
         { q: 'Do you offer free estimates in Pasadena?', a: 'Yes, we provide free on-site consultations and detailed estimates throughout Pasadena.' },
         { q: 'Can you handle demo and hauling?', a: 'Yes, our team is equipped for full-service demolition and debris removal.' },
         { q: 'Do you warranty your work?', a: 'We provide comprehensive warranties on all our installations and services.' },
+    ],
+    projects: [
+        {
+            title: "Turf & Sprinkler System",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
+            alt: "Turf & Sprinkler System - Outright Landscape Pasadena"
+        },
+        {
+            title: "Paver Patio Design",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Paver Patio Design Pasadena"
+        },
+        {
+            title: "Drought Tolerant Garden",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            alt: "Drought Tolerant Garden Pasadena"
+        }
     ]
   },
   {
@@ -124,6 +191,23 @@ export const locations = [
         { q: 'Do you offer free estimates in Diamond Bar?', a: 'Yes, we provide free, comprehensive estimates for all our landscaping services.' },
         { q: 'Can you handle demo and hauling?', a: 'Yes, we handle all demolition and removal of old landscape materials.' },
         { q: 'Do you warranty your work?', a: 'Yes, we back our work with solid warranties and use premium materials.' },
+    ],
+    projects: [
+        {
+            title: "Sod & Drainage Installation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+            alt: "Sod & Drainage Installation - Outright Landscape Diamond Bar"
+        },
+        {
+            title: "Retaining Wall Construction",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Retaining Wall Construction Diamond Bar"
+        },
+        {
+            title: "Complete Lawn Renovation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "Complete Lawn Renovation Diamond Bar"
+        }
     ]
   },
   {
@@ -160,6 +244,23 @@ export const locations = [
         { q: 'Do you offer free estimates in San Dimas?', a: 'Yes, we provide free, detailed estimates for all landscaping projects in San Dimas.' },
         { q: 'Can you handle demo and hauling?', a: 'Absolutely. We specialize in complete demolition and hauling services.' },
         { q: 'Do you warranty your work?', a: 'Yes, we stand behind our workmanship with comprehensive warranties.' },
+    ],
+    projects: [
+        {
+            title: "Irrigation System Installation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            alt: "Irrigation System Installation - Outright Landscape San Dimas"
+        },
+        {
+            title: "Side Yard Irrigation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+            alt: "Side Yard Irrigation - Outright Landscape San Dimas"
+        },
+        {
+            title: "Landscape Demo & Prep",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            alt: "Landscape Demo and Prep San Dimas"
+        }
     ]
   },
   {
