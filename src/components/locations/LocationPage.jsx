@@ -61,13 +61,13 @@ const defaultProjects = [
 ];
 
 export default function LocationPage({ cityKey }) {
-    // Fetch city data from database
+    // Fetch all locations for navigation and nearby cities
     const { data: locations = [], isLoading } = useQuery({
-        queryKey: ['location', cityKey],
-        queryFn: () => base44.entities.Location.filter({ slug: cityKey }),
+        queryKey: ['locations'],
+        queryFn: () => base44.entities.Location.list({ limit: 100 }),
     });
 
-    const cityData = locations.length > 0 ? locations[0] : null;
+    const cityData = locations.find(l => l.slug === cityKey);
 
     if (isLoading) {
         return <div className="p-20 text-center">Loading...</div>;
