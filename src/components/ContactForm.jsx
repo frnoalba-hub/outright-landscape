@@ -22,7 +22,8 @@ export default function ContactForm({ cityName = "your area", darkMode = true })
         setIsSubmitting(true);
 
         try {
-            await base44.entities.ContactInquiry.create(formData);
+            // Call backend function to save lead and send email
+            await base44.functions.invoke('submitLead', formData);
 
             // Track form submission
             if (window.dataLayer) {
