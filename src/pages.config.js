@@ -32,6 +32,7 @@ import DuarteLandscaping from './pages/DuarteLandscaping';
 import ClaremontLandscaping from './pages/ClaremontLandscaping';
 import Sitemap from './pages/Sitemap';
 import Robots from './pages/Robots';
+import AdminLeads from './pages/AdminLeads';
 import __Layout from './Layout.jsx';
 
 
@@ -70,6 +71,7 @@ export const PAGES = {
     "ClaremontLandscaping": ClaremontLandscaping,
     "Sitemap": Sitemap,
     "Robots": Robots,
+    "AdminLeads": AdminLeads,
 }
 
 export const pagesConfig = {
