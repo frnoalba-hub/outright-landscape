@@ -150,6 +150,23 @@ export const locations = [
         { q: 'Do you offer free estimates in Azusa?', a: 'Absolutely. We offer complimentary estimates for all landscaping services in Azusa.' },
         { q: 'Can you handle demo and hauling?', a: 'Yes, we provide complete demolition and site cleanup services.' },
         { q: 'Do you warranty your work?', a: 'Yes, we guarantee our workmanship and pass on all manufacturer warranties.' },
+    ],
+    projects: [
+        {
+            title: "Paver Walkway Installation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Paver Walkway Installation Azusa"
+        },
+        {
+            title: "Drip Irrigation System",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            alt: "Drip Irrigation System Azusa"
+        },
+        {
+            title: "Front Yard Sod",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+            alt: "Front Yard Sod Azusa"
+        }
     ]
   },
   {
@@ -220,6 +237,23 @@ export const locations = [
         { q: 'Do you offer free estimates in Charter Oak?', a: 'Yes, we offer free estimates to all residents in the Charter Oak community.' },
         { q: 'Can you handle demo and hauling?', a: 'Yes, we provide full demolition and hauling services.' },
         { q: 'Do you warranty your work?', a: 'Yes, all our projects are backed by our workmanship warranty.' },
+    ],
+    projects: [
+        {
+            title: "Custom Paver Patio",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            alt: "Custom Paver Patio Charter Oak"
+        },
+        {
+            title: "Lawn Replacement",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "Lawn Replacement Charter Oak"
+        },
+        {
+            title: "Sprinkler Repair & Install",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            alt: "Sprinkler Repair and Install Charter Oak"
+        }
     ]
   },
   {
@@ -232,6 +266,23 @@ export const locations = [
         { q: 'Do you offer free estimates in La Verne?', a: 'We certainly do. Homeowners in La Verne can receive a free, detailed estimate.' },
         { q: 'Can you handle demo and hauling?', a: 'Yes, we take care of all demolition and site clearing needs.' },
         { q: 'Do you warranty your work?', a: 'Yes, we guarantee high-quality results and provide warranties on our work.' },
+    ],
+    projects: [
+        {
+            title: "Modern Paver Driveway",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Modern Paver Driveway La Verne"
+        },
+        {
+            title: "Water-Efficient Landscaping",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+            alt: "Water-Efficient Landscaping La Verne"
+        },
+        {
+            title: "New Turf Installation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+            alt: "New Turf Installation La Verne"
+        }
     ]
   },
   {
@@ -273,6 +324,23 @@ export const locations = [
         { q: 'Do you provide free landscaping estimates in Walnut?', a: 'Yes, we offer complimentary, detailed estimates for all landscaping services in Walnut.' },
         { q: 'Can you handle demolition and cleanup?', a: 'Absolutely. Our full-service approach includes professional demolition and hauling.' },
         { q: 'Do you guarantee your landscaping work?', a: 'Yes, we provide warranties on our workmanship and materials.' },
+    ],
+    projects: [
+        {
+            title: "Backyard Pavers & Turf",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            alt: "Backyard Pavers and Turf Walnut"
+        },
+        {
+            title: "Sprinkler System Upgrade",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
+            alt: "Sprinkler System Upgrade Walnut"
+        },
+        {
+            title: "Landscape Renovation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            alt: "Landscape Renovation Walnut"
+        }
     ]
   },
   {
@@ -285,6 +353,23 @@ export const locations = [
         { q: 'Do you offer free estimates in Baldwin Park?', a: 'Yes, we provide free, comprehensive estimates for all landscaping projects in Baldwin Park.' },
         { q: 'Can you handle demo and removal services?', a: 'Absolutely. We specialize in complete demolition and hauling services.' },
         { q: 'Do you warranty your work?', a: 'Yes, we stand behind our craftsmanship with solid warranties.' },
+    ],
+    projects: [
+        {
+            title: "Complete Yard Clean-Up",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            alt: "Complete Yard Clean-Up Baldwin Park"
+        },
+        {
+            title: "New Sod Installation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "New Sod Installation Baldwin Park"
+        },
+        {
+            title: "Paver Patio",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Paver Patio Baldwin Park"
+        }
     ]
   },
   {
@@ -297,6 +382,23 @@ export const locations = [
         { q: 'Do you provide free landscaping consultations in El Monte?', a: 'Yes, we offer free, detailed estimates for all El Monte landscaping projects.' },
         { q: 'Can you handle demolition and site preparation?', a: 'Absolutely. Our full-service approach includes professional demolition and hauling.' },
         { q: 'Do you guarantee your landscaping work?', a: 'Yes, we provide comprehensive warranties on our workmanship.' },
+    ],
+    projects: [
+        {
+            title: "Paver Walkway & Plants",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            alt: "Paver Walkway and Plants El Monte"
+        },
+        {
+            title: "Irrigation Install",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            alt: "Irrigation Install El Monte"
+        },
+        {
+            title: "Backyard Turf",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
+            alt: "Backyard Turf El Monte"
+        }
     ]
   },
   {
@@ -309,6 +411,23 @@ export const locations = [
         { q: 'Do you offer free estimates for Monrovia landscaping projects?', a: 'Yes, we provide free, comprehensive estimates for all Monrovia landscaping services.' },
         { q: 'Can you handle demolition and cleanup?', a: 'Absolutely. We specialize in complete demolition and hauling services.' },
         { q: 'Do you warranty your work?', a: 'Yes, we provide solid warranties on our craftsmanship.' },
+    ],
+    projects: [
+        {
+            title: "Premium Hardscape Design",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            alt: "Premium Hardscape Design Monrovia"
+        },
+        {
+            title: "Drought Tolerant Landscaping",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+            alt: "Drought Tolerant Landscaping Monrovia"
+        },
+        {
+            title: "Front Yard Sod & Pavers",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Front Yard Sod and Pavers Monrovia"
+        }
     ]
   },
   {
@@ -321,6 +440,23 @@ export const locations = [
         { q: 'Do you provide free landscaping estimates in Arcadia?', a: 'Yes, we provide free, detailed consultations and estimates for all Arcadia landscaping projects.' },
         { q: 'Can you handle site demolition and preparation?', a: 'Absolutely. We provide complete demolition and hauling services.' },
         { q: 'Do you guarantee your landscaping work?', a: 'Yes, we provide comprehensive warranties on our workmanship and premium materials.' },
+    ],
+    projects: [
+        {
+            title: "Luxury Estate Landscaping",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            alt: "Luxury Estate Landscaping Arcadia"
+        },
+        {
+            title: "Custom Paver Driveway",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Custom Paver Driveway Arcadia"
+        },
+        {
+            title: "Marathon Sod Installation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "Marathon Sod Installation Arcadia"
+        }
     ]
   },
   {
@@ -333,6 +469,23 @@ export const locations = [
         { q: 'Do you offer free estimates in Temple City?', a: 'Yes, we provide free, comprehensive estimates for all Temple City landscaping projects.' },
         { q: 'Can you handle demolition and site prep?', a: 'Absolutely. We specialize in complete demolition and hauling services.' },
         { q: 'Do you warranty your work?', a: 'Yes, we provide solid warranties on our workmanship.' },
+    ],
+    projects: [
+        {
+            title: "Paver Patio & Walkways",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Paver Patio and Walkways Temple City"
+        },
+        {
+            title: "Sprinkler System Installation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
+            alt: "Sprinkler System Installation Temple City"
+        },
+        {
+            title: "Lawn Renovation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+            alt: "Lawn Renovation Temple City"
+        }
     ]
   },
   {
@@ -345,6 +498,23 @@ export const locations = [
         { q: 'Do you provide free landscaping consultations in Rowland Heights?', a: 'Yes, we offer free, detailed estimates for all Rowland Heights landscaping projects.' },
         { q: 'Can you handle demolition and removal?', a: 'Absolutely. We provide complete demolition and hauling services.' },
         { q: 'Do you guarantee your landscaping work?', a: 'Yes, we provide comprehensive warranties on our craftsmanship.' },
+    ],
+    projects: [
+        {
+            title: "Hardscape & Retaining Wall",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            alt: "Hardscape and Retaining Wall Rowland Heights"
+        },
+        {
+            title: "Front Yard Irrigation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            alt: "Front Yard Irrigation Rowland Heights"
+        },
+        {
+            title: "New Sod Lawn",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "New Sod Lawn Rowland Heights"
+        }
     ]
   },
   {
@@ -357,6 +527,23 @@ export const locations = [
         { q: 'Do you offer free estimates for Pomona landscaping projects?', a: 'Yes, we provide free, comprehensive consultations and estimates for all Pomona landscaping services.' },
         { q: 'Can you handle site demolition and preparation?', a: 'Absolutely. We specialize in complete demolition and hauling services.' },
         { q: 'Do you warranty your work?', a: 'Yes, we provide solid warranties on our workmanship.' },
+    ],
+    projects: [
+        {
+            title: "Full Yard Clean-Up",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            alt: "Full Yard Clean-Up Pomona"
+        },
+        {
+            title: "Paver Driveway Install",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Paver Driveway Install Pomona"
+        },
+        {
+            title: "Sprinkler System",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            alt: "Sprinkler System Pomona"
+        }
     ]
   },
   {
@@ -369,6 +556,23 @@ export const locations = [
         { q: 'Do you offer free estimates in Claremont?', a: 'Yes, we offer free, detailed estimates for all landscaping projects in Claremont.' },
         { q: 'Can you handle demo and hauling?', a: 'Yes, we provide full demolition and removal services.' },
         { q: 'Do you warranty your work?', a: 'Yes, we stand by our work with comprehensive warranties.' },
+    ],
+    projects: [
+        {
+            title: "Drought Friendly Design",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+            alt: "Drought Friendly Design Claremont"
+        },
+        {
+            title: "Premium Paver Walkway",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            alt: "Premium Paver Walkway Claremont"
+        },
+        {
+            title: "Turf & Irrigation",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "Turf and Irrigation Claremont"
+        }
     ]
   },
   {
@@ -381,6 +585,23 @@ export const locations = [
         { q: 'Do you provide free landscaping estimates in Duarte?', a: 'Yes, we provide free estimates for all residential landscaping projects in Duarte.' },
         { q: 'Can you handle site prep and demo?', a: 'Absolutely. We handle all aspects of demolition and site preparation.' },
         { q: 'Do you warranty your work?', a: 'Yes, we guarantee our craftsmanship and materials.' },
+    ],
+    projects: [
+        {
+            title: "Front Yard Landscape",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            alt: "Front Yard Landscape Duarte"
+        },
+        {
+            title: "Sprinkler System Install",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            alt: "Sprinkler System Install Duarte"
+        },
+        {
+            title: "Paver Patio Construction",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Paver Patio Construction Duarte"
+        }
     ]
   },
   {
@@ -393,6 +614,23 @@ export const locations = [
         { q: 'Do you serve the entire San Gabriel Valley?', a: 'Yes, we provide our full range of landscaping services throughout the SGV.' },
         { q: 'Do you offer free estimates?', a: 'Yes, we offer free, detailed estimates for all projects in the region.' },
         { q: 'Do you warranty your work?', a: 'Yes, we provide comprehensive warranties on all our projects.' },
+    ],
+    projects: [
+        {
+            title: "Regional Landscape Projects",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            alt: "Regional Landscape Projects San Gabriel Valley"
+        },
+        {
+            title: "Sod & Irrigation Experts",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            alt: "Sod and Irrigation Experts San Gabriel Valley"
+        },
+        {
+            title: "Custom Hardscaping",
+            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            alt: "Custom Hardscaping San Gabriel Valley"
+        }
     ]
   }
 ];
