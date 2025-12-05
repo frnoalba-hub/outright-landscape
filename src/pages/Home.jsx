@@ -1,59 +1,99 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { createPageUrl } from '@/utils';
-import { MapPin, Phone, CheckCircle2, ArrowRight, Star, Leaf, Droplets, Hammer, Shovel, Play } from 'lucide-react';
+import { MapPin, Phone, CheckCircle2, Award, Users, Clock, Droplets, Sprout, Home as HomeIcon, Sparkles } from 'lucide-react';
 import SEO from '@/components/SEO';
 import ServiceSchema from '@/components/ServiceSchema';
+import SharedHero from '@/components/SharedHero';
 import ContactForm from '@/components/ContactForm';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { motion } from 'framer-motion';
 
 const services = [
     {
-        title: "Landscape Design",
-        description: "From concept to creation, we design outdoor spaces that blend aesthetics with functionality.",
-        icon: Leaf,
-        image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        title: "Hardscaping",
-        description: "Durable and elegant pavers, retaining walls, and patios that define your outdoor living area.",
-        icon: Hammer,
-        image: "https://images.unsplash.com/photo-1623625969110-447935ebc032?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        title: "Irrigation Systems",
-        description: "Smart, water-efficient systems designed to keep your landscape thriving while conserving resources.",
+        title: "Professional Irrigation Systems",
+        description: "Expert irrigation and sprinkler system installation for efficient watering and water conservation.",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
         icon: Droplets,
-        image: "https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&q=80&w=800"
+        features: ["Drip Systems", "Smart Controllers", "Water-Efficient Design"]
     },
     {
-        title: "Turf Installation",
-        description: "Premium sod and artificial turf installation for a lush, green lawn year-round.",
-        icon: Shovel,
-        image: "https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&q=80&w=800"
+        title: "Premium Turf & Sod Installation",
+        description: "Lush, healthy lawns with premium Marathon tall fescue and hybrid Bermuda grass varieties.",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+        icon: Sprout,
+        features: ["Premium Sod", "Artificial Turf", "Lawn Renovation"]
+    },
+    {
+        title: "Hardscaping & Paver Installation",
+        description: "Beautiful patios, walkways, and custom hardscape features built to last with expert craftsmanship.",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+        icon: HomeIcon,
+        features: ["Paver Patios", "Walkways", "Retaining Walls"]
+    },
+    {
+        title: "Complete Landscape Design",
+        description: "Transform your outdoor space with our expert landscape design and construction services.",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+        icon: Award,
+        features: ["Custom Design", "Professional Installation", "Native Plants"]
     }
 ];
 
 const projects = [
     {
-        title: "Modern Estate",
-        location: "Arcadia, CA",
-        image: "https://images.unsplash.com/photo-1600596542815-e32c53048040?auto=format&fit=crop&q=80&w=800",
-        category: "Design & Build"
+        title: "Premium Turf Installation",
+        location: "Covina, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+        alt: "Premium Turf Installation - Outright Landscape Covina"
     },
     {
-        title: "Drought Tolerant Oasis",
-        location: "Pasadena, CA",
-        image: "https://images.unsplash.com/photo-1593507642359-126873c2685f?auto=format&fit=crop&q=80&w=800",
-        category: "Sustainable"
+        title: "Irrigation Trenching",
+        location: "West Covina, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
+        alt: "Irrigation Trenching - Outright Landscape West Covina"
     },
     {
-        title: "Luxury Paver Patio",
+        title: "Front Yard Driveway Pavers",
+        location: "Glendora, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+        alt: "Front Yard Driveway Pavers - Outright Landscape Glendora"
+    },
+    {
+        title: "Irrigation System Installation",
         location: "San Dimas, CA",
-        image: "https://images.unsplash.com/photo-1621501042219-2d504142e148?auto=format&fit=crop&q=80&w=800",
-        category: "Hardscape"
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+        alt: "Irrigation System Installation - Outright Landscape San Dimas"
+    },
+    {
+        title: "Turf & Sprinkler System",
+        location: "Pasadena, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
+        alt: "Turf & Sprinkler System - Outright Landscape Pasadena"
+    },
+    {
+        title: "Sod & Drainage Installation",
+        location: "Diamond Bar, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+        alt: "Sod & Drainage Installation - Outright Landscape Diamond Bar"
+    },
+    {
+        title: "Front Yard Landscaping",
+        location: "Covina, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+        alt: "Front Yard Landscaping - Outright Landscape Covina"
+    },
+    {
+        title: "Irrigation Trenching",
+        location: "Glendora, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+        alt: "Irrigation Trenching - Outright Landscape Glendora"
+    },
+    {
+        title: "Side Yard Irrigation",
+        location: "San Dimas, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+        alt: "Side Yard Irrigation - Outright Landscape San Dimas"
     }
 ];
 
@@ -64,268 +104,263 @@ export default function Home() {
         initialData: []
     });
 
-    const trackEvent = (name, data) => {
-        if (window.dataLayer) window.dataLayer.push({ event: name, ...data });
+    // Track button clicks
+    const trackEvent = (eventName, eventData = {}) => {
+        if (typeof window !== 'undefined' && window.dataLayer) {
+            window.dataLayer.push({
+                event: eventName,
+                ...eventData
+            });
+        }
+        if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', eventName, eventData);
+        }
+    };
+
+    const handlePhoneClick = (location) => {
+        trackEvent('phone_click', {
+            event_category: 'engagement',
+            event_label: location,
+            phone_number: '626-343-6028',
+            value: 1
+        });
+    };
+
+    const handleQuoteClick = (location) => {
+        trackEvent('request_quote', {
+            event_category: 'conversion',
+            event_label: location,
+            value: 1
+        });
     };
 
     return (
-        <div className="bg-stone-50 overflow-x-hidden font-sans">
+        <div className="bg-white">
+            {/* Removed inline style tag for hero section mobile styling as it will now be handled by SharedHero */}
+
             <SEO
-                title="Outright Landscape | Premium Landscape Construction in San Gabriel Valley"
-                description="Transform your property with Outright Landscape. Licensed C-27 contractor specializing in modern design, hardscaping, and sustainable solutions."
+                title="Outright Landscape | Covina & San Gabriel Valley Hardscape Experts – Call for a Free AI Design Preview"
+                description="Transform your yard or driveway with trusted local landscapers. Call now for your free AI design preview and same-week quote."
+                keywords="landscaping Covina, hardscape experts, paver installation, concrete work, landscape contractor, irrigation systems, sod installation, San Gabriel Valley, CSLB 1073845, AI design preview"
                 canonicalUrl="https://outrightlandscape.com"
+                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
             />
+            
+            {/* Add all service schemas */}
+            <ServiceSchema serviceType="paver-installation" />
+            <ServiceSchema serviceType="turf-installation" />
+            <ServiceSchema serviceType="irrigation-systems" />
             <ServiceSchema serviceType="hardscaping" />
 
-            {/* Hero Section */}
-            <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
-                        alt="Luxury Landscape Background"
-                        className="w-full h-full object-cover scale-105 animate-slow-zoom"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
-                </div>
+            {/* Hero Section - Replaced with SharedHero component */}
+            <SharedHero 
+                title={<>Transform Your<br /><span className="text-green-400">Outdoor Living Space</span></>}
+                subtitle="Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas & the San Gabriel Valley"
+                description="Expert Pavers • Turf Installation • Irrigation Systems • Hardscaping"
+                aiCtaText="Call today for a free AI landscape design preview — see your new yard before we build it."
+                phoneNumber="626-343-6028"
+                trackPhoneClick={handlePhoneClick} // Pass the handler from Home
+                trackQuoteClick={handleQuoteClick} // Pass the handler for the main quote button
+                trackViewServicesClick={() => trackEvent('view_services_click', { event_category: 'navigation', event_label: 'hero_section' })}
+                backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
+                backgroundImageAlt="cdeefde95_2024-09-14.jpg - Outright Landscape Covina"
+            />
 
-                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white mt-16">
-                    <motion.div 
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8"
-                    >
-                        <Star className="w-4 h-4 text-green-400 fill-current" />
-                        <span className="text-sm font-medium tracking-wide uppercase">Premier C-27 Contractor #1073845</span>
-                    </motion.div>
-                    
-                    <motion.h1 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight tracking-tight"
-                    >
-                        Elevate Your <br className="hidden sm:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Outdoor Living</span>
-                    </motion.h1>
-                    
-                    <motion.p 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-lg sm:text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
-                    >
-                        We craft exceptional landscapes that blend modern design with natural beauty. Serving the San Gabriel Valley.
-                    </motion.p>
-                    
-                    <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6 }}
-                        className="flex flex-col sm:flex-row gap-4 justify-center"
-                    >
-                        <Button 
-                            size="lg" 
-                            className="bg-green-600 hover:bg-green-700 text-white rounded-full px-8 h-14 text-lg font-semibold shadow-lg shadow-green-900/20"
-                            onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
-                        >
-                            Request Consultation
-                        </Button>
-                        <Button 
-                            size="lg" 
-                            variant="outline" 
-                            className="bg-white/5 backdrop-blur-sm border-white/30 text-white hover:bg-white/10 rounded-full px-8 h-14 text-lg font-semibold"
-                            onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
-                        >
-                            View Our Work
-                        </Button>
-                    </motion.div>
-                </div>
-                
-                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-                    <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1">
-                        <div className="w-1 h-2 bg-white rounded-full" />
-                    </div>
-                </div>
-            </section>
-
-            {/* Stats / Trust Bar */}
-            <section className="bg-white py-10 border-b border-stone-100">
+            {/* Services Section */}
+            <section id="services" className="py-16 sm:py-20 md:py-24 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                        {[
-                            { label: "Years Experience", value: "10+" },
-                            { label: "Projects Completed", value: "500+" },
-                            { label: "Cities Served", value: locations.length || "19" },
-                            { label: "Client Satisfaction", value: "100%" }
-                        ].map((stat, idx) => (
-                            <div key={idx}>
-                                <div className="text-3xl sm:text-4xl font-bold text-stone-900 mb-1">{stat.value}</div>
-                                <div className="text-sm text-stone-500 uppercase tracking-wider font-medium">{stat.label}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Services Grid - Minimalist */}
-            <section id="services" className="py-24 bg-stone-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                        <div className="max-w-2xl">
-                            <h2 className="text-sm font-bold text-green-600 uppercase tracking-widest mb-3">Our Expertise</h2>
-                            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 leading-tight">
-                                Comprehensive Landscape <br /> Solutions
-                            </h3>
-                        </div>
-                        <Button variant="ghost" className="group text-stone-600 hover:text-green-600" asChild>
-                            <a href="/services">
-                                View All Services <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                            </a>
-                        </Button>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {services.map((service, idx) => (
-                            <div key={idx} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-stone-100 hover:border-green-100">
-                                <div className="relative h-48 overflow-hidden">
-                                    <img 
-                                        src={service.image} 
-                                        alt={service.title} 
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                    />
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-300" />
-                                </div>
-                                <div className="p-8">
-                                    <div className="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300">
-                                        <service.icon className="w-6 h-6" />
-                                    </div>
-                                    <h4 className="text-xl font-bold text-stone-900 mb-3">{service.title}</h4>
-                                    <p className="text-stone-500 leading-relaxed text-sm">{service.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* Featured Project - Masonry Style feel */}
-            <section id="projects" className="py-24 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-sm font-bold text-green-600 uppercase tracking-widest mb-3">Featured Projects</h2>
-                        <h3 className="text-3xl sm:text-4xl font-bold text-stone-900 mb-4">Exceptional Workmanship</h3>
-                        <p className="text-stone-500 max-w-2xl mx-auto">
-                            Explore a selection of our recent transformations across the San Gabriel Valley.
+                    <div className="text-center mb-12 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                            Professional Landscaping Services in Covina, Glendora & San Dimas
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+                            From irrigation and turf installation to hardscaping and landscape design, we bring your outdoor vision to life with quality craftsmanship.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {projects.map((project, idx) => (
-                            <div 
-                                key={idx} 
-                                className={`group relative rounded-3xl overflow-hidden cursor-pointer ${idx === 0 ? 'md:col-span-2 md:h-[500px]' : 'h-[400px]'}`}
-                            >
-                                <img 
-                                    src={project.image} 
-                                    alt={project.title} 
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                                <div className="absolute bottom-0 left-0 p-8 md:p-10 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                                    <div className="text-green-400 text-sm font-bold uppercase tracking-wider mb-2">{project.category}</div>
-                                    <h4 className="text-2xl md:text-4xl font-bold mb-2">{project.title}</h4>
-                                    <div className="flex items-center text-stone-300 text-sm md:text-base">
-                                        <MapPin className="w-4 h-4 mr-2" /> {project.location}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                        {services.map((service, index) => (
+                            <article key={index} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                                <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                                    <img
+                                        src={service.image}
+                                        alt={`${service.title} in Covina, Glendora, San Dimas - Outright Landscape`}
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                        loading="lazy"
+                                        width="400"
+                                        height="300"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                    <div className="absolute bottom-4 left-4 right-4">
+                                        <service.icon className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 mb-2" aria-hidden="true" />
                                     </div>
                                 </div>
-                            </div>
+                                <div className="p-4 sm:p-6">
+                                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{service.title}</h3>
+                                    <p className="text-gray-600 text-sm mb-3 sm:mb-4">{service.description}</p>
+                                    <ul className="space-y-2">
+                                        {service.features.map((feature, idx) => (
+                                            <li key={idx} className="flex items-center text-xs sm:text-sm text-gray-700">
+                                                <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" aria-hidden="true" />
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </article>
                         ))}
                     </div>
-                    
+
+                    {/* Internal linking to city pages */}
                     <div className="mt-12 text-center">
-                        <Button size="lg" variant="outline" className="rounded-full border-stone-200 text-stone-600 hover:bg-stone-50 hover:text-stone-900">
-                            View All Projects
-                        </Button>
-                    </div>
-                </div>
-            </section>
-
-            {/* Dark Section - Why Choose Us */}
-            <section className="py-24 bg-stone-900 text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-1/3 h-full bg-green-900/20 blur-3xl rounded-full -translate-y-1/2 translate-x-1/3" />
-                
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <div>
-                            <h2 className="text-sm font-bold text-green-400 uppercase tracking-widest mb-3">Why Outright Landscape</h2>
-                            <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                                Built on Trust, <br /> Driven by Quality.
-                            </h3>
-                            <p className="text-stone-300 text-lg mb-8 leading-relaxed">
-                                We don't just build landscapes; we build relationships. Our commitment to transparency, communication, and superior craftsmanship sets us apart in the industry.
-                            </p>
-                            
-                            <ul className="space-y-6">
-                                {[
-                                    "Fully Licensed & Insured (CSLB #1073845)",
-                                    "Detailed, Transparent Estimates",
-                                    "Owner-Operated Quality Control",
-                                    "Premium Materials & Warranties"
-                                ].map((item, i) => (
-                                    <li key={i} className="flex items-center">
-                                        <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center mr-4 text-green-400">
-                                            <CheckCircle2 className="w-4 h-4" />
-                                        </div>
-                                        <span className="text-lg">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                            
-                            <div className="mt-10">
-                                <Button className="bg-white text-stone-900 hover:bg-stone-100 rounded-full px-8 h-12 font-bold">
-                                    Learn More About Us
-                                </Button>
-                            </div>
-                        </div>
-                        
-                        <div className="relative">
-                            <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-stone-800">
-                                <img 
-                                    src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" 
-                                    alt="Worker detailing landscape" 
-                                    className="w-full h-full object-cover opacity-80"
-                                />
-                            </div>
-                            <div className="absolute -bottom-8 -left-8 bg-green-600 p-8 rounded-2xl shadow-xl hidden md:block">
-                                <div className="text-4xl font-bold mb-1">500+</div>
-                                <div className="text-sm font-medium opacity-90">Happy Clients</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Service Areas - Clean List */}
-            <section className="py-24 bg-stone-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h2 className="text-2xl font-bold text-stone-900 mb-8">Proudly Serving</h2>
-                    <div className="flex flex-wrap justify-center gap-3">
-                        {locations.map((city) => (
-                            <a 
-                                key={city.slug} 
-                                href={createPageUrl(`${city.name.replace(/ /g, '')}Landscaping`)}
-                                className="px-4 py-2 bg-white rounded-full border border-stone-200 text-stone-600 text-sm font-medium hover:border-green-500 hover:text-green-600 transition-colors shadow-sm"
-                            >
-                                {city.name}
+                        <p className="text-gray-600 mb-4">Explore our services by location:</p>
+                        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                            <a href={createPageUrl('CovinaLandscaping')} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
+                                Landscaping in Covina
                             </a>
+                            <span className="text-gray-400">•</span>
+                            <a href={createPageUrl('GlendoraLandscaping')} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
+                                Landscaping in Glendora
+                            </a>
+                            <span className="text-gray-400">•</span>
+                            <a href={createPageUrl('SanDimasLandscaping')} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
+                                Landscaping in San Dimas
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Projects Gallery */}
+            <section id="work" className="py-16 sm:py-20 md:py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                            Recent Landscaping Projects
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+                            See how we've transformed outdoor spaces throughout Covina, Glendora, San Dimas and the San Gabriel Valley
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        {projects.map((project, index) => (
+                            <article key={index} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square">
+                                <img
+                                    src={project.image}
+                                    alt={project.alt}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    loading="lazy"
+                                        width="600"
+                                        height="600"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{project.title}</h3>
+                                    <p className="text-green-300 flex items-center text-sm sm:text-base">
+                                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 flex-shrink-0" aria-hidden="true" />
+                                        {project.location}
+                                    </p>
+                                </div>
+                            </article>
                         ))}
+                    </div>
+
+                    <div className="text-center mt-8 sm:mt-12">
+                        <a href="tel:626-343-6028" aria-label="Start your landscaping project today" onClick={() => handleQuoteClick('projects_section')}>
+                            <Button size="lg" className="bg-gray-900 hover:bg-gray-800 text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-6 rounded-full">
+                                Start Your Project Today
+                            </Button>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* Service Areas */}
+            <section id="service-areas" className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-green-50 to-blue-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                            Serving the San Gabriel Valley
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+                            Professional landscape construction services throughout Covina, Glendora, San Dimas and surrounding areas
+                        </p>
+                    </div>
+
+                    <nav aria-label="Service areas" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                        {locations.map(city => {
+                            const pageName = city.name.replace(/ /g, '') + 'Landscaping';
+                            return (
+                                <a
+                                    href={createPageUrl(pageName)}
+                                    key={city.name}
+                                    className="group"
+                                    aria-label={`Landscaping services in ${city.name}`}
+                                >
+                                    <div className="bg-white hover:bg-green-500 border-2 border-gray-200 hover:border-green-500 transition-all duration-300 rounded-xl p-3 sm:p-4 text-center group-hover:scale-105 group-hover:shadow-lg">
+                                        <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-green-600 group-hover:text-white transition-colors" aria-hidden="true" />
+                                        <span className="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-white transition-colors">
+                                            {city.name}
+                                        </span>
+                                    </div>
+                                </a>
+                            );
+                        })}
+                    </nav>
+                </div>
+            </section>
+
+            {/* Why Choose Us */}
+            <section className="py-16 sm:py-20 md:py-24 bg-gray-900 text-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12 sm:mb-16">
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+                            Why Choose Outright Landscape?
+                        </h2>
+                        <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4">
+                            Quality workmanship, honest pricing, and exceptional customer service
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                        <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+                            </div>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">Licensed & Insured</h3>
+                            <p className="text-sm sm:text-base text-gray-300">CSLB #1073845 for your complete peace of mind</p>
+                        </div>
+
+                        <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+                            </div>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">Expert Team</h3>
+                            <p className="text-sm sm:text-base text-gray-300">Skilled craftsmen with years of experience</p>
+                        </div>
+
+                        <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+                            </div>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">Quality Materials</h3>
+                            <p className="text-sm sm:text-base text-gray-300">Premium products for lasting results</p>
+                        </div>
+
+                        <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+                            </div>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">Free Estimates</h3>
+                            <p className="text-sm sm:text-base text-gray-300">Honest, competitive pricing with no hidden fees</p>
+                        </div>
                     </div>
                 </div>
             </section>
 
             {/* Contact Form */}
-            <ContactForm cityName="Your Area" />
+            <ContactForm cityName="Covina & San Gabriel Valley" />
         </div>
     );
 }
