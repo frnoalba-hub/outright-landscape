@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { createPageUrl } from '@/utils';
-import { MapPin, Phone, CheckCircle2, ArrowRight, Star, Leaf, Droplets, Hammer, Sprout, Play } from 'lucide-react';
+import { MapPin, Phone, CheckCircle2, ArrowRight, Star, Leaf, Droplets, Hammer, Shovel, Play } from 'lucide-react';
 import SEO from '@/components/SEO';
 import ServiceSchema from '@/components/ServiceSchema';
 import ContactForm from '@/components/ContactForm';
@@ -31,7 +31,7 @@ const services = [
     {
         title: "Turf Installation",
         description: "Premium sod and artificial turf installation for a lush, green lawn year-round.",
-        icon: Sprout,
+        icon: Shovel,
         image: "https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&q=80&w=800"
     }
 ];
