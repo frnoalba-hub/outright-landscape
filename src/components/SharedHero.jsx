@@ -6,9 +6,22 @@ export default function SharedHero({
     cityName = null,
     title = "Transform Your Outdoor Living Space",
     subtitle = "Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas & the San Gabriel Valley",
+    description = "Expert Pavers • Turf Installation • Irrigation Systems • Hardscaping",
+    aiCtaText = "Call today for a free AI landscape design preview — see your new yard before we build it.",
+    phoneNumber = "626-343-6028",
+    backgroundImage = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+    backgroundImageAlt = "Outright Landscape - Professional Landscaping Services",
     onPhoneClick = () => {},
-    onViewServicesClick = () => {}
+    trackPhoneClick, // Alias support
+    trackQuoteClick, // Alias support
+    onViewServicesClick = () => {},
+    trackViewServicesClick // Alias support
 }) {
+    // Normalize handlers
+    const handlePhoneClick = trackPhoneClick || onPhoneClick;
+    const handleQuoteClick = trackQuoteClick || handlePhoneClick;
+    const handleViewServices = trackViewServicesClick || onViewServicesClick;
+
     return (
         <>
             <style>{`
@@ -53,13 +66,13 @@ export default function SharedHero({
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
-                        backgroundImage: "url('https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg')",
+                        backgroundImage: `url('${backgroundImage}')`,
                         backgroundAttachment: "fixed",
                         backgroundSize: "cover",
                         backgroundPosition: "center"
                     }}
                     role="img"
-                    aria-label="Outright Landscape - Professional Landscaping Services"
+                    aria-label={backgroundImageAlt}
                 ></div>
                 {/* Preload critical hero image */}
                 <link rel="preload" as="image" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg" fetchpriority="high" />
