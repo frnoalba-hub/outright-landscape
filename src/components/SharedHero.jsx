@@ -96,12 +96,12 @@ export default function SharedHero({
                                 <h2 className="text-lg sm:text-3xl font-bold text-white">Free AI Design Preview</h2>
                             </div>
                             <p className="text-white text-sm sm:text-lg mb-3 sm:mb-4 leading-relaxed">
-                                Call today for a free AI landscape design preview — see your new yard before we build it.
+                                {aiCtaText}
                             </p>
-                            <a href="tel:+16263436028" onClick={() => onPhoneClick('hero_ai_cta')}>
+                            <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} onClick={() => handlePhoneClick('hero_ai_cta')}>
                                 <Button size="lg" className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold text-base sm:text-lg px-6 py-4 sm:px-10 sm:py-6 rounded-full shadow-2xl transform transition hover:scale-105">
                                     <Phone className="mr-2 w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
-                                    Call (626) 343-6028
+                                    Call ({phoneNumber})
                                 </Button>
                             </a>
                         </div>
