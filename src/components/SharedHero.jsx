@@ -86,7 +86,7 @@ export default function SharedHero({
                             {subtitle}
                         </p>
                         <p className="text-sm sm:text-lg md:text-xl text-green-300 font-semibold drop-shadow-md">
-                            Expert Pavers • Turf Installation • Irrigation Systems • Hardscaping
+                            {description}
                         </p>
 
                         {/* AI Design Preview CTA */}
