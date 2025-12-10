@@ -64,7 +64,7 @@ export default function LocationPage({ cityKey }) {
     // Fetch all locations for navigation and nearby cities
     const { data: locations = [], isLoading } = useQuery({
         queryKey: ['locations'],
-        queryFn: () => base44.entities.Location.list({ limit: 100 }),
+        queryFn: () => base44.entities.Location.list(null, 100),
     });
 
     const cityData = locations.find(l => l.slug === cityKey);

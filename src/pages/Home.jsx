@@ -100,7 +100,7 @@ const projects = [
 export default function Home() {
     const { data: locations = [] } = useQuery({
         queryKey: ['locations'],
-        queryFn: () => base44.entities.Location.list({ limit: 100 }),
+        queryFn: () => base44.entities.Location.list(null, 100),
         initialData: []
     });
 
