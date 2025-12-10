@@ -215,15 +215,15 @@ export default function Home() {
                     <div className="mt-12 text-center">
                         <p className="text-gray-600 mb-4">Explore our services by location:</p>
                         <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                            <a href={createPageUrl('CovinaLandscaping')} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
+                            <a href={`${createPageUrl('ServiceArea')}?city=covina`} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
                                 Landscaping in Covina
                             </a>
                             <span className="text-gray-400">•</span>
-                            <a href={createPageUrl('GlendoraLandscaping')} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
+                            <a href={`${createPageUrl('ServiceArea')}?city=glendora`} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
                                 Landscaping in Glendora
                             </a>
                             <span className="text-gray-400">•</span>
-                            <a href={createPageUrl('SanDimasLandscaping')} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
+                            <a href={`${createPageUrl('ServiceArea')}?city=san-dimas`} className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base underline">
                                 Landscaping in San Dimas
                             </a>
                         </div>
@@ -290,10 +290,9 @@ export default function Home() {
 
                     <nav aria-label="Service areas" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
                         {locations.map(city => {
-                            const pageName = city.name.replace(/ /g, '') + 'Landscaping';
                             return (
                                 <a
-                                    href={createPageUrl(pageName)}
+                                    href={`${createPageUrl('ServiceArea')}?city=${city.slug}`}
                                     key={city.name}
                                     className="group"
                                     aria-label={`Landscaping services in ${city.name}`}

@@ -82,10 +82,8 @@ export default function LocationPage({ cityKey }) {
 
     const pageTitle = `${name} Landscaping & Hardscaping | Outright Landscape`;
     const metaDescription = `Licensed C-27 landscape contractor in ${name}. Expert pavers, turf installation, irrigation systems & complete landscape design. Free estimate: (626) 343-6028. CSLB #1073845.`;
-    // Fix: Ensure canonical URL matches the actual page file structure logic
-    // The logic usually is CapitalizedCityNameLandscaping. But slug is lowercase.
-    // We'll trust the slug format for now but keep in mind page filenames.
-    const canonicalUrl = `https://outrightlandscape.com/${slug}-landscaping`;
+    // Canonical URL for the dynamic service area page
+    const canonicalUrl = `https://outrightlandscape.com/ServiceArea?city=${slug}`;
 
     const breadcrumbItems = [
         { name: "Home", url: "https://outrightlandscape.com" },
@@ -265,10 +263,8 @@ export default function LocationPage({ cityKey }) {
                     </h2>
                     <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
                         {filteredNearbyCities.map(city => {
-                            // Create page name from slug: 'west-covina' -> 'WestCovinaLandscaping'
-                            const pageName = city.name.replace(/ /g, '') + 'Landscaping';
                             return (
-                                <a key={city.name} href={createPageUrl(pageName)} className="group">
+                                <a key={city.name} href={`${createPageUrl('ServiceArea')}?city=${city.slug}`} className="group">
                                     <div className="bg-white hover:bg-green-500 border-2 border-gray-200 hover:border-green-500 transition-all duration-300 rounded-xl px-4 sm:px-6 py-2 sm:py-3 group-hover:scale-105 group-hover:shadow-lg">
                                         <span className="font-semibold text-sm sm:text-base text-gray-700 group-hover:text-white transition-colors flex items-center gap-2">
                                             {city.name}

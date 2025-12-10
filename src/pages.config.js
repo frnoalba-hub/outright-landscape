@@ -35,6 +35,7 @@ import Robots from './pages/Robots';
 import AdminLeads from './pages/AdminLeads';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import ServiceArea from './pages/ServiceArea';
 import __Layout from './Layout.jsx';
 
 
@@ -76,6 +77,7 @@ export const PAGES = {
     "AdminLeads": AdminLeads,
     "Blog": Blog,
     "BlogPost": BlogPost,
+    "ServiceArea": ServiceArea,
 }
 
 export const pagesConfig = {

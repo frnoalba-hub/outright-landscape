@@ -326,11 +326,10 @@ export default function Layout({ children }) {
               <h4 className="font-bold text-lg mb-4 text-green-400">Service Areas - All {locations.length} Cities</h4>
               <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
                 {locations.map(city => {
-                  const pageName = city.name.replace(/ /g, '') + 'Landscaping';
                   return (
                     <a 
                       key={city.name}
-                      href={createPageUrl(pageName)} 
+                      href={`${createPageUrl('ServiceArea')}?city=${city.slug}`}
                       className={`text-gray-400 hover:text-white transition-colors ${city.slug === 'san-gabriel-valley' ? 'col-span-2' : ''}`}
                     >
                       {city.name}
