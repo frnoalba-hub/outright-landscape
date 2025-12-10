@@ -14,7 +14,7 @@ export default Deno.serve(async (req) => {
         // 2. Send Email Notification to Business Owner
         // Note: In a real app, change 'to' to the business owner's email
         const emailResult = await base44.integrations.Core.SendEmail({
-            to: "outrightlandscape@yahoo.com", 
+            to: "outrightlandscape@yahoo.com, deltablockv@gmail.com", 
             subject: `New Lead from ${city}: ${name}`,
             body: `
                 <h1>New Website Inquiry</h1>
