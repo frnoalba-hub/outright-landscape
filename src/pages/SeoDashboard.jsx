@@ -8,6 +8,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import SeoGoals from "@/components/seo/SeoGoals";
 import SeoAlerts from "@/components/seo/SeoAlerts";
 import CompetitorAnalysis from "@/components/seo/CompetitorAnalysis";
+import SiteAudit from "@/components/seo/SiteAudit";
 
 export default function SeoDashboard() {
     // 1. Auth & Data Fetching
@@ -231,8 +232,9 @@ export default function SeoDashboard() {
                 </div>
 
                 {/* Alerts Section */}
-                <div className="mb-6">
+                <div className="mb-6 space-y-6">
                     <SeoAlerts />
+                    <SiteAudit />
                 </div>
 
                 {/* Sitemaps, Goals & Opportunities */}
