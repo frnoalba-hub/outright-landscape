@@ -77,7 +77,7 @@ export default function AdminAnalytics() {
                         </div>
                         <Button 
                             className="w-full"
-                            onClick={() => window.location.reload()}
+                            onClick={() => refetch()}
                         >
                             Retry Connection
                         </Button>
@@ -100,10 +100,13 @@ export default function AdminAnalytics() {
                         </h1>
                         <p className="text-gray-500 mt-2">Website traffic and engagement trends (Last 28 Days)</p>
                     </div>
-                    <Button variant="outline" onClick={() => refetch()} disabled={isLoading}>
-                        {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RefreshCcw className="w-4 h-4 mr-2" />}
-                        Refresh Data
-                    </Button>
+                    <div className="flex flex-col items-end gap-1">
+                        <Button variant="outline" onClick={() => refetch()} disabled={isLoading}>
+                            {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RefreshCcw className="w-4 h-4 mr-2" />}
+                            Refresh Data
+                        </Button>
+                        {data && <span className="text-xs text-gray-400">Last updated: {new Date().toLocaleTimeString()}</span>}
+                    </div>
                 </div>
 
                 {/* AI Insights Banner */}
