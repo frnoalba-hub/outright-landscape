@@ -4,6 +4,8 @@ import { Phone, MapPin, CheckCircle2, ArrowRight, Sprout, Droplets, Hammer, Awar
 import { createPageUrl } from '@/utils';
 import SEO from '@/components/SEO';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
+import LocalBusinessSchema from '@/components/LocalBusinessSchema';
+import FAQSchema from '@/components/FAQSchema';
 import SharedHero from '@/components/SharedHero';
 import ContactForm from '@/components/ContactForm';
 import { useQuery } from '@tanstack/react-query';
@@ -123,6 +125,8 @@ export default function LocationPage({ cityKey }) {
                 keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`}
             />
             <BreadcrumbSchema items={breadcrumbItems} />
+            <LocalBusinessSchema cityName={name} citySlug={slug} services={services} />
+            {faqs && faqs.length > 0 && <FAQSchema faqs={faqs} cityName={name} />}
 
             {/* Hero Section */}
             <SharedHero 
