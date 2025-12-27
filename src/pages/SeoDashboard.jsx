@@ -7,6 +7,7 @@ import { Loader2, TrendingUp, Search, AlertCircle, FileText, CheckCircle2, XCirc
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, ComposedChart, Line } from 'recharts';
 import SeoGoals from "@/components/seo/SeoGoals";
 import SeoAlerts from "@/components/seo/SeoAlerts";
+import CompetitorAnalysis from "@/components/seo/CompetitorAnalysis";
 
 export default function SeoDashboard() {
     // 1. Auth & Data Fetching
@@ -236,7 +237,10 @@ export default function SeoDashboard() {
 
                 {/* Sitemaps, Goals & Opportunities */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <SeoGoals overviewData={gscData?.overview} timeline={gscData?.timeline} />
+                    <div className="space-y-8">
+                        <SeoGoals overviewData={gscData?.overview} timeline={gscData?.timeline} />
+                        <CompetitorAnalysis />
+                    </div>
 
                     <Card>
                         <CardHeader>
