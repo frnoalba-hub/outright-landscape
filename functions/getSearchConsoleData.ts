@@ -11,6 +11,8 @@ Deno.serve(async (req) => {
             return Response.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
+        const { keyword } = await req.json().catch(() => ({}));
+
         // 2. Credentials Check
         const serviceAccountJson = Deno.env.get("GOOGLE_SEARCH_CONSOLE_SERVICE_ACCOUNT_JSON");
         if (!serviceAccountJson) {
@@ -89,6 +91,16 @@ Deno.serve(async (req) => {
             dimensions: ['date'],
             rowLimit: 30
         };
+
+        if (keyword) {
+            queryBody.dimensionFilterGroups = [{
+                filters: [{
+                    dimension: 'query',
+                    operator: 'contains',
+                    expression: keyword
+                }]
+            }];
+        }
 
         const topQueriesBody = {
             startDate: formatDate(twentyEightDaysAgo),
