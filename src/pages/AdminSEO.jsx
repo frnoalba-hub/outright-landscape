@@ -86,6 +86,39 @@ export default function AdminSEO() {
         analyzeMutation.mutate({ path: page.path, pageName: page.name });
     };
 
+    const handleBulkGenerate = () => {
+        const confirm = window.confirm("This will generate AI metadata for ALL unoptimized pages. It may take a minute. Continue?");
+        if (!confirm) return;
+        
+        // Loop through all pages and trigger analysis if not already optimized
+        const pagesToProcess = pagesToManage.filter(p => !getConfig(p.path));
+        
+        if (pagesToProcess.length === 0) {
+            alert("All pages are already optimized!");
+            return;
+        }
+
+        alert(`Starting generation for ${pagesToProcess.length} pages...`);
+        
+        // Process sequentially to avoid overwhelming the backend/LLM
+        const processNext = (index) => {
+            if (index >= pagesToProcess.length) {
+                alert("Bulk generation complete!");
+                return;
+            }
+            
+            const page = pagesToProcess[index];
+            setAnalyzingPath(page.path);
+            analyzeMutation.mutate({ path: page.path, pageName: page.name }, {
+                onSettled: () => {
+                    processNext(index + 1);
+                }
+            });
+        };
+
+        processNext(0);
+    };
+
     const getConfig = (path) => seoConfigs.find(c => c.path === path);
 
     if (isAuthLoading || isLoading) return <div className="flex items-center justify-center min-h-screen"><Loader2 className="w-8 h-8 animate-spin text-green-600" /></div>;
@@ -111,6 +144,10 @@ export default function AdminSEO() {
                         </h1>
                         <p className="text-gray-500 mt-2">Generate and manage SEO metadata for your pages using AI.</p>
                     </div>
+                    <Button onClick={handleBulkGenerate} className="bg-green-600 hover:bg-green-700">
+                        <RefreshCw className="w-4 h-4 mr-2" />
+                        Bulk Generate All
+                    </Button>
                 </div>
 
                 <div className="grid gap-6">

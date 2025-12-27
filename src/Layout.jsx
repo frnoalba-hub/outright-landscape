@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/s
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
 import GlobalSchema from "@/components/GlobalSchema";
+import Analytics from "@/components/Analytics";
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
@@ -34,6 +35,17 @@ export default function Layout({ children }) {
   }, []);
 
   useEffect(() => {
+    // Preconnect to critical origins for performance
+    const preconnectDomains = ['https://app.base44.com'];
+    preconnectDomains.forEach(domain => {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = domain;
+      document.head.appendChild(link);
+    });
+  }, []);
+
+  useEffect(() => {
     if (!isMenuOpen) return;
 
     const y = window.scrollY;
@@ -56,70 +68,7 @@ export default function Layout({ children }) {
     };
   }, [isMenuOpen]);
 
-  useEffect(() => {
-    // Preconnect to critical origins for performance
-    const preconnectDomains = ['https://app.base44.com'];
-    preconnectDomains.forEach(domain => {
-      const link = document.createElement('link');
-      link.rel = 'preconnect';
-      link.href = domain;
-      document.head.appendChild(link);
-    });
 
-    // Initialize dataLayer immediately for event tracking
-    window.dataLayer = window.dataLayer || [];
-    
-    // Defer GTM/GA loading by 2 seconds after window load
-    const loadAnalytics = () => {
-      setTimeout(() => {
-        // Google Tag Manager
-        const gtmScript = document.createElement('script');
-        gtmScript.innerHTML = `
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-XXXXXXX');
-        `;
-        document.head.appendChild(gtmScript);
-
-        // Google Analytics 4
-        const ga4Script1 = document.createElement('script');
-        ga4Script1.async = true;
-        ga4Script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
-        document.head.appendChild(ga4Script1);
-
-        const ga4Script2 = document.createElement('script');
-        ga4Script2.innerHTML = `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX', {
-            page_path: window.location.pathname,
-            send_page_view: true
-          });
-        `;
-        document.head.appendChild(ga4Script2);
-      }, 2000);
-    };
-
-    // Wait for window load, then defer analytics
-    if (document.readyState === 'complete') {
-      loadAnalytics();
-    } else {
-      window.addEventListener('load', loadAnalytics);
-    }
-
-    // Track initial page view (before analytics loads)
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'page_view',
-        page_title: document.title,
-        page_location: window.location.href,
-        page_path: window.location.pathname
-      });
-    }
-  }, []);
 
   const handlePhoneClick = (location) => {
     if (window.dataLayer) {
@@ -142,14 +91,7 @@ export default function Layout({ children }) {
   return (
     <div className="min-h-screen bg-white">
       <GlobalSchema />
-      
-      <noscript>
-        <iframe
-          src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
-          height="0"
-          width="0"
-          style={{ display: 'none', visibility: 'hidden' }} />
-      </noscript>
+      <Analytics />
 
       <style>{`
         html { scroll-behavior: smooth; }
