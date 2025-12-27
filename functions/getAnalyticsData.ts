@@ -23,7 +23,18 @@ Deno.serve(async (req) => {
         }
 
         // 3. Initialize Analytics Client
-        const credentials = JSON.parse(serviceAccountJson);
+        let credentials;
+        try {
+            credentials = JSON.parse(serviceAccountJson);
+            // Handle double-stringified JSON which can happen with some copy-paste operations
+            if (typeof credentials === 'string') {
+                credentials = JSON.parse(credentials);
+            }
+        } catch (e) {
+            console.error("JSON Parse Error for GOOGLE_SERVICE_ACCOUNT_JSON:", e);
+            throw new Error("Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON. Please ensure it is a valid JSON object.");
+        }
+
         const analyticsDataClient = new BetaAnalyticsDataClient({
             credentials
         });
