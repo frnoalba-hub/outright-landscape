@@ -117,10 +117,25 @@ Deno.serve(async (req) => {
             return await res.json();
         };
 
-        const [performanceData, queriesData, pagesData] = await Promise.all([
+        // Fetch Sitemaps separately to handle potential errors gracefully
+        const fetchSitemaps = async () => {
+            try {
+                const res = await fetch(`https://www.googleapis.com/webmasters/v3/sites/${encodeURIComponent(siteUrl)}/sitemaps`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!res.ok) return { sitemap: [] };
+                return await res.json();
+            } catch (e) {
+                console.error("Sitemap fetch failed", e);
+                return { sitemap: [] };
+            }
+        };
+
+        const [performanceData, queriesData, pagesData, sitemapsData] = await Promise.all([
             fetchAnalytics(queryBody),
             fetchAnalytics(topQueriesBody),
-            fetchAnalytics(topPagesBody)
+            fetchAnalytics(topPagesBody),
+            fetchSitemaps()
         ]);
 
         // Calculate Totals
@@ -140,7 +155,8 @@ Deno.serve(async (req) => {
             },
             timeline: rows,
             topQueries: queriesData.rows || [],
-            topPages: pagesData.rows || []
+            topPages: pagesData.rows || [],
+            sitemaps: sitemapsData.sitemap || []
         });
 
     } catch (error) {
