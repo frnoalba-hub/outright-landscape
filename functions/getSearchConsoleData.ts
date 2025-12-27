@@ -5,6 +5,9 @@ Deno.serve(async (req) => {
     try {
         const base44 = createClientFromRequest(req);
         
+        // Parse body for keyword filter
+        const { keyword } = await req.json().catch(() => ({}));
+
         // 1. Auth Check
         const user = await base44.auth.me();
         if (!user || user.role !== 'admin') {
