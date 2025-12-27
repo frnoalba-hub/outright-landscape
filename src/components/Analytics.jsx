@@ -1,54 +1,49 @@
-import React, { useEffect } from 'react';
-
-// TODO: Replace these with your actual IDs
-const GTM_ID = 'GTM-XXXXXXX'; 
-const GA_ID = 'G-4EK42ELB3T';
+import React, { useEffect, useState } from 'react';
+import { base44 } from '@/api/base44Client';
 
 export default function Analytics() {
+    const [gaId, setGaId] = useState(null);
+
     useEffect(() => {
-        // Google Tag Manager
-        if (GTM_ID && GTM_ID !== 'GTM-XXXXXXX') {
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer',GTM_ID);
-        }
+        const initGA = async () => {
+            try {
+                // Fetch the Measurement ID from the "GA" secret
+                const res = await base44.functions.invoke('getEnvConfig');
+                const fetchedId = res.data?.gaMeasurementId;
 
-        // Google Analytics 4
-        if (GA_ID && GA_ID !== 'G-XXXXXXXXXX') {
-            const script1 = document.createElement('script');
-            script1.async = true;
-            script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-            document.head.appendChild(script1);
+                if (fetchedId && fetchedId.startsWith('G-')) {
+                    setGaId(fetchedId);
+                    
+                    // Prevent duplicate injection
+                    if (document.getElementById('ga-script')) return;
 
-            const script2 = document.createElement('script');
-            script2.innerHTML = `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_ID}', {
-                    page_path: window.location.pathname,
-                    send_page_view: true
-                });
-            `;
-            document.head.appendChild(script2);
-        }
+                    // Inject Google Analytics 4
+                    const script1 = document.createElement('script');
+                    script1.id = 'ga-script';
+                    script1.async = true;
+                    script1.src = `https://www.googletagmanager.com/gtag/js?id=${fetchedId}`;
+                    document.head.appendChild(script1);
+
+                    const script2 = document.createElement('script');
+                    script2.innerHTML = `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${fetchedId}', {
+                            page_path: window.location.pathname,
+                            send_page_view: true
+                        });
+                    `;
+                    document.head.appendChild(script2);
+                    console.log("Analytics initialized with:", fetchedId);
+                }
+            } catch (error) {
+                console.error("Failed to initialize analytics:", error);
+            }
+        };
+
+        initGA();
     }, []);
 
-    return (
-        <>
-            {/* GTM NoScript */}
-            {GTM_ID && GTM_ID !== 'GTM-XXXXXXX' && (
-                <noscript>
-                    <iframe 
-                        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-                        height="0" 
-                        width="0" 
-                        style={{display: 'none', visibility: 'hidden'}}
-                    />
-                </noscript>
-            )}
-        </>
-    );
+    return null;
 }
