@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Loader2, TrendingUp, Search, AlertCircle, FileText, CheckCircle2, XCircle, LayoutDashboard } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, ComposedChart, Line } from 'recharts';
 import SeoGoals from "@/components/seo/SeoGoals";
+import SeoAlerts from "@/components/seo/SeoAlerts";
 
 export default function SeoDashboard() {
     // 1. Auth & Data Fetching
@@ -226,6 +227,11 @@ export default function SeoDashboard() {
                             )}
                         </CardContent>
                     </Card>
+                </div>
+
+                {/* Alerts Section */}
+                <div className="mb-6">
+                    <SeoAlerts />
                 </div>
 
                 {/* Sitemaps, Goals & Opportunities */}
