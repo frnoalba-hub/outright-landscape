@@ -89,7 +89,14 @@ Deno.serve(async (req) => {
             startDate: formatDate(twentyEightDaysAgo),
             endDate: formatDate(today),
             dimensions: ['date'],
-            rowLimit: 30
+            rowLimit: 30,
+            dimensionFilterGroups: keyword ? [{
+                filters: [{
+                    dimension: 'query',
+                    operator: 'contains',
+                    expression: keyword
+                }]
+            }] : undefined
         };
 
         if (keyword) {
