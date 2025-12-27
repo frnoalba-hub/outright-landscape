@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Sparkles, RefreshCw, Check, AlertCircle } from "lucide-react";
+import { Loader2, Sparkles, RefreshCw, Check, AlertCircle, TrendingUp, MousePointer2, Eye } from "lucide-react";
 import { createPageUrl } from "@/utils";
 
 export default function AdminSEO() {
@@ -30,6 +30,17 @@ export default function AdminSEO() {
     const { data: locations } = useQuery({
         queryKey: ['locations'],
         queryFn: () => base44.entities.Location.list(null, 50),
+    });
+
+    // Fetch Search Console Data for insights
+    const { data: gscData } = useQuery({
+        queryKey: ['search-console-seo'],
+        queryFn: async () => {
+            const res = await base44.functions.invoke("getSearchConsoleData");
+            if (res.ok === false) return null;
+            return res.data || res;
+        },
+        retry: false
     });
 
     // Check Admin Auth
@@ -67,11 +78,21 @@ export default function AdminSEO() {
                 contentContext += `Specific service area page for ${city}. Localized landscaping services.`;
             }
 
+            // Find relevant GSC data for this page
+            const pageStats = gscData?.topPages?.find(p => p.keys[0].includes(path) || (path === '/' && p.keys[0] === gscData.siteUrl + '/'));
+            const pageQueries = gscData?.topQueries?.filter(q => pageStats && q.keys[0].includes(pageStats.keys[0])); // Rough matching
+
             // Call backend
             const res = await base44.functions.invoke("analyzePageSeo", {
                 path,
                 pageContent: contentContext,
-                currentMeta: { title: "", description: "" } // Could pass current if available
+                currentMeta: { title: "", description: "" },
+                performanceData: pageStats ? {
+                    clicks: pageStats.clicks,
+                    impressions: pageStats.impressions,
+                    ctr: pageStats.ctr,
+                    queries: gscData?.topQueries?.slice(0, 5) // Send top 5 global queries as context if specific ones aren't mapped
+                } : null
             });
             return res.data;
         },
@@ -155,15 +176,34 @@ export default function AdminSEO() {
                     {pagesToManage.map((page) => {
                         const config = getConfig(page.path);
                         const isAnalyzing = analyzingPath === page.path;
+                        
+                        // Find GSC Stats
+                        // Normalize path for matching (remove leading slash for loose matching if needed, but exact is better)
+                        const stats = gscData?.topPages?.find(p => p.keys[0].endsWith(page.path === '/' ? gscData.siteUrl + '/' : page.path));
+                        const hasHighImpressionsLowCtr = stats && stats.impressions > 50 && stats.ctr < 0.02; // < 2% CTR
 
                         return (
-                            <Card key={page.path} className="overflow-hidden">
+                            <Card key={page.path} className={`overflow-hidden transition-all ${hasHighImpressionsLowCtr ? 'ring-2 ring-orange-400 shadow-lg' : ''}`}>
                                 <CardHeader className="bg-white border-b flex flex-row items-center justify-between py-4">
                                     <div>
                                         <CardTitle className="text-lg">{page.name}</CardTitle>
-                                        <code className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded mt-1 inline-block">
-                                            {page.path}
-                                        </code>
+                                        <div className="flex gap-2 mt-1">
+                                            <code className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded inline-block">
+                                                {page.path}
+                                            </code>
+                                            {stats && (
+                                                <div className="flex gap-3 text-xs items-center text-gray-600 bg-blue-50 px-2 py-1 rounded border border-blue-100">
+                                                    <span className="flex items-center gap-1" title="Impressions"><Eye className="w-3 h-3 text-purple-500"/> {stats.impressions}</span>
+                                                    <span className="flex items-center gap-1" title="Clicks"><MousePointer2 className="w-3 h-3 text-blue-500"/> {stats.clicks}</span>
+                                                    <span className="flex items-center gap-1 font-bold" title="CTR"><TrendingUp className="w-3 h-3 text-green-500"/> {(stats.ctr * 100).toFixed(1)}%</span>
+                                                </div>
+                                            )}
+                                            {hasHighImpressionsLowCtr && (
+                                                <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded font-bold border border-orange-200 flex items-center gap-1">
+                                                    <AlertCircle className="w-3 h-3" /> Low CTR Opportunity
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
                                     <Button 
                                         onClick={() => handleAnalyze(page)}

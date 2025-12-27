@@ -5,10 +5,25 @@ Deno.serve(async (req) => {
         const base44 = createClientFromRequest(req);
         
         // 1. Parse Input
-        const { path, pageContent, currentMeta } = await req.json();
+        const { path, pageContent, currentMeta, performanceData } = await req.json();
 
         if (!path || !pageContent) {
             return Response.json({ error: "Missing path or pageContent" }, { status: 400 });
+        }
+
+        let performanceContext = "";
+        if (performanceData) {
+            performanceContext = `
+            REAL PERFORMANCE DATA (Last 28 Days):
+            - Total Clicks: ${performanceData.clicks || 0}
+            - Total Impressions: ${performanceData.impressions || 0}
+            - Average CTR: ${(performanceData.ctr * 100).toFixed(2)}%
+            - Top Search Queries for this page: ${performanceData.queries?.map(q => q.keys[0]).join(', ') || 'N/A'}
+            
+            CRITICAL INSTRUCTION: 
+            Use the "Top Search Queries" above to naturally incorporate high-performing keywords into the Title and Description.
+            If CTR is low (< 2%), focus on making the Title and Description highly clickable (e.g. use "Best", "Professional", "Free Quote", etc).
+            `;
         }
 
         // 2. Call LLM for Analysis
@@ -19,6 +34,7 @@ Deno.serve(async (req) => {
             - URL Path: ${path}
             - Current Title: ${currentMeta?.title || 'N/A'}
             - Current Description: ${currentMeta?.description || 'N/A'}
+            ${performanceContext}
             
             Page Content Preview:
             ${pageContent.substring(0, 8000)}... (truncated)
