@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Sparkles, RefreshCw, Check, AlertCircle, TrendingUp, MousePointer2, Eye, Wand2 } from "lucide-react";
+import { Loader2, Sparkles, RefreshCw, Check, AlertCircle, TrendingUp, MousePointer2, Eye, Wand2, BarChart2 } from "lucide-react";
 import { createPageUrl } from "@/utils";
 
 export default function AdminSEO() {
@@ -193,6 +193,14 @@ export default function AdminSEO() {
                             AI SEO Manager
                         </h1>
                         <p className="text-gray-500 mt-2">Generate and manage SEO metadata for your pages using AI.</p>
+                        <div className="mt-4 flex gap-3">
+                            <Button asChild variant="outline" className="gap-2">
+                                <a href={createPageUrl("SeoDashboard")}>
+                                    <BarChart2 className="w-4 h-4 text-blue-600" />
+                                    Open SEO Dashboard (Goals & Competitors)
+                                </a>
+                            </Button>
+                        </div>
                     </div>
                     <Button onClick={handleBulkGenerate} className="bg-green-600 hover:bg-green-700">
                         <RefreshCw className="w-4 h-4 mr-2" />
