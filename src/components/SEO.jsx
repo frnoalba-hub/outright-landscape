@@ -1,25 +1,52 @@
 import { useEffect } from 'react';
+import { base44 } from '@/api/base44Client';
+import { useQuery } from '@tanstack/react-query';
+
+export function useSeoOverride() {
+  const path = typeof window !== 'undefined' ? (window.location.pathname + window.location.search) : '/';
+  
+  return useQuery({
+      queryKey: ['seoConfig', path],
+      queryFn: async () => {
+          // Find config matching exactly this path
+          const configs = await base44.entities.SeoConfig.list({ path: path }, 1);
+          return configs?.[0] || null;
+      },
+      // Cache for 5 minutes, don't refetch aggressively
+      staleTime: 1000 * 60 * 5
+  });
+}
 
 export default function SEO({ 
-  title, 
-  description, 
-  keywords, 
+  title: defaultTitle, 
+  description: defaultDescription, 
+  keywords: defaultKeywords, 
   canonicalUrl, 
   ogImage,
   ogType = "website"
 }) {
+  // Check for AI-generated overrides
+  const { data: seoOverride } = useSeoOverride();
+
+  // Use override if available, otherwise default prop
+  const title = seoOverride?.title || defaultTitle;
+  const description = seoOverride?.description || defaultDescription;
+  const keywords = seoOverride?.keywords || defaultKeywords;
+
   useEffect(() => {
-    document.title = title;
+    document.title = title || document.title;
     
     // Meta Description
     let metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', description);
+      metaDesc.setAttribute('content', description || '');
     } else {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      metaDesc.setAttribute('content', description);
-      document.head.appendChild(metaDesc);
+      if (description) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        metaDesc.setAttribute('content', description);
+        document.head.appendChild(metaDesc);
+      }
     }
 
     // Robots meta tag - ALWAYS set to index, follow
@@ -48,13 +75,15 @@ export default function SEO({
 
     // Canonical URL - CRITICAL for preventing duplicates
     let canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', canonicalUrl);
-    } else {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      canonical.setAttribute('href', canonicalUrl);
-      document.head.appendChild(canonical);
+    if (canonicalUrl) {
+      if (canonical) {
+        canonical.setAttribute('href', canonicalUrl);
+      } else {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        canonical.setAttribute('href', canonicalUrl);
+        document.head.appendChild(canonical);
+      }
     }
 
     // Preconnect for performance
@@ -95,6 +124,8 @@ export default function SEO({
     ];
 
     ogTags.forEach(tag => {
+      if (!tag.content) return;
+      
       let existing = document.querySelector(`meta[property="${tag.property}"]`);
       if (existing) {
         existing.setAttribute('content', tag.content);
@@ -115,6 +146,8 @@ export default function SEO({
     ];
 
     twitterTags.forEach(tag => {
+      if (!tag.content) return;
+
       let existing = document.querySelector(`meta[name="${tag.name}"]`);
       if (existing) {
         existing.setAttribute('content', tag.content);
@@ -129,12 +162,11 @@ export default function SEO({
     // Cleanup function
     return () => {
       try {
-        if (canonical && canonical.parentNode) {
-          document.head.removeChild(canonical);
-        }
-        if (metaKeywords && metaKeywords.parentNode && keywords) {
-          document.head.removeChild(metaKeywords);
-        }
+        // Only remove elements if they were dynamically added and strictly managed by this component
+        // Since other pages might need them, it's often safer to just update them
+        // But for canonical/keywords which are page-specific:
+        
+        // Don't aggressively remove canonical as next page will update it
       } catch (e) {
         // Ignore cleanup errors
       }
