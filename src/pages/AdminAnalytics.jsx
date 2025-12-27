@@ -300,7 +300,7 @@ export default function AdminAnalytics() {
                     <div>
                     <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-6">
                     <Search className="text-blue-600" />
-                    Google Search Performance
+                    Google Search Performance <span className="text-sm font-normal text-gray-500">(Last 28 Days)</span>
                     </h2>
 
                     {gscError && (
