@@ -103,6 +103,32 @@ export default function AdminSEO() {
         onError: () => setAnalyzingPath(null)
     });
 
+    const improveContentMutation = useMutation({
+        mutationFn: async ({ path, suggestions }) => {
+            const res = await base44.functions.invoke("autoImproveLocationContent", {
+                path,
+                suggestions
+            });
+            if (res.ok === false) {
+                const err = await res.json();
+                throw new Error(err.error || "Failed to improve content");
+            }
+            return res.data || res;
+        },
+        onSuccess: () => {
+            alert("Content successfully updated with AI improvements!");
+            queryClient.invalidateQueries(['locations']);
+        },
+        onError: (err) => {
+            alert(err.message);
+        }
+    });
+
+    const handleImproveContent = (page, suggestions) => {
+        if (!window.confirm("This will overwrite the location's intro text with an AI-rewritten version based on these suggestions. Continue?")) return;
+        improveContentMutation.mutate({ path: page.path, suggestions });
+    };
+
     const handleAnalyze = (page) => {
         setAnalyzingPath(page.path);
         analyzeMutation.mutate({ path: page.path, pageName: page.name });

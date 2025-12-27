@@ -14,7 +14,9 @@ Deno.serve(async (req) => {
         const slug = path.split("city=")[1];
 
         // 2. Fetch Location Data
-        const locations = await base44.entities.Location.list({ slug: slug }, 1);
+        // Using filter to query by slug
+        const locations = await base44.entities.Location.filter({ slug: slug }, null, 1);
+        
         if (!locations || locations.length === 0) {
             return Response.json({ error: "Location not found" }, { status: 404 });
         }
