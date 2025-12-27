@@ -97,6 +97,7 @@ export default function AdminSEO() {
             return res.data;
         },
         onSuccess: () => {
+            alert("Analysis regenerated successfully! Meta tags updated.");
             queryClient.invalidateQueries(['seoConfigs']);
             setAnalyzingPath(null);
         },
@@ -251,13 +252,19 @@ export default function AdminSEO() {
                                         <div className="grid md:grid-cols-2 gap-8">
                                             <div className="space-y-4">
                                                 <div>
-                                                    <label className="text-xs font-bold text-gray-500 uppercase">Optimized Title</label>
+                                                    <label className="text-xs font-bold text-gray-500 uppercase flex items-center justify-between mb-1">
+                                                        Optimized Title 
+                                                        <Badge variant="outline" className="text-[10px] h-5 bg-green-50 text-green-700 border-green-200 gap-1"><Check className="w-3 h-3"/> Live</Badge>
+                                                    </label>
                                                     <div className="p-3 bg-green-50 border border-green-100 rounded-md text-sm font-medium text-gray-800">
                                                         {config.title}
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <label className="text-xs font-bold text-gray-500 uppercase">Meta Description</label>
+                                                    <label className="text-xs font-bold text-gray-500 uppercase flex items-center justify-between mb-1">
+                                                        Meta Description
+                                                        <Badge variant="outline" className="text-[10px] h-5 bg-green-50 text-green-700 border-green-200 gap-1"><Check className="w-3 h-3"/> Live</Badge>
+                                                    </label>
                                                     <div className="p-3 bg-green-50 border border-green-100 rounded-md text-sm text-gray-700">
                                                         {config.description}
                                                     </div>
@@ -286,7 +293,7 @@ export default function AdminSEO() {
                                                 </div>
                                                 
                                                 <div className="mt-auto pt-4 border-t border-blue-200">
-                                                    {page.path.includes("city=") && (
+                                                    {page.path.includes("city=") ? (
                                                         <Button 
                                                             size="sm" 
                                                             className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
@@ -296,6 +303,11 @@ export default function AdminSEO() {
                                                             {improveContentMutation.isPending ? <Loader2 className="w-3 h-3 mr-2 animate-spin"/> : <Wand2 className="w-3 h-3 mr-2" />}
                                                             Auto-Fix Content
                                                         </Button>
+                                                    ) : (
+                                                        <div className="text-xs text-amber-700 bg-amber-50 p-2 rounded border border-amber-100 flex gap-2">
+                                                            <AlertCircle className="w-4 h-4 shrink-0" />
+                                                            <span>Meta tags applied automatically. Content suggestions require manual update.</span>
+                                                        </div>
                                                     )}
                                                     <div className="mt-2 text-xs text-blue-600 flex items-center justify-between">
                                                         <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Analyzed: {new Date(config.last_updated).toLocaleDateString()}</span>

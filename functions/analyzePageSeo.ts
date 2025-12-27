@@ -62,8 +62,8 @@ Deno.serve(async (req) => {
         });
 
         // 3. Save/Update Entity
-        // Check if config exists for this path
-        const existing = await base44.entities.SeoConfig.list({ path: path }, 1);
+        // Check if config exists for this path - using FILTER to ensure we get the right record
+        const existing = await base44.entities.SeoConfig.filter({ path: path }, null, 1);
         let record;
 
         if (existing && existing.length > 0) {
