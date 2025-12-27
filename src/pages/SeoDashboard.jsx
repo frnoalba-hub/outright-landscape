@@ -228,8 +228,10 @@ export default function SeoDashboard() {
                     </Card>
                 </div>
 
-                {/* Sitemaps & Errors */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Sitemaps, Goals & Opportunities */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <SeoGoals overviewData={gscData?.overview} />
+
                     <Card>
                         <CardHeader>
                             <CardTitle>Site Indexing & Sitemaps</CardTitle>
@@ -246,7 +248,7 @@ export default function SeoDashboard() {
                                                 <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5" />
                                             )}
                                             <div>
-                                                <div className="font-medium text-slate-900 truncate max-w-[200px]" title={sm.path}>{sm.path.split('/').pop()}</div>
+                                                <div className="font-medium text-slate-900 truncate max-w-[150px]" title={sm.path}>{sm.path.split('/').pop()}</div>
                                                 <div className="text-xs text-slate-500">Last read: {new Date(sm.lastDownloaded).toLocaleDateString()}</div>
                                             </div>
                                         </div>
@@ -282,7 +284,7 @@ export default function SeoDashboard() {
                                     <tbody className="divide-y divide-slate-50">
                                         {gscData?.topPages?.filter(p => p.ctr < 0.02 && p.impressions > 100).slice(0, 5).map((page, i) => (
                                             <tr key={i} className="group">
-                                                <td className="py-3 pr-2 truncate max-w-[200px] text-slate-700" title={page.keys[0]}>
+                                                <td className="py-3 pr-2 truncate max-w-[150px] text-slate-700" title={page.keys[0]}>
                                                     {page.keys[0].replace('https://outrightlandscape.com', '')}
                                                 </td>
                                                 <td className="py-3 px-2 text-right text-slate-600">{page.impressions}</td>
