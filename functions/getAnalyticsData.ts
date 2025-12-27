@@ -1,5 +1,5 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.4';
-import { JWT } from 'npm:google-auth-library';
+import jwt from 'npm:jsonwebtoken';
 
 Deno.serve(async (req) => {
     try {
@@ -25,7 +25,7 @@ Deno.serve(async (req) => {
             }, { status: 400 });
         }
 
-        // 3. Initialize Auth
+        // 3. Initialize Auth (Pure implementation to bypass library network issues)
         let credentials;
         try {
             credentials = JSON.parse(serviceAccountJson);
@@ -34,42 +34,74 @@ Deno.serve(async (req) => {
             throw new Error("Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON.");
         }
 
-        const auth = new JWT({
-            email: credentials.client_email,
-            key: credentials.private_key,
-            scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
-        });
-
-        const accessToken = await auth.getAccessToken();
-        const token = accessToken.token;
-
-        if (!token) throw new Error("Failed to generate access token");
-
-        // Helper for GA4 Request
-        const runReport = async (body) => {
-            const res = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(body)
-            });
-            
-            if (!res.ok) {
-                const errorText = await res.text();
-                // Try to parse error text as JSON for better formatting
-                try {
-                    const errorJson = JSON.parse(errorText);
-                    throw new Error(errorJson.error?.message || errorText);
-                } catch (e) {
-                    throw new Error(`GA4 API Error (${res.status}): ${errorText}`);
-                }
-            }
-            return await res.json();
+        // Generate JWT for Auth
+        const now = Math.floor(Date.now() / 1000);
+        const tokenPayload = {
+            iss: credentials.client_email,
+            scope: 'https://www.googleapis.com/auth/analytics.readonly',
+            aud: 'https://oauth2.googleapis.com/token',
+            exp: now + 3600,
+            iat: now
         };
 
-        // 4. Run Reports
+        const signedJwt = jwt.sign(tokenPayload, credentials.private_key, { algorithm: 'RS256' });
+
+        // Exchange JWT for Access Token via standard Fetch with retries
+        const getAccessToken = async (retries = 3) => {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const params = new URLSearchParams();
+                    params.append('grant_type', 'urn:ietf:params:oauth:grant-type:jwt-bearer');
+                    params.append('assertion', signedJwt);
+
+                    const res = await fetch('https://oauth2.googleapis.com/token', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: params
+                    });
+
+                    if (!res.ok) throw new Error(`Auth failed: ${res.status} ${await res.text()}`);
+                    const data = await res.json();
+                    return data.access_token;
+                } catch (e) {
+                    if (i === retries - 1) throw e;
+                    await new Promise(r => setTimeout(r, 1000 * (i + 1))); // Exponential backoff
+                }
+            }
+        };
+
+        const token = await getAccessToken();
+
+        // 4. Run Reports (Helper with retries)
+        const runReport = async (body, retries = 3) => {
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const res = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    });
+                    
+                    if (!res.ok) {
+                        const errorText = await res.text();
+                        try {
+                            const errorJson = JSON.parse(errorText);
+                            throw new Error(errorJson.error?.message || errorText);
+                        } catch (e) {
+                            throw new Error(`GA4 API Error (${res.status}): ${errorText}`);
+                        }
+                    }
+                    return await res.json();
+                } catch (e) {
+                    if (i === retries - 1) throw e;
+                    await new Promise(r => setTimeout(r, 1000 * (i + 1)));
+                }
+            }
+        };
+
         const [timelineData, sourcesData] = await Promise.all([
             runReport({
                 dateRanges: [{ startDate: '28daysAgo', endDate: 'today' }],
