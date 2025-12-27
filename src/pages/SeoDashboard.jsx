@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Loader2, TrendingUp, Search, AlertCircle, FileText, CheckCircle2, XCircle, LayoutDashboard } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, ComposedChart, Line } from 'recharts';
+import SeoGoals from "@/components/seo/SeoGoals";
 
 export default function SeoDashboard() {
     // 1. Auth & Data Fetching
