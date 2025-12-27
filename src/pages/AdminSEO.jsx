@@ -31,6 +31,13 @@ export default function AdminSEO() {
         queryFn: () => base44.entities.Location.list(null, 50),
     });
 
+    // Check Admin Auth
+    const { data: user, isLoading: isAuthLoading } = useQuery({
+        queryKey: ['auth-user'],
+        queryFn: () => base44.auth.me(),
+        retry: false,
+    });
+
     useEffect(() => {
         if (locations?.length > 0) {
             const cityPages = locations.slice(0, 5).map(loc => ({
@@ -80,6 +87,18 @@ export default function AdminSEO() {
     };
 
     const getConfig = (path) => seoConfigs.find(c => c.path === path);
+
+    if (isAuthLoading || isLoading) return <div className="flex items-center justify-center min-h-screen"><Loader2 className="w-8 h-8 animate-spin text-green-600" /></div>;
+
+    if (!user || user.role !== 'admin') {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
+                <h1 className="text-2xl font-bold mb-4">Admin Access Required</h1>
+                <p className="mb-4 text-gray-600">You must be an administrator to access the SEO Manager.</p>
+                <Button onClick={() => base44.auth.redirectToLogin()}>Log In as Admin</Button>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-gray-50 p-8">

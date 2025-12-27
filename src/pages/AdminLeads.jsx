@@ -82,11 +82,12 @@ export default function AdminLeads() {
     if (isAuthLoading || isLoading) return <div className="flex items-center justify-center min-h-screen"><Loader2 className="w-8 h-8 animate-spin text-green-600" /></div>;
     
     // Simple Redirect/Guard if not logged in (In a real app, use redirects)
-    if (!user) {
+    if (!user || user.role !== 'admin') {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
                 <h1 className="text-2xl font-bold mb-4">Admin Access Required</h1>
-                <Button onClick={() => base44.auth.redirectToLogin()}>Log In to View Dashboard</Button>
+                <p className="mb-4 text-gray-600">You must be an administrator to access this page.</p>
+                <Button onClick={() => base44.auth.redirectToLogin()}>Log In as Admin</Button>
             </div>
         );
     }
