@@ -124,12 +124,31 @@ export default function AdminAnalytics() {
                     </Card>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Key Metrics Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    {/* Live Users Card */}
+                    <Card className="border-green-200 bg-green-50/50">
+                        <CardContent className="p-6">
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-sm font-bold text-green-700 flex items-center gap-2">
+                                    <span className="relative flex h-3 w-3">
+                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                    </span>
+                                    Live Users
+                                </span>
+                                <Activity className="w-4 h-4 text-green-600" />
+                            </div>
+                            <div className="text-3xl font-bold text-green-800">
+                                {data?.liveUsers || 0}
+                            </div>
+                            <p className="text-xs text-green-600 mt-1">Active in last 30 mins</p>
+                        </CardContent>
+                    </Card>
+
                     <Card>
                         <CardContent className="p-6">
                             <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm font-medium text-gray-500">Total Users</span>
+                                <span className="text-sm font-medium text-gray-500">Total Users (28d)</span>
                                 <Users className="w-4 h-4 text-gray-400" />
                             </div>
                             <div className="text-2xl font-bold">

@@ -15,7 +15,6 @@ Deno.serve(async (req) => {
         let propertyId = Deno.env.get("GA4_PROPERTY_ID");
         const serviceAccountJson = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_JSON");
 
-        // Clean up property ID
         if (propertyId) propertyId = propertyId.replace('properties/', '');
 
         if (!propertyId || !serviceAccountJson) {
@@ -25,7 +24,7 @@ Deno.serve(async (req) => {
             }, { status: 400 });
         }
 
-        // 3. Initialize Auth (Pure implementation to bypass library network issues)
+        // 3. Initialize Auth
         let credentials;
         try {
             credentials = JSON.parse(serviceAccountJson);
@@ -34,7 +33,6 @@ Deno.serve(async (req) => {
             throw new Error("Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON.");
         }
 
-        // Generate JWT for Auth
         const now = Math.floor(Date.now() / 1000);
         const tokenPayload = {
             iss: credentials.client_email,
@@ -46,7 +44,7 @@ Deno.serve(async (req) => {
 
         const signedJwt = jwt.sign(tokenPayload, credentials.private_key, { algorithm: 'RS256' });
 
-        // Exchange JWT for Access Token via standard Fetch with retries
+        // Get Access Token
         const getAccessToken = async (retries = 3) => {
             for (let i = 0; i < retries; i++) {
                 try {
@@ -65,18 +63,18 @@ Deno.serve(async (req) => {
                     return data.access_token;
                 } catch (e) {
                     if (i === retries - 1) throw e;
-                    await new Promise(r => setTimeout(r, 1000 * (i + 1))); // Exponential backoff
+                    await new Promise(r => setTimeout(r, 1000 * (i + 1)));
                 }
             }
         };
 
         const token = await getAccessToken();
 
-        // 4. Run Reports (Helper with retries)
-        const runReport = async (body, retries = 3) => {
+        // 4. Run Reports (Standard & Realtime)
+        const runReport = async (endpoint, body, retries = 3) => {
             for (let i = 0; i < retries; i++) {
                 try {
-                    const res = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:runReport`, {
+                    const res = await fetch(`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}:${endpoint}`, {
                         method: 'POST',
                         headers: {
                             'Authorization': `Bearer ${token}`,
@@ -102,18 +100,21 @@ Deno.serve(async (req) => {
             }
         };
 
-        const [timelineData, sourcesData] = await Promise.all([
-            runReport({
+        const [timelineData, sourcesData, realtimeData] = await Promise.all([
+            runReport('runReport', {
                 dateRanges: [{ startDate: '28daysAgo', endDate: 'today' }],
                 dimensions: [{ name: 'date' }],
                 metrics: [{ name: 'activeUsers' }, { name: 'sessions' }, { name: 'engagementRate' }],
                 orderBys: [{ dimension: { orderType: 'ALPHANUMERIC', dimensionName: 'date' } }]
             }),
-            runReport({
+            runReport('runReport', {
                 dateRanges: [{ startDate: '28daysAgo', endDate: 'today' }],
                 dimensions: [{ name: 'sessionSourceMedium' }],
                 metrics: [{ name: 'activeUsers' }],
                 limit: 5
+            }),
+            runReport('runRealtimeReport', {
+                metrics: [{ name: 'activeUsers' }]
             })
         ]);
 
@@ -132,29 +133,31 @@ Deno.serve(async (req) => {
             source: row.dimensionValues[0].value,
             users: parseInt(row.metricValues[0].value),
         }));
+        
+        const liveUsers = realtimeData.rows?.[0]?.metricValues?.[0]?.value || 0;
 
         // 6. AI Insights
         let aiInsights = null;
         try {
             const totalUsers = processedTimeline.reduce((acc, curr) => acc + curr.users, 0);
-            const avgEngagement = processedTimeline.length ? (processedTimeline.reduce((acc, curr) => acc + curr.engagement, 0) / processedTimeline.length).toFixed(1) : 0;
             
             aiInsights = await base44.integrations.Core.InvokeLLM({
-                prompt: `Analyze this web traffic data for a landscaping business.
+                prompt: `Analyze this web traffic data.
+                Live Users Right Now: ${liveUsers}
                 Total Users (28d): ${totalUsers}
-                Avg Engagement: ${avgEngagement}%
                 Top Sources: ${processedSources.map(s => s.source).join(', ')}
                 
-                Provide a brief, 2-sentence insight about the performance and any potential seasonal slowdowns (it's currently winter).`,
+                If live users > 0, mention that traffic is active now.
+                If all 0, explain that for new accounts, data takes 24-48h to appear, but Realtime should work.`,
             });
         } catch (e) {
-            console.error("AI Insight failed", e);
-            aiInsights = "AI Insights unavailable at the moment.";
+            aiInsights = "AI Insights unavailable.";
         }
 
         return Response.json({
             timeline: processedTimeline,
             sources: processedSources,
+            liveUsers: parseInt(liveUsers),
             insights: aiInsights
         });
 
