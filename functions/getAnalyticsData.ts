@@ -12,8 +12,11 @@ Deno.serve(async (req) => {
         }
 
         // 2. Credentials Check
-        const propertyId = Deno.env.get("GA4_PROPERTY_ID");
+        let propertyId = Deno.env.get("GA4_PROPERTY_ID");
         const serviceAccountJson = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_JSON");
+
+        // Clean up property ID if user pasted "properties/" prefix
+        if (propertyId) propertyId = propertyId.replace('properties/', '');
 
         if (!propertyId || !serviceAccountJson) {
             return Response.json({ 
