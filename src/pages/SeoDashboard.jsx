@@ -236,7 +236,7 @@ export default function SeoDashboard() {
 
                 {/* Sitemaps, Goals & Opportunities */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <SeoGoals overviewData={gscData?.overview} />
+                    <SeoGoals overviewData={gscData?.overview} timeline={gscData?.timeline} />
 
                     <Card>
                         <CardHeader>
