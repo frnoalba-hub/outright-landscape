@@ -6,6 +6,7 @@ import SEO from '@/components/SEO';
 import ServiceSchema from '@/components/ServiceSchema';
 import SharedHero from '@/components/SharedHero';
 import ContactForm from '@/components/ContactForm';
+import GoogleReviews from '@/components/GoogleReviews';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
@@ -309,6 +310,9 @@ export default function Home() {
                     </nav>
                 </div>
             </section>
+
+            {/* Google Reviews with AI Summary */}
+            <GoogleReviews />
 
             {/* Why Choose Us */}
             <section className="py-16 sm:py-20 md:py-24 bg-gray-900 text-white">
