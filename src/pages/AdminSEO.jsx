@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Loader2, Sparkles, RefreshCw, Check, AlertCircle, TrendingUp, MousePointer2, Eye } from "lucide-react";
+import { Loader2, Sparkles, RefreshCw, Check, AlertCircle, TrendingUp, MousePointer2, Eye, Wand2 } from "lucide-react";
 import { createPageUrl } from "@/utils";
 
 export default function AdminSEO() {
@@ -247,17 +247,32 @@ export default function AdminSEO() {
                                                 </div>
                                             </div>
                                             
-                                            <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                                                <h4 className="font-bold text-blue-900 flex items-center gap-2 mb-3">
-                                                    <AlertCircle className="w-4 h-4" />
-                                                    AI Analysis & Suggestions
-                                                </h4>
-                                                <p className="text-sm text-blue-800 whitespace-pre-line leading-relaxed">
-                                                    {config.ai_suggestions}
-                                                </p>
-                                                <div className="mt-4 text-xs text-blue-600 flex items-center gap-1">
-                                                    <Check className="w-3 h-3" />
-                                                    Last updated: {new Date(config.last_updated).toLocaleDateString()}
+                                            <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 flex flex-col h-full">
+                                                <div>
+                                                    <h4 className="font-bold text-blue-900 flex items-center gap-2 mb-3">
+                                                        <AlertCircle className="w-4 h-4" />
+                                                        AI Analysis & Suggestions
+                                                    </h4>
+                                                    <p className="text-sm text-blue-800 whitespace-pre-line leading-relaxed mb-4">
+                                                        {config.ai_suggestions}
+                                                    </p>
+                                                </div>
+                                                
+                                                <div className="mt-auto pt-4 border-t border-blue-200">
+                                                    {page.path.includes("city=") && (
+                                                        <Button 
+                                                            size="sm" 
+                                                            className="w-full bg-blue-600 hover:bg-blue-700 text-white shadow-sm"
+                                                            onClick={() => handleImproveContent(page, config.ai_suggestions)}
+                                                            disabled={improveContentMutation.isPending}
+                                                        >
+                                                            {improveContentMutation.isPending ? <Loader2 className="w-3 h-3 mr-2 animate-spin"/> : <Wand2 className="w-3 h-3 mr-2" />}
+                                                            Auto-Fix Content
+                                                        </Button>
+                                                    )}
+                                                    <div className="mt-2 text-xs text-blue-600 flex items-center justify-between">
+                                                        <span className="flex items-center gap-1"><Check className="w-3 h-3" /> Analyzed: {new Date(config.last_updated).toLocaleDateString()}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
