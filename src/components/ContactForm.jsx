@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle2 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 
@@ -105,6 +106,22 @@ export default function ContactForm({ cityName = "your area", darkMode = true })
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             className={`${inputClass} h-12 sm:h-14 rounded-lg`}
                         />
+                        <Select 
+                            value={formData.service_type} 
+                            onValueChange={(value) => setFormData({ ...formData, service_type: value })}
+                        >
+                            <SelectTrigger className={`${inputClass} h-12 sm:h-14 rounded-lg`}>
+                                <SelectValue placeholder="Select Service" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="landscape_design">Landscape Design</SelectItem>
+                                <SelectItem value="lawn_care">Lawn Care & Turf Installation</SelectItem>
+                                <SelectItem value="tree_shrub_care">Pavers & Hardscaping</SelectItem>
+                                <SelectItem value="hardscaping">Complete Landscape Makeover</SelectItem>
+                                <SelectItem value="irrigation">Irrigation Systems</SelectItem>
+                                <SelectItem value="other">Other / Not Sure</SelectItem>
+                            </SelectContent>
+                        </Select>
                         <Textarea
                             placeholder="Tell us about your project..."
                             required
