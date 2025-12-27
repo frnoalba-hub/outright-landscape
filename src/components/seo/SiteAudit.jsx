@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Loader2, ScanSearch, AlertTriangle, CheckCircle2, XCircle, Gauge, ChevronDown, ChevronUp } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -13,6 +14,22 @@ export default function SiteAudit() {
     const [url, setUrl] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const queryClient = useQueryClient();
+
+    // Fetch locations for quick select
+    const { data: locations = [] } = useQuery({
+        queryKey: ['locations-audit'],
+        queryFn: () => base44.entities.Location.list(null, 100),
+    });
+
+    const knownPages = [
+        { name: "Home Page", path: "/" },
+        { name: "Blog Index", path: "/Blog" },
+        ...locations.map(loc => ({ name: `Service Area: ${loc.name}`, path: `/ServiceArea?city=${loc.slug}` }))
+    ];
+
+    const handleQuickSelect = (path) => {
+        setUrl(window.location.origin + path);
+    };
 
     // Fetch latest report
     const { data: latestReport, isLoading: isReportLoading } = useQuery({
@@ -76,7 +93,21 @@ export default function SiteAudit() {
                         </CardTitle>
                         <CardDescription>Comprehensive Technical & Content Analysis</CardDescription>
                     </div>
-                    <form onSubmit={handleAudit} className="flex gap-2 w-full md:w-auto">
+                    <form onSubmit={handleAudit} className="flex gap-2 w-full md:w-auto items-center">
+                        <div className="w-[180px] hidden md:block">
+                            <Select onValueChange={handleQuickSelect}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Quick Select Page" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    {knownPages.map((page, idx) => (
+                                        <SelectItem key={idx} value={page.path}>
+                                            {page.name}
+                                        </SelectItem>
+                                    ))}
+                                </SelectContent>
+                            </Select>
+                        </div>
                         <Input 
                             placeholder="https://..." 
                             value={url} 
