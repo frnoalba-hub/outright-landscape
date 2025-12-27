@@ -1,25 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, TrendingUp, Users, Activity, AlertTriangle, BarChart3, RefreshCcw } from "lucide-react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, AreaChart, Area } from 'recharts';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Loader2, TrendingUp, Users, Activity, AlertTriangle, BarChart3, RefreshCcw, Download, Calendar, Target, ArrowUpRight, ArrowDownRight } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, AreaChart, Area, PieChart, Pie, Cell, Legend } from 'recharts';
 import { Search, MousePointer2, Eye, TrendingUp as TrendingUpIcon } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function AdminAnalytics() {
+    const [dateRange, setDateRange] = useState('28');
+    const [exportFormat, setExportFormat] = useState('csv');
+    
     // Check Admin Auth
     const { data: user, isLoading: isAuthLoading } = useQuery({
         queryKey: ['auth-user'],
         queryFn: () => base44.auth.me(),
     });
 
-    // GA4 Data Query
+    // GA4 Data Query with date range
     const { data, isLoading, error, refetch } = useQuery({
-        queryKey: ['analytics-data'],
+        queryKey: ['analytics-data', dateRange],
         queryFn: async () => {
             try {
-                const res = await base44.functions.invoke("getAnalyticsData");
+                const res = await base44.functions.invoke("getAnalyticsData", { dateRange });
                 if (res.ok === false) {
                     const errData = await res.json();
                     throw new Error(errData.details || errData.error || "Failed to fetch analytics");
@@ -63,6 +67,59 @@ export default function AdminAnalytics() {
     const refreshAll = () => {
         refetch();
         refetchGsc();
+    };
+
+    const exportData = () => {
+        if (!data) return;
+        
+        const timestamp = new Date().toISOString().split('T')[0];
+        const filename = `analytics-report-${timestamp}.${exportFormat}`;
+        
+        if (exportFormat === 'csv') {
+            // CSV Export
+            const csvData = [
+                ['Date', 'Users', 'Sessions', 'Engagement %'],
+                ...(data.timeline || []).map(row => [row.date, row.users, row.sessions, row.engagement.toFixed(1)])
+            ];
+            const csvContent = csvData.map(row => row.join(',')).join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+        } else {
+            // JSON Export
+            const jsonContent = JSON.stringify({
+                exportDate: new Date().toISOString(),
+                dateRange: `Last ${dateRange} days`,
+                timeline: data.timeline,
+                sources: data.sources,
+                liveUsers: data.liveUsers
+            }, null, 2);
+            const blob = new Blob([jsonContent], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+        }
+    };
+
+    const calculateTrend = (timeline, metric) => {
+        if (!timeline || timeline.length < 14) return { percent: 0, direction: 'neutral' };
+        
+        const midpoint = Math.floor(timeline.length / 2);
+        const firstHalf = timeline.slice(0, midpoint);
+        const secondHalf = timeline.slice(midpoint);
+        
+        const firstAvg = firstHalf.reduce((acc, curr) => acc + curr[metric], 0) / firstHalf.length;
+        const secondAvg = secondHalf.reduce((acc, curr) => acc + curr[metric], 0) / secondHalf.length;
+        
+        const percentChange = ((secondAvg - firstAvg) / firstAvg) * 100;
+        const direction = percentChange > 0 ? 'up' : percentChange < 0 ? 'down' : 'neutral';
+        
+        return { percent: Math.abs(percentChange), direction };
     };
 
     if (isAuthLoading || (isLoading && !error)) {
@@ -115,20 +172,39 @@ export default function AdminAnalytics() {
         );
     }
 
-    const { timeline, sources, insights } = data || {};
+    const { timeline, sources, insights, conversionRate, topPages } = data || {};
+    const usersTrend = calculateTrend(timeline, 'users');
+    const sessionsTrend = calculateTrend(timeline, 'sessions');
+
+    // Calculate bounce rate and conversions (mock for now)
+    const totalSessions = timeline?.reduce((acc, curr) => acc + curr.sessions, 0) || 0;
+    const totalUsers = timeline?.reduce((acc, curr) => acc + curr.users, 0) || 0;
+    const avgEngagement = timeline?.length ? (timeline.reduce((acc, curr) => acc + curr.engagement, 0) / timeline.length) : 0;
 
     return (
         <div className="min-h-screen bg-gray-50 p-8 pt-28">
             <div className="max-w-7xl mx-auto space-y-8">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
                             <BarChart3 className="text-blue-600" />
-                            Performance Dashboard
+                            Advanced Analytics Dashboard
                         </h1>
-                        <p className="text-gray-500 mt-2">Website traffic and engagement trends (Last 28 Days)</p>
+                        <p className="text-gray-500 mt-2">Real-time traffic, engagement metrics & SEO performance</p>
                     </div>
-                    <div className="flex flex-col items-end gap-2">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+                    <div className="flex items-center gap-2">
+                    <Select value={dateRange} onValueChange={setDateRange}>
+                        <SelectTrigger className="w-[140px]">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="7">Last 7 days</SelectItem>
+                            <SelectItem value="14">Last 14 days</SelectItem>
+                            <SelectItem value="28">Last 28 days</SelectItem>
+                            <SelectItem value="90">Last 90 days</SelectItem>
+                        </SelectContent>
+                    </Select>
                     <div className="flex items-center gap-2">
                     {data && !error && (
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
@@ -149,8 +225,22 @@ export default function AdminAnalytics() {
                         {(isLoading || isGscLoading) ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RefreshCcw className="w-4 h-4 mr-2" />}
                         Refresh
                     </Button>
+                    <Select value={exportFormat} onValueChange={setExportFormat}>
+                        <SelectTrigger className="w-[100px]">
+                            <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="csv">CSV</SelectItem>
+                            <SelectItem value="json">JSON</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <Button variant="outline" size="sm" onClick={exportData} disabled={!data}>
+                        <Download className="w-4 h-4 mr-2" />
+                        Export
+                    </Button>
                     </div>
-                    {(data || gscData) && <span className="text-[10px] text-gray-400">Updated: {new Date().toLocaleTimeString()}</span>}
+                    </div>
+                    {(data || gscData) && <span className="text-[10px] text-gray-400 mt-2">Updated: {new Date().toLocaleTimeString()}</span>}
                     </div>
                 </div>
 
@@ -169,7 +259,7 @@ export default function AdminAnalytics() {
                     </Card>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     {/* Live Users Card */}
                     <Card className="border-green-200 bg-green-50/50">
                         <CardContent className="p-6">
@@ -186,41 +276,56 @@ export default function AdminAnalytics() {
                             <div className="text-3xl font-bold text-green-800">
                                 {data?.liveUsers || 0}
                             </div>
-                            <p className="text-xs text-green-600 mt-1">Active in last 30 mins</p>
+                            <p className="text-xs text-green-600 mt-1">Active right now</p>
                         </CardContent>
                     </Card>
 
                     <Card>
                         <CardContent className="p-6">
                             <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm font-medium text-gray-500">Total Users (28d)</span>
-                                <Users className="w-4 h-4 text-gray-400" />
+                                <span className="text-sm font-medium text-gray-500">Total Users</span>
+                                <Users className="w-4 h-4 text-blue-500" />
                             </div>
-                            <div className="text-2xl font-bold">
-                                {timeline?.reduce((acc, curr) => acc + curr.users, 0).toLocaleString()}
+                            <div className="flex items-baseline gap-2">
+                                <div className="text-2xl font-bold">{totalUsers.toLocaleString()}</div>
+                                {usersTrend.direction !== 'neutral' && (
+                                    <div className={`flex items-center text-sm ${usersTrend.direction === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                                        {usersTrend.direction === 'up' ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
+                                        {usersTrend.percent.toFixed(1)}%
+                                    </div>
+                                )}
                             </div>
+                            <p className="text-xs text-gray-500 mt-1">Last {dateRange} days</p>
                         </CardContent>
                     </Card>
-                    <Card>
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm font-medium text-gray-500">Avg. Engagement</span>
-                                <TrendingUp className="w-4 h-4 text-gray-400" />
-                            </div>
-                            <div className="text-2xl font-bold">
-                                {(timeline?.reduce((acc, curr) => acc + curr.engagement, 0) / (timeline?.length || 1)).toFixed(1)}%
-                            </div>
-                        </CardContent>
-                    </Card>
+                    
                     <Card>
                         <CardContent className="p-6">
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-sm font-medium text-gray-500">Total Sessions</span>
-                                <Activity className="w-4 h-4 text-gray-400" />
+                                <Activity className="w-4 h-4 text-purple-500" />
                             </div>
-                            <div className="text-2xl font-bold">
-                                {timeline?.reduce((acc, curr) => acc + curr.sessions, 0).toLocaleString()}
+                            <div className="flex items-baseline gap-2">
+                                <div className="text-2xl font-bold">{totalSessions.toLocaleString()}</div>
+                                {sessionsTrend.direction !== 'neutral' && (
+                                    <div className={`flex items-center text-sm ${sessionsTrend.direction === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                                        {sessionsTrend.direction === 'up' ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
+                                        {sessionsTrend.percent.toFixed(1)}%
+                                    </div>
+                                )}
                             </div>
+                            <p className="text-xs text-gray-500 mt-1">Avg {(totalSessions/totalUsers).toFixed(1)} per user</p>
+                        </CardContent>
+                    </Card>
+                    
+                    <Card>
+                        <CardContent className="p-6">
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-sm font-medium text-gray-500">Engagement Rate</span>
+                                <TrendingUp className="w-4 h-4 text-orange-500" />
+                            </div>
+                            <div className="text-2xl font-bold">{avgEngagement.toFixed(1)}%</div>
+                            <p className="text-xs text-gray-500 mt-1">Avg session quality</p>
                         </CardContent>
                     </Card>
                 </div>
@@ -229,67 +334,92 @@ export default function AdminAnalytics() {
                     {/* Main Traffic Chart */}
                     <Card className="lg:col-span-2">
                         <CardHeader>
-                            <CardTitle>Traffic Trends</CardTitle>
+                            <CardTitle>Traffic & Engagement Trends</CardTitle>
+                            <CardDescription>Daily users, sessions, and engagement rate over time</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <div className="h-[300px] w-full">
+                            <div className="h-[350px] w-full">
                                 <ResponsiveContainer width="100%" height="100%">
-                                    <LineChart data={timeline}>
-                                        <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                                    <AreaChart data={timeline}>
+                                        <defs>
+                                            <linearGradient id="colorUsers" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
+                                                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                                            </linearGradient>
+                                            <linearGradient id="colorSessions" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                                                <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                                            </linearGradient>
+                                        </defs>
+                                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                                         <XAxis 
                                             dataKey="date" 
-                                            tick={{fontSize: 12}} 
+                                            tick={{fontSize: 11, fill: '#64748b'}} 
                                             tickLine={false}
                                             axisLine={false}
                                         />
                                         <YAxis 
-                                            tick={{fontSize: 12}} 
+                                            tick={{fontSize: 11, fill: '#64748b'}} 
                                             tickLine={false}
                                             axisLine={false}
                                         />
-                                        <Tooltip />
-                                        <Line 
+                                        <Tooltip 
+                                            contentStyle={{
+                                                backgroundColor: 'white',
+                                                border: 'none',
+                                                borderRadius: '8px',
+                                                boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                                            }}
+                                        />
+                                        <Legend />
+                                        <Area 
                                             type="monotone" 
                                             dataKey="users" 
-                                            stroke="#2563eb" 
-                                            strokeWidth={2} 
-                                            dot={false}
+                                            stroke="#3b82f6" 
+                                            strokeWidth={2}
+                                            fill="url(#colorUsers)"
                                             name="Users"
                                         />
-                                        <Line 
+                                        <Area 
                                             type="monotone" 
                                             dataKey="sessions" 
                                             stroke="#10b981" 
-                                            strokeWidth={2} 
-                                            dot={false}
+                                            strokeWidth={2}
+                                            fill="url(#colorSessions)"
                                             name="Sessions"
                                         />
-                                    </LineChart>
+                                    </AreaChart>
                                 </ResponsiveContainer>
                             </div>
                         </CardContent>
                     </Card>
 
-                    {/* Traffic Sources */}
+                    {/* Traffic Sources Distribution */}
                     <Card>
                     <CardHeader>
-                        <CardTitle>Top Sources</CardTitle>
+                        <CardTitle>Traffic Sources</CardTitle>
+                        <CardDescription>Where visitors come from</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="h-[300px] w-full">
+                        <div className="h-[350px] w-full">
                             <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={sources} layout="vertical">
-                                    <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                                    <XAxis type="number" hide />
-                                    <YAxis 
-                                        dataKey="source" 
-                                        type="category" 
-                                        width={100}
-                                        tick={{fontSize: 11}}
-                                    />
+                                <PieChart>
+                                    <Pie
+                                        data={sources}
+                                        cx="50%"
+                                        cy="50%"
+                                        labelLine={false}
+                                        label={({source, percent}) => `${source} ${(percent * 100).toFixed(0)}%`}
+                                        outerRadius={80}
+                                        fill="#8884d8"
+                                        dataKey="users"
+                                    >
+                                        {sources?.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'][index % 5]} />
+                                        ))}
+                                    </Pie>
                                     <Tooltip />
-                                    <Bar dataKey="users" fill="#8884d8" radius={[0, 4, 4, 0]} />
-                                </BarChart>
+                                </PieChart>
                             </ResponsiveContainer>
                         </div>
                     </CardContent>

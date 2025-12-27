@@ -11,6 +11,10 @@ Deno.serve(async (req) => {
             return Response.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
+        // Parse date range from request
+        const { dateRange = '28' } = await req.json().catch(() => ({}));
+        const daysAgo = `${dateRange}daysAgo`;
+
         // 2. Credentials Check
         let propertyId = Deno.env.get("GA4_PROPERTY_ID");
         const serviceAccountJson = Deno.env.get("GOOGLE_SERVICE_ACCOUNT_JSON");
@@ -100,18 +104,25 @@ Deno.serve(async (req) => {
             }
         };
 
-        const [timelineData, sourcesData, realtimeData] = await Promise.all([
+        const [timelineData, sourcesData, topPagesData, realtimeData] = await Promise.all([
             runReport('runReport', {
-                dateRanges: [{ startDate: '28daysAgo', endDate: 'today' }],
+                dateRanges: [{ startDate: daysAgo, endDate: 'today' }],
                 dimensions: [{ name: 'date' }],
                 metrics: [{ name: 'activeUsers' }, { name: 'sessions' }, { name: 'engagementRate' }],
                 orderBys: [{ dimension: { orderType: 'ALPHANUMERIC', dimensionName: 'date' } }]
             }),
             runReport('runReport', {
-                dateRanges: [{ startDate: '28daysAgo', endDate: 'today' }],
+                dateRanges: [{ startDate: daysAgo, endDate: 'today' }],
                 dimensions: [{ name: 'sessionSourceMedium' }],
                 metrics: [{ name: 'activeUsers' }],
                 limit: 5
+            }),
+            runReport('runReport', {
+                dateRanges: [{ startDate: daysAgo, endDate: 'today' }],
+                dimensions: [{ name: 'pagePath' }],
+                metrics: [{ name: 'screenPageViews' }, { name: 'activeUsers' }],
+                orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
+                limit: 10
             }),
             runReport('runRealtimeReport', {
                 metrics: [{ name: 'activeUsers' }]
@@ -132,6 +143,12 @@ Deno.serve(async (req) => {
         const processedSources = (sourcesData.rows || []).map(row => ({
             source: row.dimensionValues[0].value,
             users: parseInt(row.metricValues[0].value),
+        }));
+
+        const processedTopPages = (topPagesData.rows || []).map(row => ({
+            page: row.dimensionValues[0].value,
+            views: parseInt(row.metricValues[0].value),
+            users: parseInt(row.metricValues[1].value),
         }));
         
         const liveUsers = realtimeData.rows?.[0]?.metricValues?.[0]?.value || 0;
@@ -157,6 +174,7 @@ Deno.serve(async (req) => {
         return Response.json({
             timeline: processedTimeline,
             sources: processedSources,
+            topPages: processedTopPages,
             liveUsers: parseInt(liveUsers),
             insights: aiInsights
         });
