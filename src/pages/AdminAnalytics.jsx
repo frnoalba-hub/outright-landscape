@@ -3,7 +3,7 @@ import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Loader2, TrendingUp, Users, Activity, AlertTriangle, BarChart3 } from "lucide-react";
+import { Loader2, TrendingUp, Users, Activity, AlertTriangle, BarChart3, RefreshCcw } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 export default function AdminAnalytics() {
@@ -13,7 +13,7 @@ export default function AdminAnalytics() {
         queryFn: () => base44.auth.me(),
     });
 
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading, error, refetch } = useQuery({
         queryKey: ['analytics-data'],
         queryFn: async () => {
             const res = await base44.functions.invoke("getAnalyticsData");
@@ -90,7 +90,10 @@ export default function AdminAnalytics() {
                         </h1>
                         <p className="text-gray-500 mt-2">Website traffic and engagement trends (Last 28 Days)</p>
                     </div>
-                    {/* Add navigation back to other admin pages if needed */}
+                    <Button variant="outline" onClick={() => refetch()} disabled={isLoading}>
+                        {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <RefreshCcw className="w-4 h-4 mr-2" />}
+                        Refresh Data
+                    </Button>
                 </div>
 
                 {/* AI Insights Banner */}
