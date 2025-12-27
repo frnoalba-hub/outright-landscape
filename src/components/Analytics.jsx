@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 // TODO: Replace these with your actual IDs
 const GTM_ID = 'GTM-XXXXXXX'; 
-const GA_ID = 'G-XXXXXXXXXX';
+const GA_ID = 'G-4EK42ELB3T';
 
 export default function Analytics() {
     useEffect(() => {
