@@ -115,9 +115,10 @@ Deno.serve(async (req) => {
 
     } catch (error) {
         console.error("Analytics Error:", error);
+        // detailed error message for better debugging
         return Response.json({ 
-            error: error.message,
-            stack: error.stack
+            error: 'Analytics API Error',
+            details: error.message || "Unknown error occurred"
         }, { status: 500 });
     }
 });

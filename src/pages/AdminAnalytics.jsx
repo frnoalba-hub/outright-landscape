@@ -17,7 +17,10 @@ export default function AdminAnalytics() {
         queryKey: ['analytics-data'],
         queryFn: async () => {
             const res = await base44.functions.invoke("getAnalyticsData");
-            if (!res.ok) throw new Error((await res.json()).details || "Failed to fetch analytics");
+            if (!res.ok) {
+                const errData = await res.json();
+                throw new Error(errData.details || errData.error || "Failed to fetch analytics");
+            }
             return res.data;
         },
         enabled: !!user && user.role === 'admin',
@@ -51,8 +54,15 @@ export default function AdminAnalytics() {
                         <p className="text-gray-600">
                             To view the dashboard, you need to configure the Google Analytics secrets in your app settings.
                         </p>
+                        
+                        {error && (
+                            <div className="bg-red-50 border border-red-200 text-red-700 p-3 rounded-md text-sm mb-2">
+                                <strong>Error:</strong> {error.message}
+                            </div>
+                        )}
+
                         <div className="bg-gray-100 p-4 rounded text-sm font-mono break-all">
-                            1. GA4_PROPERTY_ID<br/>
+                            1. GA4_PROPERTY_ID (Numeric ID, not G-XXXX)<br/>
                             2. GOOGLE_SERVICE_ACCOUNT_JSON
                         </div>
                         <Button 
