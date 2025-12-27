@@ -39,7 +39,8 @@ Deno.serve(async (req) => {
         }
 
         const analyticsDataClient = new BetaAnalyticsDataClient({
-            credentials
+            credentials,
+            fallback: 'rest'
         });
 
         // 4. Run Report
