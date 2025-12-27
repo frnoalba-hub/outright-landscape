@@ -16,12 +16,22 @@ export default function AdminAnalytics() {
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ['analytics-data'],
         queryFn: async () => {
-            const res = await base44.functions.invoke("getAnalyticsData");
-            if (!res.ok) {
-                const errData = await res.json();
-                throw new Error(errData.details || errData.error || "Failed to fetch analytics");
+            try {
+                const res = await base44.functions.invoke("getAnalyticsData");
+                // Check if it's a fetch Response (has .ok) or Axios response (has .data)
+                if (res.ok === false) {
+                    const errData = await res.json();
+                    throw new Error(errData.details || errData.error || "Failed to fetch analytics");
+                }
+                return res.data || res; // Handle both fetch and axios structures
+            } catch (err) {
+                // Handle Axios error response structure
+                if (err.response && err.response.data) {
+                    const errData = err.response.data;
+                    throw new Error(errData.details || errData.error || err.message);
+                }
+                throw err;
             }
-            return res.data;
         },
         enabled: !!user && user.role === 'admin',
         retry: false
