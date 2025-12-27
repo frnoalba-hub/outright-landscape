@@ -118,6 +118,7 @@ export default function AdminSEO() {
         onSuccess: () => {
             alert("Content successfully updated with AI improvements!");
             queryClient.invalidateQueries(['locations']);
+            queryClient.invalidateQueries(['seoConfigs']);
         },
         onError: (err) => {
             alert(err.message);
