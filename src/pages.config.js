@@ -37,6 +37,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import ServiceArea from './pages/ServiceArea';
 import AdminSEO from './pages/AdminSEO';
+import AdminAnalytics from './pages/AdminAnalytics';
 import __Layout from './Layout.jsx';
 
 
@@ -80,6 +81,7 @@ export const PAGES = {
     "BlogPost": BlogPost,
     "ServiceArea": ServiceArea,
     "AdminSEO": AdminSEO,
+    "AdminAnalytics": AdminAnalytics,
 }
 
 export const pagesConfig = {
