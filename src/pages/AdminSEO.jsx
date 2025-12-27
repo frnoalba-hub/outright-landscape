@@ -16,7 +16,8 @@ export default function AdminSEO() {
     const [pagesToManage, setPagesToManage] = useState([
         { name: "Home", path: "/" },
         { name: "Service Areas (General)", path: "/ServiceArea" },
-        // We'll dynamically add top cities below
+        { name: "Blog", path: "/Blog" },
+        // We'll dynamically add cities below
     ]);
 
     // Fetch existing configs
@@ -40,7 +41,7 @@ export default function AdminSEO() {
 
     useEffect(() => {
         if (locations?.length > 0) {
-            const cityPages = locations.slice(0, 5).map(loc => ({
+            const cityPages = locations.map(loc => ({
                 name: `Service Area: ${loc.name}`,
                 path: `/ServiceArea?city=${loc.slug}`
             }));
