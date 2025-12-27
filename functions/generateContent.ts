@@ -45,31 +45,47 @@ Deno.serve(async (req) => {
             };
 
         } else if (type === 'service_area') {
-            systemPrompt = `You are a Local SEO specialist for "Outright Landscape". 
-            You write localized service page content that connects with residents of specific cities.
+            systemPrompt = `You are an expert local SEO content writer specializing in landscaping services. Create highly localized, engaging content optimized for local search queries that includes location-specific details, local keywords, and answers common questions residents of the area would have.
             Tone: ${tone}.`;
 
-            userPrompt = `Write content for a service area page for the city: "${topic}".
-            Keywords to include: ${keywords || 'landscaping services, hardscaping, pavers'}.
-            
-            Return a JSON object with:
-            - intro: A compelling 2-3 paragraph introduction for the page. Mention local landmarks or vibes if possible.
-            - faqs: A list of 3 FAQs specific to landscaping in this area (e.g. weather, regulations).
-            `;
+            userPrompt = `Create SEO-optimized local content for our landscaping service area page in ${topic}, California. 
+
+Business: Outright Landscape Construction (CSLB #1073845)
+Services: Pavers, Turf Installation, Irrigation, Hardscaping, Landscape Design
+Service Area: ${topic} and San Gabriel Valley
+Target Keywords: ${keywords || `${topic} landscaping, ${topic} hardscaping, ${topic} pavers, ${topic} turf installation, ${topic} irrigation systems, landscape contractor ${topic}`}
+
+Local SEO Requirements:
+- Write an engaging intro (200-250 words) with natural keyword integration
+- Include location modifiers (e.g., "in ${topic}", "near ${topic}", "${topic} homeowners")
+- Reference local climate considerations (Southern California, drought-tolerant, water-wise)
+- Mention specific neighborhoods or areas within ${topic} if you know them
+- Address local challenges (water restrictions, soil types, climate)
+- Create 6-8 highly specific FAQs using question phrases people search for
+- Use conversational language that locals would use
+- Build trust and highlight local expertise
+
+FAQ Guidelines:
+- Start questions with: "How much does...", "What is the best...", "Do I need...", "Can you..."
+- Reference ${topic} specifically in questions
+- Address pricing, permits, climate, timing, and local regulations
+- Keep answers helpful, specific, and actionable (100-150 words each)`;
 
             jsonSchema = {
                 type: "object",
                 properties: {
-                    intro: { type: "string" },
-                    faqs: { 
-                        type: "array", 
-                        items: { 
-                            type: "object", 
+                    intro: { type: "string", description: "SEO-optimized intro paragraph with local keywords and details about services in this specific city" },
+                    faqs: {
+                        type: "array",
+                        items: {
+                            type: "object",
                             properties: {
-                                q: { type: "string" },
-                                a: { type: "string" }
-                            } 
-                        } 
+                                q: { type: "string", description: "Location-specific FAQ question using natural search phrases" },
+                                a: { type: "string", description: "Detailed, helpful answer addressing local considerations" }
+                            },
+                            required: ["q", "a"]
+                        },
+                        description: "6-8 location-specific FAQs optimized for local search queries"
                     }
                 },
                 required: ["intro", "faqs"]
