@@ -118,7 +118,7 @@ export default function AdminAnalytics() {
     const { timeline, sources, insights } = data || {};
 
     return (
-        <div className="min-h-screen bg-gray-50 p-8">
+        <div className="min-h-screen bg-gray-50 p-8 pt-28">
             <div className="max-w-7xl mx-auto space-y-8">
                 <div className="flex justify-between items-center">
                     <div>

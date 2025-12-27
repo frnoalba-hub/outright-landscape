@@ -60,7 +60,7 @@ export default function SeoDashboard() {
     // For now, let's just show GSC timeline as the primary "SEO" timeline.
 
     return (
-        <div className="min-h-screen bg-slate-50 p-6">
+        <div className="min-h-screen bg-slate-50 p-6 pt-28">
             <div className="max-w-7xl mx-auto space-y-8">
                 
                 {/* Header */}
