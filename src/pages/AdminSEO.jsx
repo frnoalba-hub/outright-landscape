@@ -195,11 +195,17 @@ export default function AdminSEO() {
                         <p className="text-gray-500 mt-2">Generate and manage SEO metadata for your pages using AI.</p>
                         <div className="mt-4 flex gap-3">
                             <Button asChild variant="outline" className="gap-2">
-                                <a href={createPageUrl("SeoDashboard")}>
-                                    <BarChart2 className="w-4 h-4 text-blue-600" />
-                                    Open SEO Dashboard (Goals & Competitors)
-                                </a>
-                            </Button>
+                                    <a href={createPageUrl("SeoDashboard")}>
+                                        <BarChart2 className="w-4 h-4 text-blue-600" />
+                                        SEO Dashboard
+                                    </a>
+                                </Button>
+                                <Button asChild variant="outline" className="gap-2">
+                                    <a href={createPageUrl("AdminContent")}>
+                                        <Wand2 className="w-4 h-4 text-purple-600" />
+                                        Content Generator
+                                    </a>
+                                </Button>
                         </div>
                     </div>
                     <Button onClick={handleBulkGenerate} className="bg-green-600 hover:bg-green-700">

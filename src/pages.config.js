@@ -39,6 +39,7 @@ import ServiceArea from './pages/ServiceArea';
 import AdminSEO from './pages/AdminSEO';
 import AdminAnalytics from './pages/AdminAnalytics';
 import SeoDashboard from './pages/SeoDashboard';
+import AdminContent from './pages/AdminContent';
 import __Layout from './Layout.jsx';
 
 
@@ -84,6 +85,7 @@ export const PAGES = {
     "AdminSEO": AdminSEO,
     "AdminAnalytics": AdminAnalytics,
     "SeoDashboard": SeoDashboard,
+    "AdminContent": AdminContent,
 }
 
 export const pagesConfig = {
