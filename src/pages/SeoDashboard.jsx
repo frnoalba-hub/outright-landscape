@@ -9,6 +9,7 @@ import SeoGoals from "@/components/seo/SeoGoals";
 import SeoAlerts from "@/components/seo/SeoAlerts";
 import CompetitorAnalysis from "@/components/seo/CompetitorAnalysis";
 import SiteAudit from "@/components/seo/SiteAudit";
+import KeywordDeepDive from "@/components/seo/KeywordDeepDive";
 
 export default function SeoDashboard() {
     // 1. Auth & Data Fetching
@@ -234,6 +235,7 @@ export default function SeoDashboard() {
                 {/* Alerts Section */}
                 <div className="mb-6 space-y-6">
                     <SeoAlerts />
+                    <KeywordDeepDive />
                     <SiteAudit />
                 </div>
 
