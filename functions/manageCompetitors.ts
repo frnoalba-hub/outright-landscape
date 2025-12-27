@@ -75,6 +75,95 @@ Deno.serve(async (req) => {
             return Response.json({ status: 'success', discovered: results });
         }
 
+        if (action === 'auto_track') {
+            // 1. Market Scan (Discovery)
+            const discoverPrompt = `
+                Search for "landscaping companies Covina CA", "landscape construction Glendora CA", "San Dimas landscaping services".
+                Identify top 5 REAL competitor companies (exclude directories).
+                Return JSON array of objects: { name, domain, description, threat_level }.
+            `;
+            
+            const discoveryRes = await base44.integrations.Core.InvokeLLM({
+                prompt: discoverPrompt,
+                add_context_from_internet: true,
+                response_json_schema: {
+                    type: "object",
+                    properties: {
+                        competitors: {
+                            type: "array",
+                            items: {
+                                type: "object",
+                                properties: {
+                                    name: { type: "string" },
+                                    domain: { type: "string" },
+                                    description: { type: "string" },
+                                    threat_level: { type: "string", enum: ["High", "Medium", "Low"] }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const discovered = discoveryRes.competitors || [];
+            const existing = await base44.entities.Competitor.list();
+            let newCount = 0;
+            let updatedCount = 0;
+
+            // Add new competitors
+            for (const comp of discovered) {
+                if (!existing.find(e => e.domain === comp.domain)) {
+                    await base44.entities.Competitor.create({
+                        ...comp,
+                        last_analyzed: new Date(0).toISOString() // Set to epoch to force immediate analysis next
+                    });
+                    newCount++;
+                }
+            }
+
+            // 2. Re-analyze Stale Competitors (Limit 2 per run to prevent timeout)
+            // Stale = analyzed > 7 days ago
+            const sevenDaysAgo = new Date();
+            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+            
+            const staleCompetitors = existing.filter(c => !c.last_analyzed || new Date(c.last_analyzed) < sevenDaysAgo)
+                                           .sort((a, b) => new Date(a.last_analyzed || 0) - new Date(b.last_analyzed || 0)) // Oldest first
+                                           .slice(0, 2);
+
+            for (const comp of staleCompetitors) {
+                 const analyzePrompt = `
+                    Analyze competitor: ${comp.domain}.
+                    Identify: 3 overlap keywords, key strengths, weaknesses, and a strategy to beat them.
+                    Return JSON.
+                `;
+
+                const analysis = await base44.integrations.Core.InvokeLLM({
+                    prompt: analyzePrompt,
+                    add_context_from_internet: true,
+                    response_json_schema: {
+                        type: "object",
+                        properties: {
+                            overlap_keywords: { type: "array", items: { type: "string" } },
+                            strengths: { type: "string" },
+                            weaknesses: { type: "string" },
+                            strategy_to_beat: { type: "string" }
+                        }
+                    }
+                });
+
+                await base44.entities.Competitor.update(comp.id, {
+                    ...analysis,
+                    last_analyzed: new Date().toISOString()
+                });
+                updatedCount++;
+            }
+
+            return Response.json({ 
+                status: 'success', 
+                summary: `Discovered ${newCount} new, Updated ${updatedCount} existing` 
+            });
+        }
+
         if (action === 'analyze' && domain) {
             // 1. Analyze specific competitor
             const prompt = `

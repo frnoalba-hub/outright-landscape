@@ -17,12 +17,30 @@ export default function CompetitorAnalysis() {
         queryFn: () => base44.entities.Competitor.list(),
     });
 
-    const discoverMutation = useMutation({
-        mutationFn: () => base44.functions.invoke("manageCompetitors", { action: "discover" }),
-        onSuccess: () => {
+    const autoTrackMutation = useMutation({
+        mutationFn: () => base44.functions.invoke("manageCompetitors", { action: "auto_track" }),
+        onSuccess: (data) => {
             queryClient.invalidateQueries(['competitors']);
         }
     });
+
+    // Auto-trigger if data is stale or empty (check once on mount)
+    React.useEffect(() => {
+        if (competitors.length === 0 && !isLoading) {
+            // Initial discovery if empty
+            // autoTrackMutation.mutate(); // Uncomment to auto-run on empty, but let's leave manual first time for UX control
+        } else if (competitors.length > 0) {
+            // Check if we need a background update (any competitor older than 7 days)
+            const sevenDaysAgo = new Date();
+            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+            const needsUpdate = competitors.some(c => !c.last_analyzed || new Date(c.last_analyzed) < sevenDaysAgo);
+            
+            if (needsUpdate && !autoTrackMutation.isPending && !autoTrackMutation.isSuccess) {
+                // console.log("Triggering auto-update..."); 
+                // autoTrackMutation.mutate(); // Optional: Auto-trigger
+            }
+        }
+    }, [competitors.length, isLoading]);
 
     const analyzeMutation = useMutation({
         mutationFn: (domain) => base44.functions.invoke("manageCompetitors", { action: "analyze", domain }),
@@ -62,12 +80,15 @@ export default function CompetitorAnalysis() {
                 <Button 
                     variant="outline" 
                     size="sm" 
-                    onClick={() => discoverMutation.mutate()}
-                    disabled={discoverMutation.isPending}
+                    onClick={() => autoTrackMutation.mutate()}
+                    disabled={autoTrackMutation.isPending}
                     className="gap-2"
                 >
-                    {discoverMutation.isPending ? <Loader2 className="w-4 h-4 animate-spin"/> : <RefreshCw className="w-4 h-4" />}
-                    {competitors.length === 0 ? "Discover Competitors" : "Refresh List"}
+                    {autoTrackMutation.isPending ? (
+                        <><Loader2 className="w-4 h-4 animate-spin"/> Scanning Market...</>
+                    ) : (
+                        <><RefreshCw className="w-4 h-4" /> Auto-Track Market</>
+                    )}
                 </Button>
             </CardHeader>
             <CardContent>
@@ -78,8 +99,8 @@ export default function CompetitorAnalysis() {
                         <p className="text-slate-500 text-sm mb-4 max-w-xs mx-auto">
                             Let our AI scan the local market in Covina/San Gabriel Valley to identify who you're up against.
                         </p>
-                        <Button onClick={() => discoverMutation.mutate()} disabled={discoverMutation.isPending}>
-                            {discoverMutation.isPending ? "Scanning Market..." : "Auto-Discover Competitors"}
+                        <Button onClick={() => autoTrackMutation.mutate()} disabled={autoTrackMutation.isPending}>
+                            {autoTrackMutation.isPending ? "Scanning Market..." : "Start Auto-Tracking"}
                         </Button>
                     </div>
                 ) : (
