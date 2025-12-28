@@ -181,40 +181,32 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                         {services.map((service, index) => (
-                            <article key={index} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-pointer border-2 border-transparent hover:border-green-500">
+                            <article key={index} className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                                 <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                                     <img
                                         src={service.image}
                                         alt={`${service.title} in Covina, Glendora, San Dimas - Outright Landscape`}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                         loading="lazy"
                                         width="400"
                                         height="300"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/70"></div>
-                                    <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                                        Popular
-                                    </div>
-                                    <div className="absolute bottom-4 left-4 right-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                        <service.icon className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 mb-2 animate-pulse" aria-hidden="true" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                    <div className="absolute bottom-4 left-4 right-4">
+                                        <service.icon className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 mb-2" aria-hidden="true" />
                                     </div>
                                 </div>
                                 <div className="p-4 sm:p-6">
-                                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-green-600 transition-colors duration-300">{service.title}</h3>
-                                    <p className="text-gray-600 text-sm mb-3 sm:mb-4 line-clamp-2">{service.description}</p>
+                                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3">{service.title}</h3>
+                                    <p className="text-gray-600 text-sm mb-3 sm:mb-4">{service.description}</p>
                                     <ul className="space-y-2">
                                         {service.features.map((feature, idx) => (
-                                            <li key={idx} className="flex items-center text-xs sm:text-sm text-gray-700 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300" style={{transitionDelay: `${idx * 50}ms`}}>
+                                            <li key={idx} className="flex items-center text-xs sm:text-sm text-gray-700">
                                                 <CheckCircle2 className="w-3 h-3 sm:w-4 sm:h-4 text-green-500 mr-2 flex-shrink-0" aria-hidden="true" />
                                                 {feature}
                                             </li>
                                         ))}
                                     </ul>
-                                    <div className="mt-4 pt-4 border-t border-gray-100">
-                                        <span className="text-sm font-semibold text-green-600 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            Learn More <span className="ml-1 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-                                        </span>
-                                    </div>
                                 </div>
                             </article>
                         ))}
@@ -277,16 +269,10 @@ export default function Home() {
 
                     <div className="text-center mt-8 sm:mt-12">
                         <a href="tel:626-343-6028" aria-label="Start your landscaping project today" onClick={() => handleQuoteClick('projects_section')}>
-                            <Button size="lg" className="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 hover:from-green-600 hover:via-green-500 hover:to-green-600 text-white font-bold text-base sm:text-lg px-10 sm:px-14 py-6 sm:py-7 rounded-full shadow-2xl hover:shadow-green-500/50 transition-all duration-500 transform hover:scale-105 group overflow-hidden">
-                                <span className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-600 opacity-0 group-hover:opacity-20 transition-opacity duration-500"></span>
-                                <span className="relative flex items-center">
-                                    <Sparkles className="w-5 h-5 mr-2 animate-pulse" />
-                                    Start Your Project Today
-                                    <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
-                                </span>
+                            <Button size="lg" className="bg-gray-900 hover:bg-gray-800 text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-5 sm:py-6 rounded-full">
+                                Start Your Project Today
                             </Button>
                         </a>
-                        <p className="text-gray-500 text-sm mt-4">Free estimates • Licensed & Insured • CSLB #1073845</p>
                     </div>
                 </div>
             </section>
@@ -304,22 +290,19 @@ export default function Home() {
                     </div>
 
                     <nav aria-label="Service areas" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-                        {locations.map((city, idx) => {
+                        {locations.map(city => {
                             return (
                                 <a
                                     href={`${createPageUrl('ServiceArea')}?city=${city.slug}`}
                                     key={city.name}
                                     className="group"
                                     aria-label={`Landscaping services in ${city.name}`}
-                                    style={{animationDelay: `${idx * 30}ms`}}
                                 >
-                                    <div className="relative bg-white hover:bg-gradient-to-br hover:from-green-500 hover:to-green-600 border-2 border-gray-200 hover:border-green-500 transition-all duration-300 rounded-xl p-3 sm:p-4 text-center group-hover:scale-110 group-hover:shadow-xl overflow-hidden">
-                                        <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                        <MapPin className="relative w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-green-600 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:animate-bounce" aria-hidden="true" />
-                                        <span className="relative text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-white transition-colors block">
+                                    <div className="bg-white hover:bg-green-500 border-2 border-gray-200 hover:border-green-500 transition-all duration-300 rounded-xl p-3 sm:p-4 text-center group-hover:scale-105 group-hover:shadow-lg">
+                                        <MapPin className="w-5 h-5 sm:w-6 sm:h-6 mx-auto mb-2 text-green-600 group-hover:text-white transition-colors" aria-hidden="true" />
+                                        <span className="text-xs sm:text-sm font-semibold text-gray-700 group-hover:text-white transition-colors">
                                             {city.name}
                                         </span>
-                                        <div className="absolute top-0 right-0 w-2 h-2 bg-green-400 rounded-full opacity-0 group-hover:opacity-100 transform translate-x-1 -translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0 transition-all duration-300"></div>
                                     </div>
                                 </a>
                             );
@@ -344,35 +327,35 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                        <div className="group text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-gradient-to-br hover:from-green-500/20 hover:to-green-600/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/10 hover:border-green-500/50">
-                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-green-500/50">
-                                <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white group-hover:animate-pulse" aria-hidden="true" />
+                        <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
                             </div>
-                            <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-green-400 transition-colors">Licensed & Insured</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">Licensed & Insured</h3>
                             <p className="text-sm sm:text-base text-gray-300">CSLB #1073845 for your complete peace of mind</p>
                         </div>
 
-                        <div className="group text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-gradient-to-br hover:from-green-500/20 hover:to-green-600/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/10 hover:border-green-500/50">
-                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-green-500/50">
-                                <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white group-hover:animate-pulse" aria-hidden="true" />
+                        <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
                             </div>
-                            <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-green-400 transition-colors">Expert Team</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">Expert Team</h3>
                             <p className="text-sm sm:text-base text-gray-300">Skilled craftsmen with years of experience</p>
                         </div>
 
-                        <div className="group text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-gradient-to-br hover:from-green-500/20 hover:to-green-600/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/10 hover:border-green-500/50">
-                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-green-500/50">
-                                <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8 text-white group-hover:animate-pulse" aria-hidden="true" />
+                        <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
                             </div>
-                            <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-green-400 transition-colors">Quality Materials</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">Quality Materials</h3>
                             <p className="text-sm sm:text-base text-gray-300">Premium products for lasting results</p>
                         </div>
 
-                        <div className="group text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-gradient-to-br hover:from-green-500/20 hover:to-green-600/20 transition-all duration-500 hover:scale-105 hover:shadow-2xl border border-white/10 hover:border-green-500/50">
-                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-green-500/50">
-                                <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-white group-hover:animate-pulse" aria-hidden="true" />
+                        <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
                             </div>
-                            <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-green-400 transition-colors">Free Estimates</h3>
+                            <h3 className="text-lg sm:text-xl font-bold mb-2">Free Estimates</h3>
                             <p className="text-sm sm:text-base text-gray-300">Honest, competitive pricing with no hidden fees</p>
                         </div>
                     </div>

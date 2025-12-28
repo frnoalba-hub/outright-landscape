@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle2 } from "lucide-react";
 import { base44 } from "@/api/base44Client";
 
@@ -106,22 +105,6 @@ export default function ContactForm({ cityName = "your area", darkMode = true })
                             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             className={`${inputClass} h-12 sm:h-14 rounded-lg`}
                         />
-                        <Select 
-                            value={formData.service_type} 
-                            onValueChange={(value) => setFormData({ ...formData, service_type: value })}
-                        >
-                            <SelectTrigger className={`${inputClass} h-12 sm:h-14 rounded-lg`}>
-                                <SelectValue placeholder="Select Service" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="landscape_design">Landscape Design</SelectItem>
-                                <SelectItem value="lawn_care">Lawn Care & Turf Installation</SelectItem>
-                                <SelectItem value="tree_shrub_care">Pavers & Hardscaping</SelectItem>
-                                <SelectItem value="hardscaping">Complete Landscape Makeover</SelectItem>
-                                <SelectItem value="irrigation">Irrigation Systems</SelectItem>
-                                <SelectItem value="other">Other / Not Sure</SelectItem>
-                            </SelectContent>
-                        </Select>
                         <Textarea
                             placeholder="Tell us about your project..."
                             required
@@ -133,22 +116,9 @@ export default function ContactForm({ cityName = "your area", darkMode = true })
                             type="submit"
                             size="lg"
                             disabled={isSubmitting}
-                            className="relative w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold text-lg sm:text-xl h-14 sm:h-16 rounded-full shadow-xl hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
+                            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-lg sm:text-xl h-14 sm:h-16 rounded-full"
                         >
-                            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
-                            <span className="relative flex items-center justify-center">
-                                {isSubmitting ? (
-                                    <>
-                                        <span className="animate-spin mr-2">⏳</span>
-                                        Sending...
-                                    </>
-                                ) : (
-                                    <>
-                                        Get Free Quote
-                                        <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
-                                    </>
-                                )}
-                            </span>
+                            {isSubmitting ? "Sending..." : "Get Free Quote"}
                         </Button>
                     </form>
                 )}
