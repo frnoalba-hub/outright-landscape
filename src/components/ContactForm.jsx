@@ -133,9 +133,22 @@ export default function ContactForm({ cityName = "your area", darkMode = true })
                             type="submit"
                             size="lg"
                             disabled={isSubmitting}
-                            className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-lg sm:text-xl h-14 sm:h-16 rounded-full"
+                            className="relative w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold text-lg sm:text-xl h-14 sm:h-16 rounded-full shadow-xl hover:shadow-2xl hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group"
                         >
-                            {isSubmitting ? "Sending..." : "Get Free Quote"}
+                            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></span>
+                            <span className="relative flex items-center justify-center">
+                                {isSubmitting ? (
+                                    <>
+                                        <span className="animate-spin mr-2">⏳</span>
+                                        Sending...
+                                    </>
+                                ) : (
+                                    <>
+                                        Get Free Quote
+                                        <span className="ml-2 transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                                    </>
+                                )}
+                            </span>
                         </Button>
                     </form>
                 )}

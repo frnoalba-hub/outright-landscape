@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
 import GlobalSchema from "@/components/GlobalSchema";
 import Analytics from "@/components/Analytics";
+import FloatingCTA from "@/components/FloatingCTA";
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
@@ -90,8 +91,9 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen bg-white">
-      <GlobalSchema />
-      <Analytics />
+        <GlobalSchema />
+        <Analytics />
+        <FloatingCTA />
 
       <style>{`
         html { scroll-behavior: smooth; }
@@ -115,7 +117,7 @@ export default function Layout({ children }) {
       `}</style>
 
       <header className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-1 sm:py-2' : 'bg-white/80 backdrop-blur-sm py-1.5 sm:py-2'}`
+      scrolled ? 'bg-white/98 backdrop-blur-lg shadow-lg py-2 sm:py-3' : 'bg-white/90 backdrop-blur-md py-3 sm:py-4 shadow-sm'}`
       }>
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
@@ -139,27 +141,30 @@ export default function Layout({ children }) {
               </div>
             </a>
             
-            <ul className="hidden lg:flex items-center space-x-7">
+            <ul className="hidden lg:flex items-center space-x-8">
               {navigationItems.map((item) => <li key={item.title}>
                   <a
                     href={item.href}
-                    className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-base tracking-wide py-2">
+                    className="relative text-gray-700 hover:text-green-600 font-semibold transition-all duration-200 text-base tracking-wide py-2 group">
                     {item.title}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-green-600 group-hover:w-full transition-all duration-300"></span>
                   </a>
                 </li>
               )}
             </ul>
             
             <div className="hidden lg:flex items-center gap-3">
-                <Button asChild variant="outline" className="border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold px-5 py-2 rounded-full transition-all hover:scale-105 text-sm">
-                  <a href="#contact" aria-label="Get a free quote">
+                <Button asChild variant="outline" className="border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-bold px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg text-sm group">
+                  <a href="#contact" aria-label="Get a free quote" className="flex items-center">
                     Get Quote
+                    <span className="ml-1 inline-block transform group-hover:translate-x-1 transition-transform duration-300">→</span>
                   </a>
                 </Button>
-                <Button asChild className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-5 py-2 rounded-full shadow-lg transition-all hover:scale-105 border-0 text-sm">
-                  <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
-                    <Phone className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
+                <Button asChild className="relative bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 text-sm overflow-hidden group">
+                  <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')} className="relative z-10 flex items-center">
+                    <Phone className="w-4 h-4 mr-2 animate-pulse" aria-hidden="true" />
                     (626) 343-6028
+                    <span className="absolute inset-0 bg-white/20 transform scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full -z-10"></span>
                   </a>
                 </Button>
               </div>
