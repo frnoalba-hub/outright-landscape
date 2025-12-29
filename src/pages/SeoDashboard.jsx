@@ -35,9 +35,9 @@ export default function SeoDashboard() {
     });
 
     const { data: gscData, isLoading: isGscLoading, error: gscError, refetch } = useQuery({
-        queryKey: ['search-console-data-full'],
+        queryKey: ['search-console-data-full', dateRange],
         queryFn: async () => {
-            const res = await base44.functions.invoke("getSearchConsoleData");
+            const res = await base44.functions.invoke("getSearchConsoleData", { dateRange });
             if (res.ok === false) throw new Error((await res.json()).error);
             return res.data || res;
         },
@@ -83,16 +83,17 @@ export default function SeoDashboard() {
                             Aggregated insights from Google Analytics 4 & Search Console.
                         </p>
                     </div>
-                    <div className="flex items-center gap-2">
-                        {gscError ? (
-                            <span className="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                                <AlertCircle className="w-3 h-3" /> GSC Error
-                            </span>
-                        ) : (
-                            <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">
-                                <CheckCircle2 className="w-3 h-3" /> System Operational
-                            </span>
-                        )}
+                    <div className="flex items-center gap-3">
+                        <Select value={dateRange} onValueChange={setDateRange}>
+                            <SelectTrigger className="w-[140px] bg-white"><SelectValue placeholder="Range" /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="7">Last 7 days</SelectItem>
+                                <SelectItem value="14">Last 14 days</SelectItem>
+                                <SelectItem value="28">Last 28 days</SelectItem>
+                                <SelectItem value="90">Last 90 days</SelectItem>
+                            </SelectContent>
+                        </Select>
+
                         <Button variant="outline" size="sm" onClick={() => refetch()}>
                             Refresh Data
                         </Button>
