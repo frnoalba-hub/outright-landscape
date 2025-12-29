@@ -104,7 +104,7 @@ Deno.serve(async (req) => {
             }
         };
 
-        const [timelineData, sourcesData, topPagesData, realtimeData] = await Promise.all([
+        const [timelineData, sourcesData, topPagesData, eventsData, realtimeData] = await Promise.all([
             runReport('runReport', {
                 dateRanges: [{ startDate: daysAgo, endDate: 'today' }],
                 dimensions: [{ name: 'date' }],
@@ -128,6 +128,12 @@ Deno.serve(async (req) => {
                 metrics: [{ name: 'screenPageViews' }, { name: 'activeUsers' }],
                 orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
                 limit: 10
+            }),
+            runReport('runReport', {
+                dateRanges: [{ startDate: daysAgo, endDate: 'today' }],
+                dimensions: [{ name: 'eventName' }],
+                metrics: [{ name: 'eventCount' }],
+                limit: 100
             }),
             runReport('runRealtimeReport', {
                 metrics: [{ name: 'activeUsers' }]
