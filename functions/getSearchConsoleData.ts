@@ -111,7 +111,7 @@ Deno.serve(async (req) => {
             startDate: formatDate(startWindow),
             endDate: formatDate(today),
             dimensions: ['date'],
-            rowLimit: 30,
+            // Fetch all days in range; do not cap at 30
             dimensionFilterGroups: keyword ? [{
                 filters: [{
                     dimension: 'query',
