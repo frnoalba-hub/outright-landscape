@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import GaTrendCard from "../components/analytics/GaTrendCard";
+import DrilldownPanel from "../components/analytics/DrilldownPanel";
 import { Loader2, TrendingUp, Search, AlertCircle, FileText, CheckCircle2, XCircle, LayoutDashboard } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Legend, ComposedChart, Line } from 'recharts';
 import SeoGoals from "@/components/seo/SeoGoals";
@@ -11,6 +15,10 @@ import CompetitorAnalysis from "@/components/seo/CompetitorAnalysis";
 
 
 export default function SeoDashboard() {
+    const [dateRange, setDateRange] = useState('28');
+    const [compare, setCompare] = useState(false);
+    const [panelOpen, setPanelOpen] = useState(false);
+    const [drilldown, setDrilldown] = useState(null);
     // 1. Auth & Data Fetching
     const { data: user, isLoading: isAuthLoading } = useQuery({
         queryKey: ['auth-user'],
@@ -18,10 +26,10 @@ export default function SeoDashboard() {
     });
 
     const { data: analyticsData } = useQuery({
-        queryKey: ['analytics-data'],
+        queryKey: ['analytics-data', dateRange, compare],
         queryFn: async () => {
-            const res = await base44.functions.invoke("getAnalyticsData");
-            return res.ok ? res.data : null;
+            const res = await base44.functions.invoke("getAnalyticsData", { dateRange, compare });
+            return res.ok ? res.data : (res.data || res);
         },
         enabled: !!user && user.role === 'admin'
     });
@@ -90,6 +98,89 @@ export default function SeoDashboard() {
                         </Button>
                     </div>
                 </div>
+
+                {/* GA4 Analytics (Sprint 1 + 2 foundations) */}
+                <Card className="shadow-sm">
+                  <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                    <div>
+                      <CardTitle>GA4 Trends</CardTitle>
+                      <CardDescription>Sessions, Users, Engagement and Leads</CardDescription>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Select value={dateRange} onValueChange={setDateRange}>
+                        <SelectTrigger className="w-[140px]"><SelectValue placeholder="Range" /></SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="7">Last 7 days</SelectItem>
+                          <SelectItem value="14">Last 14 days</SelectItem>
+                          <SelectItem value="28">Last 28 days</SelectItem>
+                          <SelectItem value="90">Last 90 days</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <div className="flex items-center gap-2">
+                        <Switch id="compare" checked={compare} onCheckedChange={(v)=>setCompare(v)} disabled={!analyticsData?.hasComparison} />
+                        <label htmlFor="compare" className={`${!analyticsData?.hasComparison ? 'text-slate-400' : 'text-slate-700'} text-sm`}>Compare to previous</label>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <GaTrendCard title="Sessions" metricKey="sessions" timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
+                      <GaTrendCard title="Users" metricKey="users" timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
+                      <GaTrendCard title="Engaged Sessions" metricKey="engagedSessions" timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
+                      <GaTrendCard title="Engagement Rate" metricKey="engagement" isPercent timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <Card>
+                        <CardHeader><CardTitle>Leads</CardTitle><CardDescription>Phone + Form/Lead events</CardDescription></CardHeader>
+                        <CardContent><div className="text-3xl font-bold">{(analyticsData?.leads || 0).toLocaleString()}</div></CardContent>
+                      </Card>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      <Card>
+                        <CardHeader><CardTitle>Top Sources</CardTitle></CardHeader>
+                        <CardContent>
+                          <table className="w-full text-sm">
+                            <thead><tr className="text-left text-slate-500 border-b"><th className="py-2">Source / Medium</th><th className="py-2 text-right">Users</th></tr></thead>
+                            <tbody className="divide-y">
+                              {(analyticsData?.sources || []).map((s,i)=> (
+                                <tr key={i} className="hover:bg-slate-50 cursor-pointer" onClick={()=>{setDrilldown({type:'source', value: s.source}); setPanelOpen(true);}}>
+                                  <td className="py-2">{s.source}</td>
+                                  <td className="py-2 text-right">{s.users.toLocaleString()}</td>
+                                </tr>
+                              ))}
+                              {(!analyticsData?.sources || analyticsData.sources.length===0) && (
+                                <tr><td colSpan="2" className="py-4 text-center text-slate-500">No source data</td></tr>
+                              )}
+                            </tbody>
+                          </table>
+                        </CardContent>
+                      </Card>
+                      <Card>
+                        <CardHeader><CardTitle>Top Landing Pages</CardTitle></CardHeader>
+                        <CardContent>
+                          <table className="w-full text-sm">
+                            <thead><tr className="text-left text-slate-500 border-b"><th className="py-2">Page</th><th className="py-2 text-right">Views</th></tr></thead>
+                            <tbody className="divide-y">
+                              {(analyticsData?.topPages || []).map((p,i)=> (
+                                <tr key={i} className="hover:bg-slate-50 cursor-pointer" onClick={()=>{setDrilldown({type:'page', value: p.page}); setPanelOpen(true);}}>
+                                  <td className="py-2 truncate max-w-[280px]" title={p.page}>{p.page}</td>
+                                  <td className="py-2 text-right">{p.views.toLocaleString()}</td>
+                                </tr>
+                              ))}
+                              {(!analyticsData?.topPages || analyticsData.topPages.length===0) && (
+                                <tr><td colSpan="2" className="py-4 text-center text-slate-500">No page data</td></tr>
+                              )}
+                            </tbody>
+                          </table>
+                        </CardContent>
+                      </Card>
+                    </div>
+
+                    <DrilldownPanel open={panelOpen} onOpenChange={setPanelOpen} selection={drilldown} dateRange={dateRange} compare={compare} />
+                  </CardContent>
+                </Card>
 
                 {/* KPI Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

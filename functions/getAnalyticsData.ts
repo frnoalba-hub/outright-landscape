@@ -12,8 +12,11 @@ Deno.serve(async (req) => {
         }
 
         // Parse date range from request
-        const { dateRange = '28' } = await req.json().catch(() => ({}));
-        const daysAgo = `${dateRange}daysAgo`;
+        const { dateRange = '28', compare = false } = await req.json().catch(() => ({}));
+        const days = parseInt(String(dateRange), 10) || 28;
+        const daysAgo = `${days}daysAgo`;
+        const prevStart = `${days * 2}daysAgo`;
+        const prevEnd = `${days + 1}daysAgo`;
 
         // 2. Credentials Check
         let propertyId = Deno.env.get("GA4_PROPERTY_ID");
@@ -124,7 +127,7 @@ Deno.serve(async (req) => {
             }),
             runReport('runReport', {
                 dateRanges: [{ startDate: daysAgo, endDate: 'today' }],
-                dimensions: [{ name: 'pagePath' }],
+                dimensions: [{ name: 'landingPagePlusQueryString' }],
                 metrics: [{ name: 'screenPageViews' }, { name: 'activeUsers' }],
                 orderBys: [{ metric: { metricName: 'screenPageViews' }, desc: true }],
                 limit: 10
@@ -163,6 +166,32 @@ Deno.serve(async (req) => {
             users: parseInt(row.metricValues[1].value),
         }));
 
+        // Previous period timeline (for comparison)
+        let previousTimeline = [];
+        if (compare) {
+            const prevTimelineData = await runReport('runReport', {
+                dateRanges: [{ startDate: prevStart, endDate: prevEnd }],
+                dimensions: [{ name: 'date' }],
+                metrics: [
+                    { name: 'activeUsers' },
+                    { name: 'sessions' },
+                    { name: 'engagementRate' },
+                    { name: 'engagedSessions' }
+                ],
+                orderBys: [{ dimension: { orderType: 'ALPHANUMERIC', dimensionName: 'date' } }]
+            });
+            previousTimeline = (prevTimelineData.rows || []).map(row => {
+                const dateStr = row.dimensionValues[0].value;
+                return {
+                    date: `${dateStr.substring(4, 6)}/${dateStr.substring(6, 8)}`,
+                    users: parseInt(row.metricValues[0].value),
+                    sessions: parseInt(row.metricValues[1].value),
+                    engagement: parseFloat(row.metricValues[2].value) * 100,
+                    engagedSessions: parseInt(row.metricValues[3].value)
+                };
+            });
+        }
+
         // Event counts for key conversions
         const events = (eventsData.rows || []).reduce((acc, row) => {
             const name = (row.dimensionValues[0].value || '').toLowerCase();
@@ -199,12 +228,17 @@ Deno.serve(async (req) => {
         }
 
         const engagedSessionsTotal = processedTimeline.reduce((acc, curr) => acc + (curr.engagedSessions || 0), 0);
+        const leads = (conversions.phone_click || 0) + (conversions.form_submit || 0);
+        const hasComparison = compare && previousTimeline.length > 0 && previousTimeline.length === processedTimeline.length;
 
         return Response.json({
             timeline: processedTimeline,
+            previousTimeline: hasComparison ? previousTimeline : [],
+            hasComparison,
             sources: processedSources,
             topPages: processedTopPages,
             conversions,
+            leads,
             engagedSessionsTotal,
             liveUsers: parseInt(liveUsers),
             insights: aiInsights
