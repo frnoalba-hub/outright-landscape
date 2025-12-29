@@ -330,6 +330,33 @@ export default function AdminAnalytics() {
                 </Card>
                 </div>
 
+                {/* Conversions (GA4 - Last 28 Days) */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Conversions (Last 28 Days)</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div>
+                                <div className="text-xs text-gray-500">Phone Clicks</div>
+                                <div className="text-2xl font-bold">{conversions?.phone_click?.toLocaleString?.() || conversions?.phone_click || 0}</div>
+                            </div>
+                            <div>
+                                <div className="text-xs text-gray-500">Form Submits</div>
+                                <div className="text-2xl font-bold">{conversions?.form_submit?.toLocaleString?.() || conversions?.form_submit || 0}</div>
+                            </div>
+                            <div>
+                                <div className="text-xs text-gray-500">SMS Clicks</div>
+                                <div className="text-2xl font-bold">{conversions?.sms_click?.toLocaleString?.() || conversions?.sms_click || 0}</div>
+                            </div>
+                            <div>
+                                <div className="text-xs text-gray-500">Email Clicks</div>
+                                <div className="text-2xl font-bold">{conversions?.email_click?.toLocaleString?.() || conversions?.email_click || 0}</div>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Main Traffic Chart */}
                     <Card className="lg:col-span-2">
@@ -430,7 +457,7 @@ export default function AdminAnalytics() {
                     <div>
                     <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2 mb-6">
                     <Search className="text-blue-600" />
-                    Google Search Performance <span className="text-sm font-normal text-gray-500">(Last 28 Days)</span>
+                    Google Search Performance <span className="text-sm font-normal text-gray-500">(Last 90 Days)</span>
                     </h2>
 
                     {gscError && (
@@ -489,7 +516,7 @@ export default function AdminAnalytics() {
                             </Card>
                         </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                             {/* Top Queries */}
                             <Card>
                                 <CardHeader>
@@ -550,6 +577,43 @@ export default function AdminAnalytics() {
                                                 {gscData.topPages.length === 0 && (
                                                     <tr>
                                                         <td colSpan="3" className="py-4 text-center text-gray-500">No page data available yet</td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </CardContent>
+                            </Card>
+
+                            {/* Low CTR Opportunities */}
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Low CTR Opportunities</CardTitle>
+                                    <CardDescription>High impressions, low CTR pages</CardDescription>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="overflow-x-auto">
+                                        <table className="w-full text-sm">
+                                            <thead>
+                                                <tr className="border-b text-left text-gray-500">
+                                                    <th className="pb-2 font-medium">Page</th>
+                                                    <th className="pb-2 font-medium text-right">Impr.</th>
+                                                    <th className="pb-2 font-medium text-right">CTR</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y">
+                                                {gscData.topPages
+                                                    .filter(p => p.impressions > 500 && (p.ctr * 100) < 1.5)
+                                                    .map((p, i) => (
+                                                        <tr key={i}>
+                                                            <td className="py-2 truncate max-w-[200px]" title={p.keys[0]}>{p.keys[0].replace('https://outrightlandscape.com', '')}</td>
+                                                            <td className="py-2 text-right font-medium">{p.impressions}</td>
+                                                            <td className="py-2 text-right text-gray-500">{(p.ctr * 100).toFixed(1)}%</td>
+                                                        </tr>
+                                                    ))}
+                                                {gscData.topPages.filter(p => p.impressions > 500 && (p.ctr * 100) < 1.5).length === 0 && (
+                                                    <tr>
+                                                        <td colSpan="3" className="py-4 text-center text-gray-500">No low-CTR opportunities within top pages</td>
                                                     </tr>
                                                 )}
                                             </tbody>
