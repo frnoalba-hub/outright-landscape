@@ -41,12 +41,12 @@ export default function AdminAnalytics() {
         retry: false
     });
 
-    // Search Console Data Query
+    // Search Console Data Query (90 days)
     const { data: gscData, isLoading: isGscLoading, error: gscError, refetch: refetchGsc } = useQuery({
-        queryKey: ['search-console-data'],
+        queryKey: ['search-console-data', '90'],
         queryFn: async () => {
             try {
-                const res = await base44.functions.invoke("getSearchConsoleData");
+                const res = await base44.functions.invoke("getSearchConsoleData", { dateRange: 90 });
                 if (res.ok === false) {
                     const errData = await res.json();
                     throw new Error(errData.details || errData.error || "Failed to fetch search console data");
