@@ -172,7 +172,7 @@ export default function AdminAnalytics() {
         );
     }
 
-    const { timeline, sources, insights, conversionRate, topPages } = data || {};
+    const { timeline, sources, insights, conversions, topPages: ga4TopPages, engagedSessionsTotal } = data || {};
     const usersTrend = calculateTrend(timeline, 'users');
     const sessionsTrend = calculateTrend(timeline, 'sessions');
 
