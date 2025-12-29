@@ -194,7 +194,7 @@ export default function SeoDashboard() {
                             <div className="text-3xl font-bold text-slate-900">
                                 {gscData?.overview?.totalClicks.toLocaleString() || 0}
                             </div>
-                            <p className="text-xs text-slate-500 mt-1">Last 28 Days</p>
+                            <p className="text-xs text-slate-500 mt-1">Last {dateRange} Days</p>
                         </CardContent>
                     </Card>
                     
