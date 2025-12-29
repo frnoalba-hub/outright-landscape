@@ -131,7 +131,8 @@ export default function SeoDashboard() {
                         <Loader2 className="w-6 h-6 animate-spin mr-2" /> Loading GA4 trends...
                       </div>
                     ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <GaTrendCard title="Sessions" metricKey="sessions" timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
                       <GaTrendCard title="Users" metricKey="users" timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
                       <GaTrendCard title="Engaged Sessions" metricKey="engagedSessions" timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
@@ -187,6 +188,7 @@ export default function SeoDashboard() {
                     </div>
 
                     <DrilldownPanel open={panelOpen} onOpenChange={setPanelOpen} selection={drilldown} dateRange={dateRange} compare={compare} />
+                    </>
                   )}
                   </CardContent>
                 </Card>
