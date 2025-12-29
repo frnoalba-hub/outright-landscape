@@ -11,8 +11,8 @@ Deno.serve(async (req) => {
             return Response.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
-        // Parse body for keyword filter
-        const { keyword } = await req.json().catch(() => ({}));
+        // Parse body for keyword filter and date range (days)
+        const { keyword, dateRange } = await req.json().catch(() => ({}));
 
         // 2. Credentials Check
         const serviceAccountJson = Deno.env.get("GOOGLE_SEARCH_CONSOLE_SERVICE_ACCOUNT_JSON");
@@ -103,11 +103,12 @@ Deno.serve(async (req) => {
 
         // 5. Fetch Performance Data
         const today = new Date();
-        const twentyEightDaysAgo = new Date(today.getTime() - (28 * 24 * 60 * 60 * 1000));
+        const days = Number(dateRange) || 90;
+        const startWindow = new Date(today.getTime() - (days * 24 * 60 * 60 * 1000));
         const formatDate = (d) => d.toISOString().split('T')[0];
 
         const queryBody = {
-            startDate: formatDate(twentyEightDaysAgo),
+            startDate: formatDate(startWindow),
             endDate: formatDate(today),
             dimensions: ['date'],
             rowLimit: 30,
@@ -131,14 +132,14 @@ Deno.serve(async (req) => {
         }
 
         const topQueriesBody = {
-            startDate: formatDate(twentyEightDaysAgo),
+            startDate: formatDate(startWindow),
             endDate: formatDate(today),
             dimensions: ['query'],
             rowLimit: 10
         };
 
         const topPagesBody = {
-            startDate: formatDate(twentyEightDaysAgo),
+            startDate: formatDate(startWindow),
             endDate: formatDate(today),
             dimensions: ['page'],
             rowLimit: 10

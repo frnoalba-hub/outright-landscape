@@ -108,7 +108,12 @@ Deno.serve(async (req) => {
             runReport('runReport', {
                 dateRanges: [{ startDate: daysAgo, endDate: 'today' }],
                 dimensions: [{ name: 'date' }],
-                metrics: [{ name: 'activeUsers' }, { name: 'sessions' }, { name: 'engagementRate' }],
+                metrics: [
+                    { name: 'activeUsers' },
+                    { name: 'sessions' },
+                    { name: 'engagementRate' },
+                    { name: 'engagedSessions' }
+                ],
                 orderBys: [{ dimension: { orderType: 'ALPHANUMERIC', dimensionName: 'date' } }]
             }),
             runReport('runReport', {
@@ -137,6 +142,7 @@ Deno.serve(async (req) => {
                 users: parseInt(row.metricValues[0].value),
                 sessions: parseInt(row.metricValues[1].value),
                 engagement: parseFloat(row.metricValues[2].value) * 100,
+                engagedSessions: parseInt(row.metricValues[3].value)
             };
         });
 
@@ -150,6 +156,21 @@ Deno.serve(async (req) => {
             views: parseInt(row.metricValues[0].value),
             users: parseInt(row.metricValues[1].value),
         }));
+
+        // Event counts for key conversions
+        const events = (eventsData.rows || []).reduce((acc, row) => {
+            const name = (row.dimensionValues[0].value || '').toLowerCase();
+            const count = parseInt(row.metricValues[0].value || '0');
+            acc[name] = (acc[name] || 0) + count;
+            return acc;
+        }, {});
+
+        const conversions = {
+            phone_click: events['phone_click'] || 0,
+            form_submit: (events['form_submit'] || 0) + (events['generate_lead'] || 0),
+            sms_click: events['sms_click'] || 0,
+            email_click: events['email_click'] || 0
+        };
         
         const liveUsers = realtimeData.rows?.[0]?.metricValues?.[0]?.value || 0;
 
@@ -171,10 +192,14 @@ Deno.serve(async (req) => {
             aiInsights = "AI Insights unavailable.";
         }
 
+        const engagedSessionsTotal = processedTimeline.reduce((acc, curr) => acc + (curr.engagedSessions || 0), 0);
+
         return Response.json({
             timeline: processedTimeline,
             sources: processedSources,
             topPages: processedTopPages,
+            conversions,
+            engagedSessionsTotal,
             liveUsers: parseInt(liveUsers),
             insights: aiInsights
         });
