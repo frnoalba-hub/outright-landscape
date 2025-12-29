@@ -5,15 +5,13 @@ Deno.serve(async (req) => {
     try {
         const base44 = createClientFromRequest(req);
         
-        // Parse body for keyword filter
-        const { keyword } = await req.json().catch(() => ({}));
-
         // 1. Auth Check
         const user = await base44.auth.me();
         if (!user || user.role !== 'admin') {
             return Response.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
+        // Parse body for keyword filter
         const { keyword } = await req.json().catch(() => ({}));
 
         // 2. Credentials Check
@@ -69,18 +67,38 @@ Deno.serve(async (req) => {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         
-        if (!sitesRes.ok) throw new Error("Failed to fetch sites list");
+        if (!sitesRes.ok) {
+            const errorText = await sitesRes.text();
+            throw new Error(`Failed to fetch sites list (${sitesRes.status}): ${errorText}`);
+        }
+        
         const sitesData = await sitesRes.json();
         
         // Find the matching site or use the first verified one
         // We prefer sc-domain: or https:// based properties
-        let siteUrl = sitesData.siteEntry?.find(s => s.permissionLevel !== 'siteRestrictedUser')?.siteUrl;
+        const siteEntries = sitesData.siteEntry || [];
+        
+        if (siteEntries.length === 0) {
+            return Response.json({ 
+                error: 'No Properties Found', 
+                details: `Service account ${credentials.client_email} has no access to any Search Console properties. Please add this email as a user (Owner or Full permission) in Search Console at https://search.google.com/search-console` 
+            }, { status: 404 });
+        }
+        
+        // Try to find outrightlandscape.com property first, otherwise use first available
+        let siteUrl = siteEntries.find(s => 
+            s.siteUrl.includes('outrightlandscape.com') && s.permissionLevel !== 'siteRestrictedUser'
+        )?.siteUrl;
+        
+        if (!siteUrl) {
+            siteUrl = siteEntries.find(s => s.permissionLevel !== 'siteRestrictedUser')?.siteUrl;
+        }
         
         if (!siteUrl) {
             return Response.json({ 
                 error: 'No Accessible Properties', 
-                details: 'Make sure you added the service account email as a user in Search Console.' 
-            }, { status: 404 });
+                details: `Found ${siteEntries.length} properties but none with sufficient permissions. Available: ${siteEntries.map(s => `${s.siteUrl} (${s.permissionLevel})`).join(', ')}. Please grant Owner or Full access to ${credentials.client_email}` 
+            }, { status: 403 });
         }
 
         // 5. Fetch Performance Data
@@ -135,7 +153,10 @@ Deno.serve(async (req) => {
                 },
                 body: JSON.stringify(body)
             });
-            if (!res.ok) throw new Error(`Search Console API Error: ${await res.text()}`);
+            if (!res.ok) {
+                const errorText = await res.text();
+                throw new Error(`Search Console API Error (${res.status}): ${errorText}. Site URL: ${siteUrl}`);
+            }
             return await res.json();
         };
 
