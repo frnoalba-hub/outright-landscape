@@ -119,6 +119,9 @@ export default function SeoDashboard() {
                       <div className="flex items-center gap-2">
                         <Switch id="compare" checked={compare} onCheckedChange={(v)=>setCompare(v)} disabled={!analyticsData?.hasComparison} />
                         <label htmlFor="compare" className={`${!analyticsData?.hasComparison ? 'text-slate-400' : 'text-slate-700'} text-sm`}>Compare to previous</label>
+                        {!analyticsData?.hasComparison && (
+                          <span className="text-xs text-slate-400">(not enough historical data)</span>
+                        )}
                       </div>
                     </div>
                   </CardHeader>
