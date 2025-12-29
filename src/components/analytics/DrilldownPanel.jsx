@@ -7,7 +7,7 @@ import { ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, YAxis, Toolti
 import GaTrendCard from './GaTrendCard';
 
 export default function DrilldownPanel({ open, onOpenChange, selection, dateRange, compare }) {
-  const enabled = open && selection?.type && selection?.value;
+  const enabled = Boolean(open && selection?.type && selection?.value);
   const { data, isLoading } = useQuery({
     queryKey: ['ga-drilldown', selection?.type, selection?.value, dateRange, compare],
     queryFn: async () => {
