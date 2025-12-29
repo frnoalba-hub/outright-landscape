@@ -260,74 +260,74 @@ export default function AdminAnalytics() {
                 )}
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {/* Live Users Card */}
-                    <Card className="border-green-200 bg-green-50/50">
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm font-bold text-green-700 flex items-center gap-2">
-                                    <span className="relative flex h-3 w-3">
-                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                      <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                                    </span>
-                                    Live Users
-                                </span>
-                                <Activity className="w-4 h-4 text-green-600" />
-                            </div>
-                            <div className="text-3xl font-bold text-green-800">
-                                {data?.liveUsers || 0}
-                            </div>
-                            <p className="text-xs text-green-600 mt-1">Active right now</p>
-                        </CardContent>
-                    </Card>
+                {/* Live Users Card */}
+                <Card className="border-green-200 bg-green-50/50">
+                <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-bold text-green-700 flex items-center gap-2">
+                            <span className="relative flex h-3 w-3">
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                            </span>
+                            Live Users
+                        </span>
+                        <Activity className="w-4 h-4 text-green-600" />
+                    </div>
+                    <div className="text-3xl font-bold text-green-800">
+                        {data?.liveUsers || 0}
+                    </div>
+                    <p className="text-xs text-green-600 mt-1">Active right now</p>
+                </CardContent>
+                </Card>
 
-                    <Card>
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm font-medium text-gray-500">Total Users</span>
-                                <Users className="w-4 h-4 text-blue-500" />
+                <Card>
+                <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-500">Total Users</span>
+                        <Users className="w-4 h-4 text-blue-500" />
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                        <div className="text-2xl font-bold">{totalUsers.toLocaleString()}</div>
+                        {usersTrend.direction !== 'neutral' && (
+                            <div className={`flex items-center text-sm ${usersTrend.direction === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                                {usersTrend.direction === 'up' ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
+                                {usersTrend.percent.toFixed(1)}%
                             </div>
-                            <div className="flex items-baseline gap-2">
-                                <div className="text-2xl font-bold">{totalUsers.toLocaleString()}</div>
-                                {usersTrend.direction !== 'neutral' && (
-                                    <div className={`flex items-center text-sm ${usersTrend.direction === 'up' ? 'text-green-600' : 'text-red-600'}`}>
-                                        {usersTrend.direction === 'up' ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
-                                        {usersTrend.percent.toFixed(1)}%
-                                    </div>
-                                )}
+                        )}
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">Last {dateRange} days</p>
+                </CardContent>
+                </Card>
+
+                <Card>
+                <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-500">Total Sessions</span>
+                        <Activity className="w-4 h-4 text-purple-500" />
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                        <div className="text-2xl font-bold">{totalSessions.toLocaleString()}</div>
+                        {sessionsTrend.direction !== 'neutral' && (
+                            <div className={`flex items-center text-sm ${sessionsTrend.direction === 'up' ? 'text-green-600' : 'text-red-600'}`}>
+                                {sessionsTrend.direction === 'up' ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
+                                {sessionsTrend.percent.toFixed(1)}%
                             </div>
-                            <p className="text-xs text-gray-500 mt-1">Last {dateRange} days</p>
-                        </CardContent>
-                    </Card>
-                    
-                    <Card>
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm font-medium text-gray-500">Total Sessions</span>
-                                <Activity className="w-4 h-4 text-purple-500" />
-                            </div>
-                            <div className="flex items-baseline gap-2">
-                                <div className="text-2xl font-bold">{totalSessions.toLocaleString()}</div>
-                                {sessionsTrend.direction !== 'neutral' && (
-                                    <div className={`flex items-center text-sm ${sessionsTrend.direction === 'up' ? 'text-green-600' : 'text-red-600'}`}>
-                                        {sessionsTrend.direction === 'up' ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
-                                        {sessionsTrend.percent.toFixed(1)}%
-                                    </div>
-                                )}
-                            </div>
-                            <p className="text-xs text-gray-500 mt-1">Avg {(totalSessions/totalUsers).toFixed(1)} per user</p>
-                        </CardContent>
-                    </Card>
-                    
-                    <Card>
-                        <CardContent className="p-6">
-                            <div className="flex items-center justify-between mb-2">
-                                <span className="text-sm font-medium text-gray-500">Engagement Rate</span>
-                                <TrendingUp className="w-4 h-4 text-orange-500" />
-                            </div>
-                            <div className="text-2xl font-bold">{avgEngagement.toFixed(1)}%</div>
-                            <p className="text-xs text-gray-500 mt-1">Avg session quality</p>
-                        </CardContent>
-                    </Card>
+                        )}
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">Avg {(totalSessions/totalUsers).toFixed(1)} per user</p>
+                </CardContent>
+                </Card>
+
+                <Card>
+                <CardContent className="p-6">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-gray-500">Engaged Sessions</span>
+                        <TrendingUp className="w-4 h-4 text-orange-500" />
+                    </div>
+                    <div className="text-2xl font-bold">{(data?.engagedSessionsTotal || 0).toLocaleString()}</div>
+                    <p className="text-xs text-gray-500 mt-1">Total engaged sessions</p>
+                </CardContent>
+                </Card>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
