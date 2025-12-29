@@ -25,7 +25,7 @@ export default function SeoDashboard() {
         queryFn: () => base44.auth.me(),
     });
 
-    const { data: analyticsData } = useQuery({
+    const { data: analyticsData, isLoading: isGaLoading } = useQuery({
         queryKey: ['analytics-data', dateRange, compare],
         queryFn: async () => {
             const res = await base44.functions.invoke("getAnalyticsData", { dateRange, compare });
@@ -126,6 +126,11 @@ export default function SeoDashboard() {
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-6">
+                    {isGaLoading ? (
+                      <div className="flex items-center justify-center h-[260px] text-slate-400">
+                        <Loader2 className="w-6 h-6 animate-spin mr-2" /> Loading GA4 trends...
+                      </div>
+                    ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <GaTrendCard title="Sessions" metricKey="sessions" timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
                       <GaTrendCard title="Users" metricKey="users" timeline={analyticsData?.timeline || []} previousTimeline={compare ? analyticsData?.previousTimeline : []} />
@@ -182,6 +187,7 @@ export default function SeoDashboard() {
                     </div>
 
                     <DrilldownPanel open={panelOpen} onOpenChange={setPanelOpen} selection={drilldown} dateRange={dateRange} compare={compare} />
+                  )}
                   </CardContent>
                 </Card>
 
