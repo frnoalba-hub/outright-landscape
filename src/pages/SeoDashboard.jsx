@@ -107,23 +107,12 @@ export default function SeoDashboard() {
                       <CardTitle>GA4 Trends</CardTitle>
                       <CardDescription>Sessions, Users, Engagement and Leads</CardDescription>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Select value={dateRange} onValueChange={setDateRange}>
-                        <SelectTrigger className="w-[140px]"><SelectValue placeholder="Range" /></SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="7">Last 7 days</SelectItem>
-                          <SelectItem value="14">Last 14 days</SelectItem>
-                          <SelectItem value="28">Last 28 days</SelectItem>
-                          <SelectItem value="90">Last 90 days</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2">
                         <Switch id="compare" checked={compare} onCheckedChange={(v)=>setCompare(v)} disabled={!analyticsData?.hasComparison} />
                         <label htmlFor="compare" className={`${!analyticsData?.hasComparison ? 'text-slate-400' : 'text-slate-700'} text-sm`}>Compare to previous</label>
                         {!analyticsData?.hasComparison && (
                           <span className="text-xs text-slate-400">(not enough historical data)</span>
                         )}
-                      </div>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-6">
