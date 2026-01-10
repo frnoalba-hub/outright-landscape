@@ -19,19 +19,31 @@ import DiamondBarLandscapeConstruction from './pages/DiamondBarLandscapeConstruc
 import DiamondBarLandscaping from './pages/DiamondBarLandscaping';
 import DuarteLandscaping from './pages/DuarteLandscaping';
 import ElMonteLandscaping from './pages/ElMonteLandscaping';
+import GlendoraDripIrrigation from './pages/GlendoraDripIrrigation';
+import GlendoraIrrigationRepair from './pages/GlendoraIrrigationRepair';
 import GlendoraLandscapeConstruction from './pages/GlendoraLandscapeConstruction';
 import GlendoraLandscaping from './pages/GlendoraLandscaping';
+import GlendoraSprinklerRepair from './pages/GlendoraSprinklerRepair';
+import GlendoraSprinklerValves from './pages/GlendoraSprinklerValves';
 import Home from './pages/Home';
+import LaVerneDripIrrigation from './pages/LaVerneDripIrrigation';
+import LaVerneIrrigationRepair from './pages/LaVerneIrrigationRepair';
 import LaVerneLandscapeConstruction from './pages/LaVerneLandscapeConstruction';
 import LaVerneLandscaping from './pages/LaVerneLandscaping';
+import LaVerneSprinklerRepair from './pages/LaVerneSprinklerRepair';
+import LaVerneSprinklerValves from './pages/LaVerneSprinklerValves';
 import MonroviaLandscaping from './pages/MonroviaLandscaping';
 import PasadenaLandscapeConstruction from './pages/PasadenaLandscapeConstruction';
 import PasadenaLandscaping from './pages/PasadenaLandscaping';
 import PomonaLandscaping from './pages/PomonaLandscaping';
 import Robots from './pages/Robots';
 import RowlandHeightsLandscaping from './pages/RowlandHeightsLandscaping';
+import SanDimasDripIrrigation from './pages/SanDimasDripIrrigation';
+import SanDimasIrrigationRepair from './pages/SanDimasIrrigationRepair';
 import SanDimasLandscapeConstruction from './pages/SanDimasLandscapeConstruction';
 import SanDimasLandscaping from './pages/SanDimasLandscaping';
+import SanDimasSprinklerRepair from './pages/SanDimasSprinklerRepair';
+import SanDimasSprinklerValves from './pages/SanDimasSprinklerValves';
 import SanGabrielValleyLandscaping from './pages/SanGabrielValleyLandscaping';
 import SeoDashboard from './pages/SeoDashboard';
 import ServiceArea from './pages/ServiceArea';
@@ -40,18 +52,18 @@ import TempleCityLandscaping from './pages/TempleCityLandscaping';
 import WalnutLandscaping from './pages/WalnutLandscaping';
 import WestCovinaLandscapeConstruction from './pages/WestCovinaLandscapeConstruction';
 import WestCovinaLandscaping from './pages/WestCovinaLandscaping';
-import GlendoraSprinklerRepair from './pages/GlendoraSprinklerRepair';
-import GlendoraIrrigationRepair from './pages/GlendoraIrrigationRepair';
-import GlendoraSprinklerValves from './pages/GlendoraSprinklerValves';
-import GlendoraDripIrrigation from './pages/GlendoraDripIrrigation';
-import SanDimasSprinklerRepair from './pages/SanDimasSprinklerRepair';
-import SanDimasIrrigationRepair from './pages/SanDimasIrrigationRepair';
-import SanDimasSprinklerValves from './pages/SanDimasSprinklerValves';
-import SanDimasDripIrrigation from './pages/SanDimasDripIrrigation';
-import LaVerneSprinklerRepair from './pages/LaVerneSprinklerRepair';
-import LaVerneIrrigationRepair from './pages/LaVerneIrrigationRepair';
-import LaVerneSprinklerValves from './pages/LaVerneSprinklerValves';
-import LaVerneDripIrrigation from './pages/LaVerneDripIrrigation';
+import glendoraSprinklerRepair from './pages/glendora-sprinkler-repair';
+import glendoraIrrigationRepair from './pages/glendora-irrigation-repair';
+import glendoraSprinklerValves from './pages/glendora-sprinkler-valves';
+import glendoraDripIrrigation from './pages/glendora-drip-irrigation';
+import sanDimasSprinklerRepair from './pages/san-dimas-sprinkler-repair';
+import sanDimasIrrigationRepair from './pages/san-dimas-irrigation-repair';
+import sanDimasSprinklerValves from './pages/san-dimas-sprinkler-valves';
+import sanDimasDripIrrigation from './pages/san-dimas-drip-irrigation';
+import laVerneSprinklerRepair from './pages/la-verne-sprinkler-repair';
+import laVerneIrrigationRepair from './pages/la-verne-irrigation-repair';
+import laVerneSprinklerValves from './pages/la-verne-sprinkler-valves';
+import laVerneDripIrrigation from './pages/la-verne-drip-irrigation';
 import __Layout from './Layout.jsx';
 
 
@@ -77,19 +89,31 @@ export const PAGES = {
     "DiamondBarLandscaping": DiamondBarLandscaping,
     "DuarteLandscaping": DuarteLandscaping,
     "ElMonteLandscaping": ElMonteLandscaping,
+    "GlendoraDripIrrigation": GlendoraDripIrrigation,
+    "GlendoraIrrigationRepair": GlendoraIrrigationRepair,
     "GlendoraLandscapeConstruction": GlendoraLandscapeConstruction,
     "GlendoraLandscaping": GlendoraLandscaping,
+    "GlendoraSprinklerRepair": GlendoraSprinklerRepair,
+    "GlendoraSprinklerValves": GlendoraSprinklerValves,
     "Home": Home,
+    "LaVerneDripIrrigation": LaVerneDripIrrigation,
+    "LaVerneIrrigationRepair": LaVerneIrrigationRepair,
     "LaVerneLandscapeConstruction": LaVerneLandscapeConstruction,
     "LaVerneLandscaping": LaVerneLandscaping,
+    "LaVerneSprinklerRepair": LaVerneSprinklerRepair,
+    "LaVerneSprinklerValves": LaVerneSprinklerValves,
     "MonroviaLandscaping": MonroviaLandscaping,
     "PasadenaLandscapeConstruction": PasadenaLandscapeConstruction,
     "PasadenaLandscaping": PasadenaLandscaping,
     "PomonaLandscaping": PomonaLandscaping,
     "Robots": Robots,
     "RowlandHeightsLandscaping": RowlandHeightsLandscaping,
+    "SanDimasDripIrrigation": SanDimasDripIrrigation,
+    "SanDimasIrrigationRepair": SanDimasIrrigationRepair,
     "SanDimasLandscapeConstruction": SanDimasLandscapeConstruction,
     "SanDimasLandscaping": SanDimasLandscaping,
+    "SanDimasSprinklerRepair": SanDimasSprinklerRepair,
+    "SanDimasSprinklerValves": SanDimasSprinklerValves,
     "SanGabrielValleyLandscaping": SanGabrielValleyLandscaping,
     "SeoDashboard": SeoDashboard,
     "ServiceArea": ServiceArea,
@@ -98,18 +122,18 @@ export const PAGES = {
     "WalnutLandscaping": WalnutLandscaping,
     "WestCovinaLandscapeConstruction": WestCovinaLandscapeConstruction,
     "WestCovinaLandscaping": WestCovinaLandscaping,
-    "GlendoraSprinklerRepair": GlendoraSprinklerRepair,
-    "GlendoraIrrigationRepair": GlendoraIrrigationRepair,
-    "GlendoraSprinklerValves": GlendoraSprinklerValves,
-    "GlendoraDripIrrigation": GlendoraDripIrrigation,
-    "SanDimasSprinklerRepair": SanDimasSprinklerRepair,
-    "SanDimasIrrigationRepair": SanDimasIrrigationRepair,
-    "SanDimasSprinklerValves": SanDimasSprinklerValves,
-    "SanDimasDripIrrigation": SanDimasDripIrrigation,
-    "LaVerneSprinklerRepair": LaVerneSprinklerRepair,
-    "LaVerneIrrigationRepair": LaVerneIrrigationRepair,
-    "LaVerneSprinklerValves": LaVerneSprinklerValves,
-    "LaVerneDripIrrigation": LaVerneDripIrrigation,
+    "glendora-sprinkler-repair": glendoraSprinklerRepair,
+    "glendora-irrigation-repair": glendoraIrrigationRepair,
+    "glendora-sprinkler-valves": glendoraSprinklerValves,
+    "glendora-drip-irrigation": glendoraDripIrrigation,
+    "san-dimas-sprinkler-repair": sanDimasSprinklerRepair,
+    "san-dimas-irrigation-repair": sanDimasIrrigationRepair,
+    "san-dimas-sprinkler-valves": sanDimasSprinklerValves,
+    "san-dimas-drip-irrigation": sanDimasDripIrrigation,
+    "la-verne-sprinkler-repair": laVerneSprinklerRepair,
+    "la-verne-irrigation-repair": laVerneIrrigationRepair,
+    "la-verne-sprinkler-valves": laVerneSprinklerValves,
+    "la-verne-drip-irrigation": laVerneDripIrrigation,
 }
 
 export const pagesConfig = {
