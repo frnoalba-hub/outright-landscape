@@ -40,6 +40,18 @@ import TempleCityLandscaping from './pages/TempleCityLandscaping';
 import WalnutLandscaping from './pages/WalnutLandscaping';
 import WestCovinaLandscapeConstruction from './pages/WestCovinaLandscapeConstruction';
 import WestCovinaLandscaping from './pages/WestCovinaLandscaping';
+import GlendoraSprinklerRepair from './pages/GlendoraSprinklerRepair';
+import GlendoraIrrigationRepair from './pages/GlendoraIrrigationRepair';
+import GlendoraSprinklerValves from './pages/GlendoraSprinklerValves';
+import GlendoraDripIrrigation from './pages/GlendoraDripIrrigation';
+import SanDimasSprinklerRepair from './pages/SanDimasSprinklerRepair';
+import SanDimasIrrigationRepair from './pages/SanDimasIrrigationRepair';
+import SanDimasSprinklerValves from './pages/SanDimasSprinklerValves';
+import SanDimasDripIrrigation from './pages/SanDimasDripIrrigation';
+import LaVerneSprinklerRepair from './pages/LaVerneSprinklerRepair';
+import LaVerneIrrigationRepair from './pages/LaVerneIrrigationRepair';
+import LaVerneSprinklerValves from './pages/LaVerneSprinklerValves';
+import LaVerneDripIrrigation from './pages/LaVerneDripIrrigation';
 import __Layout from './Layout.jsx';
 
 
@@ -86,6 +98,18 @@ export const PAGES = {
     "WalnutLandscaping": WalnutLandscaping,
     "WestCovinaLandscapeConstruction": WestCovinaLandscapeConstruction,
     "WestCovinaLandscaping": WestCovinaLandscaping,
+    "GlendoraSprinklerRepair": GlendoraSprinklerRepair,
+    "GlendoraIrrigationRepair": GlendoraIrrigationRepair,
+    "GlendoraSprinklerValves": GlendoraSprinklerValves,
+    "GlendoraDripIrrigation": GlendoraDripIrrigation,
+    "SanDimasSprinklerRepair": SanDimasSprinklerRepair,
+    "SanDimasIrrigationRepair": SanDimasIrrigationRepair,
+    "SanDimasSprinklerValves": SanDimasSprinklerValves,
+    "SanDimasDripIrrigation": SanDimasDripIrrigation,
+    "LaVerneSprinklerRepair": LaVerneSprinklerRepair,
+    "LaVerneIrrigationRepair": LaVerneIrrigationRepair,
+    "LaVerneSprinklerValves": LaVerneSprinklerValves,
+    "LaVerneDripIrrigation": LaVerneDripIrrigation,
 }
 
 export const pagesConfig = {
