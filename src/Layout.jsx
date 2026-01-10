@@ -11,6 +11,7 @@ import { base44 } from '@/api/base44Client';
 const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
   { title: "Services", href: createPageUrl("Home") + "#services" },
+  { title: "Irrigation", href: createPageUrl("Irrigation") },
   { title: "Our Work", href: createPageUrl("Home") + "#work" },
   { title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
   { title: "Contact", href: createPageUrl("Home") + "#contact" }];
@@ -258,6 +259,7 @@ export default function Layout({ children }) {
               <ul className="space-y-3">
                 <li><a href={createPageUrl("Home")} className="text-gray-400 hover:text-white transition-colors">Home</a></li>
                 <li><a href={createPageUrl("Home") + "#services"} className="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                <li><a href={createPageUrl("Irrigation")} className="text-gray-400 hover:text-white transition-colors">Irrigation</a></li>
                 <li><a href={createPageUrl("Home") + "#work"} className="text-gray-400 hover:text-white transition-colors">Our Work</a></li>
                 <li><a href={createPageUrl("Home") + "#contact"} className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
                 <li><a href={createPageUrl("Sitemap")} className="text-gray-400 hover:text-white transition-colors">Sitemap</a></li>
