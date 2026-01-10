@@ -64,6 +64,7 @@ import laVerneSprinklerRepair from './pages/la-verne-sprinkler-repair';
 import laVerneIrrigationRepair from './pages/la-verne-irrigation-repair';
 import laVerneSprinklerValves from './pages/la-verne-sprinkler-valves';
 import laVerneDripIrrigation from './pages/la-verne-drip-irrigation';
+import Irrigation from './pages/Irrigation';
 import __Layout from './Layout.jsx';
 
 
@@ -134,6 +135,7 @@ export const PAGES = {
     "la-verne-irrigation-repair": laVerneIrrigationRepair,
     "la-verne-sprinkler-valves": laVerneSprinklerValves,
     "la-verne-drip-irrigation": laVerneDripIrrigation,
+    "Irrigation": Irrigation,
 }
 
 export const pagesConfig = {
