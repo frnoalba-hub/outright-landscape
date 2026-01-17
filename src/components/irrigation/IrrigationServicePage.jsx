@@ -297,6 +297,74 @@ export default function IrrigationServicePage({ city, service, data }) {
                 </div>
             </section>
 
+            {/* Project Gallery */}
+            <section className="py-16 px-4 bg-white">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
+                        Our Professional Work
+                    </h2>
+                    <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+                        See examples of our irrigation installations and repairs throughout {city} and the San Gabriel Valley
+                    </p>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg"
+                            alt="Irrigation valve manifold installation"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c734704d4_IMG_4815-Copy.jpg"
+                            alt="Professional irrigation valve setup"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c77326177_IMG_4971-Copy.jpg"
+                            alt="Irrigation valve box repair"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/eb74e1b87_IMG_37521-Copy.jpg"
+                            alt="Underground irrigation system installation"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f03bb2890_IMG_3851-Copy.jpg"
+                            alt="Multi-zone irrigation valve installation"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/723adf744_IMG_3731-Copy.jpg"
+                            alt="Irrigation valve box repair and replacement"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/701510e0a_IMG_2662.jpg"
+                            alt="Irrigation controller installation"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/957a12859_IMG_3669.jpg"
+                            alt="Complete irrigation valve manifold with multiple zones"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                        <img 
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/27d11d89c_IMG_3076.jpg"
+                            alt="Professional irrigation system maintenance"
+                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+            </section>
+
             {/* Proof Section */}
             <section className="py-16 px-4 bg-gradient-to-br from-green-50 to-blue-50">
                 <div className="max-w-7xl mx-auto text-center">
