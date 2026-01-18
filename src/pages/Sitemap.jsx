@@ -4,15 +4,29 @@ import { base44 } from '@/api/base44Client';
 export default function Sitemap() {
   useEffect(() => {
     const generateSitemap = async () => {
-      const locations = await base44.entities.Location.list({ limit: 100 });
+      const locations = await base44.entities.Location.list(null, 100);
       
       const pages = [
         { url: '', priority: '1.0', changefreq: 'weekly' },
+        { url: 'Irrigation', priority: '0.9', changefreq: 'weekly' },
         ...locations.map(city => ({
           url: `${city.slug}-landscaping`,
           priority: city.slug === 'covina' || city.slug === 'san-gabriel-valley' ? '0.9' : '0.8',
           changefreq: 'weekly'
-        }))
+        })),
+        // Irrigation service pages
+        { url: 'glendora-sprinkler-repair', priority: '0.8', changefreq: 'weekly' },
+        { url: 'glendora-irrigation-repair', priority: '0.8', changefreq: 'weekly' },
+        { url: 'glendora-sprinkler-valves', priority: '0.8', changefreq: 'weekly' },
+        { url: 'glendora-drip-irrigation', priority: '0.8', changefreq: 'weekly' },
+        { url: 'la-verne-sprinkler-repair', priority: '0.8', changefreq: 'weekly' },
+        { url: 'la-verne-irrigation-repair', priority: '0.8', changefreq: 'weekly' },
+        { url: 'la-verne-sprinkler-valves', priority: '0.8', changefreq: 'weekly' },
+        { url: 'la-verne-drip-irrigation', priority: '0.8', changefreq: 'weekly' },
+        { url: 'san-dimas-sprinkler-repair', priority: '0.8', changefreq: 'weekly' },
+        { url: 'san-dimas-irrigation-repair', priority: '0.8', changefreq: 'weekly' },
+        { url: 'san-dimas-sprinkler-valves', priority: '0.8', changefreq: 'weekly' },
+        { url: 'san-dimas-drip-irrigation', priority: '0.8', changefreq: 'weekly' }
       ];
 
       const baseUrl = 'https://outrightlandscape.com';

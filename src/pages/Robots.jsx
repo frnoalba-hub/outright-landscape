@@ -4,26 +4,10 @@ export default function Robots() {
   useEffect(() => {
     const robotsTxt = `User-agent: *
 Allow: /
-Sitemap: https://outrightlandscape.com/sitemap
-
-# Crawl-delay
-Crawl-delay: 1
-
-# Disallow admin paths (if any)
 Disallow: /admin/
-Disallow: /dashboard/
+Disallow: /private/
 
-# Allow all other pages
-Allow: /covina-landscaping
-Allow: /west-covina-landscaping
-Allow: /glendora-landscaping
-Allow: /san-dimas-landscaping
-Allow: /pasadena-landscaping
-Allow: /azusa-landscaping
-Allow: /diamond-bar-landscaping
-Allow: /la-verne-landscaping
-Allow: /walnut-landscaping
-Allow: /san-gabriel-valley-landscaping`;
+Sitemap: https://outrightlandscape.com/Sitemap`;
 
     document.open();
     document.write(robotsTxt);
