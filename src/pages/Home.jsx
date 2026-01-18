@@ -140,11 +140,12 @@ export default function Home() {
             {/* Removed inline style tag for hero section mobile styling as it will now be handled by SharedHero */}
 
             <SEO
-                title="Outright Landscape | Covina & San Gabriel Valley Hardscape Experts – Call for a Free AI Design Preview"
-                description="Transform your yard or driveway with trusted local landscapers. Call now for your free AI design preview and same-week quote."
-                keywords="landscaping Covina, hardscape experts, paver installation, concrete work, landscape contractor, irrigation systems, sod installation, San Gabriel Valley, CSLB 1073845, AI design preview"
+                title="Outright Landscape | Covina Sod, Pavers & Irrigation Experts"
+                description="Covina's trusted landscape contractor specializing in sod installation, paver patios, concrete work, and irrigation systems. Free AI design preview. Licensed C-27. Call (626) 343-6028."
+                keywords="landscape contractor covina, sod installation covina, paver installation covina, concrete contractor covina, irrigation systems covina, landscaping san gabriel valley, hardscape covina"
                 canonicalUrl="https://outrightlandscape.com"
                 ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
+                ogType="website"
             />
             
             {/* Add all service schemas */}
@@ -171,7 +172,7 @@ export default function Home() {
             <section id="services" className="py-16 sm:py-20 md:py-24 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12 sm:mb-16">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                             Professional Landscaping Services in Covina, Glendora & San Dimas
                         </h2>
                         <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
