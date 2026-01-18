@@ -73,45 +73,17 @@ export default function Irrigation() {
     return (
         <>
             <SEO 
-                title="Sprinkler & Irrigation Repair Services | La Verne, San Dimas, Glendora"
-                description="Professional sprinkler repair and irrigation services in La Verne, San Dimas, and Glendora. Valve repair, leak detection, drip systems. Call (626) 343-6028 for expert service."
-                canonical="https://outrightlandscape.com/Irrigation"
-                keywords="irrigation repair, sprinkler repair, irrigation valve repair, drip irrigation, sprinkler system repair"
+                title="Irrigation & Sprinkler Repair | La Verne, San Dimas, Glendora CA"
+                description="Professional sprinkler repair, irrigation valve service, and drip system installation in La Verne, San Dimas, and Glendora. Licensed C-27 contractor. Same-day service available. Call (626) 343-6028."
+                canonicalUrl="https://outrightlandscape.com/Irrigation"
+                keywords="irrigation repair, sprinkler repair, irrigation valve repair, drip irrigation, sprinkler system repair, la verne irrigation, san dimas sprinkler repair, glendora irrigation"
+                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg"
+                ogType="website"
             />
 
             <div className="min-h-screen bg-white">
-                {/* Top Contact Bar */}
-                <div className="bg-green-600 text-white py-3 px-4 sticky top-0 z-50 shadow-md">
-                    <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
-                        <div className="flex items-center gap-4">
-                            <span className="text-sm font-medium hidden sm:inline">Professional Irrigation Services</span>
-                            <span className="text-xs opacity-90">La Verne • San Dimas • Glendora</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Button 
-                                size="sm" 
-                                variant="secondary" 
-                                onClick={scrollToForm}
-                                className="bg-white text-green-600 hover:bg-gray-100"
-                            >
-                                Get a Quote
-                            </Button>
-                            <Button 
-                                size="sm" 
-                                asChild
-                                className="bg-green-700 hover:bg-green-800"
-                            >
-                                <a href="tel:626-343-6028" onClick={handlePhoneClick}>
-                                    <Phone className="w-4 h-4 mr-2" />
-                                    Call Now
-                                </a>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-
                 {/* Hero Section */}
-                <section className="bg-gradient-to-br from-green-50 to-blue-50 py-20 px-4">
+                <section className="bg-gradient-to-br from-green-50 to-blue-50 py-20 px-4 mt-16">
                     <div className="max-w-7xl mx-auto text-center">
                         <div className="inline-block bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm font-semibold mb-4">
                             Serving La Verne • San Dimas • Glendora
@@ -170,7 +142,7 @@ export default function Irrigation() {
                 <section className="py-16 px-4 bg-white">
                     <div className="max-w-7xl mx-auto">
                         <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-                            Our Irrigation Services
+                            Irrigation Services We Offer
                         </h2>
                         <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
                             From sprinkler repair to complete irrigation system overhauls, we handle all your watering needs
