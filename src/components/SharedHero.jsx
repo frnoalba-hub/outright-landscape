@@ -53,10 +53,10 @@ export default function SharedHero({
                     color: rgba(255,255,255,0.95) !important;
                   }
                   .cta-card {
-                    max-width: 320px !important;
+                    max-width: 300px !important;
                     width: 100% !important;
                     margin: 0 auto !important;
-                    padding: 0.75rem !important;
+                    padding: 0.65rem !important;
                   }
                 }
             `}</style>
@@ -89,18 +89,18 @@ export default function SharedHero({
                             {description}
                         </p>
 
-                        {/* AI Design Preview CTA */}
-                        <div className="cta-card bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-md border-2 border-green-400 rounded-2xl p-3 sm:p-8 max-w-xs sm:max-w-2xl mx-auto w-full">
-                            <div className="flex items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                                <Sparkles className="w-5 h-5 sm:w-8 sm:h-8 text-green-400 animate-pulse" aria-hidden="true" />
-                                <h2 className="text-lg sm:text-3xl font-bold text-white">Free AI Design Preview</h2>
+                        {/* AI Design Preview CTA - Compact Version */}
+                        <div className="cta-card bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-md border-2 border-green-400 rounded-xl p-3 sm:p-5 max-w-xs sm:max-w-xl mx-auto w-full">
+                            <div className="flex items-center justify-center gap-2 mb-2 sm:mb-3">
+                                <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-green-400 animate-pulse" aria-hidden="true" />
+                                <h2 className="text-base sm:text-xl font-bold text-white">Free AI Design Preview</h2>
                             </div>
-                            <p className="text-white text-sm sm:text-lg mb-3 sm:mb-4 leading-relaxed">
+                            <p className="text-white text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
                                 {aiCtaText}
                             </p>
                             <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} onClick={() => handlePhoneClick('hero_ai_cta')}>
-                                <Button size="lg" className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold text-base sm:text-lg px-6 py-4 sm:px-10 sm:py-6 rounded-full shadow-2xl transform transition hover:scale-105">
-                                    <Phone className="mr-2 w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
+                                <Button size="lg" className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold text-sm sm:text-base px-5 py-3 sm:px-8 sm:py-4 rounded-full shadow-2xl transform transition hover:scale-105">
+                                    <Phone className="mr-2 w-4 h-4" aria-hidden="true" />
                                     Call ({phoneNumber})
                                 </Button>
                             </a>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { createPageUrl } from '@/utils';
-import { MapPin, Phone, CheckCircle2, Award, Users, Clock, Droplets, Sprout, Home as HomeIcon, Sparkles } from 'lucide-react';
+import { MapPin, Phone, CheckCircle2, Award, Users, Clock, Droplets, Sprout, Home as HomeIcon, Sparkles, Zap, Target, Shield, ThumbsUp } from 'lucide-react';
 import SEO from '@/components/SEO';
 import ServiceSchema from '@/components/ServiceSchema';
 import SharedHero from '@/components/SharedHero';
@@ -49,52 +49,70 @@ const projects = [
         alt: "Premium Turf Installation - Outright Landscape Covina"
     },
     {
-        title: "Irrigation Trenching",
+        title: "Irrigation Valve Installation",
+        location: "La Verne, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg",
+        alt: "Irrigation Valve Installation - Outright Landscape La Verne"
+    },
+    {
+        title: "Professional Irrigation Setup",
+        location: "Glendora, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c734704d4_IMG_4815-Copy.jpg",
+        alt: "Professional Irrigation Setup - Outright Landscape Glendora"
+    },
+    {
+        title: "Irrigation Valve Repair",
+        location: "San Dimas, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c77326177_IMG_4971-Copy.jpg",
+        alt: "Irrigation Valve Repair - Outright Landscape San Dimas"
+    },
+    {
+        title: "Underground Irrigation System",
+        location: "Covina, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/eb74e1b87_IMG_37521-Copy.jpg",
+        alt: "Underground Irrigation System - Outright Landscape Covina"
+    },
+    {
+        title: "Multi-Zone Irrigation Valves",
         location: "West Covina, CA",
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
-        alt: "Irrigation Trenching - Outright Landscape West Covina"
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f03bb2890_IMG_3851-Copy.jpg",
+        alt: "Multi-Zone Irrigation Valves - Outright Landscape West Covina"
+    },
+    {
+        title: "Irrigation Valve Box Setup",
+        location: "Glendora, CA",
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/723adf744_IMG_3731-Copy.jpg",
+        alt: "Irrigation Valve Box Setup - Outright Landscape Glendora"
     },
     {
         title: "Front Yard Driveway Pavers",
-        location: "Glendora, CA",
+        location: "San Dimas, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
-        alt: "Front Yard Driveway Pavers - Outright Landscape Glendora"
+        alt: "Front Yard Driveway Pavers - Outright Landscape San Dimas"
     },
     {
         title: "Irrigation System Installation",
-        location: "San Dimas, CA",
+        location: "La Verne, CA",
         image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
-        alt: "Irrigation System Installation - Outright Landscape San Dimas"
+        alt: "Irrigation System Installation - Outright Landscape La Verne"
     },
     {
-        title: "Turf & Sprinkler System",
-        location: "Pasadena, CA",
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
-        alt: "Turf & Sprinkler System - Outright Landscape Pasadena"
-    },
-    {
-        title: "Sod & Drainage Installation",
-        location: "Diamond Bar, CA",
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
-        alt: "Sod & Drainage Installation - Outright Landscape Diamond Bar"
-    },
-    {
-        title: "Front Yard Landscaping",
+        title: "Irrigation Controller Installation",
         location: "Covina, CA",
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
-        alt: "Front Yard Landscaping - Outright Landscape Covina"
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/701510e0a_IMG_2662.jpg",
+        alt: "Irrigation Controller Installation - Outright Landscape Covina"
     },
     {
-        title: "Irrigation Trenching",
+        title: "Complete Irrigation Valve Manifold",
         location: "Glendora, CA",
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
-        alt: "Irrigation Trenching - Outright Landscape Glendora"
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/957a12859_IMG_3669.jpg",
+        alt: "Complete Irrigation Valve Manifold - Outright Landscape Glendora"
     },
     {
-        title: "Side Yard Irrigation",
+        title: "Professional Irrigation Maintenance",
         location: "San Dimas, CA",
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
-        alt: "Side Yard Irrigation - Outright Landscape San Dimas"
+        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/27d11d89c_IMG_3076.jpg",
+        alt: "Professional Irrigation Maintenance - Outright Landscape San Dimas"
     }
 ];
 
@@ -329,32 +347,32 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                         <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
-                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
                             </div>
                             <h3 className="text-lg sm:text-xl font-bold mb-2">Licensed & Insured</h3>
                             <p className="text-sm sm:text-base text-gray-300">CSLB #1073845 for your complete peace of mind</p>
                         </div>
 
                         <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
-                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Users className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                                <Zap className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
                             </div>
                             <h3 className="text-lg sm:text-xl font-bold mb-2">Expert Team</h3>
                             <p className="text-sm sm:text-base text-gray-300">Skilled craftsmen with years of experience</p>
                         </div>
 
                         <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
-                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                                <Target className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
                             </div>
                             <h3 className="text-lg sm:text-xl font-bold mb-2">Quality Materials</h3>
                             <p className="text-sm sm:text-base text-gray-300">Premium products for lasting results</p>
                         </div>
 
                         <div className="text-center p-4 sm:p-6 bg-white/5 rounded-2xl backdrop-blur-sm hover:bg-white/10 transition-all">
-                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <Phone className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
+                            <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                                <ThumbsUp className="w-6 h-6 sm:w-8 sm:h-8 text-white" aria-hidden="true" />
                             </div>
                             <h3 className="text-lg sm:text-xl font-bold mb-2">Free Estimates</h3>
                             <p className="text-sm sm:text-base text-gray-300">Honest, competitive pricing with no hidden fees</p>
