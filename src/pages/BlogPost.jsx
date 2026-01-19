@@ -34,6 +34,7 @@ export default function BlogPost() {
             <SEO 
                 title={`${post.title} | Outright Landscape`}
                 description={post.excerpt}
+                canonicalUrl={`https://outrightlandscape.com/BlogPost?slug=${post.slug}`}
                 ogImage={post.cover_image}
                 type="article"
             />
