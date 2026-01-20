@@ -1,7 +1,3 @@
-import AdminAnalytics from './pages/AdminAnalytics';
-import AdminContent from './pages/AdminContent';
-import AdminLeads from './pages/AdminLeads';
-import AdminSEO from './pages/AdminSEO';
 import ArcadiaLandscaping from './pages/ArcadiaLandscaping';
 import AzusaLandscapeConstruction from './pages/AzusaLandscapeConstruction';
 import AzusaLandscaping from './pages/AzusaLandscaping';
@@ -34,7 +30,6 @@ import RowlandHeightsLandscaping from './pages/RowlandHeightsLandscaping';
 import SanDimasLandscapeConstruction from './pages/SanDimasLandscapeConstruction';
 import SanDimasLandscaping from './pages/SanDimasLandscaping';
 import SanGabrielValleyLandscaping from './pages/SanGabrielValleyLandscaping';
-import SeoDashboard from './pages/SeoDashboard';
 import ServiceArea from './pages/ServiceArea';
 import Sitemap from './pages/Sitemap';
 import TempleCityLandscaping from './pages/TempleCityLandscaping';
@@ -57,10 +52,6 @@ import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "AdminAnalytics": AdminAnalytics,
-    "AdminContent": AdminContent,
-    "AdminLeads": AdminLeads,
-    "AdminSEO": AdminSEO,
     "ArcadiaLandscaping": ArcadiaLandscaping,
     "AzusaLandscapeConstruction": AzusaLandscapeConstruction,
     "AzusaLandscaping": AzusaLandscaping,
@@ -93,7 +84,6 @@ export const PAGES = {
     "SanDimasLandscapeConstruction": SanDimasLandscapeConstruction,
     "SanDimasLandscaping": SanDimasLandscaping,
     "SanGabrielValleyLandscaping": SanGabrielValleyLandscaping,
-    "SeoDashboard": SeoDashboard,
     "ServiceArea": ServiceArea,
     "Sitemap": Sitemap,
     "TempleCityLandscaping": TempleCityLandscaping,
