@@ -71,6 +71,29 @@ export default function LocationPage({ cityKey }) {
 
     const cityData = locations.find(l => l.slug === cityKey);
 
+    // Track page view when component mounts
+    React.useEffect(() => {
+        if (cityData && typeof window !== 'undefined') {
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'service_area_page_view',
+                    event_category: 'page_view',
+                    event_label: cityData.name,
+                    city_slug: cityKey,
+                    page_type: 'service_area'
+                });
+            }
+            if (window.gtag) {
+                window.gtag('event', 'page_view', {
+                    page_title: `${cityData.name} Landscaping`,
+                    page_location: window.location.href,
+                    page_path: window.location.pathname + window.location.search,
+                    city_name: cityData.name
+                });
+            }
+        }
+    }, [cityData, cityKey]);
+
     if (isLoading) {
         return <div className="p-20 text-center">Loading...</div>;
     }

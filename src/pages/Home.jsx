@@ -151,6 +151,13 @@ export default function Home() {
             event_label: location,
             value: 1
         });
+        
+        // Also track as free quote request
+        trackEvent('free_quote_request', {
+            event_category: 'lead_generation',
+            event_label: location,
+            submission_method: 'quote_button'
+        });
     };
 
     return (

@@ -72,21 +72,43 @@ export default function Layout({ children }) {
 
 
   const handlePhoneClick = (location) => {
-    if (window.dataLayer) {
-      window.dataLayer.push({
-        event: 'phone_click',
-        event_category: 'engagement',
-        event_label: location,
-        phone_number: '626-343-6028'
-      });
-    }
-    if (window.gtag) {
-      window.gtag('event', 'phone_click', {
-        event_category: 'engagement',
-        event_label: location,
-        value: 1
-      });
-    }
+      if (window.dataLayer) {
+          window.dataLayer.push({
+              event: 'phone_click',
+              event_category: 'engagement',
+              event_label: location,
+              phone_number: '626-343-6028'
+          });
+
+          // Track call now button clicks specifically
+          window.dataLayer.push({
+              event: 'call_now_button_click',
+              event_category: 'conversion',
+              event_label: location,
+              phone_number: '626-343-6028'
+          });
+
+          // Track call initiated
+          window.dataLayer.push({
+              event: 'call_initiated',
+              event_category: 'engagement',
+              event_label: location,
+              click_location: location
+          });
+      }
+      if (window.gtag) {
+          window.gtag('event', 'phone_click', {
+              event_category: 'engagement',
+              event_label: location,
+              value: 1
+          });
+
+          window.gtag('event', 'call_button_click', {
+              event_category: 'conversion',
+              phone_number: '626-343-6028',
+              location: location
+          });
+      }
   };
 
   return (
