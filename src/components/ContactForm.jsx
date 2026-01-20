@@ -25,8 +25,27 @@ export default function ContactForm({ cityName = "your area", darkMode = true })
             // Call backend function to save lead and send email
             await base44.functions.invoke('submitLead', formData);
 
-            // Track form submission
+            // Track form submission with multiple events
             if (window.dataLayer) {
+                // Service inquiry form submission
+                window.dataLayer.push({
+                    event: 'service_inquiry_form_submit',
+                    event_category: 'conversion',
+                    event_label: cityName,
+                    form_type: 'contact_form',
+                    city: formData.city || cityName,
+                    service_type: formData.service_type || 'general'
+                });
+                
+                // Free quote request
+                window.dataLayer.push({
+                    event: 'free_quote_request',
+                    event_category: 'lead_generation',
+                    event_label: cityName,
+                    submission_method: 'contact_form'
+                });
+                
+                // Legacy form_submission event
                 window.dataLayer.push({
                     event: 'form_submission',
                     event_category: 'conversion',
