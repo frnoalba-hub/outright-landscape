@@ -1,21 +1,4 @@
 import { useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
-import { useQuery } from '@tanstack/react-query';
-
-export function useSeoOverride() {
-  const path = typeof window !== 'undefined' ? (window.location.pathname + window.location.search) : '/';
-  
-  return useQuery({
-      queryKey: ['seoConfig', path],
-      queryFn: async () => {
-          // Find config matching exactly this path
-          const configs = await base44.entities.SeoConfig.list({ path: path }, 1);
-          return configs?.[0] || null;
-      },
-      // Cache for 5 minutes, don't refetch aggressively
-      staleTime: 1000 * 60 * 5
-  });
-}
 
 export default function SEO({ 
   title: defaultTitle, 
@@ -25,13 +8,9 @@ export default function SEO({
   ogImage,
   ogType = "website"
 }) {
-  // Check for AI-generated overrides
-  const { data: seoOverride } = useSeoOverride();
-
-  // Use override if available, otherwise default prop
-  const title = seoOverride?.title || defaultTitle;
-  const description = seoOverride?.description || defaultDescription;
-  const keywords = seoOverride?.keywords || defaultKeywords;
+  const title = defaultTitle;
+  const description = defaultDescription;
+  const keywords = defaultKeywords;
 
   useEffect(() => {
     document.title = title || document.title;
