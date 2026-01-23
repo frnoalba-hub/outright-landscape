@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Phone, Menu, X, Mail, MapPin, Building } from "lucide-react";
+import { Phone, Menu, X, Mail, MapPin, Building, Star, Home, LayoutGrid } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
@@ -274,7 +274,18 @@ export default function Layout({ children }) {
               <p className="text-gray-400 text-sm leading-relaxed">
                 Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas and the San Gabriel Valley.
               </p>
-            </div>
+              <div className="flex gap-3 mt-6">
+                <a href="https://share.google/7R4p12cJP2hQI8Ppy" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our Google reviews">
+                  <Star className="w-5 h-5 fill-current" />
+                </a>
+                <a href="https://www.homeadvisor.com/rated.OUTRIGHTLANDSCAPE.112318590.html" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our HomeAdvisor reviews">
+                  <Home className="w-5 h-5" />
+                </a>
+                <a href="https://www.houzz.com/professionals/landscape-contractors/outright-landscape-pfvwus-pf~851831346" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our Houzz profile">
+                  <LayoutGrid className="w-5 h-5" />
+                </a>
+              </div>
+              </div>
 
             <div>
               <h4 className="font-bold text-lg mb-4 text-green-400">Quick Links</h4>
