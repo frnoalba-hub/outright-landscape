@@ -324,14 +324,7 @@ export default function Layout({ children }) {
                     <Building className="w-4 h-4" aria-hidden="true" /> CSLB #1073845
                   </li>
                 </ul>
-                <div className="flex space-x-4 mt-6">
-                  <a href="https://www.yelp.com/biz/outright-landscape-covina" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors" aria-label="Visit our Yelp page">
-                    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 fill-current" aria-hidden="true">
-                      <title>Yelp</title>
-                      <path d="M11.92.5a2.03 2.03 0 00-1.85 1.29L6.1 11.42l-1.62 9.87a2.06 2.06 0 002 2.44l10.2-1.68a2.06 2.06 0 001.67-2.2l-1.92-11.53a2.04 2.04 0 00-2-1.78L12.08.5h-.16zm.18 6.55l3.24 4.5-5.32 2.06zm-1.42.44l4.52-3.26-1.57 5.4-4.88-1.07z" />
-                    </svg>
-                  </a>
-                </div>
+
               </div>
             </div>
           </div>
