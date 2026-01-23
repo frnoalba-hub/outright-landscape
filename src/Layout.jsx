@@ -261,13 +261,13 @@ export default function Layout({ children }) {
       <footer className="bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            <div className="lg:col-span-1">
+            <div>
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
                 alt="Outright Landscape Construction Logo"
-                className="h-20 w-auto mb-4"
-                width="80"
-                height="80"
+                className="h-16 w-auto mb-4"
+                width="64"
+                height="64"
                 loading="lazy"
                 decoding="async" />
 
@@ -278,7 +278,7 @@ export default function Layout({ children }) {
 
             <div>
               <h4 className="font-bold text-lg mb-4 text-green-400">Quick Links</h4>
-              <ul className="space-y-3">
+              <ul className="space-y-3 text-sm">
                 <li><a href={createPageUrl("Home")} className="text-gray-400 hover:text-white transition-colors">Home</a></li>
                 <li><a href={createPageUrl("Home") + "#services"} className="text-gray-400 hover:text-white transition-colors">Services</a></li>
                 <li><a href={createPageUrl("Irrigation")} className="text-gray-400 hover:text-white transition-colors">Irrigation</a></li>
@@ -288,43 +288,41 @@ export default function Layout({ children }) {
               </ul>
             </div>
 
-            <div className="lg:col-span-2">
-              <h4 className="font-bold text-lg mb-4 text-green-400">Service Areas - All {locations.length} Cities</h4>
-              <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm">
-                {locations.map(city => {
+            <div>
+              <h4 className="font-bold text-lg mb-4 text-green-400">Contact</h4>
+              <ul className="space-y-3 text-sm text-gray-400">
+                <li><a href="tel:626-343-6028" onClick={() => handlePhoneClick('footer')} className="hover:text-white transition-colors flex items-center gap-2">
+                  <Phone className="w-4 h-4" aria-hidden="true" /> (626) 343-6028
+                </a></li>
+                <li className="flex items-center gap-2">
+                  <Mail className="w-4 h-4" aria-hidden="true" /> office@outrightlandscape.com
+                </li>
+                <li className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4" aria-hidden="true" /> Covina, CA 91722
+                </li>
+                <li className="flex items-center gap-2">
+                  <Building className="w-4 h-4" aria-hidden="true" /> CSLB #1073845
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-lg mb-4 text-green-400">Service Areas</h4>
+              <div className="grid grid-cols-1 gap-y-2 text-sm">
+                {locations.slice(0, 8).map(city => {
                   return (
                     <a 
                       key={city.name}
                       href={`${createPageUrl('ServiceArea')}?city=${city.slug}`}
-                      className={`text-gray-400 hover:text-white transition-colors ${city.slug === 'san-gabriel-valley' ? 'col-span-2' : ''}`}
+                      className="text-gray-400 hover:text-white transition-colors"
                     >
                       {city.name}
                     </a>
                   );
                 })}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 pt-8 border-t border-gray-800">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div>
-                <h4 className="font-bold text-lg mb-4 text-green-400">Contact</h4>
-                <ul className="space-y-3 text-sm text-gray-400">
-                  <li><a href="tel:626-343-6028" onClick={() => handlePhoneClick('footer')} className="hover:text-white transition-colors flex items-center gap-2">
-                    <Phone className="w-4 h-4" aria-hidden="true" /> (626) 343-6028
-                  </a></li>
-                  <li className="flex items-center gap-2">
-                    <Mail className="w-4 h-4" aria-hidden="true" /> office@outrightlandscape.com
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4" aria-hidden="true" /> Covina, CA 91722
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Building className="w-4 h-4" aria-hidden="true" /> CSLB #1073845
-                  </li>
-                </ul>
-
+                <a href={createPageUrl("Home") + "#service-areas"} className="text-green-400 hover:text-green-300 transition-colors font-medium">
+                  View All {locations.length} Cities →
+                </a>
               </div>
             </div>
           </div>
