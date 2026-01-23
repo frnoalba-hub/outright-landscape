@@ -276,7 +276,7 @@ export default function Layout({ children }) {
               </p>
               <div className="flex gap-3 mt-6">
                 <a href="https://share.google/7R4p12cJP2hQI8Ppy" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our Google reviews">
-                  <Star className="w-5 h-5 fill-current" />
+                  <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/ba08b0eaa_google.png" alt="Google" className="w-5 h-5" />
                 </a>
                 <a href="https://www.homeadvisor.com/rated.OUTRIGHTLANDSCAPE.112318590.html" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our Angi reviews">
                   <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/9356455c5_Angi_Symbol_1C_Heart_RGB.png" alt="Angi" className="w-5 h-5" />
@@ -285,10 +285,10 @@ export default function Layout({ children }) {
                   <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/38bcd5dbe_social_circle_green_48px.png" alt="Houzz" className="w-5 h-5" />
                 </a>
                 <a href="https://www.linkedin.com/company/outright-landscape/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="Follow us on LinkedIn">
-                  <Linkedin className="w-5 h-5" />
+                  <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/7138a6431_linkedin.png" alt="LinkedIn" className="w-5 h-5" />
                 </a>
                 <a href="https://www.tiktok.com/@outright_landscape" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="Follow us on TikTok">
-                  <Video className="w-5 h-5" />
+                  <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/b061a17e7_tik-tok.png" alt="TikTok" className="w-5 h-5" />
                 </a>
               </div>
               </div>
