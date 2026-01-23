@@ -137,7 +137,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.name}
                                 onChange={(e) => handleInputChange("name", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4"
+                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300"
                             />
                             <Input
                                 id="phone"
@@ -146,7 +146,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.phone}
                                 onChange={(e) => handleInputChange("phone", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4"
+                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300"
                             />
                             <Input
                                 id="email"
@@ -155,7 +155,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.email}
                                 onChange={(e) => handleInputChange("email", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4"
+                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300"
                             />
                             <Input
                                 id="city"
@@ -164,7 +164,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.city}
                                 onChange={(e) => handleInputChange("city", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4"
+                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300"
                             />
                             <Textarea
                                 id="message"
@@ -172,7 +172,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.message}
                                 onChange={(e) => handleInputChange("message", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white rounded-lg p-4 h-32"
+                                className="bg-gray-700 border-gray-600 text-white rounded-lg p-4 h-32 placeholder:text-gray-300"
                             />
 
                             <input

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone, Menu, X, Mail, MapPin, Building } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
@@ -314,14 +314,14 @@ export default function Layout({ children }) {
                   <li><a href="tel:626-343-6028" onClick={() => handlePhoneClick('footer')} className="hover:text-white transition-colors flex items-center gap-2">
                     <Phone className="w-4 h-4" aria-hidden="true" /> (626) 343-6028
                   </a></li>
-                  <li className="flex items-start gap-2">
-                    <span>📧</span> outrightlandscape@yahoo.com
+                  <li className="flex items-center gap-2">
+                    <Mail className="w-4 h-4" aria-hidden="true" /> office@outrightlandscape.com
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span>📍</span> Covina, CA 91722
+                  <li className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4" aria-hidden="true" /> Covina, CA 91722
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span>🏗️</span> CSLB #1073845
+                  <li className="flex items-center gap-2">
+                    <Building className="w-4 h-4" aria-hidden="true" /> CSLB #1073845
                   </li>
                 </ul>
                 <div className="flex space-x-4 mt-6">
