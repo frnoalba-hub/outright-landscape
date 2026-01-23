@@ -89,17 +89,14 @@ export default function SharedHero({
                             {description}
                         </p>
 
-                        {/* AI Design Preview CTA - Compact Version */}
-                        <div className="cta-card bg-gradient-to-r from-green-500/20 to-blue-500/20 backdrop-blur-md border-2 border-green-400 rounded-xl p-3 sm:p-5 max-w-xs sm:max-w-xl mx-auto w-full">
-                            <div className="flex items-center justify-center gap-2 mb-2 sm:mb-3">
-                                <Sparkles className="w-4 h-4 sm:w-6 sm:h-6 text-green-400 animate-pulse" aria-hidden="true" />
-                                <h2 className="text-base sm:text-xl font-bold text-white">Free AI Design Preview</h2>
-                            </div>
-                            <p className="text-white text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
+                        {/* AI Design Preview CTA - Sleek Minimal Version */}
+                        <div className="cta-card bg-gradient-to-r from-green-600/15 to-green-500/15 backdrop-blur-lg border border-green-400/40 rounded-2xl p-3 sm:p-4 max-w-xs sm:max-w-lg mx-auto w-full shadow-xl">
+                            <p className="text-white/95 text-xs sm:text-sm mb-3 leading-snug text-center font-medium">
+                                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-300 inline mr-1.5 mb-0.5" aria-hidden="true" />
                                 {aiCtaText}
                             </p>
                             <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} onClick={() => handlePhoneClick('hero_ai_cta')}>
-                                <Button size="lg" className="w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold text-sm sm:text-base px-5 py-3 sm:px-8 sm:py-4 rounded-full shadow-2xl transform transition hover:scale-105">
+                                <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-sm sm:text-base px-6 py-3 sm:px-8 sm:py-3.5 rounded-full shadow-2xl transform transition hover:scale-105">
                                     <Phone className="mr-2 w-4 h-4" aria-hidden="true" />
                                     Call ({phoneNumber})
                                 </Button>

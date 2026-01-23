@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ContactInquiry } from "@/entities/ContactInquiry";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Phone, Text } from "lucide-react";
+import confetti from 'canvas-confetti';
 
 const EMAIL_RELAY_URL = "https://script.google.com/macros/s/AKfycbzSIl_5RSL2FvaE7uwl4lbLJtMUFfwA-O5XFIt9TaA1-egp4HChAHVMnEWm7Hf-r0Mvtw/exec";
 
@@ -80,6 +81,13 @@ export default function ContactForm({ cityName = "your area" }) {
             }
 
             setIsSubmitted(true);
+            
+            // Trigger confetti celebration
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
         } catch (err) {
             console.error("Submission failed", err);
             alert("Sorry—couldn't send your request. Please call (626) 343-6028.");
@@ -137,7 +145,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.name}
                                 onChange={(e) => handleInputChange("name", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300"
+                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                             />
                             <Input
                                 id="phone"
@@ -146,7 +154,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.phone}
                                 onChange={(e) => handleInputChange("phone", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300"
+                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                             />
                             <Input
                                 id="email"
@@ -155,7 +163,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.email}
                                 onChange={(e) => handleInputChange("email", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300"
+                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                             />
                             <Input
                                 id="city"
@@ -164,7 +172,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.city}
                                 onChange={(e) => handleInputChange("city", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300"
+                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                             />
                             <Textarea
                                 id="message"
@@ -172,7 +180,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.message}
                                 onChange={(e) => handleInputChange("message", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white rounded-lg p-4 h-32 placeholder:text-gray-300"
+                                className="bg-gray-700 border-gray-600 text-white rounded-lg p-4 h-32 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
                             />
 
                             <input
@@ -189,7 +197,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 type="submit"
                                 size="lg"
                                 disabled={isSubmitting}
-                                className="w-full font-bold text-lg h-16 rounded-full bg-green-600 hover:bg-green-700"
+                                className="w-full font-bold text-lg h-16 rounded-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                             >
                                 {isSubmitting ? "Sending..." : "Request My Free Quote"}
                             </Button>
