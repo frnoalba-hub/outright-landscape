@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Phone, Menu, X, Mail, MapPin, Building, Star, Home, LayoutGrid } from "lucide-react";
+import { Phone, Menu, X, Mail, MapPin, Building, Star, Linkedin, Video } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
@@ -278,11 +278,17 @@ export default function Layout({ children }) {
                 <a href="https://share.google/7R4p12cJP2hQI8Ppy" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our Google reviews">
                   <Star className="w-5 h-5 fill-current" />
                 </a>
-                <a href="https://www.homeadvisor.com/rated.OUTRIGHTLANDSCAPE.112318590.html" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our HomeAdvisor reviews">
-                  <Home className="w-5 h-5" />
+                <a href="https://www.homeadvisor.com/rated.OUTRIGHTLANDSCAPE.112318590.html" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our Angi reviews">
+                  <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/9356455c5_Angi_Symbol_1C_Heart_RGB.png" alt="Angi" className="w-5 h-5" />
                 </a>
                 <a href="https://www.houzz.com/professionals/landscape-contractors/outright-landscape-pfvwus-pf~851831346" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="View our Houzz profile">
-                  <LayoutGrid className="w-5 h-5" />
+                  <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/38bcd5dbe_social_circle_green_48px.png" alt="Houzz" className="w-5 h-5" />
+                </a>
+                <a href="https://www.linkedin.com/company/outright-landscape/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="Follow us on LinkedIn">
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a href="https://www.tiktok.com/@outright_landscape" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-green-400 transition-colors" aria-label="Follow us on TikTok">
+                  <Video className="w-5 h-5" />
                 </a>
               </div>
               </div>
