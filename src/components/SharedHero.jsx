@@ -146,7 +146,7 @@ export default function SharedHero({
                         <div className="cta-card bg-black/50 backdrop-blur-md border border-white/20 rounded-xl p-4 max-w-md mx-auto w-full mt-3">
                             <p className="text-white/60 text-xs text-center mb-2">CALL US TODAY</p>
                             <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} onClick={() => handlePhoneClick('hero_main_cta')}>
-                                <Button size="default" className="w-full bg-green-500 hover:bg-green-600 text-white font-bold text-lg px-6 py-4 rounded-lg shadow-lg transition-all hover:shadow-xl">
+                                <Button size="default" className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-lg px-6 py-4 rounded-lg shadow-lg transition-all hover:shadow-xl">
                                     <Phone className="mr-2 w-5 h-5" aria-hidden="true" />
                                     {phoneNumber}
                                 </Button>

@@ -182,7 +182,7 @@ export default function Home() {
 
             {/* Hero Section - Replaced with SharedHero component */}
             <SharedHero 
-                title={<>Transform Your<br /><span className="text-green-400">Outdoor Living Space</span></>}
+                title={<>The San Gabriel Valley's<br /><span className="text-green-400">Most Trusted Landscape & Irrigation Contractor</span></>}
                 subtitle="Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas & the San Gabriel Valley"
                 description="Expert Pavers • Turf Installation • Irrigation Systems • Hardscaping"
                 phoneNumber="626-343-6028"

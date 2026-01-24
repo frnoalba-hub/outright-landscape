@@ -174,12 +174,12 @@ export default function Layout({ children }) {
             </ul>
             
             <div className="hidden lg:flex items-center gap-3">
-                <Button asChild variant="outline" className="border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold px-5 py-2 rounded-full transition-all hover:scale-105 text-sm">
+                <Button asChild variant="outline" className="border-2 border-orange-600 text-orange-600 hover:bg-orange-50 font-semibold px-5 py-2 rounded-full transition-all hover:scale-105 text-sm">
                   <a href="#contact" aria-label="Get a free quote">
                     Get Quote
                   </a>
                 </Button>
-                <Button asChild className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-5 py-2 rounded-full shadow-lg transition-all hover:scale-105 border-0 text-sm">
+                <Button asChild className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-5 py-2 rounded-full shadow-lg transition-all hover:scale-105 border-0 text-sm">
                   <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
                     <Phone className="w-3.5 h-3.5 mr-2" aria-hidden="true" />
                     (626) 343-6028
