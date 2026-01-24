@@ -349,7 +349,7 @@ export default function Home() {
                         className="text-center mt-8"
                     >
                         <a href="tel:626-343-6028" aria-label="Start your landscaping project today" onClick={() => handleQuoteClick('projects_section')}>
-                            <Button size="default" className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all">
+                            <Button size="default" className="bg-orange-600 hover:bg-orange-700 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all">
                                 Start Your Project Today
                             </Button>
                         </a>

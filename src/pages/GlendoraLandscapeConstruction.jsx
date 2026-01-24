@@ -165,7 +165,7 @@ export default function GlendoraLandscapeConstructionPage() {
           <Button 
             size="lg" 
             onClick={() => handleScrollToSection("contact")} 
-            className="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold text-xl px-12 py-8 rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-300"
+            className="mt-4 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xl px-12 py-8 rounded-full shadow-2xl transform hover:scale-105 transition-transform duration-300"
           >
             Request a Quote
           </Button>
@@ -344,7 +344,7 @@ export default function GlendoraLandscapeConstructionPage() {
                   type="submit"
                   size="lg"
                   disabled={isSubmitting}
-                  className="w-full font-bold text-lg h-16 rounded-full bg-green-600 hover:bg-green-700"
+                  className="w-full font-bold text-lg h-16 rounded-full bg-orange-600 hover:bg-orange-700"
                 >
                   {isSubmitting ? "Sending..." : "Request My Free Quote"}
                 </Button>

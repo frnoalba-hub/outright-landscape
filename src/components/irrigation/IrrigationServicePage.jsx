@@ -75,7 +75,7 @@ export default function IrrigationServicePage({ city, service, data }) {
                             <Button 
                                 size="lg" 
                                 asChild
-                                className="bg-green-600 hover:bg-green-700 text-lg px-8"
+                                className="bg-orange-600 hover:bg-orange-700 text-lg px-8"
                             >
                                 <a href="tel:626-343-6028" onClick={handlePhoneClick}>
                                     <Phone className="w-5 h-5 mr-2" />
@@ -309,7 +309,7 @@ export default function IrrigationServicePage({ city, service, data }) {
                         We also serve surrounding San Gabriel Valley communities including Covina, West Covina, 
                         Claremont, Pomona, Diamond Bar, and more. Licensed C-27 landscape contractor (CSLB #1073845).
                     </p>
-                    <Button size="lg" asChild className="bg-green-600 hover:bg-green-700">
+                    <Button size="lg" asChild className="bg-orange-600 hover:bg-orange-700">
                         <a href="tel:626-343-6028" onClick={handlePhoneClick}>
                             <Phone className="w-5 h-5 mr-2" />
                             Call for Service Confirmation
@@ -459,7 +459,7 @@ export default function IrrigationServicePage({ city, service, data }) {
                                 type="submit"
                                 size="lg"
                                 disabled={isSubmitting}
-                                className="w-full bg-green-600 hover:bg-green-700 text-lg"
+                                className="w-full bg-orange-600 hover:bg-orange-700 text-lg"
                             >
                                 {isSubmitting ? 'Sending...' : 'Get Free Estimate'}
                             </Button>
@@ -480,7 +480,7 @@ export default function IrrigationServicePage({ city, service, data }) {
                     <Button 
                         size="lg" 
                         asChild
-                        className="bg-white text-green-600 hover:bg-gray-100 text-xl px-12 py-6"
+                        className="bg-white text-orange-600 hover:bg-gray-100 text-xl px-12 py-6"
                     >
                         <a href="tel:626-343-6028" onClick={handlePhoneClick}>
                             <Phone className="w-6 h-6 mr-3" />

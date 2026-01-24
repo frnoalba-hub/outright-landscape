@@ -99,7 +99,7 @@ export default function Irrigation() {
                             <Button 
                                 size="lg" 
                                 asChild
-                                className="bg-green-600 hover:bg-green-700 text-lg px-8"
+                                className="bg-orange-600 hover:bg-orange-700 text-lg px-8"
                             >
                                 <a href="tel:626-343-6028" onClick={handlePhoneClick}>
                                     <Phone className="w-5 h-5 mr-2" />
@@ -266,7 +266,7 @@ export default function Irrigation() {
                             <Button 
                                 size="lg" 
                                 asChild
-                                className="bg-white text-green-600 hover:bg-gray-100 text-xl px-12 py-6"
+                                className="bg-white text-orange-600 hover:bg-gray-100 text-xl px-12 py-6"
                             >
                                 <a href="tel:626-343-6028" onClick={handlePhoneClick}>
                                     <Phone className="w-6 h-6 mr-3" />
