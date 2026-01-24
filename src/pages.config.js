@@ -1,31 +1,12 @@
-import ArcadiaLandscaping from './pages/ArcadiaLandscaping';
-import AzusaLandscaping from './pages/AzusaLandscaping';
-import BaldwinParkLandscaping from './pages/BaldwinParkLandscaping';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
-import CharterOakLandscaping from './pages/CharterOakLandscaping';
-import ClaremontLandscaping from './pages/ClaremontLandscaping';
-import CovinaLandscaping from './pages/CovinaLandscaping';
-import DiamondBarLandscaping from './pages/DiamondBarLandscaping';
-import DuarteLandscaping from './pages/DuarteLandscaping';
-import ElMonteLandscaping from './pages/ElMonteLandscaping';
-import GlendoraLandscaping from './pages/GlendoraLandscaping';
 import Home from './pages/Home';
 import Irrigation from './pages/Irrigation';
-import LaVerneLandscaping from './pages/LaVerneLandscaping';
-import MonroviaLandscaping from './pages/MonroviaLandscaping';
-import PasadenaLandscaping from './pages/PasadenaLandscaping';
-import PomonaLandscaping from './pages/PomonaLandscaping';
 import Robots from './pages/Robots';
-import RowlandHeightsLandscaping from './pages/RowlandHeightsLandscaping';
 import SanDimasLandscapeConstruction from './pages/SanDimasLandscapeConstruction';
-import SanDimasLandscaping from './pages/SanDimasLandscaping';
 import SanGabrielValleyLandscaping from './pages/SanGabrielValleyLandscaping';
 import ServiceArea from './pages/ServiceArea';
 import Sitemap from './pages/Sitemap';
-import TempleCityLandscaping from './pages/TempleCityLandscaping';
-import WalnutLandscaping from './pages/WalnutLandscaping';
-import WestCovinaLandscaping from './pages/WestCovinaLandscaping';
 import glendoraDripIrrigation from './pages/glendora-drip-irrigation';
 import glendoraIrrigationRepair from './pages/glendora-irrigation-repair';
 import glendoraSprinklerRepair from './pages/glendora-sprinkler-repair';
@@ -38,38 +19,38 @@ import sanDimasDripIrrigation from './pages/san-dimas-drip-irrigation';
 import sanDimasIrrigationRepair from './pages/san-dimas-irrigation-repair';
 import sanDimasSprinklerRepair from './pages/san-dimas-sprinkler-repair';
 import sanDimasSprinklerValves from './pages/san-dimas-sprinkler-valves';
+import azusaLandscaping from './pages/azusa-landscaping';
+import arcadiaLandscaping from './pages/arcadia-landscaping';
+import baldwinParkLandscaping from './pages/baldwin-park-landscaping';
+import charterOakLandscaping from './pages/charter-oak-landscaping';
+import claremontLandscaping from './pages/claremont-landscaping';
+import covinaLandscaping from './pages/covina-landscaping';
+import diamondBarLandscaping from './pages/diamond-bar-landscaping';
+import duarteLandscaping from './pages/duarte-landscaping';
+import elMonteLandscaping from './pages/el-monte-landscaping';
+import glendoraLandscaping from './pages/glendora-landscaping';
+import laVerneLandscaping from './pages/la-verne-landscaping';
+import monroviaLandscaping from './pages/monrovia-landscaping';
+import pomonaLandscaping from './pages/pomona-landscaping';
+import rowlandHeightsLandscaping from './pages/rowland-heights-landscaping';
+import sanDimasLandscaping from './pages/san-dimas-landscaping';
+import templeCityLandscaping from './pages/temple-city-landscaping';
+import walnutLandscaping from './pages/walnut-landscaping';
+import westCovinaLandscaping from './pages/west-covina-landscaping';
+import pasadenaLandscaping from './pages/pasadena-landscaping';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "ArcadiaLandscaping": ArcadiaLandscaping,
-    "AzusaLandscaping": AzusaLandscaping,
-    "BaldwinParkLandscaping": BaldwinParkLandscaping,
     "Blog": Blog,
     "BlogPost": BlogPost,
-    "CharterOakLandscaping": CharterOakLandscaping,
-    "ClaremontLandscaping": ClaremontLandscaping,
-    "CovinaLandscaping": CovinaLandscaping,
-    "DiamondBarLandscaping": DiamondBarLandscaping,
-    "DuarteLandscaping": DuarteLandscaping,
-    "ElMonteLandscaping": ElMonteLandscaping,
-    "GlendoraLandscaping": GlendoraLandscaping,
     "Home": Home,
     "Irrigation": Irrigation,
-    "LaVerneLandscaping": LaVerneLandscaping,
-    "MonroviaLandscaping": MonroviaLandscaping,
-    "PasadenaLandscaping": PasadenaLandscaping,
-    "PomonaLandscaping": PomonaLandscaping,
     "Robots": Robots,
-    "RowlandHeightsLandscaping": RowlandHeightsLandscaping,
     "SanDimasLandscapeConstruction": SanDimasLandscapeConstruction,
-    "SanDimasLandscaping": SanDimasLandscaping,
     "SanGabrielValleyLandscaping": SanGabrielValleyLandscaping,
     "ServiceArea": ServiceArea,
     "Sitemap": Sitemap,
-    "TempleCityLandscaping": TempleCityLandscaping,
-    "WalnutLandscaping": WalnutLandscaping,
-    "WestCovinaLandscaping": WestCovinaLandscaping,
     "glendora-drip-irrigation": glendoraDripIrrigation,
     "glendora-irrigation-repair": glendoraIrrigationRepair,
     "glendora-sprinkler-repair": glendoraSprinklerRepair,
@@ -82,6 +63,25 @@ export const PAGES = {
     "san-dimas-irrigation-repair": sanDimasIrrigationRepair,
     "san-dimas-sprinkler-repair": sanDimasSprinklerRepair,
     "san-dimas-sprinkler-valves": sanDimasSprinklerValves,
+    "azusa-landscaping": azusaLandscaping,
+    "arcadia-landscaping": arcadiaLandscaping,
+    "baldwin-park-landscaping": baldwinParkLandscaping,
+    "charter-oak-landscaping": charterOakLandscaping,
+    "claremont-landscaping": claremontLandscaping,
+    "covina-landscaping": covinaLandscaping,
+    "diamond-bar-landscaping": diamondBarLandscaping,
+    "duarte-landscaping": duarteLandscaping,
+    "el-monte-landscaping": elMonteLandscaping,
+    "glendora-landscaping": glendoraLandscaping,
+    "la-verne-landscaping": laVerneLandscaping,
+    "monrovia-landscaping": monroviaLandscaping,
+    "pomona-landscaping": pomonaLandscaping,
+    "rowland-heights-landscaping": rowlandHeightsLandscaping,
+    "san-dimas-landscaping": sanDimasLandscaping,
+    "temple-city-landscaping": templeCityLandscaping,
+    "walnut-landscaping": walnutLandscaping,
+    "west-covina-landscaping": westCovinaLandscaping,
+    "pasadena-landscaping": pasadenaLandscaping,
 }
 
 export const pagesConfig = {
