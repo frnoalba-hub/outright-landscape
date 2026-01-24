@@ -195,7 +195,11 @@ export default function Home() {
             />
 
             {/* Services Section */}
-            <section id="services" className="py-20 sm:py-24 md:py-28 bg-gradient-to-b from-gray-50 to-white">
+            <section id="services" className="py-20 sm:py-24 md:py-28 bg-white relative overflow-hidden">
+                <div className="absolute inset-0 opacity-5">
+                    <div className="absolute top-0 left-0 w-96 h-96 bg-green-500 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-green-600 rounded-full blur-3xl"></div>
+                </div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
@@ -204,11 +208,16 @@ export default function Home() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-16 sm:mb-20"
                     >
-                        <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-5 tracking-tight leading-tight">
-                            Professional Landscaping Services in Covina, Glendora & San Dimas
+                        <div className="inline-block mb-6">
+                            <div className="bg-green-100 border-2 border-green-600 px-6 py-2 rounded-full">
+                                <span className="text-green-700 font-bold uppercase tracking-wider text-sm">Premium Services</span>
+                            </div>
+                        </div>
+                        <h2 className="text-4xl sm:text-5xl font-black text-gray-900 mb-5 tracking-tight leading-tight uppercase">
+                            Professional Landscaping Services
                         </h2>
-                        <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto px-4 leading-relaxed">
-                            From irrigation and turf installation to hardscaping and landscape design, we bring your outdoor vision to life with quality craftsmanship.
+                        <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto px-4 leading-relaxed font-medium">
+                            Covina, Glendora & San Dimas • Expert Craftsmanship
                         </p>
                     </motion.div>
 
@@ -220,32 +229,37 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100"
+                                className="group bg-white overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-3 border-4 border-gray-900 relative"
+                                style={{ clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)' }}
                             >
+                                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-500 via-green-600 to-green-500"></div>
                                 <div className="relative h-56 sm:h-64 overflow-hidden">
                                     <img
                                         src={service.image}
                                         alt={`${service.title} in Covina, Glendora, San Dimas - Outright Landscape`}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 grayscale-[30%] group-hover:grayscale-0"
                                         loading="lazy"
                                         width="400"
                                         height="300"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                                    <div className="absolute bottom-5 left-5 right-5">
-                                        <div className="bg-green-500/20 backdrop-blur-sm rounded-2xl p-3 w-fit group-hover:bg-green-500/30 transition-all">
-                                            <service.icon className="w-9 h-9 sm:w-10 sm:h-10 text-green-300 group-hover:text-white transition-colors" aria-hidden="true" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+                                    <div className="absolute top-4 right-4">
+                                        <div className="bg-green-500 p-3.5 rotate-12 group-hover:rotate-0 transition-transform duration-500 border-2 border-white shadow-xl">
+                                            <service.icon className="w-7 h-7 text-white" aria-hidden="true" />
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-6">
-                                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 leading-tight">{service.title}</h3>
-                                    <p className="text-gray-600 text-base mb-4 leading-relaxed">{service.description}</p>
-                                    <ul className="space-y-2.5">
+                                <div className="p-6 bg-white">
+                                    <h3 className="text-xl sm:text-2xl font-black text-gray-900 mb-3 leading-tight uppercase tracking-wide">{service.title}</h3>
+                                    <div className="w-16 h-1 bg-green-500 mb-4"></div>
+                                    <p className="text-gray-700 text-base mb-5 leading-relaxed font-medium">{service.description}</p>
+                                    <ul className="space-y-3">
                                         {service.features.map((feature, idx) => (
-                                            <li key={idx} className="flex items-center text-sm text-gray-700">
-                                                <CheckCircle2 className="w-4 h-4 text-green-600 mr-2.5 flex-shrink-0" aria-hidden="true" />
-                                                <span className="font-medium">{feature}</span>
+                                            <li key={idx} className="flex items-center text-sm text-gray-800 font-semibold">
+                                                <div className="w-6 h-6 bg-green-500 flex items-center justify-center mr-3 flex-shrink-0">
+                                                    <CheckCircle2 className="w-4 h-4 text-white" aria-hidden="true" />
+                                                </div>
+                                                <span>{feature}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -275,8 +289,13 @@ export default function Home() {
             </section>
 
             {/* Projects Gallery */}
-            <section id="work" className="py-20 sm:py-24 md:py-28 bg-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section id="work" className="py-20 sm:py-24 md:py-28 bg-gray-900 relative overflow-hidden">
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0" style={{ 
+                        backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px)',
+                    }}></div>
+                </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -284,11 +303,16 @@ export default function Home() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-16 sm:mb-20"
                     >
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-5 tracking-tight leading-tight">
-                            Recent Landscaping Projects
+                        <div className="inline-block mb-6">
+                            <div className="bg-green-500 border-2 border-white px-6 py-2">
+                                <span className="text-white font-bold uppercase tracking-wider text-sm">Our Portfolio</span>
+                            </div>
+                        </div>
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-5 tracking-tight leading-tight uppercase">
+                            Recent Projects
                         </h2>
-                        <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto px-4 leading-relaxed">
-                            See how we've transformed outdoor spaces throughout Covina, Glendora, San Dimas and the San Gabriel Valley
+                        <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto px-4 leading-relaxed font-medium">
+                            Transforming Outdoor Spaces Across the San Gabriel Valley
                         </p>
                     </motion.div>
 
@@ -300,21 +324,27 @@ export default function Home() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.05 }}
-                                className="group relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 aspect-square border border-gray-100"
+                                className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 aspect-square border-4 border-white"
                             >
                                 <img
                                     src={project.image}
                                     alt={project.alt}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-all duration-700"
                                     loading="lazy"
                                         width="600"
                                         height="600"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-85 group-hover:opacity-95 transition-opacity duration-500"></div>
-                                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
-                                    <h3 className="text-2xl sm:text-3xl font-bold mb-2.5 leading-tight">{project.title}</h3>
-                                    <p className="text-green-300 flex items-center text-base sm:text-lg font-medium">
-                                        <MapPin className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" aria-hidden="true" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-green-900/95 via-gray-900/60 to-transparent group-hover:from-green-800/95"></div>
+                                <div className="absolute top-4 left-4">
+                                    <div className="bg-green-500 px-4 py-1 border-2 border-white font-black text-white text-xs uppercase tracking-wider">
+                                        Project
+                                    </div>
+                                </div>
+                                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
+                                    <h3 className="text-2xl sm:text-3xl font-black mb-2 leading-tight text-white uppercase tracking-wide">{project.title}</h3>
+                                    <div className="w-12 h-1 bg-green-400 mb-3"></div>
+                                    <p className="text-green-300 flex items-center text-base sm:text-lg font-bold uppercase tracking-wider">
+                                        <MapPin className="w-5 h-5 mr-2 flex-shrink-0" aria-hidden="true" />
                                         {project.location}
                                     </p>
                                 </div>
@@ -339,8 +369,13 @@ export default function Home() {
             </section>
 
             {/* Service Areas */}
-            <section id="service-areas" className="py-20 sm:py-24 md:py-28 bg-gradient-to-br from-green-50 via-blue-50 to-green-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section id="service-areas" className="py-20 sm:py-24 md:py-28 bg-white relative overflow-hidden">
+                <div className="absolute inset-0" style={{
+                    backgroundImage: 'linear-gradient(90deg, transparent 49%, #10b981 49%, #10b981 51%, transparent 51%), linear-gradient(0deg, transparent 49%, #10b981 49%, #10b981 51%, transparent 51%)',
+                    backgroundSize: '80px 80px',
+                    opacity: 0.03
+                }}></div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -348,11 +383,16 @@ export default function Home() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-16 sm:mb-20"
                     >
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-5 tracking-tight leading-tight">
-                            Serving the San Gabriel Valley
+                        <div className="inline-block mb-6">
+                            <div className="bg-gray-900 border-4 border-green-500 px-8 py-2.5 transform -skew-x-6">
+                                <span className="text-green-400 font-black uppercase tracking-widest text-sm inline-block skew-x-6">Service Areas</span>
+                            </div>
+                        </div>
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-5 tracking-tight leading-tight uppercase">
+                            San Gabriel Valley
                         </h2>
-                        <p className="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto px-4 leading-relaxed">
-                            Professional landscape construction services throughout Covina, Glendora, San Dimas and surrounding areas
+                        <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto px-4 leading-relaxed font-bold">
+                            Professional Landscape Construction • 20+ Cities
                         </p>
                     </motion.div>
 
@@ -369,9 +409,10 @@ export default function Home() {
                                     className="group"
                                     aria-label={`Landscaping services in ${city.name}`}
                                 >
-                                    <div className="bg-white hover:bg-gradient-to-br hover:from-green-500 hover:to-green-600 border-2 border-gray-200 hover:border-green-500 transition-all duration-400 rounded-2xl p-4 sm:p-5 text-center group-hover:scale-110 group-hover:shadow-xl shadow-md">
-                                        <MapPin className="w-6 h-6 sm:w-7 sm:h-7 mx-auto mb-2.5 text-green-600 group-hover:text-white transition-colors duration-300" aria-hidden="true" />
-                                        <span className="text-sm sm:text-base font-bold text-gray-700 group-hover:text-white transition-colors duration-300 block">
+                                    <div className="bg-gray-900 hover:bg-green-500 border-3 border-gray-900 hover:border-green-500 transition-all duration-300 p-5 text-center group-hover:scale-105 shadow-lg group-hover:shadow-2xl relative overflow-hidden">
+                                        <div className="absolute top-0 right-0 w-8 h-8 bg-green-500 group-hover:bg-white transition-colors"></div>
+                                        <MapPin className="w-7 h-7 mx-auto mb-2.5 text-green-500 group-hover:text-white transition-colors duration-300 relative z-10" aria-hidden="true" />
+                                        <span className="text-sm sm:text-base font-black text-white uppercase tracking-wide transition-colors duration-300 block relative z-10">
                                             {city.name}
                                         </span>
                                     </div>
@@ -386,8 +427,13 @@ export default function Home() {
             <GoogleReviews />
 
             {/* Why Choose Us */}
-            <section className="py-20 sm:py-24 md:py-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="py-20 sm:py-24 md:py-28 bg-green-500 text-white relative overflow-hidden">
+                <div className="absolute inset-0 opacity-20">
+                    <div className="absolute inset-0" style={{ 
+                        backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0,0,0,.1) 50px, rgba(0,0,0,.1) 100px)',
+                    }}></div>
+                </div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <motion.div 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -395,11 +441,16 @@ export default function Home() {
                         transition={{ duration: 0.6 }}
                         className="text-center mb-16 sm:mb-20"
                     >
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-5 tracking-tight leading-tight">
-                            Why Choose Outright Landscape?
+                        <div className="inline-block mb-6">
+                            <div className="bg-white px-8 py-2.5 border-4 border-gray-900">
+                                <span className="text-gray-900 font-black uppercase tracking-widest text-sm">Why Choose Us</span>
+                            </div>
+                        </div>
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-5 tracking-tight leading-tight uppercase">
+                            Outright Landscape
                         </h2>
-                        <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto px-4 leading-relaxed">
-                            Quality workmanship, honest pricing, and exceptional customer service
+                        <p className="text-xl sm:text-2xl text-white max-w-4xl mx-auto px-4 leading-relaxed font-bold">
+                            Quality • Integrity • Excellence
                         </p>
                     </motion.div>
 
@@ -416,13 +467,15 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="text-center p-8 bg-white/5 rounded-3xl backdrop-blur-sm hover:bg-white/10 transition-all duration-500 border border-white/10 hover:border-green-400/50 group"
+                                className="text-center p-8 bg-gray-900 hover:bg-black transition-all duration-500 border-4 border-white group relative overflow-hidden"
                             >
-                                <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-2xl group-hover:scale-110 transition-transform duration-500">
-                                    <item.icon className="w-10 h-10 text-white" aria-hidden="true" />
+                                <div className="absolute top-0 left-0 w-full h-2 bg-white group-hover:bg-green-300 transition-colors"></div>
+                                <div className="w-20 h-20 bg-white border-4 border-green-500 flex items-center justify-center mx-auto mb-5 group-hover:rotate-12 transition-transform duration-500">
+                                    <item.icon className="w-10 h-10 text-green-500" aria-hidden="true" />
                                 </div>
-                                <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                                <p className="text-base text-gray-300 leading-relaxed">{item.desc}</p>
+                                <h3 className="text-2xl font-black mb-3 uppercase tracking-wide">{item.title}</h3>
+                                <div className="w-12 h-1 bg-green-400 mx-auto mb-3"></div>
+                                <p className="text-base text-white leading-relaxed font-semibold">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
