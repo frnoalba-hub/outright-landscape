@@ -71,8 +71,6 @@ export default function SharedHero({
             `}</style>
 
             <section id="home" className="hero relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-16 md:pt-40 md:pb-12" style={{ zIndex: 0 }}>
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-black/90 to-gray-900/95 z-10"></div>
-                <div className="absolute inset-0 diagonal-stripes z-10"></div>
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
@@ -84,6 +82,8 @@ export default function SharedHero({
                     role="img"
                     aria-label={backgroundImageAlt}
                 ></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-10"></div>
+                <div className="absolute inset-0 diagonal-stripes z-10 opacity-30"></div>
                 {/* Preload critical hero image */}
                 <link rel="preload" as="image" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg" fetchpriority="high" />
                 
