@@ -197,7 +197,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 type="submit"
                                 size="lg"
                                 disabled={isSubmitting}
-                                className="w-full font-bold text-lg h-16 rounded-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                                className="w-full font-bold text-lg h-16 rounded-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                             >
                                 {isSubmitting ? "Sending..." : "Request My Free Quote"}
                             </Button>
