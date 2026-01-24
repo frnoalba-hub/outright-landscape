@@ -377,6 +377,40 @@ export default function LocationPage({ citySlug }) {
                 </div>
             </section>
 
+            {/* Contact & Estimate */}
+            <section className="py-16 px-4 bg-gray-50">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+                        Get Your Free Estimate Today
+                    </h2>
+                    <div className="max-w-5xl mx-auto">
+                        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-8 mb-8">
+                            <div className="grid md:grid-cols-3 gap-6 mb-6">
+                                <a href="tel:626-343-6028" onClick={() => trackPhoneClick('estimate_section')} className="bg-white p-6 rounded-lg hover:shadow-lg transition-shadow text-center group">
+                                    <Phone className="w-10 h-10 text-green-600 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                                    <p className="font-bold text-gray-900 mb-1">Call Us</p>
+                                    <p className="text-green-600 font-semibold text-lg">(626) 343-6028</p>
+                                </a>
+                                <a href="sms:626-343-6028" className="bg-white p-6 rounded-lg hover:shadow-lg transition-shadow text-center group">
+                                    <span className="text-4xl mx-auto mb-3 block group-hover:scale-110 transition-transform">💬</span>
+                                    <p className="font-bold text-gray-900 mb-1">Text Us</p>
+                                    <p className="text-green-600 font-semibold text-lg">(626) 343-6028</p>
+                                </a>
+                                <a href="mailto:office@outrightlandscape.com" className="bg-white p-6 rounded-lg hover:shadow-lg transition-shadow text-center group">
+                                    <span className="text-4xl mx-auto mb-3 block group-hover:scale-110 transition-transform">📧</span>
+                                    <p className="font-bold text-gray-900 mb-1">Email Us</p>
+                                    <p className="text-green-600 font-semibold text-sm">office@outrightlandscape.com</p>
+                                </a>
+                            </div>
+                            <div className="text-center">
+                                <p className="text-gray-700 font-medium mb-2">Licensed C-27 Contractor • CSLB #1073845</p>
+                                <p className="text-gray-600">Serving {name} & the San Gabriel Valley</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Contact Form */}
             <section id="contact">
                 <ContactForm cityName={name} darkMode={true} />
