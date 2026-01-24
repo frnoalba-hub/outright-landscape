@@ -3,8 +3,6 @@ import BlogPost from './pages/BlogPost';
 import Home from './pages/Home';
 import Irrigation from './pages/Irrigation';
 import Robots from './pages/Robots';
-import SanDimasLandscapeConstruction from './pages/SanDimasLandscapeConstruction';
-import SanGabrielValleyLandscaping from './pages/SanGabrielValleyLandscaping';
 import ServiceArea from './pages/ServiceArea';
 import Sitemap from './pages/Sitemap';
 import glendoraDripIrrigation from './pages/glendora-drip-irrigation';
@@ -38,6 +36,7 @@ import templeCityLandscaping from './pages/temple-city-landscaping';
 import walnutLandscaping from './pages/walnut-landscaping';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
 import pasadenaLandscaping from './pages/pasadena-landscaping';
+import sanGabrielLandscaping from './pages/san-gabriel-landscaping';
 import __Layout from './Layout.jsx';
 
 
@@ -47,8 +46,6 @@ export const PAGES = {
     "Home": Home,
     "Irrigation": Irrigation,
     "Robots": Robots,
-    "SanDimasLandscapeConstruction": SanDimasLandscapeConstruction,
-    "SanGabrielValleyLandscaping": SanGabrielValleyLandscaping,
     "ServiceArea": ServiceArea,
     "Sitemap": Sitemap,
     "glendora-drip-irrigation": glendoraDripIrrigation,
@@ -82,6 +79,7 @@ export const PAGES = {
     "walnut-landscaping": walnutLandscaping,
     "west-covina-landscaping": westCovinaLandscaping,
     "pasadena-landscaping": pasadenaLandscaping,
+    "san-gabriel-landscaping": sanGabrielLandscaping,
 }
 
 export const pagesConfig = {

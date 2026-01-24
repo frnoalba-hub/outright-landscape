@@ -22,6 +22,11 @@ export default function SharedHero({
     const handleQuoteClick = trackQuoteClick || handlePhoneClick;
     const handleViewServices = trackViewServicesClick || onViewServicesClick;
 
+    // Fix subtitle for San Gabriel Valley to avoid double-name
+    const displaySubtitle = cityName === "San Gabriel Valley" 
+        ? "Licensed C-27 landscape contractor serving the San Gabriel Valley & surrounding areas"
+        : subtitle;
+
     return (
         <>
             <style>{`
@@ -89,7 +94,7 @@ export default function SharedHero({
                         </h1>
                         
                         <p className="text-sm sm:text-lg md:text-xl text-white/90 font-medium max-w-2xl">
-                            {subtitle}
+                            {displaySubtitle}
                         </p>
                         
                         <div className="flex flex-wrap justify-center gap-2 mt-1">

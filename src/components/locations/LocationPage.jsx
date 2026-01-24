@@ -153,6 +153,7 @@ export default function LocationPage({ citySlug }) {
 
             {/* Hero Section */}
             <SharedHero 
+                cityName={name}
                 title={<>{name}'s<br /><span className="text-green-400">Most Trusted Landscape & Irrigation Contractor</span></>}
                 subtitle={`Licensed C-27 landscape contractor serving ${name} & the San Gabriel Valley`}
                 onPhoneClick={trackPhoneClick}
