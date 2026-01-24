@@ -64,14 +64,15 @@ const defaultProjects = [
     }
 ];
 
-export default function LocationPage({ cityKey }) {
+export default function LocationPage({ citySlug }) {
     // Fetch all locations for navigation and nearby cities
     const { data: locations = [], isLoading } = useQuery({
         queryKey: ['locations'],
         queryFn: () => base44.entities.Location.list(null, 100),
     });
 
-    const cityData = locations.find(l => l.slug === cityKey);
+    // Find city by slug (handles both old format and new -landscaping format)
+    const cityData = locations.find(l => l.slug === citySlug);
 
     // Track page view when component mounts
     React.useEffect(() => {
@@ -81,7 +82,7 @@ export default function LocationPage({ cityKey }) {
                     event: 'service_area_page_view',
                     event_category: 'page_view',
                     event_label: cityData.name,
-                    city_slug: cityKey,
+                    city_slug: citySlug,
                     page_type: 'service_area'
                 });
             }
@@ -94,23 +95,20 @@ export default function LocationPage({ cityKey }) {
                 });
             }
         }
-    }, [cityData, cityKey]);
+    }, [cityData, citySlug]);
 
-    if (isLoading) {
-        return <div className="p-20 text-center">Loading...</div>;
-    }
-    
-    if (!cityData) {
-        return <div className="p-20 text-center">City not found: {cityKey}</div>;
-    }
-
-    const { name, intro, faqs, services = defaultServices, projects = defaultProjects } = cityData;
-    const slug = cityData.slug; // Ensure we use the slug from data
+    // Use fallback data while loading or if city not found
+    const name = cityData?.name || 'San Gabriel Valley';
+    const intro = cityData?.intro || "Transform your property with premier landscaping services from Outright Landscape Construction. We specialize in creating stunning outdoor spaces.";
+    const faqs = cityData?.faqs || [];
+    const services = cityData?.services?.length > 0 ? cityData.services : defaultServices;
+    const projects = cityData?.projects?.length > 0 ? cityData.projects : defaultProjects;
+    const slug = cityData?.slug || citySlug;
 
     const pageTitle = `${name} Landscaping & Hardscaping | Outright Landscape`;
     const metaDescription = `Licensed C-27 landscape contractor in ${name}. Expert pavers, turf installation, irrigation systems & complete landscape design. Free estimate: (626) 343-6028. CSLB #1073845.`;
-    // Canonical URL for the dynamic service area page
-    const canonicalUrl = `https://outrightlandscape.com/ServiceArea?city=${slug}`;
+    // Canonical URL for the city-specific page
+    const canonicalUrl = `https://outrightlandscape.com/${slug}`;
 
     const breadcrumbItems = [
         { name: "Home", url: "https://outrightlandscape.com" },
@@ -129,8 +127,8 @@ export default function LocationPage({ cityKey }) {
         }
     };
 
-    // Filter nearby cities to exclude current city
-    const filteredNearbyCities = locations
+    // Filter nearby cities to exclude current city (only show if we have valid data)
+    const filteredNearbyCities = isLoading ? [] : locations
         .filter(l => l.slug !== slug)
         .slice(0, 8); // Show 8 nearby cities
 
@@ -360,7 +358,7 @@ export default function LocationPage({ cityKey }) {
                         {filteredNearbyCities.map((city, idx) => (
                             <motion.a
                                 key={city.name}
-                                href={`${createPageUrl('ServiceArea')}?city=${city.slug}`}
+                                href={`/${city.slug}`}
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
