@@ -6,9 +6,7 @@ import BlogPost from './pages/BlogPost';
 import CharterOakLandscapeConstruction from './pages/CharterOakLandscapeConstruction';
 import CharterOakLandscaping from './pages/CharterOakLandscaping';
 import ClaremontLandscaping from './pages/ClaremontLandscaping';
-import CovinaLandscapeConstruction from './pages/CovinaLandscapeConstruction';
 import CovinaLandscaping from './pages/CovinaLandscaping';
-import DiamondBarLandscapeConstruction from './pages/DiamondBarLandscapeConstruction';
 import DiamondBarLandscaping from './pages/DiamondBarLandscaping';
 import DuarteLandscaping from './pages/DuarteLandscaping';
 import ElMonteLandscaping from './pages/ElMonteLandscaping';
@@ -57,9 +55,7 @@ export const PAGES = {
     "CharterOakLandscapeConstruction": CharterOakLandscapeConstruction,
     "CharterOakLandscaping": CharterOakLandscaping,
     "ClaremontLandscaping": ClaremontLandscaping,
-    "CovinaLandscapeConstruction": CovinaLandscapeConstruction,
     "CovinaLandscaping": CovinaLandscaping,
-    "DiamondBarLandscapeConstruction": DiamondBarLandscapeConstruction,
     "DiamondBarLandscaping": DiamondBarLandscaping,
     "DuarteLandscaping": DuarteLandscaping,
     "ElMonteLandscaping": ElMonteLandscaping,
