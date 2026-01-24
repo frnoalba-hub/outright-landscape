@@ -97,14 +97,8 @@ export default function LocationPage({ citySlug }) {
         }
     }, [cityData, citySlug]);
 
-    // Extract city name from slug if data not loaded (e.g., "arcadia-landscaping" → "Arcadia")
-    const extractCityName = (slug) => {
-        if (!slug) return 'San Gabriel Valley';
-        const cityPart = slug.replace('-landscaping', '').replace(/-/g, ' ');
-        return cityPart.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    };
-
-    const name = cityData?.name || extractCityName(citySlug);
+    // Use fallback data while loading or if city not found
+    const name = cityData?.name || 'San Gabriel Valley';
     const intro = cityData?.intro || "Transform your property with premier landscaping services from Outright Landscape Construction. We specialize in creating stunning outdoor spaces.";
     const faqs = cityData?.faqs || [];
     const services = cityData?.services?.length > 0 ? cityData.services : defaultServices;

@@ -5,7 +5,7 @@ import { Phone, Award, Users, Clock, Sparkles, CheckCircle2 } from 'lucide-react
 export default function SharedHero({ 
     cityName = null,
     title = "Transform Your Outdoor Living Space",
-    subtitle = null,
+    subtitle = "Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas & the San Gabriel Valley",
     description = "Expert Pavers • Turf Installation • Irrigation Systems • Hardscaping",
     aiCtaText = "Call today for a free AI landscape design preview — see your new yard before we build it.",
     phoneNumber = "626-343-6028",
@@ -21,9 +21,6 @@ export default function SharedHero({
     const handlePhoneClick = trackPhoneClick || onPhoneClick;
     const handleQuoteClick = trackQuoteClick || handlePhoneClick;
     const handleViewServices = trackViewServicesClick || onViewServicesClick;
-
-    // Use subtitle if provided, otherwise generate default
-    const finalSubtitle = subtitle || "Licensed C-27 landscape contractor serving San Gabriel Valley";
 
     return (
         <>
@@ -92,7 +89,7 @@ export default function SharedHero({
                         </h1>
                         
                         <p className="text-sm sm:text-lg md:text-xl text-white/90 font-medium max-w-2xl">
-                            {finalSubtitle}
+                            {subtitle}
                         </p>
                         
                         <div className="flex flex-wrap justify-center gap-2 mt-1">
