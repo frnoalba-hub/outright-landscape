@@ -311,8 +311,10 @@ export default function Layout({ children }) {
                 <li><a href="tel:626-343-6028" onClick={() => handlePhoneClick('footer')} className="hover:text-white transition-colors flex items-center gap-2">
                   <Phone className="w-4 h-4" aria-hidden="true" /> (626) 343-6028
                 </a></li>
-                <li className="flex items-center gap-2">
-                  <Mail className="w-4 h-4" aria-hidden="true" /> office@outrightlandscape.com
+                <li>
+                  <a href="mailto:office@outrightlandscape.com" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                    <Mail className="w-4 h-4" aria-hidden="true" /> office@outrightlandscape.com
+                  </a>
                 </li>
                 <li className="flex items-center gap-2">
                   <MapPin className="w-4 h-4" aria-hidden="true" /> Covina, CA 91722
