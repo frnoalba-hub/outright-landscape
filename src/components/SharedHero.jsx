@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Phone, Award, Users, Clock, Sparkles } from 'lucide-react';
+import { Phone, Award, Users, Clock, Sparkles, CheckCircle2 } from 'lucide-react';
 
 export default function SharedHero({ 
     cityName = null,
@@ -98,18 +98,63 @@ export default function SharedHero({
                             ))}
                         </div>
 
-                        {/* AI CTA - Compact */}
+                        {/* Reviews & Social Proof */}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-3">
+                            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                <div className="flex items-center">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" className="w-5 h-5 mr-1.5" />
+                                    <div className="flex">
+                                        {[...Array(5)].map((_, i) => (
+                                            <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                            </svg>
+                                        ))}
+                                    </div>
+                                    <span className="ml-2 text-white text-sm font-semibold">4.8</span>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <a href="https://www.facebook.com/outrightlandscape" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors" aria-label="Facebook">
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                                </a>
+                                <a href="https://www.houzz.com/professionals/landscape-contractors/outright-landscape-pfvwus-pf~851831346" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors" aria-label="Houzz">
+                                    <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/38bcd5dbe_social_circle_green_48px.png" alt="Houzz" className="w-5 h-5" />
+                                </a>
+                                <a href="https://www.tiktok.com/@outright_landscape" target="_blank" rel="noopener noreferrer" className="text-white/70 hover:text-white transition-colors" aria-label="TikTok">
+                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-5.2 1.74 2.89 2.89 0 012.31-4.64 2.93 2.93 0 01.88.13V9.4a6.84 6.84 0 00-1-.05A6.33 6.33 0 005 20.1a6.34 6.34 0 0010.86-4.43v-7a8.16 8.16 0 004.77 1.52v-3.4a4.85 4.85 0 01-1-.1z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Trust Badges with Checkmarks */}
+                        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-3 text-white text-xs">
+                            <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
+                                <span>Licensed C-27 #1073845</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
+                                <span>10+ Years Experience</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
+                                <span>Free Estimates</span>
+                            </div>
+                        </div>
+
+                        {/* Main CTA with prominent phone */}
                         <div className="cta-card bg-black/50 backdrop-blur-md border border-white/20 rounded-xl p-4 max-w-md mx-auto w-full mt-3">
-                            <p className="text-white/90 text-xs sm:text-sm mb-3 flex items-center justify-center gap-2">
-                                <Sparkles className="w-4 h-4 text-green-400" aria-hidden="true" />
-                                <span>{aiCtaText}</span>
-                            </p>
-                            <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} onClick={() => handlePhoneClick('hero_ai_cta')}>
-                                <Button size="default" className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold text-sm px-6 py-3 rounded-lg shadow-lg transition-all hover:shadow-xl">
-                                    <Phone className="mr-2 w-4 h-4" aria-hidden="true" />
-                                    Call {phoneNumber}
+                            <p className="text-white/60 text-xs text-center mb-2">CALL US TODAY</p>
+                            <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} onClick={() => handlePhoneClick('hero_main_cta')}>
+                                <Button size="default" className="w-full bg-green-500 hover:bg-green-600 text-white font-bold text-lg px-6 py-4 rounded-lg shadow-lg transition-all hover:shadow-xl">
+                                    <Phone className="mr-2 w-5 h-5" aria-hidden="true" />
+                                    {phoneNumber}
                                 </Button>
                             </a>
+                            <p className="text-white/50 text-[10px] text-center mt-2">
+                                <Sparkles className="w-3 h-3 inline mr-1" aria-hidden="true" />
+                                Ask about our free design consultation
+                            </p>
                         </div>
 
                         <div className="flex flex-col sm:flex-row gap-3 items-center w-full sm:w-auto mt-2">

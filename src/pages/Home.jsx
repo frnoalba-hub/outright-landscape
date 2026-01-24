@@ -166,9 +166,9 @@ export default function Home() {
             {/* Removed inline style tag for hero section mobile styling as it will now be handled by SharedHero */}
 
             <SEO
-                title="Outright Landscape | Covina Sod, Pavers & Irrigation Experts"
-                description="Covina's trusted landscape contractor specializing in sod installation, paver patios, concrete work, and irrigation systems. Free AI design preview. Licensed C-27. Call (626) 343-6028."
-                keywords="landscape contractor covina, sod installation covina, paver installation covina, concrete contractor covina, irrigation systems covina, landscaping san gabriel valley, hardscape covina"
+                title="Outright Landscape | Licensed Covina Landscaping Contractor - Pavers, Sod & Irrigation"
+                description="Professional landscape contractor in Covina serving San Gabriel Valley. Expert paver installation, sod, irrigation systems & hardscaping. Licensed C-27 #1073845. 10+ years experience. Free estimates. Call (626) 343-6028."
+                keywords="landscape contractor covina, licensed landscaping covina, paver installation covina, sod installation covina, irrigation systems covina, hardscape covina, landscaping san gabriel valley, C-27 contractor"
                 canonicalUrl="https://outrightlandscape.com"
                 ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
                 ogType="website"
@@ -185,10 +185,9 @@ export default function Home() {
                 title={<>Transform Your<br /><span className="text-green-400">Outdoor Living Space</span></>}
                 subtitle="Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas & the San Gabriel Valley"
                 description="Expert Pavers • Turf Installation • Irrigation Systems • Hardscaping"
-                aiCtaText="Call today for a free AI landscape design preview — see your new yard before we build it."
                 phoneNumber="626-343-6028"
-                trackPhoneClick={handlePhoneClick} // Pass the handler from Home
-                trackQuoteClick={handleQuoteClick} // Pass the handler for the main quote button
+                trackPhoneClick={handlePhoneClick}
+                trackQuoteClick={handleQuoteClick}
                 trackViewServicesClick={() => trackEvent('view_services_click', { event_category: 'navigation', event_label: 'hero_section' })}
                 backgroundImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
                 backgroundImageAlt="cdeefde95_2024-09-14.jpg - Outright Landscape Covina"
@@ -400,6 +399,30 @@ export default function Home() {
                             );
                         })}
                     </nav>
+                </div>
+            </section>
+
+            {/* Social Proof Stats */}
+            <section className="py-12 bg-gray-900 text-white">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div>
+                            <div className="text-3xl sm:text-4xl font-bold text-green-400 mb-2">10+</div>
+                            <div className="text-sm text-gray-400">Years Experience</div>
+                        </div>
+                        <div>
+                            <div className="text-3xl sm:text-4xl font-bold text-green-400 mb-2">500+</div>
+                            <div className="text-sm text-gray-400">Projects Completed</div>
+                        </div>
+                        <div>
+                            <div className="text-3xl sm:text-4xl font-bold text-green-400 mb-2">4.8★</div>
+                            <div className="text-sm text-gray-400">Google Rating</div>
+                        </div>
+                        <div>
+                            <div className="text-3xl sm:text-4xl font-bold text-green-400 mb-2">100%</div>
+                            <div className="text-sm text-gray-400">Licensed & Insured</div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
