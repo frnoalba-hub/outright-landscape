@@ -289,62 +289,52 @@ export default function Home() {
             </section>
 
             {/* Projects Gallery */}
-            <section id="work" className="py-20 sm:py-24 md:py-28 bg-gray-900 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute inset-0" style={{ 
-                        backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.05) 35px, rgba(255,255,255,.05) 70px)',
-                    }}></div>
-                </div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <section id="work" className="py-12 sm:py-16 bg-gray-900">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-16 sm:mb-20"
+                        transition={{ duration: 0.5 }}
+                        className="text-center mb-8"
                     >
-                        <div className="inline-block mb-6">
-                            <div className="bg-green-500 border-2 border-white px-6 py-2">
-                                <span className="text-white font-bold uppercase tracking-wider text-sm">Our Portfolio</span>
-                            </div>
-                        </div>
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-5 tracking-tight leading-tight uppercase">
+                        <span className="inline-block bg-green-500/20 text-green-400 px-4 py-1 rounded-full text-xs font-semibold mb-3">Our Portfolio</span>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">
                             Recent Projects
                         </h2>
-                        <p className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto px-4 leading-relaxed font-medium">
+                        <p className="text-sm text-gray-400">
                             Transforming Outdoor Spaces Across the San Gabriel Valley
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                         {projects.map((project, index) => (
                             <motion.article 
                                 key={index}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.05 }}
-                                className="group relative overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 aspect-square border-4 border-white"
+                                transition={{ duration: 0.4, delay: index * 0.03 }}
+                                className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-400 aspect-[4/3] rounded-lg border border-gray-700"
                             >
                                 <img
                                     src={project.image}
                                     alt={project.alt}
-                                    className="w-full h-full object-cover group-hover:scale-110 group-hover:rotate-2 transition-all duration-700"
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                     loading="lazy"
-                                        width="600"
-                                        height="600"
+                                    width="400"
+                                    height="300"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-green-900/95 via-gray-900/60 to-transparent group-hover:from-green-800/95"></div>
-                                <div className="absolute top-4 left-4">
-                                    <div className="bg-green-500 px-4 py-1 border-2 border-white font-black text-white text-xs uppercase tracking-wider">
+                                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/40 to-transparent"></div>
+                                <div className="absolute top-2 left-2">
+                                    <span className="bg-green-500 px-2 py-0.5 rounded text-white text-[10px] font-semibold uppercase">
                                         Project
-                                    </div>
+                                    </span>
                                 </div>
-                                <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent">
-                                    <h3 className="text-2xl sm:text-3xl font-black mb-2 leading-tight text-white uppercase tracking-wide">{project.title}</h3>
-                                    <div className="w-12 h-1 bg-green-400 mb-3"></div>
-                                    <p className="text-green-300 flex items-center text-base sm:text-lg font-bold uppercase tracking-wider">
-                                        <MapPin className="w-5 h-5 mr-2 flex-shrink-0" aria-hidden="true" />
+                                <div className="absolute bottom-0 left-0 right-0 p-3">
+                                    <h3 className="text-sm sm:text-base font-bold text-white leading-tight mb-1">{project.title}</h3>
+                                    <p className="text-green-400 flex items-center text-xs font-medium">
+                                        <MapPin className="w-3 h-3 mr-1 flex-shrink-0" aria-hidden="true" />
                                         {project.location}
                                     </p>
                                 </div>
@@ -353,14 +343,14 @@ export default function Home() {
                     </div>
 
                     <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        className="text-center mt-12 sm:mt-16"
+                        transition={{ duration: 0.4, delay: 0.2 }}
+                        className="text-center mt-8"
                     >
                         <a href="tel:626-343-6028" aria-label="Start your landscaping project today" onClick={() => handleQuoteClick('projects_section')}>
-                            <Button size="lg" className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold text-lg sm:text-xl px-12 sm:px-14 py-6 sm:py-7 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105">
+                            <Button size="default" className="bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transition-all">
                                 Start Your Project Today
                             </Button>
                         </a>
@@ -369,50 +359,40 @@ export default function Home() {
             </section>
 
             {/* Service Areas */}
-            <section id="service-areas" className="py-20 sm:py-24 md:py-28 bg-white relative overflow-hidden">
-                <div className="absolute inset-0" style={{
-                    backgroundImage: 'linear-gradient(90deg, transparent 49%, #10b981 49%, #10b981 51%, transparent 51%), linear-gradient(0deg, transparent 49%, #10b981 49%, #10b981 51%, transparent 51%)',
-                    backgroundSize: '80px 80px',
-                    opacity: 0.03
-                }}></div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <section id="service-areas" className="py-12 sm:py-16 bg-gray-50">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-16 sm:mb-20"
+                        transition={{ duration: 0.5 }}
+                        className="text-center mb-8"
                     >
-                        <div className="inline-block mb-6">
-                            <div className="bg-gray-900 border-4 border-green-500 px-8 py-2.5 transform -skew-x-6">
-                                <span className="text-green-400 font-black uppercase tracking-widest text-sm inline-block skew-x-6">Service Areas</span>
-                            </div>
-                        </div>
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-5 tracking-tight leading-tight uppercase">
+                        <span className="inline-block bg-green-100 text-green-700 px-4 py-1 rounded-full text-xs font-semibold mb-3">Service Areas</span>
+                        <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                             San Gabriel Valley
                         </h2>
-                        <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto px-4 leading-relaxed font-bold">
+                        <p className="text-sm text-gray-600">
                             Professional Landscape Construction • 20+ Cities
                         </p>
                     </motion.div>
 
-                    <nav aria-label="Service areas" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-5">
+                    <nav aria-label="Service areas" className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3">
                         {locations.map((city, index) => {
                             return (
                                 <motion.a
                                     href={`${createPageUrl('ServiceArea')}?city=${city.slug}`}
                                     key={city.name}
-                                    initial={{ opacity: 0, y: 20 }}
+                                    initial={{ opacity: 0, y: 10 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    transition={{ duration: 0.4, delay: index * 0.02 }}
+                                    transition={{ duration: 0.3, delay: index * 0.015 }}
                                     className="group"
                                     aria-label={`Landscaping services in ${city.name}`}
                                 >
-                                    <div className="bg-gray-900 hover:bg-green-500 border-3 border-gray-900 hover:border-green-500 transition-all duration-300 p-5 text-center group-hover:scale-105 shadow-lg group-hover:shadow-2xl relative overflow-hidden">
-                                        <div className="absolute top-0 right-0 w-8 h-8 bg-green-500 group-hover:bg-white transition-colors"></div>
-                                        <MapPin className="w-7 h-7 mx-auto mb-2.5 text-green-500 group-hover:text-white transition-colors duration-300 relative z-10" aria-hidden="true" />
-                                        <span className="text-sm sm:text-base font-black text-white uppercase tracking-wide transition-colors duration-300 block relative z-10">
+                                    <div className="bg-gray-800 hover:bg-green-500 rounded-lg transition-all duration-300 p-3 text-center group-hover:scale-102 shadow-md">
+                                        <MapPin className="w-4 h-4 mx-auto mb-1 text-green-500 group-hover:text-white transition-colors" aria-hidden="true" />
+                                        <span className="text-xs font-semibold text-white block">
                                             {city.name}
                                         </span>
                                     </div>
@@ -427,29 +407,20 @@ export default function Home() {
             <GoogleReviews />
 
             {/* Why Choose Us */}
-            <section className="py-20 sm:py-24 md:py-28 bg-green-500 text-white relative overflow-hidden">
-                <div className="absolute inset-0 opacity-20">
-                    <div className="absolute inset-0" style={{ 
-                        backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(0,0,0,.1) 50px, rgba(0,0,0,.1) 100px)',
-                    }}></div>
-                </div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <section className="py-12 sm:py-16 bg-green-500 text-white">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div 
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 15 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-16 sm:mb-20"
+                        transition={{ duration: 0.5 }}
+                        className="text-center mb-8"
                     >
-                        <div className="inline-block mb-6">
-                            <div className="bg-white px-8 py-2.5 border-4 border-gray-900">
-                                <span className="text-gray-900 font-black uppercase tracking-widest text-sm">Why Choose Us</span>
-                            </div>
-                        </div>
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-5 tracking-tight leading-tight uppercase">
+                        <span className="inline-block bg-white/20 px-4 py-1 rounded-full text-white text-xs font-semibold mb-3">Why Choose Us</span>
+                        <h2 className="text-2xl sm:text-3xl font-bold mb-2">
                             Outright Landscape
                         </h2>
-                        <p className="text-xl sm:text-2xl text-white max-w-4xl mx-auto px-4 leading-relaxed font-bold">
+                        <p className="text-sm text-white/90">
                             Quality • Integrity • Excellence
                         </p>
                     </motion.div>
@@ -463,19 +434,17 @@ export default function Home() {
                         ].map((item, index) => (
                             <motion.div 
                                 key={index}
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="text-center p-8 bg-gray-900 hover:bg-black transition-all duration-500 border-4 border-white group relative overflow-hidden"
+                                transition={{ duration: 0.4, delay: index * 0.08 }}
+                                className="text-center p-5 bg-gray-900 hover:bg-gray-800 transition-all duration-300 rounded-xl group"
                             >
-                                <div className="absolute top-0 left-0 w-full h-2 bg-white group-hover:bg-green-300 transition-colors"></div>
-                                <div className="w-20 h-20 bg-white border-4 border-green-500 flex items-center justify-center mx-auto mb-5 group-hover:rotate-12 transition-transform duration-500">
-                                    <item.icon className="w-10 h-10 text-green-500" aria-hidden="true" />
+                                <div className="w-12 h-12 bg-green-500/20 border border-green-500 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                                    <item.icon className="w-6 h-6 text-green-400" aria-hidden="true" />
                                 </div>
-                                <h3 className="text-2xl font-black mb-3 uppercase tracking-wide">{item.title}</h3>
-                                <div className="w-12 h-1 bg-green-400 mx-auto mb-3"></div>
-                                <p className="text-base text-white leading-relaxed font-semibold">{item.desc}</p>
+                                <h3 className="text-sm font-bold mb-2">{item.title}</h3>
+                                <p className="text-xs text-white/80 leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
