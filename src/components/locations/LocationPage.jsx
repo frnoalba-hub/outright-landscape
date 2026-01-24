@@ -8,8 +8,10 @@ import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import FAQSchema from '@/components/FAQSchema';
 import SharedHero from '@/components/SharedHero';
 import ContactForm from '@/components/ContactForm';
+import GoogleReviews from '@/components/GoogleReviews';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
+import { motion } from 'framer-motion';
 
 // Map string names to Lucide components
 const iconMap = {
@@ -153,7 +155,7 @@ export default function LocationPage({ cityKey }) {
 
             {/* Hero Section */}
             <SharedHero 
-                title={<>The San Gabriel Valley's<br /><span className="text-green-400">Most Trusted Landscape & Irrigation Contractor</span></>}
+                title={<>{name}'s<br /><span className="text-green-400">Most Trusted Landscape & Irrigation Contractor</span></>}
                 subtitle={`Licensed C-27 landscape contractor serving ${name} & the San Gabriel Valley`}
                 onPhoneClick={trackPhoneClick}
                 onViewServicesClick={() => {}}
@@ -170,100 +172,152 @@ export default function LocationPage({ cityKey }) {
             </section>
 
             {/* Services Section */}
-            <section className="py-16 sm:py-20 bg-gray-50">
+            <section id="services" className="py-16 sm:py-20 bg-gradient-to-b from-white via-gray-50 to-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12 sm:mb-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-12 sm:mb-16"
+                    >
+                        <span className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-4">
+                            Our Services in {name}
+                        </span>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                            Professional Landscaping Services in {name}
+                            Transform Your {name} Property
                         </h2>
                         <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
                             From premium turf installation to complete landscape design, we deliver exceptional results for {name} homeowners and businesses.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                         {services.map((service, idx) => (
-                            <div key={idx} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1">
-                                {getIcon(service.iconName)}
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-green-200"
+                            >
+                                <div className="mb-6">
+                                    {getIcon(service.iconName)}
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
+                                    {service.title}
+                                </h3>
                                 <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
                                 {service.keywords && (
-                                    <div className="flex flex-wrap gap-2 mt-auto">
+                                    <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-100">
                                         {service.keywords.split(', ').map((k, i) => (
-                                            <span key={i} className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-md">
+                                            <span key={i} className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-md font-medium">
                                                 {k}
                                             </span>
                                         ))}
                                     </div>
                                 )}
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Project Gallery */}
-            <section className="py-16 sm:py-20 bg-white">
+            <section id="work" className="py-16 sm:py-20 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12 sm:mb-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-12 sm:mb-16"
+                    >
+                        <span className="inline-block px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-semibold mb-4">
+                            Recent Projects
+                        </span>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                            Our Work in {name} & Surrounding Areas
+                            Our Work in {name}
                         </h2>
-                        <p className="text-lg sm:text-xl text-gray-600">
-                            See our expert landscaping and hardscaping projects
+                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                            Transforming {name} properties with expert landscaping and hardscaping
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                         {projects.map((project, index) => (
-                            <div key={index} className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 aspect-square">
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 aspect-square"
+                            >
                                 <img 
-                                    src={project.image || project.src} // Handle both data formats
+                                    src={project.image || project.src}
                                     alt={`${project.alt || project.title} - ${name}`}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     loading="lazy"
                                     width="600"
                                     height="600"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-90"></div>
-                                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                                    <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
-                                    <p className="text-green-300 text-sm">{project.description}</p>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+                                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{project.title}</h3>
+                                    {project.description && <p className="text-green-300 text-sm">{project.description}</p>}
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Why Choose Us */}
-            <section className="py-16 sm:py-20 bg-green-800 text-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center mb-12 sm:mb-16">
+            {/* Stats Section */}
+            <section className="py-16 sm:py-20 bg-gradient-to-br from-green-600 via-green-700 to-green-800 text-white relative overflow-hidden">
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMS4xLS45LTItMi0yaC0yYy0xLjEgMC0yIC45LTIgMnYyYzAgMS4xLjkgMiAyIDJoMmMxLjEgMCAyLS45IDItMnYtMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-10"></div>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-12 sm:mb-16"
+                    >
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                            Why {name} Trusts Outright Landscape
+                            Trusted by {name} Since 2003
                         </h2>
                         <p className="text-lg sm:text-xl text-green-100">
-                            Local expertise, quality craftsmanship, and outstanding customer service
+                            Over 20 years of excellence in {name} & the San Gabriel Valley
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                         {[
-                            { title: "Licensed & Insured", desc: "CSLB #1073845" },
-                            { title: "10+ Years Experience", desc: "Expert craftsmanship" },
-                            { title: "Free Estimates", desc: "Honest pricing" },
-                            { title: "Local Experts", desc: "We know your area" }
-                        ].map((item, idx) => (
-                            <div key={idx} className="text-center p-4">
-                                <CheckCircle2 className="w-12 h-12 text-green-400 mx-auto mb-4" />
-                                <h3 className="text-lg sm:text-xl font-bold mb-2">{item.title}</h3>
-                                <p className="text-green-100 text-sm sm:text-base">{item.desc}</p>
-                            </div>
+                            { number: "1000+", label: "Projects Completed" },
+                            { number: "20+", label: "Years Experience" },
+                            { number: "5.0", label: "Star Rating" },
+                            { number: "100%", label: "Licensed & Insured" }
+                        ].map((stat, idx) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300"
+                            >
+                                <div className="text-4xl sm:text-5xl font-bold mb-2 text-white">{stat.number}</div>
+                                <p className="text-green-100 text-sm sm:text-base font-medium">{stat.label}</p>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
+
+            {/* Google Reviews */}
+            <GoogleReviews />
             
             {/* FAQs Section */}
             {faqs && (
@@ -283,30 +337,52 @@ export default function LocationPage({ cityKey }) {
             )}
 
             {/* Nearby Service Areas */}
-            <section className="py-12 sm:py-16 bg-white">
-                <div className="max-w-4xl mx-auto px-4 text-center">
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">
-                        Also Serving Nearby Communities
-                    </h2>
+            <section id="service-areas" className="py-12 sm:py-16 bg-gradient-to-b from-white to-gray-50">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-10 sm:mb-12"
+                    >
+                        <span className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-4">
+                            Service Areas
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                            Also Serving Nearby Communities
+                        </h2>
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                            Professional landscaping services throughout the San Gabriel Valley
+                        </p>
+                    </motion.div>
                     <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-                        {filteredNearbyCities.map(city => {
-                            return (
-                                <a key={city.name} href={`${createPageUrl('ServiceArea')}?city=${city.slug}`} className="group">
-                                    <div className="bg-white hover:bg-green-500 border-2 border-gray-200 hover:border-green-500 transition-all duration-300 rounded-xl px-4 sm:px-6 py-2 sm:py-3 group-hover:scale-105 group-hover:shadow-lg">
-                                        <span className="font-semibold text-sm sm:text-base text-gray-700 group-hover:text-white transition-colors flex items-center gap-2">
-                                            {city.name}
-                                            <ArrowRight className="w-4 h-4" />
-                                        </span>
-                                    </div>
-                                </a>
-                            );
-                        })}
+                        {filteredNearbyCities.map((city, idx) => (
+                            <motion.a
+                                key={city.name}
+                                href={`${createPageUrl('ServiceArea')}?city=${city.slug}`}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.3, delay: idx * 0.05 }}
+                                className="group"
+                            >
+                                <div className="bg-white hover:bg-orange-600 border-2 border-gray-200 hover:border-orange-600 transition-all duration-300 rounded-xl px-5 sm:px-7 py-3 sm:py-4 group-hover:scale-105 group-hover:shadow-xl">
+                                    <span className="font-semibold text-sm sm:text-base text-gray-700 group-hover:text-white transition-colors flex items-center gap-2">
+                                        {city.name}
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                </div>
+                            </motion.a>
+                        ))}
                     </div>
                 </div>
             </section>
 
             {/* Contact Form */}
-            <ContactForm cityName={name} darkMode={true} />
+            <section id="contact">
+                <ContactForm cityName={name} darkMode={true} />
+            </section>
 
             {/* Contact Info & Map */}
             <section className="py-12 sm:py-16 bg-gray-50">
