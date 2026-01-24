@@ -1,7 +1,5 @@
 import ArcadiaLandscaping from './pages/ArcadiaLandscaping';
-import AzusaLandscapeConstruction from './pages/AzusaLandscapeConstruction';
 import AzusaLandscaping from './pages/AzusaLandscaping';
-import BaldwinParkLandscapeConstruction from './pages/BaldwinParkLandscapeConstruction';
 import BaldwinParkLandscaping from './pages/BaldwinParkLandscaping';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
@@ -52,9 +50,7 @@ import __Layout from './Layout.jsx';
 
 export const PAGES = {
     "ArcadiaLandscaping": ArcadiaLandscaping,
-    "AzusaLandscapeConstruction": AzusaLandscapeConstruction,
     "AzusaLandscaping": AzusaLandscaping,
-    "BaldwinParkLandscapeConstruction": BaldwinParkLandscapeConstruction,
     "BaldwinParkLandscaping": BaldwinParkLandscaping,
     "Blog": Blog,
     "BlogPost": BlogPost,
