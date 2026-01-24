@@ -381,51 +381,6 @@ export default function LocationPage({ citySlug }) {
             <section id="contact">
                 <ContactForm cityName={name} darkMode={true} />
             </section>
-
-            {/* Contact Info & Map */}
-            <section className="py-12 sm:py-16 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm">
-                            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">Contact Your {name} Experts</h2>
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-3">
-                                    <Phone className="w-5 h-5 text-green-600 flex-shrink-0" />
-                                    <a href="tel:626-343-6028" onClick={() => trackPhoneClick('contact_info')} className="text-green-600 hover:underline font-semibold text-lg">(626) 343-6028</a>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <span className="text-green-600">📧</span>
-                                    <a href="mailto:outrightlandscape@yahoo.com" className="text-green-600 hover:underline">outrightlandscape@yahoo.com</a>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <MapPin className="w-5 h-5 text-green-600 flex-shrink-0" />
-                                    <span className="text-gray-700">Serving {name} & San Gabriel Valley</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <span className="text-green-600">🕒</span>
-                                    <span className="text-gray-700">Mon – Sat, 8:00 AM – 6:00 PM</span>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <span className="text-green-600">🏗️</span>
-                                    <span className="text-gray-700">CSLB #1073845</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="rounded-2xl overflow-hidden shadow-xl h-80 md:h-auto">
-                            <iframe
-                                src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106167.77073!2d-117.9!3d34.09!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2dae3d1d4f715%3A0x2f9d5d33a33e5b8e!2s${encodeURIComponent(name + ", CA")}!5e0!3m2!1sen!2sus!4v1234567890`}
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0, minHeight: '320px' }}
-                                allowFullScreen=""
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                title={`Outright Landscape ${name} Service Area`}
-                            ></iframe>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 }
