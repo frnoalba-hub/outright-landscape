@@ -7,7 +7,6 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import CharterOakLandscapeConstruction from './pages/CharterOakLandscapeConstruction';
 import CharterOakLandscaping from './pages/CharterOakLandscaping';
-import ClaremontLandscapeConstruction from './pages/ClaremontLandscapeConstruction';
 import ClaremontLandscaping from './pages/ClaremontLandscaping';
 import CovinaLandscapeConstruction from './pages/CovinaLandscapeConstruction';
 import CovinaLandscaping from './pages/CovinaLandscaping';
@@ -61,7 +60,6 @@ export const PAGES = {
     "BlogPost": BlogPost,
     "CharterOakLandscapeConstruction": CharterOakLandscapeConstruction,
     "CharterOakLandscaping": CharterOakLandscaping,
-    "ClaremontLandscapeConstruction": ClaremontLandscapeConstruction,
     "ClaremontLandscaping": ClaremontLandscaping,
     "CovinaLandscapeConstruction": CovinaLandscapeConstruction,
     "CovinaLandscaping": CovinaLandscaping,
