@@ -425,26 +425,26 @@ export default function Home() {
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
                         {[
-                            { icon: Shield, title: "Licensed & Insured", desc: "CSLB #1073845 for your complete peace of mind" },
-                            { icon: Zap, title: "Expert Team", desc: "Skilled craftsmen with years of experience" },
-                            { icon: Star, title: "Quality Materials", desc: "Premium products for lasting results" },
-                            { icon: Target, title: "Free Estimates", desc: "Honest, competitive pricing with no hidden fees" }
+                            { icon: Shield, title: "Licensed & Insured", desc: "CSLB #1073845" },
+                            { icon: Zap, title: "Expert Team", desc: "Skilled craftsmen" },
+                            { icon: Star, title: "Quality Materials", desc: "Premium products" },
+                            { icon: Target, title: "Free Estimates", desc: "No hidden fees" }
                         ].map((item, index) => (
                             <motion.div 
                                 key={index}
-                                initial={{ opacity: 0, y: 20 }}
+                                initial={{ opacity: 0, y: 15 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: index * 0.08 }}
-                                className="text-center p-5 bg-gray-900 hover:bg-gray-800 transition-all duration-300 rounded-xl group"
+                                transition={{ duration: 0.3, delay: index * 0.05 }}
+                                className="text-center p-4 bg-gray-900 rounded-lg"
                             >
-                                <div className="w-12 h-12 bg-green-500/20 border border-green-500 rounded-lg flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
-                                    <item.icon className="w-6 h-6 text-green-400" aria-hidden="true" />
+                                <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <item.icon className="w-5 h-5 text-green-400" aria-hidden="true" />
                                 </div>
-                                <h3 className="text-sm font-bold mb-2">{item.title}</h3>
-                                <p className="text-xs text-white/80 leading-relaxed">{item.desc}</p>
+                                <h3 className="text-xs font-semibold mb-1">{item.title}</h3>
+                                <p className="text-[10px] text-white/70">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>
