@@ -10,10 +10,12 @@ export default function Sitemap() {
         { url: '', priority: '1.0', changefreq: 'weekly' },
         { url: 'Irrigation', priority: '0.9', changefreq: 'weekly' },
         ...locations.map(city => ({
-          url: `${city.slug}-landscaping`,
-          priority: city.slug === 'covina' || city.slug === 'san-gabriel-valley' ? '0.9' : '0.8',
+          url: city.slug,
+          priority: city.slug === 'covina-landscaping' || city.slug === 'san-gabriel-landscaping' ? '0.9' : '0.8',
           changefreq: 'weekly'
         })),
+        // Alternate Covina URL for Google Ads
+        { url: 'covina-landscape', priority: '0.9', changefreq: 'weekly' },
         // Irrigation service pages
         { url: 'glendora-sprinkler-repair', priority: '0.8', changefreq: 'weekly' },
         { url: 'glendora-irrigation-repair', priority: '0.8', changefreq: 'weekly' },
