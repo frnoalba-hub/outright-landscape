@@ -106,6 +106,7 @@ import westCovinaIrrigationRepair from './pages/west-covina-irrigation-repair';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
 import westCovinaSprinklerRepair from './pages/west-covina-sprinkler-repair';
 import westCovinaSprinklerValves from './pages/west-covina-sprinkler-valves';
+import SEOAudit from './pages/SEOAudit';
 import __Layout from './Layout.jsx';
 
 
@@ -218,6 +219,7 @@ export const PAGES = {
     "west-covina-landscaping": westCovinaLandscaping,
     "west-covina-sprinkler-repair": westCovinaSprinklerRepair,
     "west-covina-sprinkler-valves": westCovinaSprinklerValves,
+    "SEOAudit": SEOAudit,
 }
 
 export const pagesConfig = {
