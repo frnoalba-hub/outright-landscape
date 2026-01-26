@@ -301,8 +301,8 @@ export default function Layout({ children }) {
                 <li><a href={createPageUrl("Irrigation")} className="text-gray-400 hover:text-white transition-colors">Irrigation</a></li>
                 <li><a href={createPageUrl("Home") + "#work"} className="text-gray-400 hover:text-white transition-colors">Our Work</a></li>
                 <li><a href={createPageUrl("Home") + "#contact"} className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                <li><a href={createPageUrl("Sitemap")} className="text-gray-400 hover:text-white transition-colors">Sitemap</a></li>
-              </ul>
+                <li><a href="https://outrightlandscape.com/api/sitemap" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">Sitemap</a></li>
+                </ul>
             </div>
 
             <div>

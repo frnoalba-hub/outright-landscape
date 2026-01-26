@@ -41,6 +41,7 @@ import templeCityLandscaping from './pages/temple-city-landscaping';
 import walnutLandscaping from './pages/walnut-landscaping';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
 import Robots from './pages/Robots';
+import AdminSEO from './pages/AdminSEO';
 import __Layout from './Layout.jsx';
 
 
@@ -88,6 +89,7 @@ export const PAGES = {
     "walnut-landscaping": walnutLandscaping,
     "west-covina-landscaping": westCovinaLandscaping,
     "Robots": Robots,
+    "AdminSEO": AdminSEO,
 }
 
 export const pagesConfig = {
