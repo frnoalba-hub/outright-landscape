@@ -1,13 +1,10 @@
 import AdminSEO from './pages/AdminSEO';
-import BaldwinParkLandscaping from './pages/BaldwinParkLandscaping';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Home from './pages/Home';
 import Irrigation from './pages/Irrigation';
 import Robots from './pages/Robots';
-import SanDimasLandscaping from './pages/SanDimasLandscaping';
 import ServiceArea from './pages/ServiceArea';
-import TempleCityLandscaping from './pages/TempleCityLandscaping';
 import arcadiaLandscaping from './pages/arcadia-landscaping';
 import azusaLandscaping from './pages/azusa-landscaping';
 import baldwinParkLandscaping from './pages/baldwin-park-landscaping';
@@ -31,7 +28,6 @@ import laVerneSprinklerValves from './pages/la-verne-sprinkler-valves';
 import monroviaLandscaping from './pages/monrovia-landscaping';
 import pasadenaLandscaping from './pages/pasadena-landscaping';
 import pomonaLandscaping from './pages/pomona-landscaping';
-import pomonalandscaping from './pages/pomonalandscaping';
 import rowlandHeightsLandscaping from './pages/rowland-heights-landscaping';
 import sanDimasDripIrrigation from './pages/san-dimas-drip-irrigation';
 import sanDimasIrrigationRepair from './pages/san-dimas-irrigation-repair';
@@ -47,15 +43,12 @@ import __Layout from './Layout.jsx';
 
 export const PAGES = {
     "AdminSEO": AdminSEO,
-    "BaldwinParkLandscaping": BaldwinParkLandscaping,
     "Blog": Blog,
     "BlogPost": BlogPost,
     "Home": Home,
     "Irrigation": Irrigation,
     "Robots": Robots,
-    "SanDimasLandscaping": SanDimasLandscaping,
     "ServiceArea": ServiceArea,
-    "TempleCityLandscaping": TempleCityLandscaping,
     "arcadia-landscaping": arcadiaLandscaping,
     "azusa-landscaping": azusaLandscaping,
     "baldwin-park-landscaping": baldwinParkLandscaping,
@@ -79,7 +72,6 @@ export const PAGES = {
     "monrovia-landscaping": monroviaLandscaping,
     "pasadena-landscaping": pasadenaLandscaping,
     "pomona-landscaping": pomonaLandscaping,
-    "pomonalandscaping": pomonalandscaping,
     "rowland-heights-landscaping": rowlandHeightsLandscaping,
     "san-dimas-drip-irrigation": sanDimasDripIrrigation,
     "san-dimas-irrigation-repair": sanDimasIrrigationRepair,
