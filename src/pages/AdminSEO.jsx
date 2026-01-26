@@ -12,6 +12,8 @@ export default function AdminSEO() {
     const [selectedPage, setSelectedPage] = useState('');
     const [editingSEO, setEditingSEO] = useState(null);
     const [isGenerating, setIsGenerating] = useState(false);
+    const [isGeneratingAll, setIsGeneratingAll] = useState(false);
+    const [generationProgress, setGenerationProgress] = useState({ done: 0, total: 0 });
     const queryClient = useQueryClient();
 
     // List of all pages to manage SEO for
@@ -173,6 +175,44 @@ export default function AdminSEO() {
         }
     };
 
+    const handleGenerateAll = async () => {
+        const pagesToGenerate = pages.filter(page => !getSEOForPage(page.path));
+        
+        if (pagesToGenerate.length === 0) {
+            toast.info('All pages already have SEO data');
+            return;
+        }
+
+        setIsGeneratingAll(true);
+        setGenerationProgress({ done: 0, total: pagesToGenerate.length });
+
+        const promises = pagesToGenerate.map(async (page) => {
+            try {
+                const cityName = page.name.split(' ')[0];
+                const serviceType = page.name.includes('Sprinkler') || page.name.includes('Irrigation') 
+                    ? 'irrigation repair' 
+                    : 'landscaping';
+
+                await base44.functions.invoke('generatePageSEO', {
+                    page_path: page.path,
+                    city_name: cityName,
+                    service_type: serviceType
+                });
+
+                setGenerationProgress(prev => ({ ...prev, done: prev.done + 1 }));
+            } catch (error) {
+                console.error(`Failed to generate SEO for ${page.path}:`, error);
+            }
+        });
+
+        await Promise.all(promises);
+        
+        queryClient.invalidateQueries({ queryKey: ['pageSEO'] });
+        toast.success(`SEO generated for ${pagesToGenerate.length} pages!`);
+        setIsGeneratingAll(false);
+        setGenerationProgress({ done: 0, total: 0 });
+    };
+
     const handleSaveManual = async () => {
         if (!editingSEO) return;
 
@@ -206,9 +246,29 @@ export default function AdminSEO() {
     return (
         <div className="min-h-screen bg-gray-50 py-12 px-4">
             <div className="max-w-7xl mx-auto">
-                <div className="mb-8">
-                    <h1 className="text-4xl font-bold text-gray-900 mb-2">SEO Management</h1>
-                    <p className="text-gray-600">AI-powered meta titles, descriptions, and keywords for all pages</p>
+                <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                    <div>
+                        <h1 className="text-4xl font-bold text-gray-900 mb-2">SEO Management</h1>
+                        <p className="text-gray-600">AI-powered meta titles, descriptions, and keywords for all pages</p>
+                    </div>
+                    <Button
+                        onClick={handleGenerateAll}
+                        disabled={isGeneratingAll}
+                        size="lg"
+                        className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 whitespace-nowrap"
+                    >
+                        {isGeneratingAll ? (
+                            <>
+                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                Generating {generationProgress.done}/{generationProgress.total}
+                            </>
+                        ) : (
+                            <>
+                                <Sparkles className="w-4 h-4 mr-2" />
+                                Generate All Missing SEO
+                            </>
+                        )}
+                    </Button>
                 </div>
 
                 <div className="grid lg:grid-cols-3 gap-8">
