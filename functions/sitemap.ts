@@ -1,4 +1,4 @@
-Deno.serve(async (req) => {
+export default Deno.serve(async (req) => {
     const pages = [
         { url: '', priority: '1.0', changefreq: 'weekly' },
         { url: 'Irrigation', priority: '0.9', changefreq: 'weekly' },
