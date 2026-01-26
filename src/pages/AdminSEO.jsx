@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Loader2, Sparkles, Save, RefreshCw, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { Badge } from '@/components/ui/badge';
+import { Loader2, Sparkles, Save, CheckCircle2, AlertCircle, Search, X, Filter } from 'lucide-react';
 import { toast } from 'sonner';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AdminSEO() {
     const [selectedPage, setSelectedPage] = useState('');
     const [editingSEO, setEditingSEO] = useState(null);
     const [isGenerating, setIsGenerating] = useState(false);
     const [isGeneratingAll, setIsGeneratingAll] = useState(false);
-    const [generationProgress, setGenerationProgress] = useState({ done: 0, total: 0 });
+    const [generationProgress, setGenerationProgress] = useState({ done: 0, total: 0, failed: 0 });
+    const [searchQuery, setSearchQuery] = useState('');
+    const [filterStatus, setFilterStatus] = useState('all'); // 'all', 'missing', 'complete'
+    const [isSaving, setIsSaving] = useState(false);
     const queryClient = useQueryClient();
 
     // List of all pages to manage SEO for
@@ -184,7 +190,7 @@ export default function AdminSEO() {
         }
 
         setIsGeneratingAll(true);
-        setGenerationProgress({ done: 0, total: pagesToGenerate.length });
+        setGenerationProgress({ done: 0, total: pagesToGenerate.length, failed: 0 });
 
         const promises = pagesToGenerate.map(async (page) => {
             try {
@@ -202,20 +208,29 @@ export default function AdminSEO() {
                 setGenerationProgress(prev => ({ ...prev, done: prev.done + 1 }));
             } catch (error) {
                 console.error(`Failed to generate SEO for ${page.path}:`, error);
+                setGenerationProgress(prev => ({ ...prev, failed: prev.failed + 1 }));
             }
         });
 
         await Promise.all(promises);
         
         queryClient.invalidateQueries({ queryKey: ['pageSEO'] });
-        toast.success(`SEO generated for ${pagesToGenerate.length} pages!`);
+        
+        const { done, failed } = generationProgress;
+        if (failed > 0) {
+            toast.warning(`SEO generated for ${done} pages, ${failed} failed`);
+        } else {
+            toast.success(`SEO generated for ${pagesToGenerate.length} pages!`);
+        }
+        
         setIsGeneratingAll(false);
-        setGenerationProgress({ done: 0, total: 0 });
+        setGenerationProgress({ done: 0, total: 0, failed: 0 });
     };
 
     const handleSaveManual = async () => {
         if (!editingSEO) return;
 
+        setIsSaving(true);
         try {
             await base44.entities.PageSEO.update(editingSEO.id, {
                 meta_title: editingSEO.meta_title,
@@ -227,10 +242,31 @@ export default function AdminSEO() {
             toast.success('SEO data saved!');
             queryClient.invalidateQueries({ queryKey: ['pageSEO'] });
         } catch (error) {
-            toast.error('Failed to save SEO data');
+            toast.error('Failed to save SEO data. Please try again.');
             console.error(error);
+        } finally {
+            setIsSaving(false);
         }
     };
+
+    // Filter and search pages
+    const filteredPages = pages.filter(page => {
+        const matchesSearch = page.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              page.path.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        if (!matchesSearch) return false;
+        
+        const hasSEO = !!getSEOForPage(page.path);
+        if (filterStatus === 'missing') return !hasSEO;
+        if (filterStatus === 'complete') return hasSEO;
+        return true;
+    });
+
+    // Stats
+    const totalPages = pages.length;
+    const pagesWithSEO = allSEOData.length;
+    const missingPages = totalPages - pagesWithSEO;
+    const completionPercent = Math.round((pagesWithSEO / totalPages) * 100);
 
     const getSEOForPage = (pagePath) => {
         return allSEOData.find(seo => seo.page_path === pagePath);
@@ -244,207 +280,356 @@ export default function AdminSEO() {
     }, [selectedPage, allSEOData]);
 
     return (
-        <div className="min-h-screen bg-gray-50 pt-24 pb-12 px-4">
-            <div className="max-w-7xl mx-auto">
-                <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div>
-                        <h1 className="text-4xl font-bold text-gray-900 mb-2">SEO Management</h1>
-                        <p className="text-gray-600">AI-powered meta titles, descriptions, and keywords for all pages</p>
+        <div className="adminSeoPage min-h-screen bg-gray-50 pt-24 pb-12 px-4">
+            <div className="adminSeoContainer max-w-7xl mx-auto">
+                {/* Header Section */}
+                <div className="adminSeoHeader mb-8">
+                    <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+                        <div>
+                            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-2">SEO Management</h1>
+                            <p className="text-gray-600">AI-powered meta titles, descriptions, and keywords for all pages</p>
+                        </div>
+                        <Button
+                            onClick={handleGenerateAll}
+                            disabled={isGeneratingAll || missingPages === 0}
+                            size="lg"
+                            className="adminSeoGenerateAllBtn bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 whitespace-nowrap min-h-[44px]"
+                        >
+                            {isGeneratingAll ? (
+                                <>
+                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                    Generating {generationProgress.done}/{generationProgress.total}
+                                </>
+                            ) : (
+                                <>
+                                    <Sparkles className="w-4 h-4 mr-2" />
+                                    Generate All Missing ({missingPages})
+                                </>
+                            )}
+                        </Button>
                     </div>
-                    <Button
-                        onClick={handleGenerateAll}
-                        disabled={isGeneratingAll}
-                        size="lg"
-                        className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 whitespace-nowrap"
-                    >
-                        {isGeneratingAll ? (
-                            <>
-                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                Generating {generationProgress.done}/{generationProgress.total}
-                            </>
-                        ) : (
-                            <>
-                                <Sparkles className="w-4 h-4 mr-2" />
-                                Generate All Missing SEO
-                            </>
+
+                    {/* Progress Bar for Bulk Generation */}
+                    <AnimatePresence>
+                        {isGeneratingAll && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="adminSeoBulkProgress mb-6"
+                            >
+                                <Card className="border-purple-200 bg-purple-50">
+                                    <CardContent className="p-4">
+                                        <div className="flex items-center justify-between mb-2">
+                                            <span className="text-sm font-medium text-purple-700">
+                                                Generating SEO data...
+                                            </span>
+                                            <span className="text-sm text-purple-600">
+                                                {generationProgress.done} / {generationProgress.total} complete
+                                                {generationProgress.failed > 0 && (
+                                                    <span className="text-red-500 ml-2">
+                                                        ({generationProgress.failed} failed)
+                                                    </span>
+                                                )}
+                                            </span>
+                                        </div>
+                                        <Progress 
+                                            value={(generationProgress.done / generationProgress.total) * 100} 
+                                            className="h-2"
+                                        />
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
                         )}
-                    </Button>
+                    </AnimatePresence>
+
+                    {/* Stats Cards */}
+                    <div className="adminSeoStats grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <Card className="adminSeoStatCard">
+                            <CardContent className="p-4 text-center">
+                                <div className="text-2xl font-bold text-gray-900">{totalPages}</div>
+                                <div className="text-xs text-gray-500">Total Pages</div>
+                            </CardContent>
+                        </Card>
+                        <Card className="adminSeoStatCard">
+                            <CardContent className="p-4 text-center">
+                                <div className="text-2xl font-bold text-green-600">{pagesWithSEO}</div>
+                                <div className="text-xs text-gray-500">With SEO</div>
+                            </CardContent>
+                        </Card>
+                        <Card className="adminSeoStatCard">
+                            <CardContent className="p-4 text-center">
+                                <div className="text-2xl font-bold text-orange-500">{missingPages}</div>
+                                <div className="text-xs text-gray-500">Missing SEO</div>
+                            </CardContent>
+                        </Card>
+                        <Card className="adminSeoStatCard">
+                            <CardContent className="p-4 text-center">
+                                <div className="text-2xl font-bold text-purple-600">{completionPercent}%</div>
+                                <div className="text-xs text-gray-500">Complete</div>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-8">
+                <div className="adminSeoContent grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {/* Pages List */}
-                    <Card className="lg:col-span-1">
-                        <CardHeader>
-                            <CardTitle>Pages</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-2 max-h-[600px] overflow-y-auto">
-                            {pages.map(page => {
-                                const seo = getSEOForPage(page.path);
-                                const hasData = !!seo;
-
-                                return (
+                    <Card className="adminSeoPagesList lg:col-span-1">
+                        <CardHeader className="pb-3">
+                            <CardTitle className="text-lg">Pages</CardTitle>
+                            {/* Search */}
+                            <div className="adminSeoSearch relative mt-3">
+                                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                <Input
+                                    placeholder="Search pages..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="pl-9 pr-9 h-10"
+                                />
+                                {searchQuery && (
                                     <button
-                                        key={page.path}
-                                        onClick={() => setSelectedPage(page.path)}
-                                        className={`w-full text-left p-3 rounded-lg transition-all ${
-                                            selectedPage === page.path
-                                                ? 'bg-green-100 border-2 border-green-500'
-                                                : 'bg-white border border-gray-200 hover:border-green-300'
+                                        onClick={() => setSearchQuery('')}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                                    >
+                                        <X className="w-4 h-4" />
+                                    </button>
+                                )}
+                            </div>
+                            {/* Filter Tabs */}
+                            <div className="adminSeoFilters flex gap-2 mt-3">
+                                {[
+                                    { value: 'all', label: 'All' },
+                                    { value: 'missing', label: 'Missing' },
+                                    { value: 'complete', label: 'Complete' }
+                                ].map(filter => (
+                                    <button
+                                        key={filter.value}
+                                        onClick={() => setFilterStatus(filter.value)}
+                                        className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all min-h-[32px] ${
+                                            filterStatus === filter.value
+                                                ? 'bg-green-600 text-white'
+                                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                         }`}
                                     >
-                                        <div className="flex items-center justify-between">
-                                            <span className="font-medium text-sm">{page.name}</span>
-                                            {hasData ? (
-                                                <CheckCircle2 className="w-4 h-4 text-green-600" />
-                                            ) : (
-                                                <AlertCircle className="w-4 h-4 text-gray-400" />
-                                            )}
-                                        </div>
-                                        <div className="text-xs text-gray-500 mt-1">{page.path}</div>
+                                        {filter.label}
                                     </button>
-                                );
-                            })}
+                                ))}
+                            </div>
+                        </CardHeader>
+                        <CardContent className="adminSeoPageItems space-y-2 max-h-[500px] overflow-y-auto pt-0">
+                            {filteredPages.length === 0 ? (
+                                <div className="text-center py-8 text-gray-500">
+                                    <Filter className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                                    <p className="text-sm">No pages found</p>
+                                </div>
+                            ) : (
+                                filteredPages.map(page => {
+                                    const seo = getSEOForPage(page.path);
+                                    const hasData = !!seo;
+
+                                    return (
+                                        <motion.button
+                                            key={page.path}
+                                            onClick={() => setSelectedPage(page.path)}
+                                            whileTap={{ scale: 0.98 }}
+                                            className={`adminSeoPageItem w-full text-left p-3 rounded-lg transition-all min-h-[60px] ${
+                                                selectedPage === page.path
+                                                    ? 'bg-green-100 border-2 border-green-500 shadow-sm'
+                                                    : 'bg-white border border-gray-200 hover:border-green-300 hover:shadow-sm'
+                                            }`}
+                                        >
+                                            <div className="flex items-center justify-between">
+                                                <span className="font-medium text-sm truncate pr-2">{page.name}</span>
+                                                {hasData ? (
+                                                    <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
+                                                ) : (
+                                                    <AlertCircle className="w-4 h-4 text-orange-400 flex-shrink-0" />
+                                                )}
+                                            </div>
+                                            <div className="text-xs text-gray-500 mt-1 truncate">{page.path}</div>
+                                        </motion.button>
+                                    );
+                                })
+                            )}
                         </CardContent>
                     </Card>
 
                     {/* SEO Editor */}
-                    <Card className="lg:col-span-2">
-                        <CardHeader>
-                            <CardTitle>
-                                {selectedPage 
-                                    ? pages.find(p => p.path === selectedPage)?.name 
-                                    : 'Select a page to manage SEO'}
-                            </CardTitle>
+                    <Card className="adminSeoEditor lg:col-span-2">
+                        <CardHeader className="pb-3">
+                            <div className="flex items-center justify-between">
+                                <CardTitle className="text-lg">
+                                    {selectedPage 
+                                        ? pages.find(p => p.path === selectedPage)?.name 
+                                        : 'Select a page to manage SEO'}
+                                </CardTitle>
+                                {selectedPage && editingSEO && (
+                                    <Badge variant={editingSEO.ai_generated ? 'secondary' : 'outline'}>
+                                        {editingSEO.ai_generated ? '✨ AI Generated' : 'Manual'}
+                                    </Badge>
+                                )}
+                            </div>
                         </CardHeader>
                         <CardContent>
-                            {!selectedPage ? (
-                                <div className="text-center py-12 text-gray-500">
-                                    <Sparkles className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                                    <p>Select a page from the list to generate or edit SEO metadata</p>
-                                </div>
-                            ) : (
-                                <div className="space-y-6">
-                                    {/* Generate Button */}
-                                    <div className="flex gap-3">
-                                        <Button
-                                            onClick={() => {
-                                                const page = pages.find(p => p.path === selectedPage);
-                                                handleGenerateSEO(selectedPage, page.name);
-                                            }}
-                                            disabled={isGenerating}
-                                            className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
-                                        >
-                                            {isGenerating ? (
-                                                <>
-                                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                                    Generating...
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <Sparkles className="w-4 h-4 mr-2" />
-                                                    {editingSEO ? 'Regenerate with AI' : 'Generate with AI'}
-                                                </>
-                                            )}
-                                        </Button>
-                                        {editingSEO && (
+                            <AnimatePresence mode="wait">
+                                {!selectedPage ? (
+                                    <motion.div
+                                        key="empty"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        className="adminSeoEmptyState text-center py-12 text-gray-500"
+                                    >
+                                        <Sparkles className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                                        <p className="text-sm">Select a page from the list to generate or edit SEO metadata</p>
+                                    </motion.div>
+                                ) : (
+                                    <motion.div
+                                        key={selectedPage}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        className="adminSeoForm space-y-6"
+                                    >
+                                        {/* Action Buttons */}
+                                        <div className="adminSeoActions flex flex-wrap gap-3">
                                             <Button
-                                                onClick={handleSaveManual}
-                                                variant="outline"
+                                                onClick={() => {
+                                                    const page = pages.find(p => p.path === selectedPage);
+                                                    handleGenerateSEO(selectedPage, page.name);
+                                                }}
+                                                disabled={isGenerating}
+                                                className="adminSeoGenerateBtn bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 min-h-[44px]"
                                             >
-                                                <Save className="w-4 h-4 mr-2" />
-                                                Save Changes
+                                                {isGenerating ? (
+                                                    <>
+                                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                        Generating...
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Sparkles className="w-4 h-4 mr-2" />
+                                                        {editingSEO ? 'Regenerate with AI' : 'Generate with AI'}
+                                                    </>
+                                                )}
                                             </Button>
-                                        )}
-                                    </div>
-
-                                    {editingSEO && (
-                                        <>
-                                            {/* Meta Title */}
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                    Meta Title
-                                                    <span className="text-gray-500 ml-2">
-                                                        ({editingSEO.meta_title?.length || 0}/60 chars)
-                                                    </span>
-                                                </label>
-                                                <Input
-                                                    value={editingSEO.meta_title || ''}
-                                                    onChange={(e) => setEditingSEO({
-                                                        ...editingSEO,
-                                                        meta_title: e.target.value
-                                                    })}
-                                                    placeholder="Enter meta title..."
-                                                    className="font-medium"
-                                                />
-                                            </div>
-
-                                            {/* Meta Description */}
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                    Meta Description
-                                                    <span className="text-gray-500 ml-2">
-                                                        ({editingSEO.meta_description?.length || 0}/160 chars)
-                                                    </span>
-                                                </label>
-                                                <Textarea
-                                                    value={editingSEO.meta_description || ''}
-                                                    onChange={(e) => setEditingSEO({
-                                                        ...editingSEO,
-                                                        meta_description: e.target.value
-                                                    })}
-                                                    placeholder="Enter meta description..."
-                                                    rows={3}
-                                                />
-                                            </div>
-
-                                            {/* Keywords */}
-                                            <div>
-                                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                    Keywords
-                                                </label>
-                                                <Textarea
-                                                    value={editingSEO.keywords?.join(', ') || ''}
-                                                    onChange={(e) => setEditingSEO({
-                                                        ...editingSEO,
-                                                        keywords: e.target.value.split(',').map(k => k.trim()).filter(k => k)
-                                                    })}
-                                                    placeholder="Enter keywords separated by commas..."
-                                                    rows={3}
-                                                />
-                                                <div className="flex flex-wrap gap-2 mt-3">
-                                                    {editingSEO.keywords?.map((keyword, idx) => (
-                                                        <span
-                                                            key={idx}
-                                                            className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm"
-                                                        >
-                                                            {keyword}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            </div>
-
-                                            {/* Metadata */}
-                                            <div className="pt-4 border-t border-gray-200">
-                                                <div className="flex items-center gap-2 text-sm text-gray-600">
-                                                    {editingSEO.ai_generated ? (
-                                                        <span className="flex items-center gap-1">
-                                                            <Sparkles className="w-4 h-4 text-purple-500" />
-                                                            AI Generated
-                                                        </span>
+                                            {editingSEO && (
+                                                <Button
+                                                    onClick={handleSaveManual}
+                                                    variant="outline"
+                                                    disabled={isSaving}
+                                                    className="adminSeoSaveBtn min-h-[44px]"
+                                                >
+                                                    {isSaving ? (
+                                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                                                     ) : (
-                                                        <span>Manually Edited</span>
+                                                        <Save className="w-4 h-4 mr-2" />
                                                     )}
-                                                    {editingSEO.last_generated && (
-                                                        <span className="ml-4">
-                                                            Last updated: {new Date(editingSEO.last_generated).toLocaleDateString()}
+                                                    Save Changes
+                                                </Button>
+                                            )}
+                                        </div>
+
+                                        {editingSEO ? (
+                                            <div className="adminSeoFields space-y-5">
+                                                {/* Meta Title */}
+                                                <div className="adminSeoField">
+                                                    <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
+                                                        <span>Meta Title</span>
+                                                        <span className={`text-xs ${
+                                                            (editingSEO.meta_title?.length || 0) > 60 
+                                                                ? 'text-red-500' 
+                                                                : 'text-gray-400'
+                                                        }`}>
+                                                            {editingSEO.meta_title?.length || 0}/60
                                                         </span>
+                                                    </label>
+                                                    <Input
+                                                        value={editingSEO.meta_title || ''}
+                                                        onChange={(e) => setEditingSEO({
+                                                            ...editingSEO,
+                                                            meta_title: e.target.value
+                                                        })}
+                                                        placeholder="Enter meta title..."
+                                                        className="font-medium"
+                                                    />
+                                                </div>
+
+                                                {/* Meta Description */}
+                                                <div className="adminSeoField">
+                                                    <label className="flex items-center justify-between text-sm font-medium text-gray-700 mb-2">
+                                                        <span>Meta Description</span>
+                                                        <span className={`text-xs ${
+                                                            (editingSEO.meta_description?.length || 0) > 160 
+                                                                ? 'text-red-500' 
+                                                                : 'text-gray-400'
+                                                        }`}>
+                                                            {editingSEO.meta_description?.length || 0}/160
+                                                        </span>
+                                                    </label>
+                                                    <Textarea
+                                                        value={editingSEO.meta_description || ''}
+                                                        onChange={(e) => setEditingSEO({
+                                                            ...editingSEO,
+                                                            meta_description: e.target.value
+                                                        })}
+                                                        placeholder="Enter meta description..."
+                                                        rows={3}
+                                                    />
+                                                </div>
+
+                                                {/* Keywords */}
+                                                <div className="adminSeoField">
+                                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                        Keywords
+                                                    </label>
+                                                    <Textarea
+                                                        value={editingSEO.keywords?.join(', ') || ''}
+                                                        onChange={(e) => setEditingSEO({
+                                                            ...editingSEO,
+                                                            keywords: e.target.value.split(',').map(k => k.trim()).filter(k => k)
+                                                        })}
+                                                        placeholder="Enter keywords separated by commas..."
+                                                        rows={2}
+                                                    />
+                                                    {editingSEO.keywords?.length > 0 && (
+                                                        <div className="adminSeoKeywords flex flex-wrap gap-2 mt-3">
+                                                            {editingSEO.keywords.map((keyword, idx) => (
+                                                                <Badge
+                                                                    key={idx}
+                                                                    variant="secondary"
+                                                                    className="bg-green-100 text-green-800 hover:bg-green-200"
+                                                                >
+                                                                    {keyword}
+                                                                </Badge>
+                                                            ))}
+                                                        </div>
                                                     )}
                                                 </div>
+
+                                                {/* Metadata Footer */}
+                                                <div className="adminSeoMeta pt-4 border-t border-gray-200">
+                                                    <div className="flex flex-wrap items-center gap-4 text-xs text-gray-500">
+                                                        {editingSEO.last_generated && (
+                                                            <span>
+                                                                Last updated: {new Date(editingSEO.last_generated).toLocaleDateString()}
+                                                            </span>
+                                                        )}
+                                                        <span className="text-gray-400">
+                                                            Path: {selectedPage}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </>
-                                    )}
-                                </div>
-                            )}
+                                        ) : (
+                                            <div className="adminSeoNoData text-center py-8 text-gray-500 bg-gray-50 rounded-lg">
+                                                <AlertCircle className="w-8 h-8 mx-auto mb-2 text-orange-400" />
+                                                <p className="text-sm">No SEO data yet. Click "Generate with AI" to create.</p>
+                                            </div>
+                                        )}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </CardContent>
                     </Card>
                 </div>
