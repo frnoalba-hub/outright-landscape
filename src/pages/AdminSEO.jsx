@@ -153,6 +153,10 @@ export default function AdminSEO() {
         queryFn: () => base44.entities.PageSEO.list(null, 100),
     });
 
+    const getSEOForPage = (pagePath) => {
+        return allSEOData.find(seo => seo.page_path === pagePath);
+    };
+
     const handleGenerateSEO = async (pagePath, pageName) => {
         setIsGenerating(true);
         try {
@@ -267,10 +271,6 @@ export default function AdminSEO() {
     const pagesWithSEO = allSEOData.length;
     const missingPages = totalPages - pagesWithSEO;
     const completionPercent = Math.round((pagesWithSEO / totalPages) * 100);
-
-    const getSEOForPage = (pagePath) => {
-        return allSEOData.find(seo => seo.page_path === pagePath);
-    };
 
     useEffect(() => {
         if (selectedPage) {
