@@ -24,7 +24,14 @@ export default function SEOAudit() {
 
     const { data: audits = [], isLoading } = useQuery({
         queryKey: ['seoAudits'],
-        queryFn: () => base44.entities.SEOAudit.list('-audit_date', 10),
+        queryFn: async () => {
+            try {
+                return await base44.entities.SEOAudit.list('-audit_date', 10);
+            } catch (error) {
+                console.error('Failed to load audits:', error);
+                return [];
+            }
+        },
     });
 
     const latestAudit = audits[0];
