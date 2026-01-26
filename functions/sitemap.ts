@@ -1,7 +1,6 @@
-Deno.serve(async (req) => {
-  try {
-    const today = new Date().toISOString().split('T')[0];
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+Deno.serve(async () => {
+  const today = new Date().toISOString().split('T')[0];
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://outrightlandscape.com/arcadia-landscaping</loc>
@@ -129,7 +128,6 @@ Deno.serve(async (req) => {
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Irrigation service pages -->
   <url>
     <loc>https://outrightlandscape.com/glendora-sprinkler-repair</loc>
     <lastmod>${today}</lastmod>
@@ -204,17 +202,11 @@ Deno.serve(async (req) => {
   </url>
 </urlset>`;
 
-    return new Response(xml, {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'no-cache'
-      }
-    });
-  } catch (_error) {
-    return new Response('Internal Server Error', {
-      status: 500,
-      headers: { 'Content-Type': 'text/plain' }
-    });
-  }
+  return new Response(xml, {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/xml',
+      'Cache-Control': 'no-cache'
+    }
+  });
 });
