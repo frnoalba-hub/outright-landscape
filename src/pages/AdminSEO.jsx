@@ -16,11 +16,14 @@ export default function AdminSEO() {
 
     // List of all pages to manage SEO for
     const pages = [
+        { path: '/', name: 'Home' },
+        { path: '/irrigation', name: 'Irrigation' },
         { path: '/arcadia-landscaping', name: 'Arcadia Landscaping' },
         { path: '/azusa-landscaping', name: 'Azusa Landscaping' },
         { path: '/baldwin-park-landscaping', name: 'Baldwin Park Landscaping' },
         { path: '/charter-oak-landscaping', name: 'Charter Oak Landscaping' },
         { path: '/claremont-landscaping', name: 'Claremont Landscaping' },
+        { path: '/covina-landscape', name: 'Covina Landscape' },
         { path: '/covina-landscaping', name: 'Covina Landscaping' },
         { path: '/diamond-bar-landscaping', name: 'Diamond Bar Landscaping' },
         { path: '/duarte-landscaping', name: 'Duarte Landscaping' },
@@ -38,10 +41,16 @@ export default function AdminSEO() {
         { path: '/west-covina-landscaping', name: 'West Covina Landscaping' },
         { path: '/glendora-sprinkler-repair', name: 'Glendora Sprinkler Repair' },
         { path: '/glendora-irrigation-repair', name: 'Glendora Irrigation Repair' },
+        { path: '/glendora-sprinkler-valves', name: 'Glendora Sprinkler Valves' },
+        { path: '/glendora-drip-irrigation', name: 'Glendora Drip Irrigation' },
         { path: '/la-verne-sprinkler-repair', name: 'La Verne Sprinkler Repair' },
         { path: '/la-verne-irrigation-repair', name: 'La Verne Irrigation Repair' },
+        { path: '/la-verne-sprinkler-valves', name: 'La Verne Sprinkler Valves' },
+        { path: '/la-verne-drip-irrigation', name: 'La Verne Drip Irrigation' },
         { path: '/san-dimas-sprinkler-repair', name: 'San Dimas Sprinkler Repair' },
-        { path: '/san-dimas-irrigation-repair', name: 'San Dimas Irrigation Repair' }
+        { path: '/san-dimas-irrigation-repair', name: 'San Dimas Irrigation Repair' },
+        { path: '/san-dimas-sprinkler-valves', name: 'San Dimas Sprinkler Valves' },
+        { path: '/san-dimas-drip-irrigation', name: 'San Dimas Drip Irrigation' }
     ];
 
     const { data: allSEOData = [], isLoading } = useQuery({
