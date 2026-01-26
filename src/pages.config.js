@@ -4,6 +4,7 @@ import BlogPost from './pages/BlogPost';
 import Home from './pages/Home';
 import Irrigation from './pages/Irrigation';
 import Robots from './pages/Robots';
+import SEOAudit from './pages/SEOAudit';
 import ServiceArea from './pages/ServiceArea';
 import arcadiaDripIrrigation from './pages/arcadia-drip-irrigation';
 import arcadiaIrrigationRepair from './pages/arcadia-irrigation-repair';
@@ -90,10 +91,10 @@ import sanGabrielDripIrrigation from './pages/san-gabriel-drip-irrigation';
 import sanGabrielIrrigationRepair from './pages/san-gabriel-irrigation-repair';
 import sanGabrielLandscaping from './pages/san-gabriel-landscaping';
 import sanGabrielSprinklerRepair from './pages/san-gabriel-sprinkler-repair';
+import templeCityLandscaping from './pages/temple-city-landscaping';
 import sanGabrielSprinklerValves from './pages/san-gabriel-sprinkler-valves';
 import templeCityDripIrrigation from './pages/temple-city-drip-irrigation';
 import templeCityIrrigationRepair from './pages/temple-city-irrigation-repair';
-import templeCityLandscaping from './pages/temple-city-landscaping';
 import templeCitySprinklerRepair from './pages/temple-city-sprinkler-repair';
 import templeCitySprinklerValves from './pages/temple-city-sprinkler-valves';
 import walnutDripIrrigation from './pages/walnut-drip-irrigation';
@@ -106,7 +107,7 @@ import westCovinaIrrigationRepair from './pages/west-covina-irrigation-repair';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
 import westCovinaSprinklerRepair from './pages/west-covina-sprinkler-repair';
 import westCovinaSprinklerValves from './pages/west-covina-sprinkler-valves';
-import SEOAudit from './pages/SEOAudit';
+import IrrigationService from './pages/IrrigationService';
 import __Layout from './Layout.jsx';
 
 
@@ -117,6 +118,7 @@ export const PAGES = {
     "Home": Home,
     "Irrigation": Irrigation,
     "Robots": Robots,
+    "SEOAudit": SEOAudit,
     "ServiceArea": ServiceArea,
     "arcadia-drip-irrigation": arcadiaDripIrrigation,
     "arcadia-irrigation-repair": arcadiaIrrigationRepair,
@@ -203,10 +205,10 @@ export const PAGES = {
     "san-gabriel-irrigation-repair": sanGabrielIrrigationRepair,
     "san-gabriel-landscaping": sanGabrielLandscaping,
     "san-gabriel-sprinkler-repair": sanGabrielSprinklerRepair,
+    "temple-city-landscaping": templeCityLandscaping,
     "san-gabriel-sprinkler-valves": sanGabrielSprinklerValves,
     "temple-city-drip-irrigation": templeCityDripIrrigation,
     "temple-city-irrigation-repair": templeCityIrrigationRepair,
-    "temple-city-landscaping": templeCityLandscaping,
     "temple-city-sprinkler-repair": templeCitySprinklerRepair,
     "temple-city-sprinkler-valves": templeCitySprinklerValves,
     "walnut-drip-irrigation": walnutDripIrrigation,
@@ -219,7 +221,7 @@ export const PAGES = {
     "west-covina-landscaping": westCovinaLandscaping,
     "west-covina-sprinkler-repair": westCovinaSprinklerRepair,
     "west-covina-sprinkler-valves": westCovinaSprinklerValves,
-    "SEOAudit": SEOAudit,
+    "IrrigationService": IrrigationService,
 }
 
 export const pagesConfig = {

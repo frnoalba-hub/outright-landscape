@@ -338,14 +338,14 @@ export default function LocationPage({ citySlug }) {
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                         {[
-                            { title: 'Drip Irrigation', path: `/${slug}-drip-irrigation`, icon: '💧', description: 'Water-efficient drip systems' },
-                            { title: 'Irrigation Repair', path: `/${slug}-irrigation-repair`, icon: '🔧', description: 'Fast leak detection & repair' },
-                            { title: 'Sprinkler Repair', path: `/${slug}-sprinkler-repair`, icon: '🚿', description: 'Expert sprinkler diagnostics' },
-                            { title: 'Sprinkler Valves', path: `/${slug}-sprinkler-valves`, icon: '⚙️', description: 'Valve replacement & repair' }
+                            { title: 'Drip Irrigation', serviceSlug: 'drip-irrigation', icon: '💧', description: 'Water-efficient drip systems' },
+                            { title: 'Irrigation Repair', serviceSlug: 'irrigation-repair', icon: '🔧', description: 'Fast leak detection & repair' },
+                            { title: 'Sprinkler Repair', serviceSlug: 'sprinkler-repair', icon: '🚿', description: 'Expert sprinkler diagnostics' },
+                            { title: 'Sprinkler Valves', serviceSlug: 'sprinkler-valves', icon: '⚙️', description: 'Valve replacement & repair' }
                         ].map((service, idx) => (
                             <motion.a
                                 key={idx}
-                                href={service.path}
+                                href={`${createPageUrl('IrrigationService')}?city=${slug}&service=${service.serviceSlug}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
