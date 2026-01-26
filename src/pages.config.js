@@ -1,19 +1,15 @@
-import BaldwinParkLandscaping from './pages/BaldwinParkLandscaping';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Home from './pages/Home';
 import Irrigation from './pages/Irrigation';
 import Robots from './pages/Robots';
-import SanDimasLandscaping from './pages/SanDimasLandscaping';
 import ServiceArea from './pages/ServiceArea';
 import Sitemap from './pages/Sitemap';
-import TempleCityLandscaping from './pages/TempleCityLandscaping';
 import arcadiaLandscaping from './pages/arcadia-landscaping';
 import azusaLandscaping from './pages/azusa-landscaping';
 import baldwinParkLandscaping from './pages/baldwin-park-landscaping';
 import charterOakLandscaping from './pages/charter-oak-landscaping';
 import claremontLandscaping from './pages/claremont-landscaping';
-import covinaLandscape from './pages/covina-landscape';
 import covinaLandscaping from './pages/covina-landscaping';
 import diamondBarLandscaping from './pages/diamond-bar-landscaping';
 import duarteLandscaping from './pages/duarte-landscaping';
@@ -31,7 +27,6 @@ import laVerneSprinklerValves from './pages/la-verne-sprinkler-valves';
 import monroviaLandscaping from './pages/monrovia-landscaping';
 import pasadenaLandscaping from './pages/pasadena-landscaping';
 import pomonaLandscaping from './pages/pomona-landscaping';
-import pomonalandscaping from './pages/pomonalandscaping';
 import rowlandHeightsLandscaping from './pages/rowland-heights-landscaping';
 import sanDimasDripIrrigation from './pages/san-dimas-drip-irrigation';
 import sanDimasIrrigationRepair from './pages/san-dimas-irrigation-repair';
@@ -42,26 +37,27 @@ import sanGabrielLandscaping from './pages/san-gabriel-landscaping';
 import templeCityLandscaping from './pages/temple-city-landscaping';
 import walnutLandscaping from './pages/walnut-landscaping';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
+import covinaLandscape from './pages/covina-landscape';
+import SanDimasLandscaping from './pages/SanDimasLandscaping';
+import pomonalandscaping from './pages/pomonalandscaping';
+import TempleCityLandscaping from './pages/TempleCityLandscaping';
+import BaldwinParkLandscaping from './pages/BaldwinParkLandscaping';
 import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "BaldwinParkLandscaping": BaldwinParkLandscaping,
     "Blog": Blog,
     "BlogPost": BlogPost,
     "Home": Home,
     "Irrigation": Irrigation,
     "Robots": Robots,
-    "SanDimasLandscaping": SanDimasLandscaping,
     "ServiceArea": ServiceArea,
     "Sitemap": Sitemap,
-    "TempleCityLandscaping": TempleCityLandscaping,
     "arcadia-landscaping": arcadiaLandscaping,
     "azusa-landscaping": azusaLandscaping,
     "baldwin-park-landscaping": baldwinParkLandscaping,
     "charter-oak-landscaping": charterOakLandscaping,
     "claremont-landscaping": claremontLandscaping,
-    "covina-landscape": covinaLandscape,
     "covina-landscaping": covinaLandscaping,
     "diamond-bar-landscaping": diamondBarLandscaping,
     "duarte-landscaping": duarteLandscaping,
@@ -79,7 +75,6 @@ export const PAGES = {
     "monrovia-landscaping": monroviaLandscaping,
     "pasadena-landscaping": pasadenaLandscaping,
     "pomona-landscaping": pomonaLandscaping,
-    "pomonalandscaping": pomonalandscaping,
     "rowland-heights-landscaping": rowlandHeightsLandscaping,
     "san-dimas-drip-irrigation": sanDimasDripIrrigation,
     "san-dimas-irrigation-repair": sanDimasIrrigationRepair,
@@ -90,6 +85,11 @@ export const PAGES = {
     "temple-city-landscaping": templeCityLandscaping,
     "walnut-landscaping": walnutLandscaping,
     "west-covina-landscaping": westCovinaLandscaping,
+    "covina-landscape": covinaLandscape,
+    "SanDimasLandscaping": SanDimasLandscaping,
+    "pomonalandscaping": pomonalandscaping,
+    "TempleCityLandscaping": TempleCityLandscaping,
+    "BaldwinParkLandscaping": BaldwinParkLandscaping,
 }
 
 export const pagesConfig = {
