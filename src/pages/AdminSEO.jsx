@@ -244,7 +244,7 @@ export default function AdminSEO() {
     }, [selectedPage, allSEOData]);
 
     return (
-        <div className="min-h-screen bg-gray-50 py-12 px-4">
+        <div className="min-h-screen bg-gray-50 pt-24 pb-12 px-4">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
