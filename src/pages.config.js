@@ -3,10 +3,8 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Home from './pages/Home';
 import Irrigation from './pages/Irrigation';
-import Robots from './pages/Robots';
 import SanDimasLandscaping from './pages/SanDimasLandscaping';
 import ServiceArea from './pages/ServiceArea';
-import Sitemap from './pages/Sitemap';
 import TempleCityLandscaping from './pages/TempleCityLandscaping';
 import arcadiaLandscaping from './pages/arcadia-landscaping';
 import azusaLandscaping from './pages/azusa-landscaping';
@@ -42,6 +40,7 @@ import sanGabrielLandscaping from './pages/san-gabriel-landscaping';
 import templeCityLandscaping from './pages/temple-city-landscaping';
 import walnutLandscaping from './pages/walnut-landscaping';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
+import Robots from './pages/Robots';
 import __Layout from './Layout.jsx';
 
 
@@ -51,10 +50,8 @@ export const PAGES = {
     "BlogPost": BlogPost,
     "Home": Home,
     "Irrigation": Irrigation,
-    "Robots": Robots,
     "SanDimasLandscaping": SanDimasLandscaping,
     "ServiceArea": ServiceArea,
-    "Sitemap": Sitemap,
     "TempleCityLandscaping": TempleCityLandscaping,
     "arcadia-landscaping": arcadiaLandscaping,
     "azusa-landscaping": azusaLandscaping,
@@ -90,6 +87,7 @@ export const PAGES = {
     "temple-city-landscaping": templeCityLandscaping,
     "walnut-landscaping": walnutLandscaping,
     "west-covina-landscaping": westCovinaLandscaping,
+    "Robots": Robots,
 }
 
 export const pagesConfig = {

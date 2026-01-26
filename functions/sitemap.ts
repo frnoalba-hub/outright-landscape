@@ -1,61 +1,220 @@
 Deno.serve(async (req) => {
-    const pages = [
-        { url: '', priority: '1.0', changefreq: 'weekly' },
-        { url: 'Irrigation', priority: '0.9', changefreq: 'weekly' },
-        // City landing pages
-        { url: 'covina-landscaping', priority: '0.9', changefreq: 'weekly' },
-        { url: 'covina-landscape', priority: '0.9', changefreq: 'weekly' },
-        { url: 'san-gabriel-landscaping', priority: '0.9', changefreq: 'weekly' },
-        { url: 'glendora-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'san-dimas-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'azusa-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'baldwin-park-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'charter-oak-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'claremont-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'diamond-bar-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'duarte-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'el-monte-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'la-verne-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'monrovia-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'pasadena-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'pomona-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'rowland-heights-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'temple-city-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'walnut-landscaping', priority: '0.8', changefreq: 'weekly' },
-        { url: 'west-covina-landscaping', priority: '0.8', changefreq: 'weekly' },
-        // Irrigation service pages
-        { url: 'glendora-sprinkler-repair', priority: '0.8', changefreq: 'weekly' },
-        { url: 'glendora-irrigation-repair', priority: '0.8', changefreq: 'weekly' },
-        { url: 'glendora-sprinkler-valves', priority: '0.8', changefreq: 'weekly' },
-        { url: 'glendora-drip-irrigation', priority: '0.8', changefreq: 'weekly' },
-        { url: 'la-verne-sprinkler-repair', priority: '0.8', changefreq: 'weekly' },
-        { url: 'la-verne-irrigation-repair', priority: '0.8', changefreq: 'weekly' },
-        { url: 'la-verne-sprinkler-valves', priority: '0.8', changefreq: 'weekly' },
-        { url: 'la-verne-drip-irrigation', priority: '0.8', changefreq: 'weekly' },
-        { url: 'san-dimas-sprinkler-repair', priority: '0.8', changefreq: 'weekly' },
-        { url: 'san-dimas-irrigation-repair', priority: '0.8', changefreq: 'weekly' },
-        { url: 'san-dimas-sprinkler-valves', priority: '0.8', changefreq: 'weekly' },
-        { url: 'san-dimas-drip-irrigation', priority: '0.8', changefreq: 'weekly' }
-    ];
-
-    const baseUrl = 'https://outrightlandscape.com';
+  try {
     const today = new Date().toISOString().split('T')[0];
-
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map(page => `  <url>
-    <loc>${baseUrl}/${page.url}</loc>
+  <url>
+    <loc>https://outrightlandscape.com/arcadia-landscaping</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`).join('\n')}
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/azusa-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/baldwin-park-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/charter-oak-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/claremont-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/covina-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/covina-landscape</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/diamond-bar-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/duarte-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/el-monte-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/glendora-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/la-verne-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/monrovia-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/pasadena-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/pomona-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/rowland-heights-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/san-dimas-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/san-gabriel-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/temple-city-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/walnut-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/west-covina-landscaping</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Irrigation service pages -->
+  <url>
+    <loc>https://outrightlandscape.com/glendora-sprinkler-repair</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/glendora-irrigation-repair</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/glendora-sprinkler-valves</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/glendora-drip-irrigation</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/la-verne-sprinkler-repair</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/la-verne-irrigation-repair</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/la-verne-sprinkler-valves</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/la-verne-drip-irrigation</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/san-dimas-sprinkler-repair</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/san-dimas-irrigation-repair</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/san-dimas-sprinkler-valves</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/san-dimas-drip-irrigation</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>`;
 
     return new Response(xml, {
-        status: 200,
-        headers: {
-            'Content-Type': 'application/xml; charset=utf-8',
-            'Cache-Control': 'public, max-age=3600'
-        }
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'no-cache'
+      }
     });
+  } catch (_error) {
+    return new Response('Internal Server Error', {
+      status: 500,
+      headers: { 'Content-Type': 'text/plain' }
+    });
+  }
 });
