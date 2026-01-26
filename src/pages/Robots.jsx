@@ -7,7 +7,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-Sitemap: https://outrightlandscape.com/api/sitemapxml`;
+Sitemap: https://outrightlandscape.com/api/sitemapXml`;
 
     document.open();
     document.write(robotsTxt);
