@@ -315,6 +315,70 @@ export default function LocationPage({ citySlug }) {
                 </div>
             </section>
 
+            {/* Related Services - Irrigation Hub Link */}
+            <section className="relatedServicesSection py-12 bg-white border-t border-gray-200">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-8"
+                    >
+                        <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
+                            Specialized Services
+                        </span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                            Professional Irrigation Services in {name}
+                        </h2>
+                        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+                            Expert sprinkler repair, drip irrigation installation, valve maintenance and controller upgrades
+                        </p>
+                    </motion.div>
+
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        {[
+                            { title: 'Drip Irrigation', path: `/${slug}-drip-irrigation`, icon: '💧', description: 'Water-efficient drip systems' },
+                            { title: 'Irrigation Repair', path: `/${slug}-irrigation-repair`, icon: '🔧', description: 'Fast leak detection & repair' },
+                            { title: 'Sprinkler Repair', path: `/${slug}-sprinkler-repair`, icon: '🚿', description: 'Expert sprinkler diagnostics' },
+                            { title: 'Sprinkler Valves', path: `/${slug}-sprinkler-valves`, icon: '⚙️', description: 'Valve replacement & repair' }
+                        ].map((service, idx) => (
+                            <motion.a
+                                key={idx}
+                                href={service.path}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                                className="relatedServiceCard group bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 hover:border-blue-500 rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                            >
+                                <div className="text-3xl mb-2">{service.icon}</div>
+                                <h3 className="font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
+                                    {service.title}
+                                </h3>
+                                <p className="text-sm text-gray-600">{service.description}</p>
+                            </motion.a>
+                        ))}
+                    </div>
+
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                        className="text-center"
+                    >
+                        <a
+                            href={createPageUrl('Irrigation')}
+                            className="irrigationHubLink inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                        >
+                            View All Irrigation Services
+                            <ArrowRight className="w-5 h-5" />
+                        </a>
+                    </motion.div>
+                </div>
+            </section>
+
             {/* Google Reviews */}
             <GoogleReviews />
             
