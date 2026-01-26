@@ -1,4 +1,4 @@
-Deno.serve(() => {
+Deno.serve((req) => {
   const today = new Date().toISOString().split('T')[0];
   
   const cities = [
@@ -21,6 +21,12 @@ Deno.serve(() => {
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/blog</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>\n`;
   
   cities.forEach(city => {
@@ -41,12 +47,14 @@ Deno.serve(() => {
     });
   });
   
-  return new Response(`<?xml version="1.0" encoding="UTF-8"?>
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls}</urlset>`, {
+${urls}</urlset>`;
+
+  return new Response(xml, {
     status: 200,
     headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
+      'Content-Type': 'application/xml',
       'Cache-Control': 'public, max-age=3600'
     }
   });
