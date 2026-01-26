@@ -196,7 +196,11 @@ export default function AdminSEO() {
         setIsGeneratingAll(true);
         setGenerationProgress({ done: 0, total: pagesToGenerate.length, failed: 0 });
 
-        const promises = pagesToGenerate.map(async (page) => {
+        let successCount = 0;
+        let failCount = 0;
+
+        // Process sequentially with delay to avoid rate limits
+        for (const page of pagesToGenerate) {
             try {
                 const cityName = page.name.split(' ')[0];
                 const serviceType = page.name.includes('Sprinkler') || page.name.includes('Irrigation') 
@@ -209,22 +213,30 @@ export default function AdminSEO() {
                     service_type: serviceType
                 });
 
-                setGenerationProgress(prev => ({ ...prev, done: prev.done + 1 }));
+                successCount++;
+                setGenerationProgress(prev => ({ ...prev, done: successCount, failed: failCount }));
+                
+                // Small delay between requests to avoid rate limiting
+                await new Promise(resolve => setTimeout(resolve, 1500));
             } catch (error) {
                 console.error(`Failed to generate SEO for ${page.path}:`, error);
-                setGenerationProgress(prev => ({ ...prev, failed: prev.failed + 1 }));
+                failCount++;
+                setGenerationProgress(prev => ({ ...prev, done: successCount, failed: failCount }));
+                
+                // If rate limited, wait longer before retrying
+                if (error?.response?.status === 429) {
+                    toast.warning('Rate limited - waiting before continuing...');
+                    await new Promise(resolve => setTimeout(resolve, 5000));
+                }
             }
-        });
-
-        await Promise.all(promises);
+        }
         
         queryClient.invalidateQueries({ queryKey: ['pageSEO'] });
         
-        const { done, failed } = generationProgress;
-        if (failed > 0) {
-            toast.warning(`SEO generated for ${done} pages, ${failed} failed`);
+        if (failCount > 0) {
+            toast.warning(`SEO generated for ${successCount} pages, ${failCount} failed`);
         } else {
-            toast.success(`SEO generated for ${pagesToGenerate.length} pages!`);
+            toast.success(`SEO generated for ${successCount} pages!`);
         }
         
         setIsGeneratingAll(false);
