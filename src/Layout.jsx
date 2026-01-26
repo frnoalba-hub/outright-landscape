@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Phone, Menu, X, Mail, MapPin, Building, Star, Linkedin, Video, ChevronDown } from "lucide-react";
+import { Phone, Menu, X, Mail, MapPin, Building, Star, Linkedin, Video } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
@@ -8,50 +8,18 @@ import Analytics from "@/components/Analytics";
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 
-const cities = [
-  { name: "Arcadia", slug: "arcadia" },
-  { name: "Azusa", slug: "azusa" },
-  { name: "Baldwin Park", slug: "baldwin-park" },
-  { name: "Charter Oak", slug: "charter-oak" },
-  { name: "Claremont", slug: "claremont" },
-  { name: "Covina", slug: "covina" },
-  { name: "Diamond Bar", slug: "diamond-bar" },
-  { name: "Duarte", slug: "duarte" },
-  { name: "El Monte", slug: "el-monte" },
-  { name: "Glendora", slug: "glendora" },
-  { name: "La Verne", slug: "la-verne" },
-  { name: "Monrovia", slug: "monrovia" },
-  { name: "Pasadena", slug: "pasadena" },
-  { name: "Pomona", slug: "pomona" },
-  { name: "Rowland Heights", slug: "rowland-heights" },
-  { name: "San Dimas", slug: "san-dimas" },
-  { name: "San Gabriel", slug: "san-gabriel" },
-  { name: "Temple City", slug: "temple-city" },
-  { name: "Walnut", slug: "walnut" },
-  { name: "West Covina", slug: "west-covina" }
-];
-
-const services = [
-  { name: "Landscaping", slug: "landscaping" },
-  { name: "Drip Irrigation", slug: "drip-irrigation" },
-  { name: "Irrigation Repair", slug: "irrigation-repair" },
-  { name: "Sprinkler Repair", slug: "sprinkler-repair" },
-  { name: "Sprinkler Valves", slug: "sprinkler-valves" }
-];
-
 const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
   { title: "Services", href: createPageUrl("Home") + "#services" },
   { title: "Irrigation", href: createPageUrl("Irrigation") },
   { title: "Our Work", href: createPageUrl("Home") + "#work" },
-  { title: "Service Areas", href: createPageUrl("Home") + "#service-areas", megaMenu: true },
+  { title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
   { title: "Contact", href: createPageUrl("Home") + "#contact" }];
 
 
 export default function Layout({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
 
   const { data: locations = [] } = useQuery({
     queryKey: ['locations'],
@@ -195,49 +163,14 @@ export default function Layout({ children }) {
             </a>
             
             <ul className="hidden lg:flex items-center space-x-7">
-              {navigationItems.map((item) => (
-                <li key={item.title} className="relative">
-                  {item.megaMenu ? (
-                    <div 
-                      className="relative"
-                      onMouseEnter={() => setMegaMenuOpen(true)}
-                      onMouseLeave={() => setMegaMenuOpen(false)}
-                    >
-                      <button
-                        className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-base tracking-wide py-2 flex items-center gap-1">
-                        {item.title}
-                        <ChevronDown className="w-4 h-4" />
-                      </button>
-                      {megaMenuOpen && (
-                        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-xl shadow-2xl border border-gray-200 p-6 w-[800px] z-50 megaMenuContainer">
-                          <div className="grid grid-cols-4 gap-4">
-                            {cities.map(city => (
-                              <div key={city.slug} className="space-y-1">
-                                <h4 className="font-bold text-gray-900 text-sm mb-2">{city.name}</h4>
-                                {services.map(service => (
-                                  <a
-                                    key={service.slug}
-                                    href={`/${city.slug}-${service.slug}`}
-                                    className="block text-xs text-gray-600 hover:text-green-600 hover:bg-green-50 px-2 py-1 rounded transition-colors"
-                                  >
-                                    {service.name}
-                                  </a>
-                                ))}
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <a
-                      href={item.href}
-                      className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-base tracking-wide py-2">
-                      {item.title}
-                    </a>
-                  )}
+              {navigationItems.map((item) => <li key={item.title}>
+                  <a
+                    href={item.href}
+                    className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-base tracking-wide py-2">
+                    {item.title}
+                  </a>
                 </li>
-              ))}
+              )}
             </ul>
             
             <div className="hidden lg:flex items-center gap-3">
@@ -294,39 +227,13 @@ export default function Layout({ children }) {
                   <ul className="flex flex-col space-y-2 mt-6">
                     {navigationItems.map((item) =>
                     <li key={item.title}>
-                        {item.megaMenu ? (
-                          <details className="group">
-                            <summary className="block text-lg p-4 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors duration-200 cursor-pointer list-none flex items-center justify-between">
-                              {item.title}
-                              <ChevronDown className="w-5 h-5 group-open:rotate-180 transition-transform" />
-                            </summary>
-                            <div className="pl-4 mt-2 max-h-96 overflow-y-auto space-y-3">
-                              {cities.map(city => (
-                                <div key={city.slug} className="space-y-1">
-                                  <h5 className="font-semibold text-green-400 text-sm mb-1">{city.name}</h5>
-                                  {services.map(service => (
-                                    <SheetClose asChild key={service.slug}>
-                                      <a
-                                        href={`/${city.slug}-${service.slug}`}
-                                        className="block text-sm text-gray-400 hover:text-white hover:bg-gray-800 px-3 py-1.5 rounded transition-colors"
-                                      >
-                                        {service.name}
-                                      </a>
-                                    </SheetClose>
-                                  ))}
-                                </div>
-                              ))}
-                            </div>
-                          </details>
-                        ) : (
-                          <SheetClose asChild>
-                            <a
-                            href={item.href}
-                            className="block text-lg p-4 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors duration-200">
-                              {item.title}
-                            </a>
-                          </SheetClose>
-                        )}
+                        <SheetClose asChild>
+                          <a
+                          href={item.href}
+                          className="block text-lg p-4 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors duration-200">
+                            {item.title}
+                          </a>
+                        </SheetClose>
                       </li>
                     )}
                   </ul>
