@@ -150,7 +150,7 @@ export default function AdminSEO() {
 
     const { data: allSEOData = [], isLoading } = useQuery({
         queryKey: ['pageSEO'],
-        queryFn: () => base44.entities.PageSEO.list(null, 100),
+        queryFn: () => base44.entities.PageSEO.list(null, 200),
     });
 
     const getSEOForPage = (pagePath) => {
@@ -278,9 +278,9 @@ export default function AdminSEO() {
         return true;
     });
 
-    // Stats
+    // Stats - count only pages that exist in our pages list
     const totalPages = pages.length;
-    const pagesWithSEO = allSEOData.length;
+    const pagesWithSEO = pages.filter(page => getSEOForPage(page.path)).length;
     const missingPages = totalPages - pagesWithSEO;
     const completionPercent = Math.round((pagesWithSEO / totalPages) * 100);
 
