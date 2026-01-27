@@ -7,7 +7,7 @@ import GlobalSchema from "@/components/GlobalSchema";
 import Analytics from "@/components/Analytics";
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { HapticProvider } from '@/components/utils/haptics';
+import { HapticProvider, useHaptic } from '@/components/utils/haptics';
 
 const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
@@ -18,7 +18,8 @@ const navigationItems = [
   { title: "Contact", href: createPageUrl("Home") + "#contact" }];
 
 
-export default function Layout({ children }) {
+function LayoutInner({ children }) {
+  const { triggerHaptic } = useHaptic();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -73,6 +74,7 @@ export default function Layout({ children }) {
 
 
   const handlePhoneClick = (location) => {
+      triggerHaptic('light');
       if (window.dataLayer) {
           window.dataLayer.push({
               event: 'phone_click',
@@ -113,7 +115,6 @@ export default function Layout({ children }) {
   };
 
   return (
-    <HapticProvider>
       <div className="min-h-screen bg-white">
         <GlobalSchema />
         <Analytics />
@@ -356,7 +357,13 @@ export default function Layout({ children }) {
         </div>
       </footer>
       </div>
+  );
+}
+
+export default function Layout({ children }) {
+  return (
+    <HapticProvider>
+      <LayoutInner>{children}</LayoutInner>
     </HapticProvider>
   );
-
 }
