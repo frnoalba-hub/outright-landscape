@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Phone, Text } from "lucide-react";
 import confetti from 'canvas-confetti';
-import { useHaptic } from '@/utils/haptics';
+import { useHaptic } from '@/components/utils/haptics';
 
 const EMAIL_RELAY_URL = "https://script.google.com/macros/s/AKfycbzSIl_5RSL2FvaE7uwl4lbLJtMUFfwA-O5XFIt9TaA1-egp4HChAHVMnEWm7Hf-r0Mvtw/exec";
 

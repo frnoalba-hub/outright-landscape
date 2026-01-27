@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, Award, Users, Clock, Sparkles, CheckCircle2 } from 'lucide-react';
-import { useHaptic } from '@/utils/haptics';
+import { useHaptic } from '@/components/utils/haptics';
 
 export default function SharedHero({ 
     cityName = null,

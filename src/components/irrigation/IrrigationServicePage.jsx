@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { base44 } from '@/api/base44Client';
-import { useHaptic } from '@/utils/haptics';
+import { useHaptic } from '@/components/utils/haptics';
 
 export default function IrrigationServicePage({ city, service, data }) {
     const { triggerHaptic } = useHaptic();
