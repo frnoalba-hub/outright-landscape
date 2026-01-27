@@ -355,6 +355,8 @@ export default function Layout({ children }) {
           </div>
         </div>
       </footer>
-    </div>);
+      </div>
+    </HapticProvider>
+  );
 
 }
