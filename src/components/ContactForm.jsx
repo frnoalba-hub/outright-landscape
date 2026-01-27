@@ -5,10 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Phone, Text } from "lucide-react";
 import confetti from 'canvas-confetti';
+import { useHaptic } from '@/utils/haptics';
 
 const EMAIL_RELAY_URL = "https://script.google.com/macros/s/AKfycbzSIl_5RSL2FvaE7uwl4lbLJtMUFfwA-O5XFIt9TaA1-egp4HChAHVMnEWm7Hf-r0Mvtw/exec";
 
 export default function ContactForm({ cityName = "your area" }) {
+    const { triggerHaptic } = useHaptic();
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
@@ -82,7 +84,8 @@ export default function ContactForm({ cityName = "your area" }) {
 
             setIsSubmitted(true);
             
-            // Trigger confetti celebration
+            // Trigger success haptic and confetti
+            triggerHaptic('success');
             confetti({
                 particleCount: 100,
                 spread: 70,
@@ -90,6 +93,7 @@ export default function ContactForm({ cityName = "your area" }) {
             });
         } catch (err) {
             console.error("Submission failed", err);
+            triggerHaptic('error');
             alert("Sorry—couldn't send your request. Please call (626) 343-6028.");
         }
         setIsSubmitting(false);
@@ -110,7 +114,8 @@ export default function ContactForm({ cityName = "your area" }) {
                     <div className="space-y-8">
                         <a 
                             href="tel:626-343-6028" 
-                            className="flex items-center space-x-4 p-5 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
+                            onClick={() => triggerHaptic('light')}
+                            className="contactFormPhoneLink flex items-center space-x-4 p-5 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
                         >
                             <Phone className="w-8 h-8 text-green-400" />
                             <div>
@@ -120,7 +125,8 @@ export default function ContactForm({ cityName = "your area" }) {
                         </a>
                         <a 
                             href="sms:626-343-6028" 
-                            className="flex items-center space-x-4 p-5 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
+                            onClick={() => triggerHaptic('light')}
+                            className="contactFormTextLink flex items-center space-x-4 p-5 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
                         >
                             <Text className="w-8 h-8 text-green-400" />
                             <div>

@@ -7,6 +7,7 @@ import GlobalSchema from "@/components/GlobalSchema";
 import Analytics from "@/components/Analytics";
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
+import { HapticProvider } from '@/utils/haptics';
 
 const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
@@ -112,9 +113,10 @@ export default function Layout({ children }) {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <GlobalSchema />
-      <Analytics />
+    <HapticProvider>
+      <div className="min-h-screen bg-white">
+        <GlobalSchema />
+        <Analytics />
 
       <style>{`
         html { scroll-behavior: smooth; }
