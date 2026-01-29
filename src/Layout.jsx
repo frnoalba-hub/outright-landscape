@@ -5,10 +5,9 @@ import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
 import GlobalSchema from "@/components/GlobalSchema";
 import Analytics from "@/components/Analytics";
-import ScrollDepthTracker from "@/components/ScrollDepthTracker";
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { HapticProvider, useHaptic } from '@/components/utils/haptics';
+import { HapticProvider } from '@/components/utils/haptics';
 
 const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
@@ -19,8 +18,7 @@ const navigationItems = [
   { title: "Contact", href: createPageUrl("Home") + "#contact" }];
 
 
-function LayoutInner({ children }) {
-  const { triggerHaptic } = useHaptic();
+export default function Layout({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -75,67 +73,50 @@ function LayoutInner({ children }) {
 
 
   const handlePhoneClick = (location) => {
-          triggerHaptic('light');
-          if (window.dataLayer) {
-              window.dataLayer.push({
-                  event: 'phone_click',
-                  event_category: 'engagement',
-                  event_label: location,
-                  phone_number: '626-343-6028',
-                  click_element: 'phone_button',
-                  page_location: window.location.pathname,
-                  timestamp: new Date().toISOString()
-              });
+      if (window.dataLayer) {
+          window.dataLayer.push({
+              event: 'phone_click',
+              event_category: 'engagement',
+              event_label: location,
+              phone_number: '626-343-6028'
+          });
 
-              window.dataLayer.push({
-                  event: 'generate_lead',
-                  event_category: 'conversion',
-                  event_label: `phone_click_${location}`,
-                  phone_number: '626-343-6028',
-                  lead_type: 'phone_call',
-                  lead_source: location,
-                  value: 50
-              });
-          }
-          if (window.gtag) {
-              window.gtag('event', 'generate_lead', {
-                  currency: 'USD',
-                  value: 50,
-                  method: 'phone_call',
-                  location: location
-              });
-          }
-      };
+          // Track call now button clicks specifically
+          window.dataLayer.push({
+              event: 'call_now_button_click',
+              event_category: 'conversion',
+              event_label: location,
+              phone_number: '626-343-6028'
+          });
 
-      const handleNavigationClick = (navItem) => {
-          triggerHaptic('light');
-          if (window.dataLayer) {
-              window.dataLayer.push({
-                  event: 'navigation_click',
-                  event_category: 'engagement',
-                  event_label: navItem,
-                  click_element: 'nav_menu',
-                  page_location: window.location.pathname
-              });
-          }
-      };
+          // Track call initiated
+          window.dataLayer.push({
+              event: 'call_initiated',
+              event_category: 'engagement',
+              event_label: location,
+              click_location: location
+          });
+      }
+      if (window.gtag) {
+          window.gtag('event', 'phone_click', {
+              event_category: 'engagement',
+              event_label: location,
+              value: 1
+          });
 
-      const handleLogoClick = () => {
-          if (window.dataLayer) {
-              window.dataLayer.push({
-                  event: 'logo_click',
-                  event_category: 'engagement',
-                  event_label: 'header_logo',
-                  destination: 'home'
-              });
-          }
-      };
+          window.gtag('event', 'call_button_click', {
+              event_category: 'conversion',
+              phone_number: '626-343-6028',
+              location: location
+          });
+      }
+  };
 
   return (
+    <HapticProvider>
       <div className="min-h-screen bg-white">
         <GlobalSchema />
         <Analytics />
-        <ScrollDepthTracker />
 
       <style>{`
         html { scroll-behavior: smooth; }
@@ -165,7 +146,6 @@ function LayoutInner({ children }) {
           <div className="flex items-center justify-between">
             <a
               href={createPageUrl("Home")}
-              onClick={handleLogoClick}
               className="flex items-center gap-3 group"
               aria-label="Outright Landscape Home">
 
@@ -188,7 +168,6 @@ function LayoutInner({ children }) {
               {navigationItems.map((item) => <li key={item.title}>
                   <a
                     href={item.href}
-                    onClick={() => handleNavigationClick(item.title)}
                     className="text-gray-700 hover:text-green-600 font-semibold transition-colors text-base tracking-wide py-2">
                     {item.title}
                   </a>
@@ -198,18 +177,7 @@ function LayoutInner({ children }) {
             
             <div className="hidden lg:flex items-center gap-3">
                 <Button asChild variant="outline" className="border-2 border-orange-600 text-orange-600 hover:bg-orange-50 font-semibold px-5 py-2 rounded-full transition-all hover:scale-105 text-sm">
-                  <a href="#contact" aria-label="Get a free quote" onClick={() => {
-                    triggerHaptic('light');
-                    if (window.dataLayer) {
-                      window.dataLayer.push({
-                        event: 'cta_click',
-                        event_category: 'conversion',
-                        event_label: 'header_get_quote',
-                        cta_type: 'button',
-                        cta_location: 'header'
-                      });
-                    }
-                  }}>
+                  <a href="#contact" aria-label="Get a free quote">
                     Get Quote
                   </a>
                 </Button>
@@ -264,7 +232,6 @@ function LayoutInner({ children }) {
                         <SheetClose asChild>
                           <a
                           href={item.href}
-                          onClick={() => handleNavigationClick(`mobile_${item.title}`)}
                           className="block text-lg p-4 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition-colors duration-200">
                             {item.title}
                           </a>
@@ -389,13 +356,7 @@ function LayoutInner({ children }) {
         </div>
       </footer>
       </div>
-  );
-}
-
-export default function Layout({ children }) {
-  return (
-    <HapticProvider>
-      <LayoutInner>{children}</LayoutInner>
     </HapticProvider>
   );
+
 }

@@ -147,48 +147,17 @@ export default function Home() {
     };
 
     const handleQuoteClick = (location) => {
-        trackEvent('cta_click', {
-            event_category: 'engagement',
-            event_label: location,
-            cta_type: 'quote_button',
-            cta_text: 'Get Your Free Quote',
-            page_location: window.location.pathname
-        });
-        
         trackEvent('request_quote', {
             event_category: 'conversion',
             event_label: location,
-            value: 50
+            value: 1
         });
-    };
-
-    const handleServiceClick = (serviceName, index) => {
-        trackEvent('service_view', {
-            event_category: 'engagement',
-            event_label: serviceName,
-            service_name: serviceName,
-            service_position: index + 1,
-            page_section: 'services'
-        });
-    };
-
-    const handleProjectClick = (projectTitle, location) => {
-        trackEvent('project_view', {
-            event_category: 'engagement',
-            event_label: projectTitle,
-            project_title: projectTitle,
-            project_location: location,
-            page_section: 'projects_gallery'
-        });
-    };
-
-    const handleServiceAreaClick = (cityName) => {
-        trackEvent('service_area_click', {
-            event_category: 'engagement',
-            event_label: cityName,
-            city_name: cityName,
-            page_section: 'service_areas',
-            destination_page: 'city_page'
+        
+        // Also track as free quote request
+        trackEvent('free_quote_request', {
+            event_category: 'lead_generation',
+            event_label: location,
+            submission_method: 'quote_button'
         });
     };
 
@@ -259,8 +228,7 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                                onClick={() => handleServiceClick(service.title, index)}
-                                className="group bg-white overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-3 border-4 border-gray-900 relative cursor-pointer"
+                                className="group bg-white overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-3 border-4 border-gray-900 relative"
                                 style={{ clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)' }}
                             >
                                 <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-500 via-green-600 to-green-500"></div>
@@ -346,8 +314,7 @@ export default function Home() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: index * 0.03 }}
-                                onClick={() => handleProjectClick(project.title, project.location)}
-                                className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-400 aspect-[4/3] rounded-lg border border-gray-700 cursor-pointer"
+                                className="group relative overflow-hidden shadow-lg hover:shadow-xl transition-all duration-400 aspect-[4/3] rounded-lg border border-gray-700"
                             >
                                 <img
                                     src={project.image}
@@ -419,7 +386,6 @@ export default function Home() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.3, delay: index * 0.015 }}
-                                    onClick={() => handleServiceAreaClick(city.name)}
                                     className="group"
                                     aria-label={`Landscaping services in ${city.name}`}
                                 >
