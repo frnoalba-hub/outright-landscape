@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, Award, Users, Clock, Sparkles, CheckCircle2 } from 'lucide-react';
-import { useHaptic } from '@/components/utils/haptics';
 
 export default function SharedHero({ 
     cityName = null,
@@ -18,21 +17,10 @@ export default function SharedHero({
     onViewServicesClick = () => {},
     trackViewServicesClick // Alias support
 }) {
-    const { triggerHaptic } = useHaptic();
-    
-    // Normalize handlers with haptic feedback
-    const handlePhoneClick = (...args) => {
-        triggerHaptic('light');
-        (trackPhoneClick || onPhoneClick)(...args);
-    };
-    const handleQuoteClick = (...args) => {
-        triggerHaptic('light');
-        (trackQuoteClick || handlePhoneClick)(...args);
-    };
-    const handleViewServices = (...args) => {
-        triggerHaptic('light');
-        (trackViewServicesClick || onViewServicesClick)(...args);
-    };
+    // Normalize handlers
+    const handlePhoneClick = trackPhoneClick || onPhoneClick;
+    const handleQuoteClick = trackQuoteClick || handlePhoneClick;
+    const handleViewServices = trackViewServicesClick || onViewServicesClick;
 
     // Fix subtitle for San Gabriel Valley to avoid double-name
     const displaySubtitle = cityName === "San Gabriel Valley" 
@@ -163,7 +151,7 @@ export default function SharedHero({
                         <div className="cta-card bg-black/50 backdrop-blur-md border border-white/20 rounded-xl p-4 max-w-md mx-auto w-full mt-3">
                             <p className="text-white/60 text-xs text-center mb-2">CALL US TODAY</p>
                             <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} onClick={() => handlePhoneClick('hero_main_cta')}>
-                                <Button size="default" className="sharedHeroPhoneBtn w-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-lg px-6 py-4 rounded-lg shadow-lg transition-all hover:shadow-xl">
+                                <Button size="default" className="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold text-lg px-6 py-4 rounded-lg shadow-lg transition-all hover:shadow-xl">
                                     <Phone className="mr-2 w-5 h-5" aria-hidden="true" />
                                     {phoneNumber}
                                 </Button>
@@ -176,12 +164,12 @@ export default function SharedHero({
 
                         <div className="flex flex-col sm:flex-row gap-3 items-center w-full sm:w-auto mt-2">
                             <a href="#contact" aria-label="Get your free estimate" onClick={() => handleQuoteClick('hero_quote_button')} className="w-full sm:w-auto">
-                                <Button size="default" className="sharedHeroQuoteBtn w-full sm:w-auto bg-white hover:bg-gray-100 text-gray-900 font-semibold text-sm px-6 py-3 rounded-lg shadow-lg transition-all">
+                                <Button size="default" className="w-full sm:w-auto bg-white hover:bg-gray-100 text-gray-900 font-semibold text-sm px-6 py-3 rounded-lg shadow-lg transition-all">
                                     Get Your Free Quote
                                 </Button>
                             </a>
                             <a href="#services" aria-label="View our landscaping services" onClick={handleViewServices} className="w-full sm:w-auto">
-                                <Button size="default" variant="outline" className="sharedHeroServicesBtn w-full sm:w-auto border-2 border-white/80 bg-transparent text-white hover:bg-white hover:text-gray-900 font-semibold text-sm px-6 py-3 rounded-lg transition-all">
+                                <Button size="default" variant="outline" className="w-full sm:w-auto border-2 border-white/80 bg-transparent text-white hover:bg-white hover:text-gray-900 font-semibold text-sm px-6 py-3 rounded-lg transition-all">
                                     View Services
                                 </Button>
                             </a>

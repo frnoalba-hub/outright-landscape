@@ -5,10 +5,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { base44 } from '@/api/base44Client';
-import { useHaptic } from '@/components/utils/haptics';
 
 export default function IrrigationServicePage({ city, service, data }) {
-    const { triggerHaptic } = useHaptic();
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -21,7 +19,6 @@ export default function IrrigationServicePage({ city, service, data }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handlePhoneClick = () => {
-        triggerHaptic('light');
         if (window.dataLayer) {
             window.dataLayer.push({
                 event: 'phone_click',
@@ -47,11 +44,9 @@ export default function IrrigationServicePage({ city, service, data }) {
                 });
             }
             
-            triggerHaptic('success');
             setSubmitted(true);
         } catch (error) {
             console.error('Form submission error:', error);
-            triggerHaptic('error');
         } finally {
             setIsSubmitting(false);
         }
