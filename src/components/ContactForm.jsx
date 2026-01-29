@@ -22,12 +22,36 @@ export default function ContactForm({ cityName = "your area" }) {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleInputChange = (field, value) => 
+    const handleInputChange = (field, value) => {
         setFormData((prev) => ({ ...prev, [field]: value }));
+        
+        // Track form field interactions
+        if (window.dataLayer && value && value.length > 2) {
+            window.dataLayer.push({
+                event: 'form_field_interaction',
+                event_category: 'engagement',
+                event_label: `contact_form_${field}`,
+                field_name: field,
+                form_name: 'contact_inquiry'
+            });
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+
+        // Track form submission start
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'form_submission_start',
+                event_category: 'engagement',
+                event_label: 'contact_form',
+                form_name: 'Contact Inquiry',
+                city: cityName
+            });
+        }
+
         try {
             await ContactInquiry.create(formData);
             
@@ -49,36 +73,51 @@ export default function ContactForm({ cityName = "your area" }) {
                 });
             }
 
-            // Track form submission with multiple events
+            // Enhanced conversion tracking
             if (window.dataLayer) {
                 window.dataLayer.push({
-                    event: 'service_inquiry_form_submit',
+                    event: 'generate_lead',
+                    event_category: 'conversion',
+                    event_label: `contact_form_${cityName.toLowerCase().replace(/\s+/g, '_')}`,
+                    lead_type: 'contact_form',
+                    lead_source: 'website',
+                    city: formData.city || cityName,
+                    form_name: 'Contact Inquiry',
+                    value: 100,
+                    currency: 'USD'
+                });
+                
+                window.dataLayer.push({
+                    event: 'form_submission_complete',
                     event_category: 'conversion',
                     event_label: cityName,
                     form_type: 'contact_form',
-                    city: formData.city || cityName
+                    submission_success: true,
+                    city: formData.city || cityName,
+                    timestamp: new Date().toISOString()
                 });
-                
+
                 window.dataLayer.push({
-                    event: 'free_quote_request',
-                    event_category: 'lead_generation',
-                    event_label: cityName,
-                    submission_method: 'contact_form'
-                });
-                
-                window.dataLayer.push({
-                    event: 'form_submission',
-                    event_category: 'conversion',
-                    event_label: `contact_form_${cityName.toLowerCase().replace(/\s+/g, '_')}`,
-                    form_name: 'Contact Inquiry',
-                    city: cityName
+                    event: 'conversion',
+                    send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL',
+                    value: 100,
+                    currency: 'USD',
+                    transaction_id: `lead_${Date.now()}`
                 });
             }
             if (window.gtag) {
+                window.gtag('event', 'conversion', {
+                    send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL',
+                    value: 100.0,
+                    currency: 'USD',
+                    transaction_id: `lead_${Date.now()}`
+                });
+
                 window.gtag('event', 'generate_lead', {
+                    currency: 'USD',
+                    value: 100,
                     event_category: 'conversion',
-                    event_label: `contact_form_${cityName.toLowerCase().replace(/\s+/g, '_')}`,
-                    value: 1
+                    event_label: `contact_form_${cityName.toLowerCase().replace(/\s+/g, '_')}`
                 });
             }
 
@@ -93,6 +132,18 @@ export default function ContactForm({ cityName = "your area" }) {
             });
         } catch (err) {
             console.error("Submission failed", err);
+            
+            // Track submission failure
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'form_submission_error',
+                    event_category: 'error',
+                    event_label: 'contact_form',
+                    error_message: err.message,
+                    form_name: 'Contact Inquiry'
+                });
+            }
+            
             triggerHaptic('error');
             alert("Sorry—couldn't send your request. Please call (626) 343-6028.");
         }
@@ -114,7 +165,18 @@ export default function ContactForm({ cityName = "your area" }) {
                     <div className="space-y-8">
                         <a 
                             href="tel:626-343-6028" 
-                            onClick={() => triggerHaptic('light')}
+                            onClick={() => {
+                                triggerHaptic('light');
+                                if (window.dataLayer) {
+                                    window.dataLayer.push({
+                                        event: 'phone_click',
+                                        event_category: 'engagement',
+                                        event_label: 'contact_form_phone_link',
+                                        phone_number: '626-343-6028',
+                                        page_section: 'contact_form'
+                                    });
+                                }
+                            }}
                             className="contactFormPhoneLink flex items-center space-x-4 p-5 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
                         >
                             <Phone className="w-8 h-8 text-green-400" />
@@ -125,7 +187,18 @@ export default function ContactForm({ cityName = "your area" }) {
                         </a>
                         <a 
                             href="sms:626-343-6028" 
-                            onClick={() => triggerHaptic('light')}
+                            onClick={() => {
+                                triggerHaptic('light');
+                                if (window.dataLayer) {
+                                    window.dataLayer.push({
+                                        event: 'sms_click',
+                                        event_category: 'engagement',
+                                        event_label: 'contact_form_sms_link',
+                                        phone_number: '626-343-6028',
+                                        page_section: 'contact_form'
+                                    });
+                                }
+                            }}
                             className="contactFormTextLink flex items-center space-x-4 p-5 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
                         >
                             <Text className="w-8 h-8 text-green-400" />

@@ -150,6 +150,18 @@ export default function GoogleReviews() {
                                 href="https://www.google.com/search?q=Outright+Landscape+Covina+Reviews" 
                                 target="_blank" 
                                 rel="noopener noreferrer"
+                                onClick={() => {
+                                    if (window.dataLayer) {
+                                        window.dataLayer.push({
+                                            event: 'external_link_click',
+                                            event_category: 'engagement',
+                                            event_label: 'google_reviews_more',
+                                            link_text: 'Read more reviews',
+                                            destination: 'google_business_profile',
+                                            page_section: 'reviews'
+                                        });
+                                    }
+                                }}
                                 className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-green-700 bg-green-100 hover:bg-green-200 transition-colors"
                             >
                                 Read more reviews on Google

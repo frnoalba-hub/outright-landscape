@@ -23,14 +23,52 @@ export default function SharedHero({
     // Normalize handlers with haptic feedback
     const handlePhoneClick = (...args) => {
         triggerHaptic('light');
+        
+        // Track hero phone click
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'hero_cta_click',
+                event_category: 'conversion',
+                event_label: 'hero_phone_button',
+                cta_type: 'phone',
+                phone_number: phoneNumber,
+                page_section: 'hero'
+            });
+        }
+        
         (trackPhoneClick || onPhoneClick)(...args);
     };
     const handleQuoteClick = (...args) => {
         triggerHaptic('light');
+        
+        // Track hero quote click
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'hero_cta_click',
+                event_category: 'conversion',
+                event_label: 'hero_quote_button',
+                cta_type: 'quote',
+                cta_text: 'Get Your Free Quote',
+                page_section: 'hero'
+            });
+        }
+        
         (trackQuoteClick || handlePhoneClick)(...args);
     };
     const handleViewServices = (...args) => {
         triggerHaptic('light');
+        
+        // Track hero services view
+        if (window.dataLayer) {
+            window.dataLayer.push({
+                event: 'hero_cta_click',
+                event_category: 'engagement',
+                event_label: 'hero_view_services',
+                cta_type: 'services',
+                page_section: 'hero'
+            });
+        }
+        
         (trackViewServicesClick || onViewServicesClick)(...args);
     };
 
