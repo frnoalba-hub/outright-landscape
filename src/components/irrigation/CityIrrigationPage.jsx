@@ -103,11 +103,11 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
     ];
 
     const faqs = [
-        { q: `How much does sprinkler installation cost in ${cityName}?`, a: `Sprinkler installation in ${cityName} typically ranges $2,500–$6,000 for a residential property depending on yard size, number of zones, and complexity. We provide free on-site estimates with detailed breakdowns.` },
+        { q: `How much does sprinkler installation cost in ${cityName}?`, a: `Sprinkler installation in ${cityName} typically starts at $1,000 and can range up to $6,000+ for a residential property, depending on yard size, number of zones, and complexity. We provide free on-site estimates with detailed breakdowns.` },
         { q: `How much does sprinkler repair cost in ${cityName}?`, a: `Simple repairs like head replacement start at $75–$150. Valve replacement runs $150–$400 per valve. Controller replacement ranges $200–$800. We provide free estimates for all sprinkler services in ${cityName}.` },
         { q: 'Do you offer same-day sprinkler repair?', a: `Yes! We prioritize emergency sprinkler leak repair in ${cityName}. Call before noon and we'll typically schedule same-day service for urgent repairs.` },
         { q: 'What brands do you install and repair?', a: 'We work with all major brands including Rain Bird, Hunter, Toro, Irritrol, and Orbit. We recommend the best fit for your property and budget.' },
-        { q: 'Should I repair or replace my old sprinkler system?', a: 'If your system is 15+ years old with multiple failures, replacement is often more cost-effective. We\'ll give you an honest recommendation based on condition and repair costs.' },
+        { q: 'Should I repair or replace my old sprinkler system?', a: 'If your system is 15+ years old with multiple failures, replacement is often more cost-effective. Many older systems use galvanized steel pipes that corrode over time — upgrading to modern PVC piping is more durable, efficient, and cost-effective long-term. We\'ll give you an honest recommendation based on your system\'s condition, pipe material, and repair costs vs. the benefits of updated materials.' },
         { q: 'Can you convert my sprinklers to drip irrigation?', a: `Absolutely. Drip systems use 30–50% less water than traditional sprinklers and are ideal for garden beds, shrubs, and trees. We handle full conversions in ${cityName}.` },
         { q: 'Do you service commercial properties?', a: 'Yes. We provide commercial sprinkler installation, repair, and maintenance for businesses, HOAs, and property managers throughout the San Gabriel Valley.' },
     ];
