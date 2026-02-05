@@ -56,45 +56,45 @@ import Robots from './pages/Robots';
 import SEOAudit from './pages/SEOAudit';
 import ServiceArea from './pages/ServiceArea';
 import arcadiaLandscaping from './pages/arcadia-landscaping';
+import arcadiaSprinklerRepairInstallation from './pages/arcadia-sprinkler-repair-installation';
 import azusaLandscaping from './pages/azusa-landscaping';
+import azusaSprinklerRepairInstallation from './pages/azusa-sprinkler-repair-installation';
 import baldwinParkLandscaping from './pages/baldwin-park-landscaping';
+import baldwinParkSprinklerRepairInstallation from './pages/baldwin-park-sprinkler-repair-installation';
 import charterOakLandscaping from './pages/charter-oak-landscaping';
+import charterOakSprinklerRepairInstallation from './pages/charter-oak-sprinkler-repair-installation';
 import claremontLandscaping from './pages/claremont-landscaping';
+import claremontSprinklerRepairInstallation from './pages/claremont-sprinkler-repair-installation';
 import covinaLandscape from './pages/covina-landscape';
 import covinaLandscaping from './pages/covina-landscaping';
-import diamondBarLandscaping from './pages/diamond-bar-landscaping';
-import duarteLandscaping from './pages/duarte-landscaping';
-import elMonteLandscaping from './pages/el-monte-landscaping';
-import glendoraLandscaping from './pages/glendora-landscaping';
-import laVerneLandscaping from './pages/la-verne-landscaping';
-import monroviaLandscaping from './pages/monrovia-landscaping';
-import pasadenaLandscaping from './pages/pasadena-landscaping';
-import pomonaLandscaping from './pages/pomona-landscaping';
-import rowlandHeightsLandscaping from './pages/rowland-heights-landscaping';
-import sanDimasLandscaping from './pages/san-dimas-landscaping';
-import sanGabrielLandscaping from './pages/san-gabriel-landscaping';
-import templeCityLandscaping from './pages/temple-city-landscaping';
-import walnutLandscaping from './pages/walnut-landscaping';
-import westCovinaLandscaping from './pages/west-covina-landscaping';
-import arcadiaSprinklerRepairInstallation from './pages/arcadia-sprinkler-repair-installation';
-import azusaSprinklerRepairInstallation from './pages/azusa-sprinkler-repair-installation';
-import baldwinParkSprinklerRepairInstallation from './pages/baldwin-park-sprinkler-repair-installation';
-import charterOakSprinklerRepairInstallation from './pages/charter-oak-sprinkler-repair-installation';
-import claremontSprinklerRepairInstallation from './pages/claremont-sprinkler-repair-installation';
 import covinaSprinklerRepairInstallation from './pages/covina-sprinkler-repair-installation';
+import diamondBarLandscaping from './pages/diamond-bar-landscaping';
 import diamondBarSprinklerRepairInstallation from './pages/diamond-bar-sprinkler-repair-installation';
+import duarteLandscaping from './pages/duarte-landscaping';
 import duarteSprinklerRepairInstallation from './pages/duarte-sprinkler-repair-installation';
+import elMonteLandscaping from './pages/el-monte-landscaping';
 import elMonteSprinklerRepairInstallation from './pages/el-monte-sprinkler-repair-installation';
+import glendoraLandscaping from './pages/glendora-landscaping';
 import glendoraSprinklerRepairInstallation from './pages/glendora-sprinkler-repair-installation';
+import laVerneLandscaping from './pages/la-verne-landscaping';
 import laVerneSprinklerRepairInstallation from './pages/la-verne-sprinkler-repair-installation';
+import monroviaLandscaping from './pages/monrovia-landscaping';
 import monroviaSprinklerRepairInstallation from './pages/monrovia-sprinkler-repair-installation';
+import pasadenaLandscaping from './pages/pasadena-landscaping';
 import pasadenaSprinklerRepairInstallation from './pages/pasadena-sprinkler-repair-installation';
+import pomonaLandscaping from './pages/pomona-landscaping';
 import pomonaSprinklerRepairInstallation from './pages/pomona-sprinkler-repair-installation';
+import rowlandHeightsLandscaping from './pages/rowland-heights-landscaping';
 import rowlandHeightsSprinklerRepairInstallation from './pages/rowland-heights-sprinkler-repair-installation';
+import sanDimasLandscaping from './pages/san-dimas-landscaping';
 import sanDimasSprinklerRepairInstallation from './pages/san-dimas-sprinkler-repair-installation';
+import sanGabrielLandscaping from './pages/san-gabriel-landscaping';
 import sanGabrielSprinklerRepairInstallation from './pages/san-gabriel-sprinkler-repair-installation';
+import templeCityLandscaping from './pages/temple-city-landscaping';
 import templeCitySprinklerRepairInstallation from './pages/temple-city-sprinkler-repair-installation';
+import walnutLandscaping from './pages/walnut-landscaping';
 import walnutSprinklerRepairInstallation from './pages/walnut-sprinkler-repair-installation';
+import westCovinaLandscaping from './pages/west-covina-landscaping';
 import westCovinaSprinklerRepairInstallation from './pages/west-covina-sprinkler-repair-installation';
 import __Layout from './Layout.jsx';
 
@@ -109,45 +109,45 @@ export const PAGES = {
     "SEOAudit": SEOAudit,
     "ServiceArea": ServiceArea,
     "arcadia-landscaping": arcadiaLandscaping,
+    "arcadia-sprinkler-repair-installation": arcadiaSprinklerRepairInstallation,
     "azusa-landscaping": azusaLandscaping,
+    "azusa-sprinkler-repair-installation": azusaSprinklerRepairInstallation,
     "baldwin-park-landscaping": baldwinParkLandscaping,
+    "baldwin-park-sprinkler-repair-installation": baldwinParkSprinklerRepairInstallation,
     "charter-oak-landscaping": charterOakLandscaping,
+    "charter-oak-sprinkler-repair-installation": charterOakSprinklerRepairInstallation,
     "claremont-landscaping": claremontLandscaping,
+    "claremont-sprinkler-repair-installation": claremontSprinklerRepairInstallation,
     "covina-landscape": covinaLandscape,
     "covina-landscaping": covinaLandscaping,
-    "diamond-bar-landscaping": diamondBarLandscaping,
-    "duarte-landscaping": duarteLandscaping,
-    "el-monte-landscaping": elMonteLandscaping,
-    "glendora-landscaping": glendoraLandscaping,
-    "la-verne-landscaping": laVerneLandscaping,
-    "monrovia-landscaping": monroviaLandscaping,
-    "pasadena-landscaping": pasadenaLandscaping,
-    "pomona-landscaping": pomonaLandscaping,
-    "rowland-heights-landscaping": rowlandHeightsLandscaping,
-    "san-dimas-landscaping": sanDimasLandscaping,
-    "san-gabriel-landscaping": sanGabrielLandscaping,
-    "temple-city-landscaping": templeCityLandscaping,
-    "walnut-landscaping": walnutLandscaping,
-    "west-covina-landscaping": westCovinaLandscaping,
-    "arcadia-sprinkler-repair-installation": arcadiaSprinklerRepairInstallation,
-    "azusa-sprinkler-repair-installation": azusaSprinklerRepairInstallation,
-    "baldwin-park-sprinkler-repair-installation": baldwinParkSprinklerRepairInstallation,
-    "charter-oak-sprinkler-repair-installation": charterOakSprinklerRepairInstallation,
-    "claremont-sprinkler-repair-installation": claremontSprinklerRepairInstallation,
     "covina-sprinkler-repair-installation": covinaSprinklerRepairInstallation,
+    "diamond-bar-landscaping": diamondBarLandscaping,
     "diamond-bar-sprinkler-repair-installation": diamondBarSprinklerRepairInstallation,
+    "duarte-landscaping": duarteLandscaping,
     "duarte-sprinkler-repair-installation": duarteSprinklerRepairInstallation,
+    "el-monte-landscaping": elMonteLandscaping,
     "el-monte-sprinkler-repair-installation": elMonteSprinklerRepairInstallation,
+    "glendora-landscaping": glendoraLandscaping,
     "glendora-sprinkler-repair-installation": glendoraSprinklerRepairInstallation,
+    "la-verne-landscaping": laVerneLandscaping,
     "la-verne-sprinkler-repair-installation": laVerneSprinklerRepairInstallation,
+    "monrovia-landscaping": monroviaLandscaping,
     "monrovia-sprinkler-repair-installation": monroviaSprinklerRepairInstallation,
+    "pasadena-landscaping": pasadenaLandscaping,
     "pasadena-sprinkler-repair-installation": pasadenaSprinklerRepairInstallation,
+    "pomona-landscaping": pomonaLandscaping,
     "pomona-sprinkler-repair-installation": pomonaSprinklerRepairInstallation,
+    "rowland-heights-landscaping": rowlandHeightsLandscaping,
     "rowland-heights-sprinkler-repair-installation": rowlandHeightsSprinklerRepairInstallation,
+    "san-dimas-landscaping": sanDimasLandscaping,
     "san-dimas-sprinkler-repair-installation": sanDimasSprinklerRepairInstallation,
+    "san-gabriel-landscaping": sanGabrielLandscaping,
     "san-gabriel-sprinkler-repair-installation": sanGabrielSprinklerRepairInstallation,
+    "temple-city-landscaping": templeCityLandscaping,
     "temple-city-sprinkler-repair-installation": templeCitySprinklerRepairInstallation,
+    "walnut-landscaping": walnutLandscaping,
     "walnut-sprinkler-repair-installation": walnutSprinklerRepairInstallation,
+    "west-covina-landscaping": westCovinaLandscaping,
     "west-covina-sprinkler-repair-installation": westCovinaSprinklerRepairInstallation,
 }
 

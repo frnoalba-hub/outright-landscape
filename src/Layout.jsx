@@ -150,15 +150,15 @@ export default function Layout({ children }) {
               <img
                 src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
                 alt="Outright Landscape Construction Logo"
-                className="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+                className="h-14 sm:h-[4.5rem] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
                 width="80"
                 height="80"
                 fetchpriority="high"
                 decoding="async" />
-                
+
               <div className="flex flex-col">
-                <span className="headerBrandName font-bold text-base sm:text-lg leading-tight text-white">Outright Landscape</span>
-                <span className="headerLicense text-[10px] sm:text-xs text-[#b8945a] font-semibold tracking-wider">CSLB #1073845</span>
+                <span className="headerBrandName font-bold text-lg sm:text-xl leading-tight text-white">Outright Landscape</span>
+                <span className="headerLicense text-[10px] sm:text-xs text-[#b8945a]/70 font-medium tracking-wider">CSLB #1073845</span>
               </div>
             </a>
             
