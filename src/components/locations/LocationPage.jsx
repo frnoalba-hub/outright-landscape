@@ -123,7 +123,7 @@ export default function LocationPage({ citySlug }) {
                         </p>
 
                         <div className="cityHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                            {['CSLB #1073845', '20+ Years', '4.8★ Google'].map((t) => (
+                            {['CSLB #1073845', '10+ Years', '4.8★ Google'].map((t) => (
                                 <span key={t} className="flex items-center gap-1.5">
                                     <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />
                                     {t}
@@ -223,7 +223,7 @@ export default function LocationPage({ citySlug }) {
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#333]">
                         {[
                             { number: "250+", label: "Projects Completed" },
-                            { number: "20+", label: "Years Experience" },
+                            { number: "10+", label: "Years Experience" },
                             { number: "4.8★", label: "Google Rating" },
                             { number: "100%", label: "Licensed & Insured" }
                         ].map((stat, idx) => (

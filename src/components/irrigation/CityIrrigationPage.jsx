@@ -148,7 +148,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                             Expert sprinkler installation, repair, valve service & drip irrigation for {cityName} homes and businesses. Same-day repair available.
                         </p>
                         <div className="cityIrrigationHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                            {['CSLB #1073845', '20+ Years', '4.8★ Google'].map(t => (
+                            {['CSLB #1073845', '10+ Years', '4.8★ Google'].map(t => (
                                 <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />{t}</span>
                             ))}
                         </div>
@@ -173,7 +173,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
             <section className="cityIrrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                        {[{ v: '250+', l: 'Systems Installed & Repaired' }, { v: '24hr', l: 'Response Time' }, { v: '20+', l: 'Years Experience' }, { v: '100%', l: 'Licensed & Insured' }].map((s, i) => (
+                        {[{ v: '250+', l: 'Systems Installed & Repaired' }, { v: '24hr', l: 'Response Time' }, { v: '10+', l: 'Years Experience' }, { v: '100%', l: 'Licensed & Insured' }].map((s, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="cityIrrigationStatItem text-center py-8 sm:py-10">
                                 <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">{s.v}</div>
                                 <div className="text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{s.l}</div>

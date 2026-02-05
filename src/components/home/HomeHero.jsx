@@ -52,7 +52,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick }) {
 
                     {/* Trust badges - compact grid on mobile */}
                     <div className="heroTrustBadges grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                        {['CSLB #1073845', '20+ Years', '250+ Projects', '4.8★ Google'].map((t) => (
+                        {['CSLB #1073845', '10+ Years', '250+ Projects', '4.8★ Google'].map((t) => (
                             <span key={t} className="flex items-center gap-1.5">
                                 <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />
                                 {t}

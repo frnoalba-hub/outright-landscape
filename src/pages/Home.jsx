@@ -96,7 +96,7 @@ export default function Home() {
             {/* SEO & Schemas */}
             <SEO
                 title="Outright Landscape | Licensed Covina Landscaping Contractor - Pavers, Sod & Irrigation"
-                description="Professional landscape contractor in Covina serving San Gabriel Valley. Expert paver installation, sod, irrigation systems & hardscaping. Licensed C-27 #1073845. 20+ years experience. Free estimates. Call (626) 343-6028."
+                description="Professional landscape contractor in Covina serving San Gabriel Valley. Expert paver installation, sod, irrigation systems & hardscaping. Licensed C-27 #1073845. 10+ years experience. Free estimates. Call (626) 343-6028."
                 keywords="landscape contractor covina, licensed landscaping covina, paver installation covina, sod installation covina, irrigation systems covina, hardscape covina, landscaping san gabriel valley, C-27 contractor"
                 canonicalUrl="https://outrightlandscape.com"
                 ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
@@ -115,7 +115,7 @@ export default function Home() {
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
                         {[
-                            { value: '20+', label: 'Years Experience' },
+                            { value: '10+', label: 'Years Experience' },
                             { value: '250+', label: 'Projects Completed' },
                             { value: '4.8★', label: 'Google Rating' },
                             { value: '100%', label: 'Licensed & Insured' },
