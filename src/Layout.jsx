@@ -126,6 +126,16 @@ export default function Layout({ children }) {
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
+
+        /* Hide scrollbar but keep scrolling */
+        html, body {
+          scrollbar-width: none; /* Firefox */
+          -ms-overflow-style: none; /* IE/Edge */
+        }
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Opera */
+        }
         
         /* Performance optimizations */
         @media (prefers-reduced-motion: reduce) {
