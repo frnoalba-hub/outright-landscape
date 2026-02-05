@@ -266,7 +266,7 @@ export default function LocationPage({ citySlug }) {
                     </div>
 
                     <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center sm:text-left">
-                        <a href={createPageUrl(`${slug}-sprinkler-repair-installation`)} className="cityIrrigationCta inline-flex items-center gap-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm group">
+                        <a href={createPageUrl(`${baseCitySlug}-sprinkler-repair-installation`)} className="cityIrrigationCta inline-flex items-center gap-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm group">
                             View All Sprinkler Services in {name} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </a>
                     </motion.div>
