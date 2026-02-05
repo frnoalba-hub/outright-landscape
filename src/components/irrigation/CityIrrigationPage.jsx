@@ -133,33 +133,33 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
                 </div>
-                <div className="cityIrrigationHeroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 pb-16 sm:py-0">
-                    <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="max-w-xl space-y-6">
-                        <div className="cityIrrigationHeroBadge inline-flex items-center gap-2 bg-[#2d5a27]/20 border border-[#2d5a27]/40 rounded-full px-4 py-1.5">
+                <div className="cityIrrigationHeroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-12 sm:pt-32 sm:pb-16 sm:py-0">
+                    <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="max-w-xl space-y-4 sm:space-y-6">
+                        <div className="cityIrrigationHeroBadge hidden sm:inline-flex items-center gap-2 bg-[#2d5a27]/20 border border-[#2d5a27]/40 rounded-full px-4 py-1.5">
                             <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
                             <span className="text-[#8fbc8b] text-xs font-semibold tracking-wide uppercase">Licensed C-27 Contractor</span>
                         </div>
-                        <h1 className="cityIrrigationHeroHeadline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
+                        <h1 className="cityIrrigationHeroHeadline text-[2.5rem] sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
                             <span className="font-light">{cityName}</span><br />
                             <span className="font-bold text-[#c45d2c]">Sprinkler Installation</span><br />
                             <span className="font-light">& Repair</span>
                         </h1>
-                        <p className="cityIrrigationHeroSubtitle text-[#a09a90] text-base sm:text-lg leading-relaxed max-w-md">
+                        <p className="cityIrrigationHeroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
                             Expert sprinkler installation, repair, valve service & drip irrigation for {cityName} homes and businesses. Same-day repair available.
                         </p>
-                        <div className="cityIrrigationHeroTrust flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#8a8478]">
+                        <div className="cityIrrigationHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
                             {['CSLB #1073845', '20+ Years', '4.8★ Google'].map(t => (
-                                <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-[#4a8c3f]" />{t}</span>
+                                <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />{t}</span>
                             ))}
                         </div>
-                        <div className="cityIrrigationHeroCtas flex flex-col sm:flex-row gap-3 pt-2">
+                        <div className="cityIrrigationHeroCtas flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1 sm:pt-2">
                             <a href="tel:626-343-6028" onClick={() => trackPhoneClick('hero')} className="w-full sm:w-auto">
-                                <Button className="cityIrrigationHeroCallBtn w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-base px-7 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:shadow-xl hover:scale-[1.02] min-w-[240px]">
-                                    <Phone className="mr-2.5 w-5 h-5" />(626) 343-6028
+                                <Button className="cityIrrigationHeroCallBtn w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-sm sm:text-base px-6 py-5 sm:px-7 sm:py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:shadow-xl hover:scale-[1.02] sm:min-w-[240px]">
+                                    <Phone className="mr-2 w-4 h-4 sm:mr-2.5 sm:w-5 sm:h-5" />(626) 343-6028
                                 </Button>
                             </a>
                             <a href="#contact" className="w-full sm:w-auto">
-                                <Button variant="outline" className="cityIrrigationHeroQuoteBtn w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-base px-7 py-6 rounded-xl transition-all min-w-[240px]">
+                                <Button variant="outline" className="cityIrrigationHeroQuoteBtn w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-sm sm:text-base px-6 py-5 sm:px-7 sm:py-6 rounded-xl transition-all sm:min-w-[240px]">
                                     Free Estimate <ArrowRight className="ml-2 w-4 h-4" />
                                 </Button>
                             </a>
