@@ -57,6 +57,8 @@ export default function LocationPage({ citySlug }) {
     const services = cityData?.services?.length > 0 ? cityData.services : defaultServices;
     const projects = cityData?.projects?.length > 0 ? cityData.projects : defaultProjects;
     const slug = cityData?.slug || citySlug;
+    // Extract base city slug (e.g. "azusa" from "azusa-landscaping") for sprinkler page links
+    const baseCitySlug = slug.replace(/-landscaping$/, '');
 
     const pageTitle = `${name} Landscaping & Hardscaping | Outright Landscape`;
     const metaDescription = `Licensed C-27 landscape contractor in ${name}. Expert pavers, turf installation, irrigation systems & complete landscape design. Free estimate: (626) 343-6028. CSLB #1073845.`;
