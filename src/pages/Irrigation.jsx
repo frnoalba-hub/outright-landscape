@@ -135,25 +135,15 @@ export default function Irrigation() {
                                     <h3 className="text-xl font-bold text-[#1a1a1a]">{city.name}</h3>
                                 </div>
                                 <p className="text-[#6b6560] text-sm mb-5">{city.description}</p>
-                                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
-                                    {services.map((service, serviceIdx) => {
-                                        const Icon = service.icon;
-                                        const url = `${createPageUrl('IrrigationService')}?city=${city.slug}&service=${service.slug}`;
-                                        return (
-                                            <a key={serviceIdx} href={url}
-                                                className="irrigationCityServiceCard block bg-white p-5 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/40 transition-all hover:shadow-md group">
-                                                <div className="flex items-start gap-3">
-                                                    <Icon className="w-5 h-5 text-[#c45d2c] flex-shrink-0 mt-0.5" />
-                                                    <div className="flex-1">
-                                                        <h4 className="font-bold text-[#1a1a1a] text-sm mb-0.5 group-hover:text-[#c45d2c] transition-colors">{service.title}</h4>
-                                                        <p className="text-xs text-[#8a8478]">{city.name}</p>
-                                                    </div>
-                                                    <ArrowRight className="w-4 h-4 text-[#8a8478] group-hover:text-[#c45d2c] group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5" />
-                                                </div>
-                                            </a>
-                                        );
-                                    })}
-                                </div>
+                                <a href={createPageUrl(`${city.slug}-sprinkler-repair-installation`)}
+                                    className="irrigationCityServiceCard inline-flex items-center gap-3 bg-white p-5 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/40 transition-all hover:shadow-md group">
+                                    <Wrench className="w-5 h-5 text-[#c45d2c] flex-shrink-0" />
+                                    <div className="flex-1">
+                                        <h4 className="font-bold text-[#1a1a1a] text-sm group-hover:text-[#c45d2c] transition-colors">All Sprinkler Services in {city.name}</h4>
+                                        <p className="text-xs text-[#8a8478]">Installation, repair, valves & drip irrigation</p>
+                                    </div>
+                                    <ArrowRight className="w-4 h-4 text-[#8a8478] group-hover:text-[#c45d2c] group-hover:translate-x-1 transition-all flex-shrink-0" />
+                                </a>
                             </div>
                         ))}
                     </div>
