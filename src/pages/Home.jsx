@@ -115,8 +115,8 @@ export default function Home() {
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
                         {[
-                            { value: '10+', label: 'Years Experience' },
-                            { value: '500+', label: 'Projects Completed' },
+                            { value: '20+', label: 'Years Experience' },
+                            { value: '250+', label: 'Projects Completed' },
                             { value: '4.8★', label: 'Google Rating' },
                             { value: '100%', label: 'Licensed & Insured' },
                         ].map((stat, i) => (
