@@ -1,26 +1,18 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Phone, MapPin, CheckCircle2, ArrowRight, Sprout, Droplets, Hammer, Award } from 'lucide-react';
+import { Phone, MapPin, CheckCircle2, ArrowRight, Sprout, Droplets, Hammer, Award, ArrowDown } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 import SEO from '@/components/SEO';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import FAQSchema from '@/components/FAQSchema';
-import SharedHero from '@/components/SharedHero';
 import ContactForm from '@/components/ContactForm';
 import GoogleReviews from '@/components/GoogleReviews';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
 
-// Map string names to Lucide components
-const iconMap = {
-    Sprout,
-    Droplets,
-    Hammer,
-    Award,
-    CheckCircle2
-};
+const iconMap = { Sprout, Droplets, Hammer, Award, CheckCircle2 };
 
 const defaultServices = [
     { title: "Pavers & Hardscaping", description: "Expert paver patios, walkways, and retaining walls built to last.", iconName: "Hammer" },
@@ -32,72 +24,33 @@ const defaultServices = [
 ];
 
 const defaultProjects = [
-    {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
-        title: "Premium Turf Installation",
-        alt: "Premium turf installation by Outright Landscape"
-    },
-    {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
-        title: "Paver Walkway",
-        alt: "Paver walkway installation by Outright Landscape"
-    },
-    {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
-        title: "Backyard Paver Patio",
-        alt: "Paver patio installation by Outright Landscape"
-    },
-    {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
-        title: "Irrigation System Installation",
-        alt: "Irrigation system installation by Outright Landscape"
-    },
-    {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
-        title: "Complete Backyard Makeover",
-        alt: "Backyard makeover by Outright Landscape"
-    },
-    {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
-        title: "Irrigation Trenching",
-        alt: "Irrigation trenching by Outright Landscape"
-    }
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg", title: "Premium Turf Installation", alt: "Premium turf installation by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg", title: "Paver Walkway", alt: "Paver walkway installation by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg", title: "Backyard Paver Patio", alt: "Paver patio installation by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg", title: "Irrigation System Installation", alt: "Irrigation system installation by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg", title: "Complete Backyard Makeover", alt: "Backyard makeover by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg", title: "Irrigation Trenching", alt: "Irrigation trenching by Outright Landscape" }
 ];
 
 export default function LocationPage({ citySlug }) {
-    // Fetch all locations for navigation and nearby cities
     const { data: locations = [], isLoading } = useQuery({
         queryKey: ['locations'],
         queryFn: () => base44.entities.Location.list(null, 100),
     });
 
-    // Find city by slug (handles both old format and new -landscaping format)
     const cityData = locations.find(l => l.slug === citySlug);
 
-    // Track page view when component mounts
     React.useEffect(() => {
         if (cityData && typeof window !== 'undefined') {
             if (window.dataLayer) {
-                window.dataLayer.push({
-                    event: 'service_area_page_view',
-                    event_category: 'page_view',
-                    event_label: cityData.name,
-                    city_slug: citySlug,
-                    page_type: 'service_area'
-                });
+                window.dataLayer.push({ event: 'service_area_page_view', event_category: 'page_view', event_label: cityData.name, city_slug: citySlug, page_type: 'service_area' });
             }
             if (window.gtag) {
-                window.gtag('event', 'page_view', {
-                    page_title: `${cityData.name} Landscaping`,
-                    page_location: window.location.href,
-                    page_path: window.location.pathname + window.location.search,
-                    city_name: cityData.name
-                });
+                window.gtag('event', 'page_view', { page_title: `${cityData.name} Landscaping`, page_location: window.location.href, page_path: window.location.pathname + window.location.search, city_name: cityData.name });
             }
         }
     }, [cityData, citySlug]);
 
-    // Use fallback data while loading or if city not found
     const name = cityData?.name || 'San Gabriel Valley';
     const intro = cityData?.intro || "Transform your property with premier landscaping services from Outright Landscape Construction. We specialize in creating stunning outdoor spaces.";
     const faqs = cityData?.faqs || [];
@@ -107,7 +60,6 @@ export default function LocationPage({ citySlug }) {
 
     const pageTitle = `${name} Landscaping & Hardscaping | Outright Landscape`;
     const metaDescription = `Licensed C-27 landscape contractor in ${name}. Expert pavers, turf installation, irrigation systems & complete landscape design. Free estimate: (626) 343-6028. CSLB #1073845.`;
-    // Canonical URL for the city-specific page
     const canonicalUrl = `https://outrightlandscape.com/${slug}`;
 
     const breadcrumbItems = [
@@ -118,102 +70,114 @@ export default function LocationPage({ citySlug }) {
 
     const trackPhoneClick = (location) => {
         if (window.dataLayer) {
-            window.dataLayer.push({
-                event: 'phone_click',
-                event_category: 'engagement',
-                event_label: `${slug}_${location}`,
-                phone_number: '626-343-6028'
-            });
+            window.dataLayer.push({ event: 'phone_click', event_category: 'engagement', event_label: `${slug}_${location}`, phone_number: '626-343-6028' });
         }
     };
 
-    // Filter nearby cities to exclude current city (only show if we have valid data)
-    const filteredNearbyCities = isLoading ? [] : locations
-        .filter(l => l.slug !== slug)
-        .slice(0, 8); // Show 8 nearby cities
+    const filteredNearbyCities = isLoading ? [] : locations.filter(l => l.slug !== slug).slice(0, 8);
 
-    // Helper to get icon component
     const getIcon = (iconName) => {
         const Icon = iconMap[iconName] || CheckCircle2;
-        return <Icon className="w-8 h-8 text-green-500 mb-4" />;
+        return <Icon className="w-6 h-6 text-[#c45d2c]" />;
     };
 
+    const heights = ['h-60', 'h-72', 'h-56', 'h-68', 'h-64', 'h-72'];
+
     return (
-        <div className="bg-white">
-            <SEO 
-                title={pageTitle}
-                description={metaDescription}
-                canonicalUrl={canonicalUrl}
-                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
-                keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`}
-            />
+        <div className="cityPageWrapper bg-white">
+            <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl} ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg" keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`} />
             <BreadcrumbSchema items={breadcrumbItems} />
             <LocalBusinessSchema cityName={name} citySlug={slug} services={services} />
             {faqs && faqs.length > 0 && <FAQSchema faqs={faqs} cityName={name} />}
 
-            {/* Hero Section */}
-            <SharedHero 
-                cityName={name}
-                title={<>{name}'s<br /><span className="text-green-400">Most Trusted Landscape & Irrigation Contractor</span></>}
-                subtitle={`Licensed C-27 landscape contractor serving ${name} & the San Gabriel Valley`}
-                onPhoneClick={trackPhoneClick}
-                onViewServicesClick={() => {}}
-            />
+            {/* ── HERO ── */}
+            <section className="cityHero relative min-h-[85vh] sm:min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
+                <div className="absolute inset-0 sm:left-[40%]">
+                    <img
+                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
+                        alt={`Professional landscape project in ${name}`}
+                        className="w-full h-full object-cover"
+                        fetchpriority="high"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
+                </div>
 
-            {/* Intro Section */}
-            <section className="py-16 bg-white">
-                <div className="max-w-4xl mx-auto px-4 text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-6">Landscaping Services in {name}</h2>
-                    <p className="text-lg text-gray-600 leading-relaxed">
-                        {intro}
-                    </p>
+                <div className="cityHeroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 pb-16 sm:py-0">
+                    <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, ease: 'easeOut' }} className="max-w-xl space-y-6">
+                        <div className="cityHeroBadge inline-flex items-center gap-2 bg-[#2d5a27]/20 border border-[#2d5a27]/40 rounded-full px-4 py-1.5">
+                            <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
+                            <span className="text-[#8fbc8b] text-xs font-semibold tracking-wide uppercase">Licensed C-27 Contractor</span>
+                        </div>
+
+                        <h1 className="cityHeroHeadline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
+                            <span className="font-light">{name}'s</span><br />
+                            <span className="font-bold text-[#c45d2c]">Most Trusted</span><br />
+                            <span className="font-light">Landscape Contractor</span>
+                        </h1>
+
+                        <p className="cityHeroSubtitle text-[#a09a90] text-base sm:text-lg leading-relaxed max-w-md">
+                            Licensed C-27 landscape contractor serving {name} & the San Gabriel Valley
+                        </p>
+
+                        <div className="cityHeroTrust flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#8a8478]">
+                            {['CSLB #1073845', '10+ Years', '4.8★ Google'].map((t) => (
+                                <span key={t} className="flex items-center gap-1.5">
+                                    <CheckCircle2 className="w-3.5 h-3.5 text-[#4a8c3f]" />
+                                    {t}
+                                </span>
+                            ))}
+                        </div>
+
+                        <div className="cityHeroCtas flex flex-col sm:flex-row gap-3 pt-2">
+                            <a href="tel:626-343-6028" onClick={() => trackPhoneClick('hero')} className="w-full sm:w-auto">
+                                <Button className="cityHeroCallBtn w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-base px-7 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:shadow-xl hover:scale-[1.02] min-w-[240px]">
+                                    <Phone className="mr-2.5 w-5 h-5" />(626) 343-6028
+                                </Button>
+                            </a>
+                            <a href="#contact" className="w-full sm:w-auto">
+                                <Button variant="outline" className="cityHeroQuoteBtn w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-base px-7 py-6 rounded-xl transition-all min-w-[240px]">
+                                    Free Estimate <ArrowRight className="ml-2 w-4 h-4" />
+                                </Button>
+                            </a>
+                        </div>
+                    </motion.div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2d5a27] via-[#c45d2c] to-[#b8945a] z-20" />
+            </section>
+
+            {/* ── INTRO ── */}
+            <section className="cityIntro py-16 sm:py-20 bg-[#f5f0e8]">
+                <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+                    <span className="cityIntroLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">About Our Work</span>
+                    <h2 className="cityIntroTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] mt-2 mb-6 tracking-tight">Landscaping Services in {name}</h2>
+                    <p className="cityIntroText text-[#6b6560] text-base sm:text-lg leading-relaxed">{intro}</p>
                 </div>
             </section>
 
-            {/* Services Section */}
-            <section id="services" className="py-16 sm:py-20 bg-gradient-to-b from-white via-gray-50 to-white">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-12 sm:mb-16"
-                    >
-                        <span className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-4">
-                            Our Services in {name}
-                        </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                            Transform Your {name} Property
-                        </h2>
-                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                            From premium turf installation to complete landscape design, we deliver exceptional results for {name} homeowners and businesses.
-                        </p>
+            {/* ── SERVICES ── */}
+            <section id="services" className="cityServices py-20 sm:py-28 bg-white">
+                <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="cityServicesHeader mb-14 sm:mb-16">
+                        <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Our Services</span>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">Transform Your {name} Property</h2>
+                        <p className="mt-4 text-[#6b6560] text-base sm:text-lg max-w-3xl">From premium turf installation to complete landscape design, we deliver exceptional results for {name} homeowners and businesses.</p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <div className="cityServicesGrid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                         {services.map((service, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="group bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-green-200"
+                            <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: idx * 0.08 }}
+                                className="cityServiceCard group bg-[#f5f0e8] p-6 sm:p-7 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                             >
-                                <div className="mb-6">
+                                <div className="cityServiceIcon w-11 h-11 bg-[#c45d2c]/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#c45d2c]/20 transition-colors">
                                     {getIcon(service.iconName)}
                                 </div>
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors">
-                                    {service.title}
-                                </h3>
-                                <p className="text-gray-600 leading-relaxed mb-4">{service.description}</p>
+                                <h3 className="cityServiceTitle text-lg font-bold text-[#1a1a1a] mb-2 group-hover:text-[#c45d2c] transition-colors">{service.title}</h3>
+                                <p className="cityServiceDesc text-[#6b6560] text-sm leading-relaxed mb-4">{service.description}</p>
                                 {service.keywords && (
-                                    <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-100">
+                                    <div className="cityServiceKeywords flex flex-wrap gap-2 pt-3 border-t border-[#e0d8cc]">
                                         {service.keywords.split(', ').map((k, i) => (
-                                            <span key={i} className="text-xs bg-green-50 text-green-700 px-2 py-1 rounded-md font-medium">
-                                                {k}
-                                            </span>
+                                            <span key={i} className="text-xs bg-[#2d5a27]/10 text-[#2d5a27] px-2.5 py-1 rounded-md font-medium">{k}</span>
                                         ))}
                                     </div>
                                 )}
@@ -223,49 +187,27 @@ export default function LocationPage({ citySlug }) {
                 </div>
             </section>
 
-            {/* Project Gallery */}
-            <section id="work" className="py-16 sm:py-20 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-12 sm:mb-16"
-                    >
-                        <span className="inline-block px-4 py-2 bg-orange-100 text-orange-800 rounded-full text-sm font-semibold mb-4">
-                            Recent Projects
-                        </span>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                            Our Work in {name}
-                        </h2>
-                        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                            Transforming {name} properties with expert landscaping and hardscaping
-                        </p>
+            {/* ── PORTFOLIO ── */}
+            <section id="work" className="cityPortfolio py-20 sm:py-28 bg-[#f5f0e8]">
+                <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="cityPortfolioHeader flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12 sm:mb-16">
+                        <div>
+                            <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Our Work</span>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">Projects in {name}</h2>
+                        </div>
+                        <p className="text-[#6b6560] text-base max-w-sm">Transforming {name} properties with expert landscaping and hardscaping</p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <div className="cityPortfolioGrid columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
                         {projects.map((project, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 aspect-square"
+                            <motion.div key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: index * 0.05 }}
+                                className={`cityProjectCard group relative overflow-hidden rounded-xl break-inside-avoid ${heights[index % heights.length]}`}
                             >
-                                <img 
-                                    src={project.image || project.src}
-                                    alt={`${project.alt || project.title} - ${name}`}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                    loading="lazy"
-                                    width="600"
-                                    height="600"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
-                                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                                    <h3 className="text-xl sm:text-2xl font-bold mb-2">{project.title}</h3>
-                                    {project.description && <p className="text-green-300 text-sm">{project.description}</p>}
+                                <img src={project.image || project.src} alt={`${project.alt || project.title} - ${name}`} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width="600" height="600" />
+                                <div className="cityProjectOverlay absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                <div className="cityProjectInfo absolute bottom-0 left-0 right-0 p-4 sm:p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                                    <h3 className="text-white font-bold text-sm sm:text-base leading-tight">{project.title}</h3>
+                                    {project.description && <p className="text-[#c45d2c] text-xs mt-1 font-medium">{project.description}</p>}
                                 </div>
                             </motion.div>
                         ))}
@@ -273,125 +215,78 @@ export default function LocationPage({ citySlug }) {
                 </div>
             </section>
 
-            {/* Stats Section */}
-            <section className="py-16 sm:py-20 bg-gradient-to-br from-green-600 via-green-700 to-green-800 text-white relative overflow-hidden">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDE2YzAtMS4xLS45LTItMi0yaC0yYy0xLjEgMC0yIC45LTIgMnYyYzAgMS4xLjkgMiAyIDJoMmMxLjEgMCAyLS45IDItMnYtMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-10"></div>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-12 sm:mb-16"
-                    >
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-                            Trusted by {name} Since 2003
-                        </h2>
-                        <p className="text-lg sm:text-xl text-green-100">
-                            Over 20 years of excellence in {name} & the San Gabriel Valley
-                        </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {/* ── STATS ── */}
+            <section className="cityStats py-0 bg-[#1a1a1a] border-y border-[#333]">
+                <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#333]">
                         {[
-                            { number: "1000+", label: "Projects Completed" },
-                            { number: "20+", label: "Years Experience" },
-                            { number: "5.0", label: "Star Rating" },
+                            { number: "500+", label: "Projects Completed" },
+                            { number: "10+", label: "Years Experience" },
+                            { number: "4.8★", label: "Google Rating" },
                             { number: "100%", label: "Licensed & Insured" }
                         ].map((stat, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                                className="text-center p-6 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300"
+                            <motion.div key={idx} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
+                                className="cityStatItem text-center py-10 sm:py-12"
                             >
-                                <div className="text-4xl sm:text-5xl font-bold mb-2 text-white">{stat.number}</div>
-                                <p className="text-green-100 text-sm sm:text-base font-medium">{stat.label}</p>
+                                <div className="cityStatValue text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">{stat.number}</div>
+                                <div className="cityStatLabel text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{stat.label}</div>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Related Services - Irrigation Hub Link */}
-            <section className="relatedServicesSection py-12 bg-white border-t border-gray-200">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-8"
-                    >
-                        <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
-                            Specialized Services
-                        </span>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                            Professional Irrigation Services in {name}
-                        </h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-                            Expert sprinkler repair, drip irrigation installation, valve maintenance and controller upgrades
-                        </p>
+            {/* ── IRRIGATION SERVICES ── */}
+            <section className="cityIrrigation py-20 sm:py-28 bg-white">
+                <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="cityIrrigationHeader mb-12">
+                        <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Specialized Services</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Irrigation Services in {name}</h2>
+                        <p className="mt-3 text-[#6b6560] text-base max-w-2xl">Expert sprinkler repair, drip irrigation installation, valve maintenance and controller upgrades</p>
                     </motion.div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div className="cityIrrigationGrid grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
                         {[
                             { title: 'Drip Irrigation', serviceSlug: 'drip-irrigation', icon: '💧', description: 'Water-efficient drip systems' },
                             { title: 'Irrigation Repair', serviceSlug: 'irrigation-repair', icon: '🔧', description: 'Fast leak detection & repair' },
                             { title: 'Sprinkler Repair', serviceSlug: 'sprinkler-repair', icon: '🚿', description: 'Expert sprinkler diagnostics' },
                             { title: 'Sprinkler Valves', serviceSlug: 'sprinkler-valves', icon: '⚙️', description: 'Valve replacement & repair' }
                         ].map((service, idx) => (
-                            <motion.a
-                                key={idx}
-                                href={`${createPageUrl('IrrigationService')}?city=${slug}&service=${service.serviceSlug}`}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                                className="relatedServiceCard group bg-gradient-to-br from-blue-50 to-white border-2 border-blue-200 hover:border-blue-500 rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                            <motion.a key={idx} href={`${createPageUrl('IrrigationService')}?city=${slug}&service=${service.serviceSlug}`}
+                                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: idx * 0.1 }}
+                                className="cityIrrigationCard group bg-[#f5f0e8] border border-[#e0d8cc] hover:border-[#b8945a] rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                             >
-                                <div className="text-3xl mb-2">{service.icon}</div>
-                                <h3 className="font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
-                                    {service.title}
-                                </h3>
-                                <p className="text-sm text-gray-600">{service.description}</p>
+                                <div className="text-2xl mb-2">{service.icon}</div>
+                                <h3 className="font-bold text-[#1a1a1a] mb-1 group-hover:text-[#c45d2c] transition-colors text-sm">{service.title}</h3>
+                                <p className="text-xs text-[#6b6560]">{service.description}</p>
                             </motion.a>
                         ))}
                     </div>
 
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.4 }}
-                        className="text-center"
-                    >
-                        <a
-                            href={createPageUrl('Irrigation')}
-                            className="irrigationHubLink inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                        >
-                            View All Irrigation Services
-                            <ArrowRight className="w-5 h-5" />
+                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center sm:text-left">
+                        <a href={createPageUrl('Irrigation')} className="cityIrrigationCta inline-flex items-center gap-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm group">
+                            View All Irrigation Services <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </a>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Google Reviews */}
+            {/* ── REVIEWS ── */}
             <GoogleReviews />
-            
-            {/* FAQs Section */}
-            {faqs && (
-                <section className="py-16 bg-gray-50">
-                    <div className="max-w-3xl mx-auto px-4">
-                        <h2 className="text-3xl font-bold text-center mb-10 text-gray-900">Common Questions in {name}</h2>
-                        <div className="space-y-6">
+
+            {/* ── FAQS ── */}
+            {faqs && faqs.length > 0 && (
+                <section className="cityFaqs py-20 sm:py-28 bg-[#f5f0e8]">
+                    <div className="max-w-3xl mx-auto px-5 sm:px-8">
+                        <div className="cityFaqsHeader mb-12">
+                            <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">FAQ</span>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Common Questions in {name}</h2>
+                        </div>
+                        <div className="cityFaqsList space-y-4">
                             {faqs.map((faq, idx) => (
-                                <div key={idx} className="bg-white p-6 rounded-xl shadow-sm">
-                                    <h3 className="text-lg font-bold text-gray-900 mb-2">{faq.q}</h3>
-                                    <p className="text-gray-600">{faq.a}</p>
+                                <div key={idx} className="cityFaqItem bg-white p-6 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/30 transition-colors">
+                                    <h3 className="cityFaqQuestion text-base font-bold text-[#1a1a1a] mb-2">{faq.q}</h3>
+                                    <p className="cityFaqAnswer text-[#6b6560] text-sm leading-relaxed">{faq.a}</p>
                                 </div>
                             ))}
                         </div>
@@ -399,86 +294,61 @@ export default function LocationPage({ citySlug }) {
                 </section>
             )}
 
-            {/* Nearby Service Areas */}
-            <section id="service-areas" className="py-12 sm:py-16 bg-gradient-to-b from-white to-gray-50">
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="text-center mb-10 sm:mb-12"
-                    >
-                        <span className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-4">
-                            Service Areas
-                        </span>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                            Also Serving Nearby Communities
-                        </h2>
-                        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                            Professional landscaping services throughout the San Gabriel Valley
-                        </p>
+            {/* ── NEARBY CITIES ── */}
+            <section id="service-areas" className="cityNearby py-20 sm:py-28 bg-white">
+                <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="cityNearbyHeader mb-12">
+                        <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">Service Areas</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Also Serving Nearby Communities</h2>
+                        <p className="mt-3 text-[#6b6560] text-base">Professional landscaping services throughout the San Gabriel Valley</p>
                     </motion.div>
-                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                    <nav className="cityNearbyGrid flex flex-wrap gap-2.5">
                         {filteredNearbyCities.map((city, idx) => (
-                            <motion.a
-                                key={city.name}
-                                href={`/${city.slug}`}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.3, delay: idx * 0.05 }}
-                                className="group"
+                            <motion.a key={city.name} href={`/${city.slug}`}
+                                initial={{ opacity: 0, y: 8 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: idx * 0.04 }}
+                                className="cityNearbyTag inline-flex items-center gap-1.5 bg-[#f5f0e8] border border-[#e0d8cc] hover:border-[#2d5a27] hover:bg-[#2d5a27] px-4 py-2.5 rounded-lg text-sm font-medium text-[#4a4540] hover:text-white transition-all shadow-sm hover:shadow-md"
                             >
-                                <div className="bg-white hover:bg-orange-600 border-2 border-gray-200 hover:border-orange-600 transition-all duration-300 rounded-xl px-5 sm:px-7 py-3 sm:py-4 group-hover:scale-105 group-hover:shadow-xl">
-                                    <span className="font-semibold text-sm sm:text-base text-gray-700 group-hover:text-white transition-colors flex items-center gap-2">
-                                        {city.name}
-                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </span>
-                                </div>
+                                <MapPin className="w-3 h-3 flex-shrink-0" />
+                                {city.name}
                             </motion.a>
                         ))}
+                    </nav>
+                </div>
+            </section>
+
+            {/* ── ESTIMATE CTA ── */}
+            <section className="cityEstimate py-16 sm:py-20 bg-[#1a1a1a]">
+                <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <div className="cityEstimateHeader text-center mb-10">
+                        <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Get Started</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">Ready to Transform Your Yard?</h2>
+                    </div>
+                    <div className="cityEstimateCards grid md:grid-cols-3 gap-4 mb-8">
+                        <a href="tel:626-343-6028" onClick={() => trackPhoneClick('estimate_section')} className="cityEstimateCard bg-[#242424] border border-[#333] hover:border-[#c45d2c]/40 p-6 rounded-xl text-center group transition-all hover:shadow-lg">
+                            <Phone className="w-8 h-8 text-[#c45d2c] mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                            <p className="font-bold text-white mb-1">Call Us</p>
+                            <p className="text-[#c45d2c] font-semibold text-lg">(626) 343-6028</p>
+                        </a>
+                        <a href="sms:626-343-6028" className="cityEstimateCard bg-[#242424] border border-[#333] hover:border-[#b8945a]/40 p-6 rounded-xl text-center group transition-all hover:shadow-lg">
+                            <span className="text-3xl mx-auto mb-3 block group-hover:scale-110 transition-transform">💬</span>
+                            <p className="font-bold text-white mb-1">Text Us</p>
+                            <p className="text-[#b8945a] font-semibold text-lg">(626) 343-6028</p>
+                        </a>
+                        <a href="mailto:office@outrightlandscape.com" className="cityEstimateCard bg-[#242424] border border-[#333] hover:border-[#4a8c3f]/40 p-6 rounded-xl text-center group transition-all hover:shadow-lg">
+                            <span className="text-3xl mx-auto mb-3 block group-hover:scale-110 transition-transform">📧</span>
+                            <p className="font-bold text-white mb-1">Email Us</p>
+                            <p className="text-[#4a8c3f] font-semibold text-sm">office@outrightlandscape.com</p>
+                        </a>
+                    </div>
+                    <div className="cityEstimateTrust text-center">
+                        <p className="text-[#8a8478] text-sm">Licensed C-27 Contractor • CSLB #1073845 • Serving {name} & the San Gabriel Valley</p>
                     </div>
                 </div>
             </section>
 
-            {/* Contact & Estimate */}
-            <section className="py-16 px-4 bg-gray-50">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                        Get Your Free Estimate Today
-                    </h2>
-                    <div className="max-w-5xl mx-auto">
-                        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-8 mb-8">
-                            <div className="grid md:grid-cols-3 gap-6 mb-6">
-                                <a href="tel:626-343-6028" onClick={() => trackPhoneClick('estimate_section')} className="bg-white p-6 rounded-lg hover:shadow-lg transition-shadow text-center group">
-                                    <Phone className="w-10 h-10 text-green-600 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                                    <p className="font-bold text-gray-900 mb-1">Call Us</p>
-                                    <p className="text-green-600 font-semibold text-lg">(626) 343-6028</p>
-                                </a>
-                                <a href="sms:626-343-6028" className="bg-white p-6 rounded-lg hover:shadow-lg transition-shadow text-center group">
-                                    <span className="text-4xl mx-auto mb-3 block group-hover:scale-110 transition-transform">💬</span>
-                                    <p className="font-bold text-gray-900 mb-1">Text Us</p>
-                                    <p className="text-green-600 font-semibold text-lg">(626) 343-6028</p>
-                                </a>
-                                <a href="mailto:office@outrightlandscape.com" className="bg-white p-6 rounded-lg hover:shadow-lg transition-shadow text-center group">
-                                    <span className="text-4xl mx-auto mb-3 block group-hover:scale-110 transition-transform">📧</span>
-                                    <p className="font-bold text-gray-900 mb-1">Email Us</p>
-                                    <p className="text-green-600 font-semibold text-sm">office@outrightlandscape.com</p>
-                                </a>
-                            </div>
-                            <div className="text-center">
-                                <p className="text-gray-700 font-medium mb-2">Licensed C-27 Contractor • CSLB #1073845</p>
-                                <p className="text-gray-600">Serving {name} & the San Gabriel Valley</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Contact Form */}
+            {/* ── CONTACT FORM ── */}
             <section id="contact">
-                <ContactForm cityName={name} darkMode={true} />
+                <ContactForm cityName={name} />
             </section>
         </div>
     );
