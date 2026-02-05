@@ -135,13 +135,13 @@ export default function Irrigation() {
                             {locations.filter(c => c.slug && c.slug !== 'san-gabriel-landscaping').map((city, cityIdx) => {
                                 const baseSlug = city.slug.replace(/-landscaping$/, '');
                                 return (
-                                <motion.a key={cityIdx} href={createPageUrl(`${baseSlug}-sprinkler-repair-installation`)}
-                                    initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: cityIdx * 0.03 }}
-                                    className="irrigationCityCard flex flex-col items-center justify-center p-5 sm:p-6 rounded-xl border border-[#e0d8cc] bg-white hover:border-[#c45d2c]/40 transition-all hover:shadow-lg hover:-translate-y-1 group text-center">
-                                    <MapPin className="w-6 h-6 text-[#2d5a27] mb-2 group-hover:text-[#c45d2c] transition-colors" />
-                                    <h3 className="text-sm sm:text-base font-bold text-[#1a1a1a] group-hover:text-[#c45d2c] transition-colors">{city.name}</h3>
-                                    <p className="text-xs text-[#8a8478] mt-1">Sprinkler Services</p>
-                                </motion.a>
+                                    <motion.a key={cityIdx} href={createPageUrl(`${baseSlug}-sprinkler-repair-installation`)}
+                                        initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: cityIdx * 0.03 }}
+                                        className="irrigationCityCard flex flex-col items-center justify-center p-5 sm:p-6 rounded-xl border border-[#e0d8cc] bg-white hover:border-[#c45d2c]/40 transition-all hover:shadow-lg hover:-translate-y-1 group text-center">
+                                        <MapPin className="w-6 h-6 text-[#2d5a27] mb-2 group-hover:text-[#c45d2c] transition-colors" />
+                                        <h3 className="text-sm sm:text-base font-bold text-[#1a1a1a] group-hover:text-[#c45d2c] transition-colors">{city.name}</h3>
+                                        <p className="text-xs text-[#8a8478] mt-1">Sprinkler Services</p>
+                                    </motion.a>
                                 );
                             })}
                         </div>
