@@ -94,7 +94,7 @@ export default function LocationPage({ citySlug }) {
 
             {/* ── HERO ── */}
             <section className="cityHero relative min-h-[85vh] sm:min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
-                <div className="absolute inset-0 sm:left-[40%]">
+                <div className="absolute inset-0 sm:left-[35%] lg:left-[40%]">
                     <img
                         src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
                         alt={`Professional landscape project in ${name}`}
@@ -123,7 +123,7 @@ export default function LocationPage({ citySlug }) {
                         </p>
 
                         <div className="cityHeroTrust flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#8a8478]">
-                            {['CSLB #1073845', '10+ Years', '4.8★ Google'].map((t) => (
+                            {['CSLB #1073845', '20+ Years', '4.8★ Google'].map((t) => (
                                 <span key={t} className="flex items-center gap-1.5">
                                     <CheckCircle2 className="w-3.5 h-3.5 text-[#4a8c3f]" />
                                     {t}
@@ -222,8 +222,8 @@ export default function LocationPage({ citySlug }) {
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#333]">
                         {[
-                            { number: "500+", label: "Projects Completed" },
-                            { number: "10+", label: "Years Experience" },
+                            { number: "250+", label: "Projects Completed" },
+                            { number: "20+", label: "Years Experience" },
                             { number: "4.8★", label: "Google Rating" },
                             { number: "100%", label: "Licensed & Insured" }
                         ].map((stat, idx) => (

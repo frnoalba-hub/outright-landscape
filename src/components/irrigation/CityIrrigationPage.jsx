@@ -128,7 +128,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
 
             {/* ── HERO ── */}
             <section className="cityIrrigationHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
-                <div className="absolute inset-0 sm:left-[40%]">
+                <div className="absolute inset-0 sm:left-[35%] lg:left-[40%]">
                     <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg" alt={`Sprinkler installation and repair in ${cityName}`} className="w-full h-full object-cover" fetchpriority="high" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
@@ -173,7 +173,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
             <section className="cityIrrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                        {[{ v: '500+', l: 'Systems Installed & Repaired' }, { v: '24hr', l: 'Response Time' }, { v: '20+', l: 'Years Experience' }, { v: '100%', l: 'Licensed & Insured' }].map((s, i) => (
+                        {[{ v: '250+', l: 'Systems Installed & Repaired' }, { v: '24hr', l: 'Response Time' }, { v: '20+', l: 'Years Experience' }, { v: '100%', l: 'Licensed & Insured' }].map((s, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="cityIrrigationStatItem text-center py-8 sm:py-10">
                                 <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">{s.v}</div>
                                 <div className="text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{s.l}</div>
@@ -346,7 +346,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                             <div className="flex gap-0.5 mb-1">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />)}</div>
                             <div className="text-white font-bold text-sm">5.0 Rating</div>
                         </div>
-                        {[{ v: '500+', l: 'Sprinkler Jobs' }, { v: '24hr', l: 'Avg Response' }, { v: '100%', l: 'Licensed & Insured' }].map((s, i) => (
+                        {[{ v: '250+', l: 'Sprinkler Jobs' }, { v: '24hr', l: 'Avg Response' }, { v: '100%', l: 'Licensed & Insured' }].map((s, i) => (
                             <div key={i} className="cityIrrigationTrustStat text-center py-10">
                                 <div className="text-3xl font-bold text-[#c45d2c]">{s.v}</div>
                                 <div className="text-[#8a8478] text-xs mt-1">{s.l}</div>

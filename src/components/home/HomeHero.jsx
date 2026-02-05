@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 
 export default function HomeHero({ onPhoneClick, onQuoteClick }) {
     return (
-        <section className="homeHero relative min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
+        <section className="homeHero relative min-h-[85vh] sm:min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
             {/* Background image — right side on desktop, full on mobile */}
-            <div className="absolute inset-0 sm:left-[45%]">
+            <div className="absolute inset-0 sm:left-[35%] lg:left-[40%]">
                 <img
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
                     alt="Professional landscape project by Outright Landscape in Covina"
@@ -52,7 +52,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick }) {
 
                     {/* Trust badges */}
                     <div className="heroTrustBadges flex flex-wrap gap-x-5 gap-y-2 text-sm text-[#8a8478]">
-                        {['CSLB #1073845', '10+ Years', '500+ Projects', '4.8★ Google'].map((t) => (
+                        {['CSLB #1073845', '20+ Years', '250+ Projects', '4.8★ Google'].map((t) => (
                             <span key={t} className="flex items-center gap-1.5">
                                 <CheckCircle2 className="w-3.5 h-3.5 text-[#4a8c3f]" />
                                 {t}
