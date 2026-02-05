@@ -374,36 +374,6 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                 </div>
             </section>
 
-            {/* ── ESTIMATE CTA ── */}
-            <section className="cityIrrigationEstimate py-16 sm:py-20 bg-[#1a1a1a]">
-                <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
-                    <div className="text-center mb-10">
-                        <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Get Started</span>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">Ready for a New Sprinkler System or Repair?</h2>
-                    </div>
-                    <div className="grid md:grid-cols-3 gap-4 mb-8">
-                        <a href="tel:626-343-6028" onClick={() => trackPhoneClick('estimate')} className="cityIrrigationEstimateCard bg-[#242424] border border-[#333] hover:border-[#c45d2c]/40 p-6 rounded-xl text-center group transition-all hover:shadow-lg">
-                            <Phone className="w-8 h-8 text-[#c45d2c] mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                            <p className="font-bold text-white mb-1">Call Us</p>
-                            <p className="text-[#c45d2c] font-semibold text-lg">(626) 343-6028</p>
-                        </a>
-                        <a href="sms:626-343-6028" className="cityIrrigationEstimateCard bg-[#242424] border border-[#333] hover:border-[#b8945a]/40 p-6 rounded-xl text-center group transition-all hover:shadow-lg">
-                            <span className="text-3xl mx-auto mb-3 block group-hover:scale-110 transition-transform">💬</span>
-                            <p className="font-bold text-white mb-1">Text Us</p>
-                            <p className="text-[#b8945a] font-semibold text-lg">(626) 343-6028</p>
-                        </a>
-                        <a href="mailto:office@outrightlandscape.com" className="cityIrrigationEstimateCard bg-[#242424] border border-[#333] hover:border-[#4a8c3f]/40 p-6 rounded-xl text-center group transition-all hover:shadow-lg">
-                            <span className="text-3xl mx-auto mb-3 block group-hover:scale-110 transition-transform">📧</span>
-                            <p className="font-bold text-white mb-1">Email Us</p>
-                            <p className="text-[#4a8c3f] font-semibold text-sm">office@outrightlandscape.com</p>
-                        </a>
-                    </div>
-                    <div className="text-center">
-                        <p className="text-[#8a8478] text-sm">Licensed C-27 Contractor • CSLB #1073845 • Serving {cityName} & the San Gabriel Valley</p>
-                    </div>
-                </div>
-            </section>
-
             {/* ── CONTACT FORM ── */}
             <section id="contact">
                 <ContactForm cityName={cityName} />
