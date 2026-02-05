@@ -157,6 +157,26 @@ import westCovinaIrrigationRepair from './pages/west-covina-irrigation-repair';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
 import westCovinaSprinklerRepair from './pages/west-covina-sprinkler-repair';
 import westCovinaSprinklerValves from './pages/west-covina-sprinkler-valves';
+import arcadiaSprinklerRepairInstallation from './pages/arcadia-sprinkler-repair-installation';
+import azusaSprinklerRepairInstallation from './pages/azusa-sprinkler-repair-installation';
+import baldwinParkSprinklerRepairInstallation from './pages/baldwin-park-sprinkler-repair-installation';
+import charterOakSprinklerRepairInstallation from './pages/charter-oak-sprinkler-repair-installation';
+import claremontSprinklerRepairInstallation from './pages/claremont-sprinkler-repair-installation';
+import covinaSprinklerRepairInstallation from './pages/covina-sprinkler-repair-installation';
+import diamondBarSprinklerRepairInstallation from './pages/diamond-bar-sprinkler-repair-installation';
+import duarteSprinklerRepairInstallation from './pages/duarte-sprinkler-repair-installation';
+import elMonteSprinklerRepairInstallation from './pages/el-monte-sprinkler-repair-installation';
+import glendoraSprinklerRepairInstallation from './pages/glendora-sprinkler-repair-installation';
+import laVerneSprinklerRepairInstallation from './pages/la-verne-sprinkler-repair-installation';
+import monroviaSprinklerRepairInstallation from './pages/monrovia-sprinkler-repair-installation';
+import pasadenaSprinklerRepairInstallation from './pages/pasadena-sprinkler-repair-installation';
+import pomonaSprinklerRepairInstallation from './pages/pomona-sprinkler-repair-installation';
+import rowlandHeightsSprinklerRepairInstallation from './pages/rowland-heights-sprinkler-repair-installation';
+import sanDimasSprinklerRepairInstallation from './pages/san-dimas-sprinkler-repair-installation';
+import sanGabrielSprinklerRepairInstallation from './pages/san-gabriel-sprinkler-repair-installation';
+import templeCitySprinklerRepairInstallation from './pages/temple-city-sprinkler-repair-installation';
+import walnutSprinklerRepairInstallation from './pages/walnut-sprinkler-repair-installation';
+import westCovinaSprinklerRepairInstallation from './pages/west-covina-sprinkler-repair-installation';
 import __Layout from './Layout.jsx';
 
 
@@ -271,6 +291,26 @@ export const PAGES = {
     "west-covina-landscaping": westCovinaLandscaping,
     "west-covina-sprinkler-repair": westCovinaSprinklerRepair,
     "west-covina-sprinkler-valves": westCovinaSprinklerValves,
+    "arcadia-sprinkler-repair-installation": arcadiaSprinklerRepairInstallation,
+    "azusa-sprinkler-repair-installation": azusaSprinklerRepairInstallation,
+    "baldwin-park-sprinkler-repair-installation": baldwinParkSprinklerRepairInstallation,
+    "charter-oak-sprinkler-repair-installation": charterOakSprinklerRepairInstallation,
+    "claremont-sprinkler-repair-installation": claremontSprinklerRepairInstallation,
+    "covina-sprinkler-repair-installation": covinaSprinklerRepairInstallation,
+    "diamond-bar-sprinkler-repair-installation": diamondBarSprinklerRepairInstallation,
+    "duarte-sprinkler-repair-installation": duarteSprinklerRepairInstallation,
+    "el-monte-sprinkler-repair-installation": elMonteSprinklerRepairInstallation,
+    "glendora-sprinkler-repair-installation": glendoraSprinklerRepairInstallation,
+    "la-verne-sprinkler-repair-installation": laVerneSprinklerRepairInstallation,
+    "monrovia-sprinkler-repair-installation": monroviaSprinklerRepairInstallation,
+    "pasadena-sprinkler-repair-installation": pasadenaSprinklerRepairInstallation,
+    "pomona-sprinkler-repair-installation": pomonaSprinklerRepairInstallation,
+    "rowland-heights-sprinkler-repair-installation": rowlandHeightsSprinklerRepairInstallation,
+    "san-dimas-sprinkler-repair-installation": sanDimasSprinklerRepairInstallation,
+    "san-gabriel-sprinkler-repair-installation": sanGabrielSprinklerRepairInstallation,
+    "temple-city-sprinkler-repair-installation": templeCitySprinklerRepairInstallation,
+    "walnut-sprinkler-repair-installation": walnutSprinklerRepairInstallation,
+    "west-covina-sprinkler-repair-installation": westCovinaSprinklerRepairInstallation,
 }
 
 export const pagesConfig = {
