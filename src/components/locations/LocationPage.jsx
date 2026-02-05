@@ -236,36 +236,36 @@ export default function LocationPage({ citySlug }) {
                 </div>
             </section>
 
-            {/* ── IRRIGATION SERVICES ── */}
+            {/* ── SPRINKLER & IRRIGATION SERVICES ── */}
             <section className="cityIrrigation py-20 sm:py-28 bg-white">
                 <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="cityIrrigationHeader mb-12">
-                        <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Specialized Services</span>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Irrigation Services in {name}</h2>
-                        <p className="mt-3 text-[#6b6560] text-base max-w-2xl">Expert sprinkler repair, drip irrigation installation, valve maintenance and controller upgrades</p>
+                        <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Sprinkler Services</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Sprinkler Installation & Repair in {name}</h2>
+                        <p className="mt-3 text-[#6b6560] text-base max-w-2xl">New sprinkler systems, repairs, valve service, drip irrigation, and smart controller upgrades — all in one place.</p>
                     </motion.div>
 
                     <div className="cityIrrigationGrid grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
                         {[
-                            { title: 'Drip Irrigation', serviceSlug: 'drip-irrigation', icon: '💧', description: 'Water-efficient drip systems' },
-                            { title: 'Irrigation Repair', serviceSlug: 'irrigation-repair', icon: '🔧', description: 'Fast leak detection & repair' },
-                            { title: 'Sprinkler Repair', serviceSlug: 'sprinkler-repair', icon: '🚿', description: 'Expert sprinkler diagnostics' },
-                            { title: 'Sprinkler Valves', serviceSlug: 'sprinkler-valves', icon: '⚙️', description: 'Valve replacement & repair' }
+                            { title: 'Sprinkler Installation', icon: '🌱', description: 'New system design & install' },
+                            { title: 'Sprinkler Repair', icon: '🔧', description: 'Fast leak & head repair' },
+                            { title: 'Valve Service', icon: '⚙️', description: 'Valve replacement & repair' },
+                            { title: 'Drip Irrigation', icon: '💧', description: 'Water-efficient drip systems' },
                         ].map((service, idx) => (
-                            <motion.a key={idx} href={`${createPageUrl('IrrigationService')}?city=${slug}&service=${service.serviceSlug}`}
+                            <motion.div key={idx}
                                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: idx * 0.1 }}
                                 className="cityIrrigationCard group bg-[#f5f0e8] border border-[#e0d8cc] hover:border-[#b8945a] rounded-xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                             >
                                 <div className="text-2xl mb-2">{service.icon}</div>
                                 <h3 className="font-bold text-[#1a1a1a] mb-1 group-hover:text-[#c45d2c] transition-colors text-sm">{service.title}</h3>
                                 <p className="text-xs text-[#6b6560]">{service.description}</p>
-                            </motion.a>
+                            </motion.div>
                         ))}
                     </div>
 
                     <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-center sm:text-left">
-                        <a href={createPageUrl('Irrigation')} className="cityIrrigationCta inline-flex items-center gap-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm group">
-                            View All Irrigation Services <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        <a href={createPageUrl(`${slug}-sprinkler-repair-installation`)} className="cityIrrigationCta inline-flex items-center gap-2 bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white font-semibold px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm group">
+                            View All Sprinkler Services in {name} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                         </a>
                     </motion.div>
                 </div>
