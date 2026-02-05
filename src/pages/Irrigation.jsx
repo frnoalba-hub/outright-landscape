@@ -1,19 +1,14 @@
 import React from 'react';
 import { Phone, Droplets, Wrench, Settings, Waves, CheckCircle2, MapPin, ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import SEO from '../components/SEO';
 import { createPageUrl } from '@/utils';
+import { motion } from 'framer-motion';
 
 export default function Irrigation() {
     const handlePhoneClick = () => {
         if (window.dataLayer) {
-            window.dataLayer.push({
-                event: 'phone_click',
-                event_category: 'engagement',
-                event_label: 'irrigation-hub',
-                phone_number: '626-343-6028'
-            });
+            window.dataLayer.push({ event: 'phone_click', event_category: 'engagement', event_label: 'irrigation-hub', phone_number: '626-343-6028' });
         }
     };
 
@@ -22,52 +17,16 @@ export default function Irrigation() {
     };
 
     const cities = [
-        {
-            name: 'Glendora',
-            slug: 'glendora',
-            description: 'Expert irrigation services for Glendora homeowners and businesses'
-        },
-        {
-            name: 'San Dimas',
-            slug: 'san-dimas',
-            description: 'Professional irrigation repair and installation in San Dimas'
-        },
-        {
-            name: 'La Verne',
-            slug: 'la-verne',
-            description: 'Licensed irrigation contractors serving La Verne since 2003'
-        }
+        { name: 'Glendora', slug: 'glendora', description: 'Expert irrigation services for Glendora homeowners and businesses' },
+        { name: 'San Dimas', slug: 'san-dimas', description: 'Professional irrigation repair and installation in San Dimas' },
+        { name: 'La Verne', slug: 'la-verne', description: 'Licensed irrigation contractors serving La Verne since 2003' }
     ];
 
     const services = [
-        {
-            icon: Wrench,
-            title: 'Sprinkler Repair',
-            slug: 'sprinkler-repair',
-            description: 'Fast sprinkler repair for broken heads, leaks, and zone issues. Same-day service available.',
-            keywords: 'Leaks, Broken Heads, Zone Problems'
-        },
-        {
-            icon: Settings,
-            title: 'Irrigation Repair',
-            slug: 'irrigation-repair',
-            description: 'Complete irrigation system repair including valve service, controller programming, and leak detection.',
-            keywords: 'Valves, Controllers, System Diagnostics'
-        },
-        {
-            icon: Droplets,
-            title: 'Sprinkler Valves',
-            slug: 'sprinkler-valves',
-            description: 'Sprinkler valve replacement and repair. Fix stuck valves, leaks, and solenoid issues.',
-            keywords: 'Valve Replacement, Solenoids, Stuck Valves'
-        },
-        {
-            icon: Waves,
-            title: 'Drip Irrigation',
-            slug: 'drip-irrigation',
-            description: 'Drip irrigation repair and installation. Water-efficient solutions for gardens and landscapes.',
-            keywords: 'Emitters, Pressure Regulation, Water Efficiency'
-        }
+        { icon: Wrench, title: 'Sprinkler Repair', slug: 'sprinkler-repair', description: 'Fast sprinkler repair for broken heads, leaks, and zone issues. Same-day service available.', keywords: 'Leaks, Broken Heads, Zone Problems' },
+        { icon: Settings, title: 'Irrigation Repair', slug: 'irrigation-repair', description: 'Complete irrigation system repair including valve service, controller programming, and leak detection.', keywords: 'Valves, Controllers, System Diagnostics' },
+        { icon: Droplets, title: 'Sprinkler Valves', slug: 'sprinkler-valves', description: 'Sprinkler valve replacement and repair. Fix stuck valves, leaks, and solenoid issues.', keywords: 'Valve Replacement, Solenoids, Stuck Valves' },
+        { icon: Waves, title: 'Drip Irrigation', slug: 'drip-irrigation', description: 'Drip irrigation repair and installation. Water-efficient solutions for gardens and landscapes.', keywords: 'Emitters, Pressure Regulation, Water Efficiency' }
     ];
 
     return (
@@ -81,130 +40,115 @@ export default function Irrigation() {
                 ogType="website"
             />
 
-            <div className="min-h-screen bg-white">
-                {/* Hero Section */}
-                <section className="bg-gradient-to-br from-green-50 to-blue-50 py-20 px-4 mt-16">
-                    <div className="max-w-7xl mx-auto text-center">
-                        <div className="inline-block bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm font-semibold mb-4">
-                            Serving La Verne • San Dimas • Glendora
-                        </div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Sprinkler & Irrigation Repair Services
-                        </h1>
-                        <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-                            Expert irrigation repair, sprinkler valve service, and drip system installation throughout the San Gabriel Valley. 
-                            Licensed C-27 contractor with 20+ years experience.
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-4 mb-12">
-                            <Button 
-                                size="lg" 
-                                asChild
-                                className="bg-orange-600 hover:bg-orange-700 text-lg px-8"
-                            >
-                                <a href="tel:626-343-6028" onClick={handlePhoneClick}>
-                                    <Phone className="w-5 h-5 mr-2" />
-                                    (626) 343-6028
-                                </a>
-                            </Button>
-                            <Button 
-                                size="lg" 
-                                variant="outline"
-                                onClick={scrollToForm}
-                                className="text-lg px-8 border-2 border-green-600 text-green-600 hover:bg-green-50"
-                            >
-                                Get Free Estimate
-                            </Button>
-                        </div>
+            <div className="irrigationPageWrapper min-h-screen bg-white">
+                {/* ── HERO ── */}
+                <section className="irrigationHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
+                    <div className="absolute inset-0 sm:left-[40%]">
+                        <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg" alt="Professional irrigation installation" className="w-full h-full object-cover" fetchpriority="high" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
+                    </div>
 
-                        {/* Quick Stats */}
-                        <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                            <div className="bg-white p-4 rounded-lg shadow-sm">
-                                <div className="text-3xl font-bold text-green-600 mb-1">500+</div>
-                                <p className="text-sm text-gray-600">Repairs Completed</p>
+                    <div className="irrigationHeroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 pb-16 sm:py-0">
+                        <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="max-w-xl space-y-6">
+                            <div className="irrigationHeroBadge inline-flex items-center gap-2 bg-[#2d5a27]/20 border border-[#2d5a27]/40 rounded-full px-4 py-1.5">
+                                <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
+                                <span className="text-[#8fbc8b] text-xs font-semibold tracking-wide uppercase">La Verne • San Dimas • Glendora</span>
                             </div>
-                            <div className="bg-white p-4 rounded-lg shadow-sm">
-                                <div className="text-3xl font-bold text-green-600 mb-1">24hr</div>
-                                <p className="text-sm text-gray-600">Response Time</p>
+                            <h1 className="irrigationHeroHeadline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
+                                <span className="font-light">Sprinkler &</span><br />
+                                <span className="font-bold text-[#c45d2c]">Irrigation Repair</span><br />
+                                <span className="font-light">Services</span>
+                            </h1>
+                            <p className="irrigationHeroSubtitle text-[#a09a90] text-base sm:text-lg leading-relaxed max-w-md">
+                                Expert irrigation repair, sprinkler valve service, and drip system installation. Licensed C-27 contractor with 20+ years experience.
+                            </p>
+                            <div className="irrigationHeroCtas flex flex-col sm:flex-row gap-3 pt-2">
+                                <a href="tel:626-343-6028" onClick={handlePhoneClick} className="w-full sm:w-auto">
+                                    <Button className="w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-base px-7 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:shadow-xl hover:scale-[1.02] min-w-[240px]">
+                                        <Phone className="mr-2.5 w-5 h-5" />(626) 343-6028
+                                    </Button>
+                                </a>
+                                <Button variant="outline" onClick={scrollToForm} className="w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-base px-7 py-6 rounded-xl transition-all min-w-[240px]">
+                                    Free Estimate <ArrowRight className="ml-2 w-4 h-4" />
+                                </Button>
                             </div>
-                            <div className="bg-white p-4 rounded-lg shadow-sm">
-                                <div className="text-3xl font-bold text-green-600 mb-1">20+</div>
-                                <p className="text-sm text-gray-600">Years Experience</p>
-                            </div>
-                            <div className="bg-white p-4 rounded-lg shadow-sm">
-                                <div className="text-3xl font-bold text-green-600 mb-1">100%</div>
-                                <p className="text-sm text-gray-600">Licensed & Insured</p>
-                            </div>
+                        </motion.div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2d5a27] via-[#c45d2c] to-[#b8945a] z-20" />
+                </section>
+
+                {/* ── STATS ── */}
+                <section className="irrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
+                    <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+                        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
+                            {[{ value: '500+', label: 'Repairs Completed' }, { value: '24hr', label: 'Response Time' }, { value: '20+', label: 'Years Experience' }, { value: '100%', label: 'Licensed & Insured' }].map((stat, i) => (
+                                <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="irrigationStatItem text-center py-8 sm:py-10">
+                                    <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">{stat.value}</div>
+                                    <div className="text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{stat.label}</div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </section>
 
-                {/* Services Overview */}
-                <section className="py-16 px-4 bg-white">
-                    <div className="max-w-7xl mx-auto">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-                            Irrigation Services We Offer
-                        </h2>
-                        <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-                            From sprinkler repair to complete irrigation system overhauls, we handle all your watering needs
-                        </p>
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* ── SERVICES ── */}
+                <section className="irrigationServices py-20 sm:py-28 bg-white">
+                    <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="irrigationServicesHeader mb-14">
+                            <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">What We Do</span>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Irrigation Services We Offer</h2>
+                            <p className="mt-3 text-[#6b6560] text-base max-w-2xl">From sprinkler repair to complete irrigation system overhauls, we handle all your watering needs</p>
+                        </motion.div>
+                        <div className="irrigationServicesGrid grid md:grid-cols-2 lg:grid-cols-4 gap-5">
                             {services.map((service, idx) => {
                                 const Icon = service.icon;
                                 return (
-                                    <Card key={idx} className="border-2 border-gray-100 hover:border-green-200 transition-all hover:shadow-lg">
-                                        <CardContent className="p-6 text-center">
-                                            <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                                <Icon className="w-8 h-8 text-green-600" />
-                                            </div>
-                                            <h3 className="font-bold text-gray-900 mb-2 text-lg">{service.title}</h3>
-                                            <p className="text-gray-600 text-sm mb-3">{service.description}</p>
-                                            <p className="text-xs text-green-600 font-medium">{service.keywords}</p>
-                                        </CardContent>
-                                    </Card>
+                                    <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.08 }}
+                                        className="irrigationServiceCard bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/40 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group text-center">
+                                        <div className="w-14 h-14 bg-[#c45d2c]/10 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-[#c45d2c]/20 transition-colors">
+                                            <Icon className="w-7 h-7 text-[#c45d2c]" />
+                                        </div>
+                                        <h3 className="font-bold text-[#1a1a1a] mb-2 text-lg group-hover:text-[#c45d2c] transition-colors">{service.title}</h3>
+                                        <p className="text-[#6b6560] text-sm mb-3">{service.description}</p>
+                                        <p className="text-xs text-[#2d5a27] font-medium">{service.keywords}</p>
+                                    </motion.div>
                                 );
                             })}
                         </div>
                     </div>
                 </section>
 
-                {/* City Service Areas */}
-                <section className="py-16 px-4 bg-gray-50">
-                    <div className="max-w-7xl mx-auto">
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                                Choose Your City
-                            </h2>
-                            <p className="text-gray-600 max-w-2xl mx-auto">
-                                Select your city to view specialized irrigation services available in your area
-                            </p>
-                        </div>
+                {/* ── CITY AREAS ── */}
+                <section className="irrigationCities py-20 sm:py-28 bg-[#f5f0e8]">
+                    <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="irrigationCitiesHeader mb-14">
+                            <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Service Areas</span>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Choose Your City</h2>
+                            <p className="mt-3 text-[#6b6560] text-base max-w-2xl">Select your city to view specialized irrigation services available in your area</p>
+                        </motion.div>
 
                         {cities.map((city, cityIdx) => (
-                            <div key={cityIdx} className="mb-12 last:mb-0">
-                                <div className="flex items-center gap-3 mb-6">
-                                    <MapPin className="w-6 h-6 text-green-600" />
-                                    <h3 className="text-2xl font-bold text-gray-900">{city.name}</h3>
+                            <div key={cityIdx} className="irrigationCityBlock mb-12 last:mb-0">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <MapPin className="w-5 h-5 text-[#2d5a27]" />
+                                    <h3 className="text-xl font-bold text-[#1a1a1a]">{city.name}</h3>
                                 </div>
-                                <p className="text-gray-600 mb-6">{city.description}</p>
-                                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <p className="text-[#6b6560] text-sm mb-5">{city.description}</p>
+                                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
                                     {services.map((service, serviceIdx) => {
                                         const Icon = service.icon;
                                         const url = `${createPageUrl('IrrigationService')}?city=${city.slug}&service=${service.slug}`;
                                         return (
-                                            <a 
-                                                key={serviceIdx}
-                                                href={url}
-                                                className="block bg-white p-6 rounded-lg border-2 border-gray-100 hover:border-green-300 transition-all hover:shadow-md group"
-                                            >
-                                                <div className="flex items-start gap-3 mb-3">
-                                                    <Icon className="w-6 h-6 text-green-600 flex-shrink-0" />
+                                            <a key={serviceIdx} href={url}
+                                                className="irrigationCityServiceCard block bg-white p-5 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/40 transition-all hover:shadow-md group">
+                                                <div className="flex items-start gap-3">
+                                                    <Icon className="w-5 h-5 text-[#c45d2c] flex-shrink-0 mt-0.5" />
                                                     <div className="flex-1">
-                                                        <h4 className="font-bold text-gray-900 mb-1 group-hover:text-green-600 transition-colors">
-                                                            {service.title}
-                                                        </h4>
-                                                        <p className="text-xs text-gray-500">{city.name}</p>
+                                                        <h4 className="font-bold text-[#1a1a1a] text-sm mb-0.5 group-hover:text-[#c45d2c] transition-colors">{service.title}</h4>
+                                                        <p className="text-xs text-[#8a8478]">{city.name}</p>
                                                     </div>
-                                                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
+                                                    <ArrowRight className="w-4 h-4 text-[#8a8478] group-hover:text-[#c45d2c] group-hover:translate-x-1 transition-all flex-shrink-0 mt-0.5" />
                                                 </div>
                                             </a>
                                         );
@@ -215,78 +159,50 @@ export default function Irrigation() {
                     </div>
                 </section>
 
-                {/* Why Choose Us */}
-                <section className="py-16 px-4 bg-white">
-                    <div className="max-w-7xl mx-auto">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-                            Why Choose Outright Landscape for Irrigation?
-                        </h2>
-                        <div className="grid md:grid-cols-3 gap-8">
-                            <div className="text-center">
-                                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <CheckCircle2 className="w-8 h-8 text-green-600" />
-                                </div>
-                                <h3 className="font-bold text-gray-900 mb-3">Licensed C-27 Contractor</h3>
-                                <p className="text-gray-600">
-                                    CSLB #1073845 - Fully licensed, bonded, and insured for your protection and peace of mind.
-                                </p>
-                            </div>
-                            <div className="text-center">
-                                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <CheckCircle2 className="w-8 h-8 text-green-600" />
-                                </div>
-                                <h3 className="font-bold text-gray-900 mb-3">20+ Years Local Experience</h3>
-                                <p className="text-gray-600">
-                                    Serving La Verne, San Dimas, and Glendora since 2003 with expert irrigation repair and installation.
-                                </p>
-                            </div>
-                            <div className="text-center">
-                                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <CheckCircle2 className="w-8 h-8 text-green-600" />
-                                </div>
-                                <h3 className="font-bold text-gray-900 mb-3">Same-Day Service Available</h3>
-                                <p className="text-gray-600">
-                                    Emergency irrigation repair and sprinkler leak detection available with fast response times.
-                                </p>
-                            </div>
+                {/* ── WHY CHOOSE US ── */}
+                <section className="irrigationWhy py-20 sm:py-28 bg-[#1a1a1a]">
+                    <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
+                            <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Why Choose Us</span>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">Why Outright Landscape?</h2>
+                        </motion.div>
+                        <div className="grid md:grid-cols-3 gap-5">
+                            {[
+                                { title: 'Licensed C-27 Contractor', desc: 'CSLB #1073845 - Fully licensed, bonded, and insured for your protection and peace of mind.' },
+                                { title: '20+ Years Local Experience', desc: 'Serving La Verne, San Dimas, and Glendora since 2003 with expert irrigation repair and installation.' },
+                                { title: 'Same-Day Service Available', desc: 'Emergency irrigation repair and sprinkler leak detection available with fast response times.' }
+                            ].map((item, idx) => (
+                                <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
+                                    className="irrigationWhyCard bg-[#242424] border border-[#333] rounded-xl p-6 hover:border-[#c45d2c]/40 transition-colors group">
+                                    <div className="w-12 h-12 bg-[#c45d2c]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#c45d2c]/20 transition-colors">
+                                        <CheckCircle2 className="w-6 h-6 text-[#c45d2c]" />
+                                    </div>
+                                    <h3 className="text-white font-bold text-base mb-2">{item.title}</h3>
+                                    <p className="text-[#8a8478] text-sm leading-relaxed">{item.desc}</p>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
                 </section>
 
-                {/* Contact CTA */}
-                <section id="contact-section" className="py-16 px-4 bg-green-600 text-white">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                            Ready to Fix Your Irrigation System?
-                        </h2>
-                        <p className="text-xl mb-8 opacity-90">
-                            Call now for same-day service in La Verne, San Dimas, and Glendora
-                        </p>
+                {/* ── CONTACT CTA ── */}
+                <section id="contact-section" className="irrigationCta py-20 sm:py-28 bg-gradient-to-br from-[#2d5a27] via-[#1e4a1a] to-[#1a3a15]">
+                    <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+                        <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Ready to Fix Your Irrigation System?</h2>
+                        <p className="text-lg text-white/70 mb-8">Call now for same-day service in La Verne, San Dimas, and Glendora</p>
                         <div className="flex flex-wrap justify-center gap-4">
-                            <Button 
-                                size="lg" 
-                                asChild
-                                className="bg-white text-orange-600 hover:bg-gray-100 text-xl px-12 py-6"
-                            >
-                                <a href="tel:626-343-6028" onClick={handlePhoneClick}>
-                                    <Phone className="w-6 h-6 mr-3" />
-                                    (626) 343-6028
-                                </a>
-                            </Button>
-                            <Button 
-                                size="lg"
-                                variant="outline"
-                                asChild
-                                className="border-2 border-white text-white hover:bg-white hover:text-green-600 text-xl px-12 py-6"
-                            >
-                                <a href={createPageUrl('Home') + '#contact'}>
+                            <a href="tel:626-343-6028" onClick={handlePhoneClick}>
+                                <Button className="bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-lg px-10 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:scale-[1.02]">
+                                    <Phone className="w-5 h-5 mr-3" />(626) 343-6028
+                                </Button>
+                            </a>
+                            <a href={createPageUrl('Home') + '#contact'}>
+                                <Button variant="outline" className="border-2 border-white/50 text-white hover:bg-white hover:text-[#1a1a1a] font-semibold text-lg px-10 py-6 rounded-xl transition-all bg-transparent">
                                     Get Free Estimate
-                                </a>
-                            </Button>
+                                </Button>
+                            </a>
                         </div>
-                        <p className="mt-6 text-sm opacity-75">
-                            Licensed C-27 Contractor #1073845 | Serving the San Gabriel Valley since 2003
-                        </p>
+                        <p className="mt-6 text-sm text-white/50">Licensed C-27 Contractor #1073845 | Serving the San Gabriel Valley since 2003</p>
                     </div>
                 </section>
             </div>

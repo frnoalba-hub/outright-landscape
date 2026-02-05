@@ -1,49 +1,26 @@
 import React, { useState } from 'react';
-import { Phone, CheckCircle2, Droplets, Wrench, Clock, MapPin, Star } from 'lucide-react';
+import { Phone, CheckCircle2, Droplets, Wrench, Clock, MapPin, Star, ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { base44 } from '@/api/base44Client';
+import { motion } from 'framer-motion';
 
 export default function IrrigationServicePage({ city, service, data }) {
-    const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
-        email: '',
-        city: city,
-        service_type: service,
-        message: ''
-    });
+    const [formData, setFormData] = useState({ name: '', phone: '', email: '', city: city, service_type: service, message: '' });
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handlePhoneClick = () => {
-        if (window.dataLayer) {
-            window.dataLayer.push({
-                event: 'phone_click',
-                event_category: 'engagement',
-                event_label: `${service}-${city}`,
-                phone_number: '626-343-6028'
-            });
-        }
+        if (window.dataLayer) { window.dataLayer.push({ event: 'phone_click', event_category: 'engagement', event_label: `${service}-${city}`, phone_number: '626-343-6028' }); }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        
         try {
             await base44.functions.invoke('submitLead', formData);
-            
-            if (window.dataLayer) {
-                window.dataLayer.push({
-                    event: 'form_submit',
-                    event_category: 'conversion',
-                    event_label: `${service}-${city}`
-                });
-            }
-            
+            if (window.dataLayer) { window.dataLayer.push({ event: 'form_submit', event_category: 'conversion', event_label: `${service}-${city}` }); }
             setSubmitted(true);
         } catch (error) {
             console.error('Form submission error:', error);
@@ -52,204 +29,189 @@ export default function IrrigationServicePage({ city, service, data }) {
         }
     };
 
-    const scrollToForm = () => {
-        document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
-    };
+    const scrollToForm = () => { document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' }); };
 
     return (
-        <div className="min-h-screen bg-white">
-            {/* Hero Section */}
-            <section className="bg-gradient-to-br from-green-50 to-blue-50 py-20 px-4 mt-16">
-                <div className="max-w-7xl mx-auto">
-                    <div className="text-center mb-6">
-                        <div className="inline-block bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm font-semibold mb-4">
-                            Serving La Verne • San Dimas • Glendora
-                        </div>
-                        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                            {data.h1}
-                        </h1>
-                        <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-                            {data.heroSubhead}
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            <Button 
-                                size="lg" 
-                                asChild
-                                className="bg-orange-600 hover:bg-orange-700 text-lg px-8"
-                            >
-                                <a href="tel:626-343-6028" onClick={handlePhoneClick}>
-                                    <Phone className="w-5 h-5 mr-2" />
-                                    (626) 343-6028
-                                </a>
-                            </Button>
-                            <Button 
-                                size="lg" 
-                                variant="outline"
-                                onClick={scrollToForm}
-                                className="text-lg px-8 border-2 border-green-600 text-green-600 hover:bg-green-50"
-                            >
-                                Get Free Estimate
-                            </Button>
-                        </div>
-                    </div>
+        <div className="irrigationDetailWrapper min-h-screen bg-white">
+            {/* ── HERO ── */}
+            <section className="irrigationDetailHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
+                <div className="absolute inset-0 sm:left-[40%]">
+                    <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg" alt={data.h1} className="w-full h-full object-cover" fetchpriority="high" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
                 </div>
+                <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-32 pb-16 sm:py-0">
+                    <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="max-w-xl space-y-6">
+                        <div className="inline-flex items-center gap-2 bg-[#2d5a27]/20 border border-[#2d5a27]/40 rounded-full px-4 py-1.5">
+                            <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
+                            <span className="text-[#8fbc8b] text-xs font-semibold tracking-wide uppercase">La Verne • San Dimas • Glendora</span>
+                        </div>
+                        <h1 className="text-3xl sm:text-4xl md:text-5xl text-white leading-[1.08] tracking-tight font-bold">{data.h1}</h1>
+                        <p className="text-[#a09a90] text-base sm:text-lg leading-relaxed max-w-md">{data.heroSubhead}</p>
+                        <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                            <a href="tel:626-343-6028" onClick={handlePhoneClick} className="w-full sm:w-auto">
+                                <Button className="w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-base px-7 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:scale-[1.02] min-w-[240px]">
+                                    <Phone className="mr-2.5 w-5 h-5" />(626) 343-6028
+                                </Button>
+                            </a>
+                            <Button variant="outline" onClick={scrollToForm} className="w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-base px-7 py-6 rounded-xl transition-all min-w-[240px]">
+                                Free Estimate <ArrowRight className="ml-2 w-4 h-4" />
+                            </Button>
+                        </div>
+                    </motion.div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2d5a27] via-[#c45d2c] to-[#b8945a] z-20" />
             </section>
 
-            {/* Fast Diagnosis / Common Issues */}
-            <section className="py-16 px-4 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                        {data.issuesTitle}
-                    </h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* ── COMMON ISSUES ── */}
+            <section className="irrigationDetailIssues py-20 sm:py-28 bg-[#f5f0e8]">
+                <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
+                        <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Common Issues</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">{data.issuesTitle}</h2>
+                    </motion.div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                         {data.commonIssues.map((issue, idx) => (
-                            <Card key={idx} className="border-2 border-gray-100 hover:border-green-200 transition-colors">
-                                <CardContent className="p-6">
-                                    <div className="flex items-start gap-3">
-                                        <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
-                                        <div>
-                                            <h3 className="font-semibold text-gray-900 mb-2">{issue.title}</h3>
-                                            <p className="text-gray-600 text-sm">{issue.description}</p>
-                                        </div>
+                            <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.06 }}
+                                className="bg-white p-6 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/30 transition-colors">
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle2 className="w-5 h-5 text-[#4a8c3f] flex-shrink-0 mt-0.5" />
+                                    <div>
+                                        <h3 className="font-bold text-[#1a1a1a] mb-1.5 text-sm">{issue.title}</h3>
+                                        <p className="text-[#6b6560] text-sm leading-relaxed">{issue.description}</p>
                                     </div>
-                                </CardContent>
-                            </Card>
+                                </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Project Gallery */}
-            <section className="py-16 px-4 bg-gray-50">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-                        Our Professional Work
-                    </h2>
-                    <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-                        See examples of our irrigation installations and repairs throughout {city} and the San Gabriel Valley
-                    </p>
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg"
-                            alt="Irrigation valve manifold installation"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c734704d4_IMG_4815-Copy.jpg"
-                            alt="Professional irrigation valve setup"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c77326177_IMG_4971-Copy.jpg"
-                            alt="Irrigation valve box repair"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/eb74e1b87_IMG_37521-Copy.jpg"
-                            alt="Underground irrigation system installation"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f03bb2890_IMG_3851-Copy.jpg"
-                            alt="Multi-zone irrigation valve installation"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/723adf744_IMG_3731-Copy.jpg"
-                            alt="Irrigation valve box repair and replacement"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/701510e0a_IMG_2662.jpg"
-                            alt="Irrigation controller installation"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/957a12859_IMG_3669.jpg"
-                            alt="Complete irrigation valve manifold with multiple zones"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
-                        <img 
-                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/27d11d89c_IMG_3076.jpg"
-                            alt="Professional irrigation system maintenance"
-                            className="w-full h-64 object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow"
-                            loading="lazy"
-                        />
+            {/* ── GALLERY ── */}
+            <section className="irrigationDetailGallery py-20 sm:py-28 bg-white">
+                <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+                        <div>
+                            <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Our Work</span>
+                            <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Professional Results</h2>
+                        </div>
+                        <p className="text-[#6b6560] text-sm max-w-sm">See examples of our irrigation work throughout {city} and the San Gabriel Valley</p>
+                    </motion.div>
+                    <div className="columns-2 md:columns-3 lg:columns-4 gap-3 space-y-3">
+                        {[
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg", alt: "Irrigation valve manifold installation", h: "h-52" },
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c734704d4_IMG_4815-Copy.jpg", alt: "Professional irrigation valve setup", h: "h-64" },
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c77326177_IMG_4971-Copy.jpg", alt: "Irrigation valve box repair", h: "h-56" },
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/eb74e1b87_IMG_37521-Copy.jpg", alt: "Underground irrigation system", h: "h-72" },
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f03bb2890_IMG_3851-Copy.jpg", alt: "Multi-zone irrigation valve installation", h: "h-60" },
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/723adf744_IMG_3731-Copy.jpg", alt: "Irrigation valve box repair", h: "h-52" },
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/701510e0a_IMG_2662.jpg", alt: "Irrigation controller installation", h: "h-64" },
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/957a12859_IMG_3669.jpg", alt: "Complete irrigation valve manifold", h: "h-56" },
+                            { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/27d11d89c_IMG_3076.jpg", alt: "Professional irrigation maintenance", h: "h-60" },
+                        ].map((img, idx) => (
+                            <div key={idx} className={`galleryItem group relative overflow-hidden rounded-xl break-inside-avoid ${img.h}`}>
+                                <img src={img.src} alt={img.alt} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* What We Fix / What's Included */}
-            <section className="py-16 px-4 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                        What We Fix & What's Included
-                    </h2>
-                    <div className="grid md:grid-cols-2 gap-8">
+            {/* ── WHAT WE FIX ── */}
+            <section className="irrigationDetailFix py-20 sm:py-28 bg-[#f5f0e8]">
+                <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
+                        <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Scope of Work</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">What We Fix & What's Included</h2>
+                    </motion.div>
+                    <div className="grid md:grid-cols-2 gap-5">
                         {data.whatWeFixCategories.map((category, idx) => (
-                            <div key={idx} className="bg-white p-6 rounded-lg shadow-sm">
-                                <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                                    <Wrench className="w-5 h-5 text-green-600" />
-                                    {category.title}
+                            <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
+                                className="bg-white p-6 sm:p-7 rounded-xl border border-[#e0d8cc]">
+                                <h3 className="text-lg font-bold text-[#1a1a1a] mb-4 flex items-center gap-2">
+                                    <Wrench className="w-5 h-5 text-[#c45d2c]" />{category.title}
                                 </h3>
-                                <ul className="space-y-2">
+                                <ul className="space-y-2.5">
                                     {category.items.map((item, i) => (
-                                        <li key={i} className="flex items-start gap-2 text-gray-700">
-                                            <CheckCircle2 className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                                            <span>{item}</span>
+                                        <li key={i} className="flex items-start gap-2 text-[#4a4540] text-sm">
+                                            <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" /><span>{item}</span>
                                         </li>
                                     ))}
                                 </ul>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Our Process */}
-            <section className="py-16 px-4 bg-gray-50">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-                        Our {data.serviceDisplay} Process
-                    </h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {data.process.map((step, idx) => (
-                            <div key={idx} className="text-center">
-                                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <span className="text-2xl font-bold text-green-700">{idx + 1}</span>
-                                </div>
-                                <h3 className="font-bold text-gray-900 mb-2">{step.title}</h3>
-                                <p className="text-gray-600 text-sm">{step.description}</p>
-                            </div>
+            {/* ── PROCESS ── */}
+            <section className="irrigationDetailProcess py-20 sm:py-28 bg-[#1a1a1a]">
+                <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
+                        <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">How It Works</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">Our {data.serviceDisplay} Process</h2>
+                    </motion.div>
+                    <div className="relative">
+                        <div className="hidden sm:block absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#2d5a27] via-[#c45d2c] to-[#b8945a]" />
+                        <div className="space-y-12">
+                            {data.process.map((step, idx) => (
+                                <motion.div key={idx} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.15 }}
+                                    className="flex gap-6 sm:gap-8 items-start">
+                                    <div className="relative flex-shrink-0">
+                                        <div className="w-12 h-12 rounded-full bg-[#2a2a2a] border-2 border-[#c45d2c]/50 flex items-center justify-center z-10 relative">
+                                            <span className="text-[#c45d2c] font-bold text-sm">{String(idx + 1).padStart(2, '0')}</span>
+                                        </div>
+                                    </div>
+                                    <div className="flex-1 pb-2">
+                                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{step.title}</h3>
+                                        <p className="text-[#8a8478] text-sm leading-relaxed max-w-lg">{step.description}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── SPECIALIZED ── */}
+            <section className="irrigationDetailSpecialized py-20 sm:py-28 bg-white">
+                <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+                        <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Expertise</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">{data.specializedSection.title}</h2>
+                    </motion.div>
+                    <p className="text-[#6b6560] text-base leading-relaxed mb-8 max-w-3xl">{data.specializedSection.intro}</p>
+                    <div className="grid md:grid-cols-2 gap-5">
+                        {data.specializedSection.highlights.map((highlight, idx) => (
+                            <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
+                                className="bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc]">
+                                <h3 className="text-base font-bold text-[#1a1a1a] mb-2 flex items-center gap-2">
+                                    <Droplets className="w-5 h-5 text-[#c45d2c]" />{highlight.title}
+                                </h3>
+                                <p className="text-[#6b6560] text-sm leading-relaxed">{highlight.description}</p>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Specialized Section (Valve/Controller/Drip) */}
-            <section className="py-16 px-4 bg-gradient-to-br from-blue-50 to-green-50">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                        {data.specializedSection.title}
-                    </h2>
-                    <div className="prose prose-lg max-w-4xl mx-auto">
-                        <p className="text-gray-700 mb-6">{data.specializedSection.intro}</p>
-                        <div className="grid md:grid-cols-2 gap-6">
-                            {data.specializedSection.highlights.map((highlight, idx) => (
-                                <div key={idx} className="bg-white p-6 rounded-lg shadow-sm">
-                                    <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
-                                        <Droplets className="w-5 h-5 text-blue-600" />
-                                        {highlight.title}
-                                    </h3>
-                                    <p className="text-gray-600">{highlight.description}</p>
+            {/* ── PRICING ── */}
+            <section className="irrigationDetailPricing py-20 sm:py-28 bg-[#f5f0e8]">
+                <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
+                        <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Pricing</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Transparent Pricing & Free Estimates</h2>
+                    </motion.div>
+                    <div className="bg-[#1a1a1a] rounded-2xl p-8 text-center">
+                        <Clock className="w-10 h-10 text-[#c45d2c] mx-auto mb-4" />
+                        <h3 className="text-xl font-bold text-white mb-3">Get Your Free Estimate Today</h3>
+                        <p className="text-[#8a8478] mb-8">We provide upfront pricing with no hidden fees. Most {data.serviceDisplay.toLowerCase()} jobs in {city} are completed same-day or next-day.</p>
+                        <div className="grid md:grid-cols-3 gap-4">
+                            {[{ title: 'No Trip Charge', desc: 'For service calls' }, { title: 'Warranty Included', desc: 'On all repairs' }, { title: 'Fast Response', desc: 'Same or next day' }].map((p, i) => (
+                                <div key={i} className="bg-[#242424] border border-[#333] p-4 rounded-xl">
+                                    <CheckCircle2 className="w-5 h-5 text-[#4a8c3f] mb-2" />
+                                    <p className="font-bold text-white text-sm">{p.title}</p>
+                                    <p className="text-xs text-[#8a8478]">{p.desc}</p>
                                 </div>
                             ))}
                         </div>
@@ -257,210 +219,100 @@ export default function IrrigationServicePage({ city, service, data }) {
                 </div>
             </section>
 
-            {/* Pricing & Estimates */}
-            <section className="py-16 px-4 bg-gray-50">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-                        Transparent Pricing & Free Estimates
-                    </h2>
-                    <div className="max-w-3xl mx-auto">
-                        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-8 text-center mb-8">
-                            <Clock className="w-12 h-12 text-green-600 mx-auto mb-4" />
-                            <h3 className="text-2xl font-bold text-gray-900 mb-3">Get Your Free Estimate Today</h3>
-                            <p className="text-gray-700 mb-6">
-                                We provide upfront pricing with no hidden fees. Most {data.serviceDisplay.toLowerCase()} jobs 
-                                in {city} are completed same-day or next-day.
-                            </p>
-                            <div className="grid md:grid-cols-3 gap-4 text-left">
-                                <div className="bg-white p-4 rounded-lg">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
-                                    <p className="font-semibold text-gray-900">No Trip Charge</p>
-                                    <p className="text-sm text-gray-600">For service calls</p>
-                                </div>
-                                <div className="bg-white p-4 rounded-lg">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
-                                    <p className="font-semibold text-gray-900">Warranty Included</p>
-                                    <p className="text-sm text-gray-600">On all repairs</p>
-                                </div>
-                                <div className="bg-white p-4 rounded-lg">
-                                    <CheckCircle2 className="w-6 h-6 text-green-600 mb-2" />
-                                    <p className="font-semibold text-gray-900">Fast Response</p>
-                                    <p className="text-sm text-gray-600">Same or next day</p>
-                                </div>
-                            </div>
-                        </div>
+            {/* ── SERVICE AREA ── */}
+            <section className="irrigationDetailArea py-16 sm:py-20 bg-white">
+                <div className="max-w-5xl mx-auto px-5 sm:px-8 text-center">
+                    <h2 className="text-2xl sm:text-3xl font-bold text-[#1a1a1a] mb-4">Serving {city} & Nearby Communities</h2>
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                        <MapPin className="w-5 h-5 text-[#2d5a27]" />
+                        <p className="text-[#6b6560]">Primary Service Area: <strong className="text-[#1a1a1a]">La Verne, San Dimas, and Glendora</strong></p>
                     </div>
+                    <p className="text-[#8a8478] text-sm max-w-2xl mx-auto mb-6">We also serve Covina, West Covina, Claremont, Pomona, Diamond Bar, and more. CSLB Licensed #1073845.</p>
+                    <a href="tel:626-343-6028" onClick={handlePhoneClick}>
+                        <Button className="bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold px-8 py-5 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all">
+                            <Phone className="w-5 h-5 mr-2" />Call for Service Confirmation
+                        </Button>
+                    </a>
                 </div>
             </section>
 
-            {/* Service Area */}
-            <section className="py-16 px-4 bg-white">
-                <div className="max-w-7xl mx-auto text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8">
-                        Proudly Serving {city} & Nearby Communities
-                    </h2>
-                    <div className="flex items-center justify-center gap-2 mb-6">
-                        <MapPin className="w-6 h-6 text-green-600" />
-                        <p className="text-xl text-gray-700">
-                            Primary Service Area: <strong>La Verne, San Dimas, and Glendora</strong>
-                        </p>
+            {/* ── FAQ ── */}
+            <section className="irrigationDetailFaq py-20 sm:py-28 bg-[#f5f0e8]">
+                <div className="max-w-3xl mx-auto px-5 sm:px-8">
+                    <div className="mb-12">
+                        <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">FAQ</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Frequently Asked Questions</h2>
                     </div>
-                    <p className="text-gray-600 max-w-3xl mx-auto mb-8">
-                        We also serve surrounding San Gabriel Valley communities including Covina, West Covina, 
-                        Claremont, Pomona, Diamond Bar, and more. Licensed C-27 landscape contractor (CSLB #1073845).
-                    </p>
-                    <Button size="lg" asChild className="bg-orange-600 hover:bg-orange-700">
-                        <a href="tel:626-343-6028" onClick={handlePhoneClick}>
-                            <Phone className="w-5 h-5 mr-2" />
-                            Call for Service Confirmation
-                        </a>
-                    </Button>
-                </div>
-            </section>
-
-            {/* FAQ */}
-            <section className="py-16 px-4 bg-gray-50">
-                <div className="max-w-4xl mx-auto">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-                        Frequently Asked Questions
-                    </h2>
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         {data.faqs.map((faq, idx) => (
-                            <div key={idx} className="border-b border-gray-200 pb-6">
-                                <h3 className="text-xl font-bold text-gray-900 mb-3">{faq.q}</h3>
-                                <p className="text-gray-700 leading-relaxed">{faq.a}</p>
+                            <div key={idx} className="bg-white p-6 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/30 transition-colors">
+                                <h3 className="text-base font-bold text-[#1a1a1a] mb-2">{faq.q}</h3>
+                                <p className="text-[#6b6560] text-sm leading-relaxed">{faq.a}</p>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Proof Section */}
-            <section className="py-16 px-4 bg-gradient-to-br from-green-50 to-blue-50">
-                <div className="max-w-7xl mx-auto text-center">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                        Trusted by {city} Homeowners & Businesses
-                    </h2>
-                    <div className="flex items-center justify-center gap-2 mb-8">
-                        <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
-                        <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
-                        <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
-                        <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
-                        <Star className="w-6 h-6 text-yellow-500 fill-yellow-500" />
-                        <span className="ml-2 text-gray-700 font-medium">5.0 Rating</span>
-                    </div>
-                    <p className="text-gray-700 max-w-2xl mx-auto mb-12">
-                        With over 20 years serving the San Gabriel Valley, Outright Landscape Construction 
-                        has completed thousands of irrigation repairs and installations. CSLB Licensed #1073845.
-                    </p>
-                    <div className="grid md:grid-cols-3 gap-8">
-                        <div className="bg-white p-6 rounded-lg shadow-sm">
-                            <div className="text-4xl font-bold text-green-600 mb-2">500+</div>
-                            <p className="text-gray-700">Irrigation Repairs Completed</p>
+            {/* ── TRUST ── */}
+            <section className="irrigationDetailTrust py-0 bg-[#1a1a1a] border-y border-[#333]">
+                <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#333]">
+                        <div className="text-center py-10 flex flex-col items-center gap-1">
+                            <div className="flex gap-0.5 mb-1">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />)}</div>
+                            <div className="text-white font-bold text-sm">5.0 Rating</div>
                         </div>
-                        <div className="bg-white p-6 rounded-lg shadow-sm">
-                            <div className="text-4xl font-bold text-green-600 mb-2">24hr</div>
-                            <p className="text-gray-700">Average Response Time</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-lg shadow-sm">
-                            <div className="text-4xl font-bold text-green-600 mb-2">100%</div>
-                            <p className="text-gray-700">Licensed & Insured</p>
-                        </div>
+                        {[{ value: '500+', label: 'Irrigation Repairs' }, { value: '24hr', label: 'Avg Response Time' }, { value: '100%', label: 'Licensed & Insured' }].map((s, i) => (
+                            <div key={i} className="text-center py-10">
+                                <div className="text-3xl font-bold text-[#c45d2c]">{s.value}</div>
+                                <div className="text-[#8a8478] text-xs mt-1">{s.label}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* Quote Form */}
-            <section id="quote-form" className="py-16 px-4 bg-white">
-                <div className="max-w-2xl mx-auto">
-                    <div className="text-center mb-8">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                            Get Your Free Estimate
-                        </h2>
-                        <p className="text-gray-600">
-                            Fill out the form below and we'll contact you within 24 hours
-                        </p>
+            {/* ── QUOTE FORM ── */}
+            <section id="quote-form" className="irrigationDetailForm py-20 sm:py-28 bg-[#f5f0e8]">
+                <div className="max-w-2xl mx-auto px-5 sm:px-8">
+                    <div className="mb-8">
+                        <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Get Started</span>
+                        <h2 className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Get Your Free Estimate</h2>
+                        <p className="mt-2 text-[#6b6560] text-sm">Fill out the form and we'll contact you within 24 hours</p>
                     </div>
 
                     {submitted ? (
-                        <div className="bg-green-50 border-2 border-green-200 rounded-lg p-8 text-center">
-                            <CheckCircle2 className="w-16 h-16 text-green-600 mx-auto mb-4" />
-                            <h3 className="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
-                            <p className="text-gray-700 mb-6">
-                                We've received your request and will contact you shortly.
-                            </p>
-                            <p className="text-gray-600">
-                                Need immediate assistance? Call us at{' '}
-                                <a href="tel:626-343-6028" className="text-green-600 font-semibold hover:underline">
-                                    (626) 343-6028
-                                </a>
-                            </p>
+                        <div className="bg-[#2d5a27] rounded-2xl p-10 text-center text-white">
+                            <CheckCircle2 className="w-14 h-14 mx-auto mb-4" />
+                            <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
+                            <p className="text-white/80 mb-4">We've received your request and will contact you shortly.</p>
+                            <p className="text-white/60 text-sm">Need immediate assistance? <a href="tel:626-343-6028" className="text-[#c45d2c] font-semibold hover:underline">(626) 343-6028</a></p>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-8 rounded-lg">
-                            <div className="grid md:grid-cols-2 gap-6">
+                        <form onSubmit={handleSubmit} className="bg-[#1a1a1a] rounded-2xl p-6 sm:p-8 space-y-4">
+                            <div className="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        Name *
-                                    </label>
-                                    <Input
-                                        required
-                                        value={formData.name}
-                                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        placeholder="Your name"
-                                    />
+                                    <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Name *</label>
+                                    <Input required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} placeholder="Your name" className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] h-12 rounded-lg" />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        Phone *
-                                    </label>
-                                    <Input
-                                        required
-                                        type="tel"
-                                        value={formData.phone}
-                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                        placeholder="(626) 555-1234"
-                                    />
+                                    <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Phone *</label>
+                                    <Input required type="tel" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} placeholder="(626) 555-1234" className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] h-12 rounded-lg" />
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Email
-                                </label>
-                                <Input
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    placeholder="your@email.com"
-                                />
+                                <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Email</label>
+                                <Input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="your@email.com" className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] h-12 rounded-lg" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    City
-                                </label>
-                                <Input
-                                    value={formData.city}
-                                    onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                                    placeholder="Your city"
-                                />
+                                <label className="block text-xs font-medium text-[#8a8478] mb-1.5">City</label>
+                                <Input value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} placeholder="Your city" className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] h-12 rounded-lg" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Tell us about your project
-                                </label>
-                                <Textarea
-                                    value={formData.message}
-                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                    placeholder="Describe your irrigation repair needs..."
-                                    rows={4}
-                                />
+                                <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Tell us about your project</label>
+                                <Textarea value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Describe your irrigation repair needs..." rows={4} className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] rounded-lg" />
                             </div>
-                            <Button
-                                type="submit"
-                                size="lg"
-                                disabled={isSubmitting}
-                                className="w-full bg-orange-600 hover:bg-orange-700 text-lg"
-                            >
+                            <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-base h-14 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:scale-[1.02]">
                                 {isSubmitting ? 'Sending...' : 'Get Free Estimate'}
                             </Button>
                         </form>
@@ -468,28 +320,17 @@ export default function IrrigationServicePage({ city, service, data }) {
                 </div>
             </section>
 
-            {/* Final CTA */}
-            <section className="py-16 px-4 bg-green-600 text-white">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        Ready to Fix Your {data.serviceDisplay}?
-                    </h2>
-                    <p className="text-xl mb-8 opacity-90">
-                        Call now for same-day service in {city}, La Verne, San Dimas, and Glendora
-                    </p>
-                    <Button 
-                        size="lg" 
-                        asChild
-                        className="bg-white text-orange-600 hover:bg-gray-100 text-xl px-12 py-6"
-                    >
-                        <a href="tel:626-343-6028" onClick={handlePhoneClick}>
-                            <Phone className="w-6 h-6 mr-3" />
-                            (626) 343-6028
-                        </a>
-                    </Button>
-                    <p className="mt-6 text-sm opacity-75">
-                        Licensed C-27 Contractor #1073845 | Serving the San Gabriel Valley since 2003
-                    </p>
+            {/* ── FINAL CTA ── */}
+            <section className="irrigationDetailFinalCta py-20 sm:py-28 bg-gradient-to-br from-[#2d5a27] via-[#1e4a1a] to-[#1a3a15]">
+                <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Ready to Fix Your {data.serviceDisplay}?</h2>
+                    <p className="text-lg text-white/70 mb-8">Call now for same-day service in {city}, La Verne, San Dimas, and Glendora</p>
+                    <a href="tel:626-343-6028" onClick={handlePhoneClick}>
+                        <Button className="bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-lg px-10 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:scale-[1.02]">
+                            <Phone className="w-5 h-5 mr-3" />(626) 343-6028
+                        </Button>
+                    </a>
+                    <p className="mt-6 text-sm text-white/50">Licensed C-27 Contractor #1073845 | Serving the San Gabriel Valley since 2003</p>
                 </div>
             </section>
         </div>
