@@ -96,48 +96,65 @@ export default function ContactForm({ cityName = "your area" }) {
     };
 
     return (
-        <section id="contact" className="py-20 md:py-28 bg-black text-white">
+        <section id="contact" className="contactSection py-20 md:py-28 bg-[#f5f0e8] text-[#1a1a1a]">
             <style>{`
                 .honeypot{display:none!important}
             `}</style>
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold">Get Your Free Estimate Today</h2>
-                    <p className="mt-4 text-lg text-gray-300">Transform your outdoor space with {cityName}'s landscape experts.</p>
+            <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
+                <div className="contactHeader mb-12">
+                    <span className="contactLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">
+                        Contact Us
+                    </span>
+                    <h2 className="contactTitle text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">
+                        Get Your Free Estimate
+                    </h2>
+                    <p className="contactSubtitle mt-3 text-[#6b6560] text-base max-w-lg">
+                        Transform your outdoor space with {cityName}'s landscape experts.
+                    </p>
                 </div>
 
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+                    <div className="contactSidebar space-y-5">
                         <a 
                             href="tel:626-343-6028" 
-                            className="flex items-center space-x-4 p-5 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
+                            className="contactPhoneCard flex items-center space-x-4 p-5 bg-[#1a1a1a] rounded-xl hover:bg-[#242424] transition-colors"
                         >
-                            <Phone className="w-8 h-8 text-green-400" />
+                            <Phone className="w-7 h-7 text-[#c45d2c] flex-shrink-0" />
                             <div>
-                                <p className="font-bold text-xl">(626) 343-6028</p>
-                                <p className="text-gray-300">Call for a free estimate</p>
+                                <p className="font-bold text-lg text-white">(626) 343-6028</p>
+                                <p className="text-[#8a8478] text-sm">Call for a free estimate</p>
                             </div>
                         </a>
                         <a 
                             href="sms:626-343-6028" 
-                            className="flex items-center space-x-4 p-5 bg-gray-700 rounded-xl hover:bg-gray-600 transition-colors"
+                            className="contactTextCard flex items-center space-x-4 p-5 bg-[#1a1a1a] rounded-xl hover:bg-[#242424] transition-colors"
                         >
-                            <Text className="w-8 h-8 text-green-400" />
+                            <Text className="w-7 h-7 text-[#b8945a] flex-shrink-0" />
                             <div>
-                                <p className="font-bold text-xl">Text Us Anytime</p>
-                                <p className="text-gray-300">Send a message or photos</p>
+                                <p className="font-bold text-lg text-white">Text Us Anytime</p>
+                                <p className="text-[#8a8478] text-sm">Send a message or photos</p>
                             </div>
                         </a>
+
+                        {/* Trust badges */}
+                        <div className="contactTrust bg-[#1a1a1a] rounded-xl p-5 space-y-3">
+                            {['Licensed C-27 CSLB #1073845', '10+ Years of Experience', 'Fully Insured & Bonded'].map((t, i) => (
+                                <div key={i} className="flex items-center gap-2.5 text-sm text-[#a09a90]">
+                                    <CheckCircle className="w-4 h-4 text-[#4a8c3f] flex-shrink-0" />
+                                    {t}
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
                     {isSubmitted ? (
-                        <div className="text-center p-8 bg-green-600 rounded-2xl">
-                            <CheckCircle className="w-16 h-16 mx-auto mb-4" />
+                        <div className="contactSuccess text-center p-10 bg-[#2d5a27] rounded-2xl text-white">
+                            <CheckCircle className="w-14 h-14 mx-auto mb-4" />
                             <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
-                            <p>Your quote request has been sent. We'll be in touch shortly.</p>
+                            <p className="text-white/80">Your quote request has been sent. We'll be in touch shortly.</p>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} className="space-y-5">
+                        <form onSubmit={handleSubmit} className="contactForm bg-[#1a1a1a] rounded-2xl p-6 sm:p-8 space-y-4">
                             <Input
                                 id="name"
                                 type="text"
@@ -145,7 +162,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.name}
                                 onChange={(e) => handleInputChange("name", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
+                                className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
                             />
                             <Input
                                 id="phone"
@@ -154,7 +171,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.phone}
                                 onChange={(e) => handleInputChange("phone", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
+                                className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
                             />
                             <Input
                                 id="email"
@@ -163,7 +180,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.email}
                                 onChange={(e) => handleInputChange("email", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
+                                className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
                             />
                             <Input
                                 id="city"
@@ -172,7 +189,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.city}
                                 onChange={(e) => handleInputChange("city", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white h-14 rounded-lg px-4 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
+                                className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
                             />
                             <Textarea
                                 id="message"
@@ -180,7 +197,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 required
                                 value={formData.message}
                                 onChange={(e) => handleInputChange("message", e.target.value)}
-                                className="bg-gray-700 border-gray-600 text-white rounded-lg p-4 h-32 placeholder:text-gray-300 focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all"
+                                className="contactTextarea bg-[#242424] border-[#333] text-white rounded-lg p-4 h-28 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
                             />
 
                             <input
@@ -197,7 +214,7 @@ export default function ContactForm({ cityName = "your area" }) {
                                 type="submit"
                                 size="lg"
                                 disabled={isSubmitting}
-                                className="w-full font-bold text-lg h-16 rounded-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                                className="contactSubmit w-full font-bold text-base h-14 rounded-xl bg-[#c45d2c] hover:bg-[#a94e25] text-white shadow-lg shadow-[#c45d2c]/20 hover:shadow-xl hover:shadow-[#c45d2c]/30 transition-all duration-300 transform hover:scale-[1.02]"
                             >
                                 {isSubmitting ? "Sending..." : "Request My Free Quote"}
                             </Button>

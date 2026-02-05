@@ -1,6 +1,6 @@
 import React from 'react';
 import { createPageUrl } from '@/utils';
-import { MapPin, Shield, Zap, Star, Target, Waves, Leaf, Hammer, Palette } from 'lucide-react';
+import { MapPin, Shield, Zap, Star, Target, Waves, Leaf, Hammer, Palette, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
@@ -58,13 +58,6 @@ const projects = [
     { title: 'Front Yard Driveway Pavers', location: 'San Dimas, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg', alt: 'Front Yard Driveway Pavers - Outright Landscape San Dimas' },
 ];
 
-const stats = [
-    { value: '10+', label: 'Years Experience' },
-    { value: '500+', label: 'Projects Completed' },
-    { value: '4.8★', label: 'Google Rating' },
-    { value: '100%', label: 'Licensed & Insured' },
-];
-
 const reasons = [
     { icon: Shield, title: 'Licensed & Insured', desc: 'C-27 License CSLB #1073845 — full liability coverage for your peace of mind.' },
     { icon: Zap, title: 'Expert Craftsmen', desc: 'Skilled professionals with decades of combined hands-on experience.' },
@@ -117,27 +110,28 @@ export default function Home() {
             {/* ── 1. HERO ── */}
             <HomeHero onPhoneClick={handlePhoneClick} onQuoteClick={handleQuoteClick} />
 
-            {/* ── 2. STATS ── */}
-            <section className="statsSection py-16 sm:py-20 bg-gradient-to-br from-green-900 via-green-800 to-emerald-900 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 right-0 w-80 h-80 bg-white rounded-full blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-80 h-80 bg-white rounded-full blur-3xl" />
-                </div>
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10">
-                        {stats.map((stat, i) => (
+            {/* ── 2. STATS BAR ── */}
+            <section className="statsSection py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
+                <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
+                        {[
+                            { value: '10+', label: 'Years Experience' },
+                            { value: '500+', label: 'Projects Completed' },
+                            { value: '4.8★', label: 'Google Rating' },
+                            { value: '100%', label: 'Licensed & Insured' },
+                        ].map((stat, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, y: 15 }}
+                                initial={{ opacity: 0, y: 10 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
-                                className="statItem text-center"
+                                className="statItem text-center py-8 sm:py-10"
                             >
-                                <div className="statValue text-4xl sm:text-5xl font-bold text-white mb-1.5 tracking-tight">
+                                <div className="statValue text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
                                     {stat.value}
                                 </div>
-                                <div className="statLabel text-green-200/80 text-xs sm:text-sm font-medium uppercase tracking-wider">
+                                <div className="statLabel text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">
                                     {stat.label}
                                 </div>
                             </motion.div>
@@ -159,29 +153,27 @@ export default function Home() {
             <GoogleReviews />
 
             {/* ── 7. SERVICE AREAS ── */}
-            <section id="service-areas" className="serviceAreasSection py-20 sm:py-28 bg-[#faf9f6]">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section id="service-areas" className="serviceAreasSection py-20 sm:py-28 bg-[#f5f0e8]">
+                <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-center mb-12"
+                        className="areasHeader mb-12"
                     >
-                        <div className="flex items-center justify-center gap-3 mb-4">
-                            <div className="h-px w-8 bg-green-600" />
-                            <span className="text-green-700 uppercase tracking-[0.2em] text-[11px] font-bold">Service Areas</span>
-                            <div className="h-px w-8 bg-green-600" />
-                        </div>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">
+                        <span className="areasLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">
+                            Service Areas
+                        </span>
+                        <h2 className="areasTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">
                             Serving the San Gabriel Valley
                         </h2>
-                        <p className="mt-3 text-gray-500 text-base">
+                        <p className="areasSubtitle mt-3 text-[#6b6560] text-base">
                             Professional landscape construction&nbsp;•&nbsp;{locations.length}+ cities
                         </p>
                     </motion.div>
 
-                    <nav aria-label="Service areas" className="flex flex-wrap justify-center gap-2.5">
+                    <nav aria-label="Service areas" className="areasGrid flex flex-wrap gap-2.5">
                         {locations.map((city, index) => (
                             <motion.a
                                 key={city.name}
@@ -190,10 +182,10 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.3, delay: index * 0.02 }}
-                                className="areaTag inline-flex items-center gap-1.5 bg-white border border-gray-200 hover:border-green-500 hover:bg-green-50 px-4 py-2 rounded-full text-sm font-medium text-gray-700 hover:text-green-700 transition-all shadow-sm hover:shadow-md"
+                                className="areaTag inline-flex items-center gap-1.5 bg-white border border-[#e0d8cc] hover:border-[#2d5a27] hover:bg-[#2d5a27] px-4 py-2.5 rounded-lg text-sm font-medium text-[#4a4540] hover:text-white transition-all shadow-sm hover:shadow-md"
                                 aria-label={`Landscaping services in ${city.name}`}
                             >
-                                <MapPin className="w-3 h-3 text-green-500 flex-shrink-0" aria-hidden="true" />
+                                <MapPin className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
                                 {city.name}
                             </motion.a>
                         ))}
@@ -202,29 +194,33 @@ export default function Home() {
             </section>
 
             {/* ── 8. WHY CHOOSE US ── */}
-            <section className="whyChooseSection py-20 sm:py-28 bg-gray-950 relative overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-green-500/5 rounded-full blur-3xl pointer-events-none" />
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <section className="whyChooseSection py-20 sm:py-28 bg-[#1a1a1a] relative overflow-hidden">
+                <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-center mb-14"
+                        className="whyHeader flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-14"
                     >
-                        <div className="flex items-center justify-center gap-3 mb-4">
-                            <div className="h-px w-8 bg-green-500/70" />
-                            <span className="text-green-400 uppercase tracking-[0.2em] text-[11px] font-bold">
+                        <div>
+                            <span className="whyLabel text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">
                                 Why Choose Us
                             </span>
-                            <div className="h-px w-8 bg-green-500/70" />
+                            <h2 className="whyTitle text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">
+                                Built on Trust & Quality
+                            </h2>
                         </div>
-                        <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-                            Built on Trust &amp; Quality
-                        </h2>
+                        <a
+                            href="#contact"
+                            className="whyCta inline-flex items-center text-[#c45d2c] hover:text-[#b8945a] font-semibold text-sm transition-colors group"
+                        >
+                            Get Started
+                            <ArrowRight className="ml-1.5 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </a>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div className="whyGrid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                         {reasons.map((item, index) => (
                             <motion.div
                                 key={index}
@@ -232,13 +228,13 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                                className="reasonCard bg-gray-900/80 border border-gray-800 rounded-2xl p-6 text-center hover:border-green-500/40 transition-colors"
+                                className="reasonCard bg-[#242424] border border-[#333] rounded-xl p-6 hover:border-[#c45d2c]/40 transition-all group"
                             >
-                                <div className="reasonIcon w-12 h-12 bg-green-500/10 border border-green-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                                    <item.icon className="w-6 h-6 text-green-400" aria-hidden="true" />
+                                <div className="reasonIcon w-12 h-12 bg-[#c45d2c]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#c45d2c]/20 transition-colors">
+                                    <item.icon className="w-6 h-6 text-[#c45d2c]" aria-hidden="true" />
                                 </div>
                                 <h3 className="reasonTitle text-white font-bold text-base mb-2">{item.title}</h3>
-                                <p className="reasonDesc text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                                <p className="reasonDesc text-[#8a8478] text-sm leading-relaxed">{item.desc}</p>
                             </motion.div>
                         ))}
                     </div>

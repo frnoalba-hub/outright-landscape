@@ -1,76 +1,69 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
 
 export default function HomePortfolio({ projects, onCtaClick }) {
     const display = projects.slice(0, 8);
 
+    // Masonry heights for visual variety
+    const heights = ['h-52', 'h-72', 'h-60', 'h-80', 'h-64', 'h-56', 'h-72', 'h-60'];
+
     return (
         <section id="work" className="portfolioSection py-20 sm:py-28 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-14 sm:mb-20"
+                    className="portfolioHeader flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12 sm:mb-16"
                 >
-                    <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-8 bg-green-600" />
-                        <span className="text-green-700 uppercase tracking-[0.2em] text-[11px] font-bold">
-                            Our Portfolio
+                    <div>
+                        <span className="portfolioLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">
+                            Our Work
                         </span>
-                        <div className="h-px w-8 bg-green-600" />
+                        <h2 className="portfolioTitle text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">
+                            Recent Projects
+                        </h2>
                     </div>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
-                        Recent Projects
-                    </h2>
-                    <p className="mt-4 text-gray-500 text-base sm:text-lg">
+                    <p className="portfolioSubtitle text-[#6b6560] text-base max-w-sm">
                         Transforming outdoor spaces across the San Gabriel Valley
                     </p>
                 </motion.div>
 
-                {/* Bento Grid */}
-                <div
-                    className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3"
-                    style={{ gridAutoRows: '160px' }}
-                >
-                    {display.map((project, index) => {
-                        const isLarge = index === 0 || index === 5;
-                        return (
-                            <motion.article
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.96 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.4, delay: index * 0.04 }}
-                                className={`projectCard group relative overflow-hidden rounded-xl ${
-                                    isLarge ? 'col-span-2 row-span-2' : ''
-                                }`}
-                            >
-                                <img
-                                    src={project.image}
-                                    alt={project.alt}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                    loading="lazy"
-                                    width="400"
-                                    height="300"
-                                />
-                                {/* Hover overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                                    <h3 className="projectTitle text-white font-bold text-sm sm:text-base leading-tight">
-                                        {project.title}
-                                    </h3>
-                                    <p className="projectLocation text-green-400 text-xs flex items-center gap-1 mt-1">
-                                        <MapPin className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
-                                        {project.location}
-                                    </p>
-                                </div>
-                            </motion.article>
-                        );
-                    })}
+                {/* Masonry Grid */}
+                <div className="portfolioGrid columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+                    {display.map((project, index) => (
+                        <motion.article
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.4, delay: index * 0.05 }}
+                            className={`projectCard group relative overflow-hidden rounded-xl break-inside-avoid ${heights[index] || 'h-64'}`}
+                        >
+                            <img
+                                src={project.image}
+                                alt={project.alt}
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                loading="lazy"
+                                width="400"
+                                height="300"
+                            />
+                            {/* Overlay on hover */}
+                            <div className="projectOverlay absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="projectInfo absolute bottom-0 left-0 right-0 p-4 sm:p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                                <h3 className="projectTitle text-white font-bold text-sm sm:text-base leading-tight">
+                                    {project.title}
+                                </h3>
+                                <p className="projectLocation text-[#c45d2c] text-xs flex items-center gap-1 mt-1.5 font-medium">
+                                    <MapPin className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+                                    {project.location}
+                                </p>
+                            </div>
+                        </motion.article>
+                    ))}
                 </div>
 
                 {/* CTA */}
@@ -78,14 +71,15 @@ export default function HomePortfolio({ projects, onCtaClick }) {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="text-center mt-12"
+                    className="portfolioCtaWrap text-center mt-14"
                 >
                     <a
                         href="tel:626-343-6028"
                         onClick={onCtaClick}
-                        className="portfolioCta inline-flex items-center bg-gray-900 hover:bg-gray-800 text-white font-semibold px-8 py-4 rounded-full transition-all hover:shadow-xl text-sm sm:text-base"
+                        className="portfolioCta inline-flex items-center bg-[#1a1a1a] hover:bg-[#2a2a2a] text-white font-semibold px-8 py-4 rounded-xl transition-all hover:shadow-xl text-sm sm:text-base group"
                     >
-                        Start Your Project&ensp;→
+                        Start Your Project
+                        <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </a>
                 </motion.div>
             </div>
