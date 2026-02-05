@@ -132,8 +132,8 @@ export default function Irrigation() {
                         </motion.div>
 
                         <div className="irrigationCitiesGrid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {locations.map((city, cityIdx) => {
-                                const baseSlug = city.slug?.replace(/-landscaping$/, '') || '';
+                            {locations.filter(c => c.slug && c.slug !== 'san-gabriel-landscaping').map((city, cityIdx) => {
+                                const baseSlug = city.slug.replace(/-landscaping$/, '');
                                 return (
                                 <motion.a key={cityIdx} href={createPageUrl(`${baseSlug}-sprinkler-repair-installation`)}
                                     initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: cityIdx * 0.03 }}
