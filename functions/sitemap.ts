@@ -8,8 +8,6 @@ Deno.serve((req) => {
     'temple-city', 'walnut', 'west-covina'
   ];
   
-  const services = ['drip-irrigation', 'irrigation-repair', 'sprinkler-repair', 'sprinkler-valves'];
-  
   let urls = `  <url>
     <loc>https://outrightlandscape.com/</loc>
     <lastmod>${today}</lastmod>
@@ -37,14 +35,12 @@ Deno.serve((req) => {
     <priority>0.8</priority>
   </url>\n`;
     
-    services.forEach(service => {
-      urls += `  <url>
-    <loc>https://outrightlandscape.com/${city}-${service}</loc>
+    urls += `  <url>
+    <loc>https://outrightlandscape.com/${city}-sprinkler-repair-installation</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>\n`;
-    });
   });
   
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
