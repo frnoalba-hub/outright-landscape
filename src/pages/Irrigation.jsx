@@ -142,7 +142,8 @@ export default function Irrigation() {
                                     <h3 className="text-sm sm:text-base font-bold text-[#1a1a1a] group-hover:text-[#c45d2c] transition-colors">{city.name}</h3>
                                     <p className="text-xs text-[#8a8478] mt-1">Sprinkler Services</p>
                                 </motion.a>
-                            ))}
+                                );
+                            })}
                         </div>
                     </div>
                 </section>
