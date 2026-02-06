@@ -62,8 +62,10 @@ export default function TestimonialCard({ review, variant = "default" }) {
                     <p className="testimonialName text-white font-semibold text-sm truncate">{name}</p>
                     {city && <p className="testimonialCity text-[#6b6560] text-xs">{city}</p>}
                 </div>
-                <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/ba08b0eaa_google.png" 
-                    alt="Google" className="testimonialGoogleIcon w-5 h-5 opacity-50 group-hover:opacity-80 transition-opacity flex-shrink-0" />
+                <a href={source.url} target="_blank" rel="noopener noreferrer" className="testimonialSourceIcon flex-shrink-0" title={`View on ${source.alt}`}>
+                    <img src={source.icon} 
+                        alt={source.alt} className="w-5 h-5 opacity-50 group-hover:opacity-80 transition-opacity" />
+                </a>
             </div>
         </div>
     );
