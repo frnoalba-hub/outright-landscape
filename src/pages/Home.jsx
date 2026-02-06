@@ -165,8 +165,7 @@ export default function Home() {
             {/* ── 5. PORTFOLIO ── */}
             <HomePortfolio projects={projects} onCtaClick={() => handleQuoteClick('projects_section')} />
 
-            {/* ── 6. REVIEWS ── */}
-            <GoogleReviews />
+            {/* ── 6. REVIEWS (now in hero) ── */}
 
             {/* ── 7. SERVICE AREAS ── */}
             <section id="service-areas" className="serviceAreasSection py-20 sm:py-28 bg-[#f5f0e8]">
