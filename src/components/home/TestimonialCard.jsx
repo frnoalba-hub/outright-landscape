@@ -3,7 +3,7 @@ import { Star, Quote } from 'lucide-react';
 
 export default function TestimonialCard({ review, variant = "default" }) {
     const name = review.reviewer?.displayName || review.name || 'Customer';
-    const city = review.city || '';
+    const city = review.reviewer?.city || review.city || '';
     const comment = review.comment || review.text || '';
     const rating = review.starRating === 'FIVE' ? 5
         : review.starRating === 'FOUR' ? 4
