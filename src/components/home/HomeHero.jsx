@@ -2,8 +2,9 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import HeroReviews from './HeroReviews';
 
-export default function HomeHero({ onPhoneClick, onQuoteClick }) {
+export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalReviewCount, averageRating }) {
     return (
         <section className="homeHero relative min-h-[85vh] sm:min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
             {/* Background image — right side on desktop, full on mobile */}
@@ -21,6 +22,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick }) {
             <link rel="preload" as="image" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg" fetchpriority="high" />
 
             <div className="heroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-12 sm:pt-32 sm:pb-16 sm:py-0">
+                <div className="heroInner flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
                 <motion.div
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -76,6 +78,12 @@ export default function HomeHero({ onPhoneClick, onQuoteClick }) {
                         </a>
                     </div>
                 </motion.div>
+
+                {/* Reviews panel - right side on desktop, below on mobile */}
+                <div className="heroReviewsWrapper hidden lg:block">
+                    <HeroReviews reviews={reviews} totalReviewCount={totalReviewCount} averageRating={averageRating} />
+                </div>
+                </div>
             </div>
 
             {/* Bottom accent line */}
