@@ -282,7 +282,9 @@ export default function LocationPage({ citySlug }) {
             </section>
 
             {/* ── REVIEWS ── */}
-            <GoogleReviews />
+            <section id="reviews">
+                <GoogleReviews />
+            </section>
 
             {/* ── FAQS ── */}
             {faqs && faqs.length > 0 && (

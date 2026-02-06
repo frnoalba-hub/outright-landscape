@@ -6,6 +6,7 @@ import SEO from '@/components/SEO';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import FAQSchema from '@/components/FAQSchema';
 import ContactForm from '@/components/ContactForm';
+import GoogleReviews from '@/components/GoogleReviews';
 
 const galleryImages = [
     { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg", alt: "Irrigation valve manifold installation", h: "h-52" },
