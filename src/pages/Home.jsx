@@ -14,6 +14,7 @@ import HomeHero from '@/components/home/HomeHero';
 import HomeServices from '@/components/home/HomeServices';
 import HomeProcess from '@/components/home/HomeProcess';
 import HomePortfolio from '@/components/home/HomePortfolio';
+import { getGoogleReviews } from '@/functions/getGoogleReviews';
 
 /* ── static data ── */
 const services = [
@@ -73,6 +74,15 @@ export default function Home() {
         initialData: [],
     });
 
+    const { data: reviewsData } = useQuery({
+        queryKey: ['googleReviews'],
+        queryFn: async () => {
+            const response = await getGoogleReviews({});
+            return response.data;
+        },
+        staleTime: 1000 * 60 * 60,
+    });
+
     const trackEvent = (eventName, eventData = {}) => {
         if (typeof window !== 'undefined' && window.dataLayer) {
             window.dataLayer.push({ event: eventName, ...eventData });
@@ -108,7 +118,13 @@ export default function Home() {
             <ServiceSchema serviceType="hardscaping" />
 
             {/* ── 1. HERO ── */}
-            <HomeHero onPhoneClick={handlePhoneClick} onQuoteClick={handleQuoteClick} />
+            <HomeHero 
+                onPhoneClick={handlePhoneClick} 
+                onQuoteClick={handleQuoteClick}
+                reviews={reviewsData?.reviews}
+                totalReviewCount={reviewsData?.totalReviewCount}
+                averageRating={reviewsData?.averageRating}
+            />
 
             {/* ── 2. STATS BAR ── */}
             <section className="statsSection py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
