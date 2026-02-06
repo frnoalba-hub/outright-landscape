@@ -49,7 +49,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     {/* Subtitle */}
                     <p className="heroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
                         Premier landscape design & construction serving Covina, Glendora,
-                        San&nbsp;Dimas & the entire San Gabriel Valley.
+                        La&nbsp;Verne, San&nbsp;Dimas & the entire San Gabriel Valley.
                     </p>
 
                     {/* Trust badges - compact grid on mobile */}
