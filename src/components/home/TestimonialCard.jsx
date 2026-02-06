@@ -1,6 +1,29 @@
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
 
+const SOURCE_CONFIG = {
+    google: {
+        icon: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/ba08b0eaa_google.png",
+        alt: "Google",
+        url: "https://share.google/7R4p12cJP2hQI8Ppy"
+    },
+    yelp: {
+        icon: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/yelp_icon.png",
+        alt: "Yelp",
+        url: "https://www.yelp.com/biz/outright-landscape-covina"
+    },
+    angi: {
+        icon: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/9356455c5_Angi_Symbol_1C_Heart_RGB.png",
+        alt: "Angi",
+        url: "https://www.homeadvisor.com/rated.OUTRIGHTLANDSCAPE.112318590.html"
+    },
+    houzz: {
+        icon: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/38bcd5dbe_social_circle_green_48px.png",
+        alt: "Houzz",
+        url: "https://www.houzz.com/professionals/landscape-contractors/outright-landscape-pfvwus-pf~851831346"
+    }
+};
+
 export default function TestimonialCard({ review, variant = "default" }) {
     const name = review.reviewer?.displayName || review.name || 'Customer';
     const city = review.reviewer?.city || review.city || '';
@@ -9,6 +32,7 @@ export default function TestimonialCard({ review, variant = "default" }) {
         : review.starRating === 'FOUR' ? 4
         : review.rating || 5;
     const initial = name.charAt(0).toUpperCase();
+    const source = SOURCE_CONFIG[review.source] || SOURCE_CONFIG.google;
 
     return (
         <div className={`testimonialCard group relative bg-[#242424] border border-[#333] rounded-2xl p-6 sm:p-7 
