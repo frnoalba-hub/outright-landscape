@@ -99,7 +99,7 @@ export default function HeroReviews({ reviews = [], totalReviewCount, averageRat
             {/* Header */}
             <div className="heroReviewsHeader flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                    <h3 className="heroReviewsTitle text-white font-bold text-sm">Check Out Our Reviews</h3>
+                    <h3 className="heroReviewsTitle text-white font-bold text-base sm:text-lg">Check Out Our Reviews</h3>
                     <div className="flex gap-0.5">
                         {[...Array(5)].map((_, i) => (
                             <Star key={i} className="w-3 h-3 text-yellow-500 fill-yellow-500" />

@@ -51,7 +51,7 @@ export default function TestimonialCarousel({ reviews = [], averageRating, total
             <div className="testimonialCarouselHeader flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
                 <div>
                     <span className="testimonialLabel text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Reviews</span>
-                    <h2 className="testimonialTitle text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">Check Out Our Reviews</h2>
+                    <h2 className="testimonialTitle text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight mt-2">Check Out Our Reviews</h2>
                     <div className="testimonialRating flex items-center gap-3 mt-3">
                         <div className="flex gap-0.5">
                             {[...Array(5)].map((_, i) => (
