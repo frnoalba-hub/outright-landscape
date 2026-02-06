@@ -153,15 +153,39 @@ export default function TestimonialCarousel({ reviews = [], aiSummary, averageRa
                 </div>
             </div>
 
-            {/* CTA */}
-            <div className="testimonialCta text-center mt-10">
+            {/* Platform CTAs */}
+            <div className="testimonialCta flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-10">
                 <a href="https://share.google/7R4p12cJP2hQI8Ppy"
                     target="_blank" rel="noopener noreferrer"
-                    className="testimonialCtaLink inline-flex items-center gap-2 text-[#c45d2c] hover:text-[#b8945a] font-semibold text-sm transition-colors group">
+                    className="testimonialCtaLink inline-flex items-center gap-2 text-[#a09a90] hover:text-white font-medium text-sm transition-colors group">
                     <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/ba08b0eaa_google.png" 
                         alt="Google" className="w-4 h-4" />
-                    Read all {totalReviewCount} reviews on Google
-                    <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    Google
+                    <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </a>
+                <a href="https://www.yelp.com/biz/outright-landscape-covina"
+                    target="_blank" rel="noopener noreferrer"
+                    className="testimonialCtaLink inline-flex items-center gap-2 text-[#a09a90] hover:text-white font-medium text-sm transition-colors group">
+                    <img src="https://cdn.worldvectorlogo.com/logos/yelp-icon.svg" 
+                        alt="Yelp" className="w-4 h-4" />
+                    Yelp
+                    <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </a>
+                <a href="https://www.homeadvisor.com/rated.OUTRIGHTLANDSCAPE.112318590.html"
+                    target="_blank" rel="noopener noreferrer"
+                    className="testimonialCtaLink inline-flex items-center gap-2 text-[#a09a90] hover:text-white font-medium text-sm transition-colors group">
+                    <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/9356455c5_Angi_Symbol_1C_Heart_RGB.png" 
+                        alt="Angi" className="w-4 h-4" />
+                    Angi
+                    <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+                </a>
+                <a href="https://www.houzz.com/professionals/landscape-contractors/outright-landscape-pfvwus-pf~851831346"
+                    target="_blank" rel="noopener noreferrer"
+                    className="testimonialCtaLink inline-flex items-center gap-2 text-[#a09a90] hover:text-white font-medium text-sm transition-colors group">
+                    <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/38bcd5dbe_social_circle_green_48px.png" 
+                        alt="Houzz" className="w-4 h-4" />
+                    Houzz
+                    <ChevronRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                 </a>
             </div>
         </div>
