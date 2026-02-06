@@ -14,6 +14,7 @@ import HomeHero from '@/components/home/HomeHero';
 import HomeServices from '@/components/home/HomeServices';
 import HomeProcess from '@/components/home/HomeProcess';
 import HomePortfolio from '@/components/home/HomePortfolio';
+import GoogleReviews from '@/components/GoogleReviews';
 import { getGoogleReviews } from '@/functions/getGoogleReviews';
 
 /* ── static data ── */
@@ -121,18 +122,20 @@ export default function Home() {
             <HomeHero 
                 onPhoneClick={handlePhoneClick} 
                 onQuoteClick={handleQuoteClick}
-                reviews={reviewsData?.reviews}
-                totalReviewCount={reviewsData?.totalReviewCount}
-                averageRating={reviewsData?.averageRating}
             />
 
-            {/* ── 2. STATS BAR ── */}
+            {/* ── 2. REVIEWS ── */}
+            <section id="reviews">
+                <GoogleReviews />
+            </section>
+
+            {/* ── 3. STATS BAR ── */}
             <section className="statsSection py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
                         {[
                             { value: '10+', label: 'Years Experience' },
-                            { value: '250+', label: 'Projects Completed' },
+                            { value: reviewsData?.totalReviewCount ? `${reviewsData.totalReviewCount}+` : '250+', label: 'Reviews Posted' },
                             { value: '4.8★', label: 'Google Rating' },
                             { value: '100%', label: 'Licensed & Insured' },
                         ].map((stat, i) => (
@@ -156,16 +159,14 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ── 3. SERVICES ── */}
+            {/* ── 4. SERVICES ── */}
             <HomeServices services={services} />
 
-            {/* ── 4. PROCESS ── */}
+            {/* ── 5. PROCESS ── */}
             <HomeProcess />
 
-            {/* ── 5. PORTFOLIO ── */}
+            {/* ── 6. PORTFOLIO ── */}
             <HomePortfolio projects={projects} onCtaClick={() => handleQuoteClick('projects_section')} />
-
-            {/* ── 6. REVIEWS (now in hero) ── */}
 
             {/* ── 7. SERVICE AREAS ── */}
             <section id="service-areas" className="serviceAreasSection py-20 sm:py-28 bg-[#f5f0e8]">

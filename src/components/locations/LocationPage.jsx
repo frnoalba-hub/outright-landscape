@@ -65,7 +65,6 @@ export default function LocationPage({ citySlug }) {
     const services = cityData?.services?.length > 0 ? cityData.services : defaultServices;
     const projects = cityData?.projects?.length > 0 ? cityData.projects : defaultProjects;
     const slug = cityData?.slug || citySlug || '';
-    // Extract base city slug (e.g. "azusa" from "azusa-landscaping") for sprinkler page links
     const baseCitySlug = slug.replace(/-landscaping$/, '');
 
     const pageTitle = `${name} Landscaping & Hardscaping | Outright Landscape`;
@@ -163,6 +162,11 @@ export default function LocationPage({ citySlug }) {
                     <h2 className="cityIntroTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] mt-2 mb-6 tracking-tight">Landscaping Services in {name}</h2>
                     <p className="cityIntroText text-[#6b6560] text-base sm:text-lg leading-relaxed">{intro}</p>
                 </div>
+            </section>
+
+            {/* ── REVIEWS (moved up) ── */}
+            <section id="reviews">
+                <GoogleReviews />
             </section>
 
             {/* ── SERVICES ── */}
@@ -279,11 +283,6 @@ export default function LocationPage({ citySlug }) {
                         </a>
                     </motion.div>
                 </div>
-            </section>
-
-            {/* ── REVIEWS ── */}
-            <section id="reviews">
-                <GoogleReviews />
             </section>
 
             {/* ── FAQS ── */}
