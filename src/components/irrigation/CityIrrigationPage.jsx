@@ -6,7 +6,6 @@ import SEO from '@/components/SEO';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import FAQSchema from '@/components/FAQSchema';
 import ContactForm from '@/components/ContactForm';
-import GoogleReviews from '@/components/GoogleReviews';
 import HeroReviews from '@/components/home/HeroReviews';
 import { getGoogleReviews } from '@/functions/getGoogleReviews';
 import { useQuery } from '@tanstack/react-query';
@@ -356,11 +355,6 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                         </div>
                     </div>
                 </div>
-            </section>
-
-            {/* ── REVIEWS ── */}
-            <section id="reviews">
-                <GoogleReviews />
             </section>
 
             {/* ── TRUST STATS ── */}

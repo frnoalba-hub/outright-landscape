@@ -7,7 +7,6 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import FAQSchema from '@/components/FAQSchema';
 import ContactForm from '@/components/ContactForm';
-import GoogleReviews from '@/components/GoogleReviews';
 import HeroReviews from '@/components/home/HeroReviews';
 import { getGoogleReviews } from '@/functions/getGoogleReviews';
 import { useQuery } from '@tanstack/react-query';
@@ -180,11 +179,6 @@ export default function LocationPage({ citySlug }) {
                     <h2 className="cityIntroTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] mt-2 mb-6 tracking-tight">Landscaping Services in {name}</h2>
                     <p className="cityIntroText text-[#6b6560] text-base sm:text-lg leading-relaxed">{intro}</p>
                 </div>
-            </section>
-
-            {/* ── REVIEWS (moved up) ── */}
-            <section id="reviews">
-                <GoogleReviews />
             </section>
 
             {/* ── SERVICES ── */}
