@@ -122,14 +122,12 @@ export default function Home() {
             <HomeHero 
                 onPhoneClick={handlePhoneClick} 
                 onQuoteClick={handleQuoteClick}
+                reviews={reviewsData?.reviews}
+                totalReviewCount={reviewsData?.totalReviewCount}
+                averageRating={reviewsData?.averageRating}
             />
 
-            {/* ── 2. REVIEWS ── */}
-            <section id="reviews">
-                <GoogleReviews />
-            </section>
-
-            {/* ── 3. STATS BAR ── */}
+            {/* ── 2. STATS BAR ── */}
             <section className="statsSection py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
