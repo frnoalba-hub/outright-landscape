@@ -40,6 +40,14 @@ export default function LocationPage({ citySlug }) {
 
     const cityData = locations.find(l => l.slug === citySlug);
 
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-[#1a1a1a]">
+                <div className="w-8 h-8 border-2 border-[#c45d2c] border-t-transparent rounded-full animate-spin" />
+            </div>
+        );
+    }
+
     React.useEffect(() => {
         if (cityData && typeof window !== 'undefined') {
             if (window.dataLayer) {

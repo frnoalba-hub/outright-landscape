@@ -10,5 +10,5 @@ export default function ServiceArea() {
         return <div className="p-20 text-center">Please select a service area from the menu.</div>;
     }
 
-    return <LocationPage cityKey={city} />;
+    return <LocationPage citySlug={city} />;
 }
