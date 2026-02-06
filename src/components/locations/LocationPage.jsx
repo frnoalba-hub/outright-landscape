@@ -56,7 +56,7 @@ export default function LocationPage({ citySlug }) {
     const faqs = cityData?.faqs || [];
     const services = cityData?.services?.length > 0 ? cityData.services : defaultServices;
     const projects = cityData?.projects?.length > 0 ? cityData.projects : defaultProjects;
-    const slug = cityData?.slug || citySlug;
+    const slug = cityData?.slug || citySlug || '';
     // Extract base city slug (e.g. "azusa" from "azusa-landscaping") for sprinkler page links
     const baseCitySlug = slug.replace(/-landscaping$/, '');
 
