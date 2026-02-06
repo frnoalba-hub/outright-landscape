@@ -8,6 +8,8 @@ import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import FAQSchema from '@/components/FAQSchema';
 import ContactForm from '@/components/ContactForm';
 import GoogleReviews from '@/components/GoogleReviews';
+import HeroReviews from '@/components/home/HeroReviews';
+import { getGoogleReviews } from '@/functions/getGoogleReviews';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
@@ -36,6 +38,15 @@ export default function LocationPage({ citySlug }) {
     const { data: locations = [], isLoading } = useQuery({
         queryKey: ['locations'],
         queryFn: () => base44.entities.Location.list(null, 100),
+    });
+
+    const { data: reviewsData } = useQuery({
+        queryKey: ['googleReviews'],
+        queryFn: async () => {
+            const response = await getGoogleReviews({});
+            return response.data;
+        },
+        staleTime: 1000 * 60 * 60,
     });
 
     const cityData = locations.find(l => l.slug === citySlug);
@@ -113,6 +124,7 @@ export default function LocationPage({ citySlug }) {
                 </div>
 
                 <div className="cityHeroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-12 sm:pt-32 sm:pb-16 sm:py-0">
+                    <div className="cityHeroInner flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
                     <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, ease: 'easeOut' }} className="max-w-xl space-y-4 sm:space-y-6">
                         <div className="cityHeroBadge hidden sm:inline-flex items-center gap-2 bg-[#2d5a27]/20 border border-[#2d5a27]/40 rounded-full px-4 py-1.5">
                             <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
@@ -151,6 +163,12 @@ export default function LocationPage({ citySlug }) {
                             </a>
                         </div>
                     </motion.div>
+
+                    {/* Reviews panel - right side on desktop, below on mobile */}
+                    <div className="cityHeroReviewsWrapper lg:block">
+                        <HeroReviews reviews={reviewsData?.reviews} totalReviewCount={reviewsData?.totalReviewCount} averageRating={reviewsData?.averageRating} />
+                    </div>
+                    </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2d5a27] via-[#c45d2c] to-[#b8945a] z-20" />
             </section>
