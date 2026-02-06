@@ -40,14 +40,6 @@ export default function LocationPage({ citySlug }) {
 
     const cityData = locations.find(l => l.slug === citySlug);
 
-    if (isLoading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-[#1a1a1a]">
-                <div className="w-8 h-8 border-2 border-[#c45d2c] border-t-transparent rounded-full animate-spin" />
-            </div>
-        );
-    }
-
     React.useEffect(() => {
         if (cityData && typeof window !== 'undefined') {
             if (window.dataLayer) {
@@ -58,6 +50,14 @@ export default function LocationPage({ citySlug }) {
             }
         }
     }, [cityData, citySlug]);
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-[#1a1a1a]">
+                <div className="w-8 h-8 border-2 border-[#c45d2c] border-t-transparent rounded-full animate-spin" />
+            </div>
+        );
+    }
 
     const name = cityData?.name || 'San Gabriel Valley';
     const intro = cityData?.intro || "Transform your property with premier landscaping services from Outright Landscape Construction. We specialize in creating stunning outdoor spaces.";
