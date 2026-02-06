@@ -65,7 +65,6 @@ import charterOakLandscaping from './pages/charter-oak-landscaping';
 import charterOakSprinklerRepairInstallation from './pages/charter-oak-sprinkler-repair-installation';
 import claremontLandscaping from './pages/claremont-landscaping';
 import claremontSprinklerRepairInstallation from './pages/claremont-sprinkler-repair-installation';
-import covinaLandscape from './pages/covina-landscape';
 import covinaLandscaping from './pages/covina-landscaping';
 import covinaSprinklerRepairInstallation from './pages/covina-sprinkler-repair-installation';
 import diamondBarLandscaping from './pages/diamond-bar-landscaping';
@@ -118,7 +117,6 @@ export const PAGES = {
     "charter-oak-sprinkler-repair-installation": charterOakSprinklerRepairInstallation,
     "claremont-landscaping": claremontLandscaping,
     "claremont-sprinkler-repair-installation": claremontSprinklerRepairInstallation,
-    "covina-landscape": covinaLandscape,
     "covina-landscaping": covinaLandscaping,
     "covina-sprinkler-repair-installation": covinaSprinklerRepairInstallation,
     "diamond-bar-landscaping": diamondBarLandscaping,
