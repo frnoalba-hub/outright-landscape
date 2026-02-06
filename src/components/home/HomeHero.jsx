@@ -15,7 +15,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     className="w-full h-full object-cover"
                     fetchpriority="high"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/70 sm:to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/80 sm:to-[#1a1a1a]/60" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
             </div>
 
