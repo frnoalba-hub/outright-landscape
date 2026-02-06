@@ -7,6 +7,9 @@ import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import FAQSchema from '@/components/FAQSchema';
 import ContactForm from '@/components/ContactForm';
 import GoogleReviews from '@/components/GoogleReviews';
+import HeroReviews from '@/components/home/HeroReviews';
+import { getGoogleReviews } from '@/functions/getGoogleReviews';
+import { useQuery } from '@tanstack/react-query';
 
 const galleryImages = [
     { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg", alt: "Irrigation valve manifold installation", h: "h-52" },
@@ -20,6 +23,15 @@ const galleryImages = [
 ];
 
 export default function CityIrrigationPage({ cityName, citySlug }) {
+    const { data: reviewsData } = useQuery({
+        queryKey: ['googleReviews'],
+        queryFn: async () => {
+            const response = await getGoogleReviews({});
+            return response.data;
+        },
+        staleTime: 1000 * 60 * 60,
+    });
+
     const trackPhoneClick = (loc) => {
         if (window.dataLayer) {
             window.dataLayer.push({ event: 'phone_click', event_category: 'engagement', event_label: `irrigation-${citySlug}-${loc}`, phone_number: '626-343-6028' });
@@ -135,6 +147,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
                 </div>
                 <div className="cityIrrigationHeroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-12 sm:pt-32 sm:pb-16 sm:py-0">
+                    <div className="cityIrrigationHeroInner flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
                     <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1 }} className="max-w-xl space-y-4 sm:space-y-6">
                         <div className="cityIrrigationHeroBadge hidden sm:inline-flex items-center gap-2 bg-[#2d5a27]/20 border border-[#2d5a27]/40 rounded-full px-4 py-1.5">
                             <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
@@ -166,6 +179,12 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                             </a>
                         </div>
                     </motion.div>
+
+                    {/* Reviews panel - right side on desktop, below on mobile */}
+                    <div className="cityIrrigationHeroReviewsWrapper lg:block">
+                        <HeroReviews reviews={reviewsData?.reviews} totalReviewCount={reviewsData?.totalReviewCount} averageRating={reviewsData?.averageRating} />
+                    </div>
+                    </div>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2d5a27] via-[#c45d2c] to-[#b8945a] z-20" />
             </section>
