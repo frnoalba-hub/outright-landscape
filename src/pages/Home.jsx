@@ -7,7 +7,7 @@ import { base44 } from '@/api/base44Client';
 
 import SEO from '@/components/SEO';
 import ServiceSchema from '@/components/ServiceSchema';
-import GoogleReviews from '@/components/GoogleReviews';
+
 import ContactForm from '@/components/ContactForm';
 
 import HomeHero from '@/components/home/HomeHero';
