@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Star, Sparkles, ThumbsUp, MessageSquare } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import TestimonialCard from './TestimonialCard';
 
-export default function TestimonialCarousel({ reviews = [], aiSummary, averageRating, totalReviewCount }) {
+export default function TestimonialCarousel({ reviews = [], averageRating, totalReviewCount }) {
     const [currentPage, setCurrentPage] = useState(0);
     const [autoplay, setAutoplay] = useState(true);
 

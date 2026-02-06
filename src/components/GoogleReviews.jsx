@@ -35,7 +35,7 @@ export default function GoogleReviews() {
 
     if (error || !data?.success) return null;
 
-    const { reviews, aiSummary, averageRating, totalReviewCount } = data;
+    const { reviews, averageRating, totalReviewCount } = data;
 
     return (
         <section id="reviews" className="googleReviewsSection py-20 sm:py-28 bg-[#1a1a1a] relative overflow-hidden">
@@ -46,7 +46,6 @@ export default function GoogleReviews() {
             <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
                 <TestimonialCarousel 
                     reviews={reviews} 
-                    aiSummary={aiSummary} 
                     averageRating={averageRating} 
                     totalReviewCount={totalReviewCount} 
                 />
