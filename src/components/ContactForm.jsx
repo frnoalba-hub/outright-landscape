@@ -149,79 +149,75 @@ export default function ContactForm({ cityName = "your area" }) {
                         </div>
                     </div>
 
-                    {isSubmitted ? (
-                        <div className="contactSuccess text-center p-10 bg-[#2d5a27] rounded-2xl text-white">
-                            <CheckCircle className="w-14 h-14 mx-auto mb-4" />
-                            <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
-                            <p className="text-white/80">Your quote request has been sent. We'll be in touch shortly.</p>
-                        </div>
-                    ) : (
-                        <form onSubmit={handleSubmit} className="contactForm bg-[#1a1a1a] rounded-2xl p-6 sm:p-8 space-y-4">
-                            <Input
-                                id="name"
-                                type="text"
-                                placeholder="Full Name"
-                                required
-                                value={formData.name}
-                                onChange={(e) => handleInputChange("name", e.target.value)}
-                                className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
-                            />
-                            <Input
-                                id="phone"
-                                type="tel"
-                                placeholder="Phone"
-                                required
-                                value={formData.phone}
-                                onChange={(e) => handleInputChange("phone", e.target.value)}
-                                className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
-                            />
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="Email"
-                                required
-                                value={formData.email}
-                                onChange={(e) => handleInputChange("email", e.target.value)}
-                                className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
-                            />
-                            <Input
-                                id="city"
-                                type="text"
-                                placeholder="City"
-                                required
-                                value={formData.city}
-                                onChange={(e) => handleInputChange("city", e.target.value)}
-                                className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
-                            />
-                            <Textarea
-                                id="message"
-                                placeholder="Brief project description..."
-                                required
-                                value={formData.message}
-                                onChange={(e) => handleInputChange("message", e.target.value)}
-                                className="contactTextarea bg-[#242424] border-[#333] text-white rounded-lg p-4 h-28 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
-                            />
-
-                            <input
-                                type="text"
-                                name="company"
-                                className="honeypot"
-                                value={formData.company}
-                                onChange={(e) => handleInputChange("company", e.target.value)}
-                                tabIndex="-1"
-                                autoComplete="off"
-                            />
-
-                            <Button
-                                type="submit"
-                                size="lg"
-                                disabled={isSubmitting}
-                                className="contactSubmit w-full font-bold text-base h-14 rounded-xl bg-[#c45d2c] hover:bg-[#a94e25] text-white shadow-lg shadow-[#c45d2c]/20 hover:shadow-xl hover:shadow-[#c45d2c]/30 transition-all duration-300 transform hover:scale-[1.02]"
+                    <div className="contactFormArea">
+                        {/* Tab switcher */}
+                        <div className="contactTabs flex bg-[#1a1a1a] rounded-t-2xl overflow-hidden border-b border-[#333]">
+                            <button
+                                type="button"
+                                onClick={() => setActiveTab("quote")}
+                                className={`contactTabBtn flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold transition-all duration-300
+                                    ${activeTab === "quote" ? "bg-[#1a1a1a] text-[#c45d2c] border-b-2 border-[#c45d2c]" : "bg-[#151515] text-[#6b6560] hover:text-[#a09a90]"}`}
                             >
-                                {isSubmitting ? "Sending..." : "Request My Free Quote"}
-                            </Button>
-                        </form>
-                    )}
+                                <MessageSquare className="w-4 h-4" /> Free Quote
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => setActiveTab("book")}
+                                className={`contactTabBtn flex-1 flex items-center justify-center gap-2 py-4 text-sm font-semibold transition-all duration-300
+                                    ${activeTab === "book" ? "bg-[#1a1a1a] text-[#c45d2c] border-b-2 border-[#c45d2c]" : "bg-[#151515] text-[#6b6560] hover:text-[#a09a90]"}`}
+                            >
+                                <CalendarDays className="w-4 h-4" /> Book Appointment
+                            </button>
+                        </div>
+
+                        {activeTab === "quote" ? (
+                            isSubmitted ? (
+                                <div className="contactSuccess text-center p-10 bg-[#2d5a27] rounded-b-2xl text-white">
+                                    <CheckCircle className="w-14 h-14 mx-auto mb-4" />
+                                    <h3 className="text-2xl font-bold mb-2">Thank You!</h3>
+                                    <p className="text-white/80">Your quote request has been sent. We'll be in touch shortly.</p>
+                                </div>
+                            ) : (
+                                <form onSubmit={handleSubmit} className="contactForm bg-[#1a1a1a] rounded-b-2xl p-6 sm:p-8 space-y-4">
+                                    <Input
+                                        id="name" type="text" placeholder="Full Name" required
+                                        value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)}
+                                        className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
+                                    />
+                                    <Input
+                                        id="phone" type="tel" placeholder="Phone" required
+                                        value={formData.phone} onChange={(e) => handleInputChange("phone", e.target.value)}
+                                        className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
+                                    />
+                                    <Input
+                                        id="email" type="email" placeholder="Email" required
+                                        value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)}
+                                        className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
+                                    />
+                                    <Input
+                                        id="city" type="text" placeholder="City" required
+                                        value={formData.city} onChange={(e) => handleInputChange("city", e.target.value)}
+                                        className="contactInput bg-[#242424] border-[#333] text-white h-13 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
+                                    />
+                                    <Textarea
+                                        id="message" placeholder="Brief project description..." required
+                                        value={formData.message} onChange={(e) => handleInputChange("message", e.target.value)}
+                                        className="contactTextarea bg-[#242424] border-[#333] text-white rounded-lg p-4 h-28 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all"
+                                    />
+                                    <input type="text" name="company" className="honeypot" value={formData.company}
+                                        onChange={(e) => handleInputChange("company", e.target.value)} tabIndex="-1" autoComplete="off" />
+                                    <Button type="submit" size="lg" disabled={isSubmitting}
+                                        className="contactSubmit w-full font-bold text-base h-14 rounded-xl bg-[#c45d2c] hover:bg-[#a94e25] text-white shadow-lg shadow-[#c45d2c]/20 hover:shadow-xl hover:shadow-[#c45d2c]/30 transition-all duration-300 transform hover:scale-[1.02]">
+                                        {isSubmitting ? "Sending..." : "Request My Free Quote"}
+                                    </Button>
+                                </form>
+                            )
+                        ) : (
+                            <div className="contactBookingWrapper rounded-b-2xl overflow-hidden">
+                                <BookingForm cityName={cityName} />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </section>
