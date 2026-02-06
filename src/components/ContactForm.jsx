@@ -3,12 +3,14 @@ import { ContactInquiry } from "@/entities/ContactInquiry";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, Phone, Text } from "lucide-react";
+import { CheckCircle, Phone, Text, CalendarDays, MessageSquare } from "lucide-react";
 import confetti from 'canvas-confetti';
+import BookingForm from '@/components/booking/BookingForm';
 
 const EMAIL_RELAY_URL = "https://script.google.com/macros/s/AKfycbzSIl_5RSL2FvaE7uwl4lbLJtMUFfwA-O5XFIt9TaA1-egp4HChAHVMnEWm7Hf-r0Mvtw/exec";
 
 export default function ContactForm({ cityName = "your area" }) {
+    const [activeTab, setActiveTab] = useState("quote"); // "quote" or "book"
     const [formData, setFormData] = useState({
         name: "",
         phone: "",
