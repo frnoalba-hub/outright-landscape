@@ -8,7 +8,7 @@ const SOURCE_CONFIG = {
         url: "https://share.google/7R4p12cJP2hQI8Ppy"
     },
     yelp: {
-        icon: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/yelp_icon.png",
+        icon: "https://cdn.worldvectorlogo.com/logos/yelp-icon.svg",
         alt: "Yelp",
         url: "https://www.yelp.com/biz/outright-landscape-covina"
     },
