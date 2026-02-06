@@ -86,54 +86,9 @@ export default function TestimonialCarousel({ reviews = [], averageRating, total
                 )}
             </div>
 
-            {/* AI Summary + Cards row */}
-            <div className="testimonialCarouselBody grid lg:grid-cols-4 gap-5">
-                {/* AI Summary Card */}
-                {aiSummary && (
-                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-                        className="testimonialAISummary lg:col-span-1 bg-gradient-to-br from-[#2d5a27]/20 to-[#242424] border border-[#2d5a27]/30 rounded-2xl p-6 sm:p-7 flex flex-col">
-                        <div className="testimonialAIBadge flex items-center gap-2 text-[#4a8c3f] mb-4">
-                            <Sparkles className="w-4 h-4 animate-pulse" />
-                            <span className="text-xs font-bold uppercase tracking-wider">AI Analysis</span>
-                        </div>
-                        <p className="testimonialAIQuote text-[#a09a90] text-sm italic leading-relaxed mb-5 flex-1">
-                            "{aiSummary.summary}"
-                        </p>
-                        {aiSummary.positive_highlights?.length > 0 && (
-                            <div className="testimonialAIHighlights mb-4">
-                                <div className="flex items-center gap-1.5 mb-2">
-                                    <ThumbsUp className="w-3.5 h-3.5 text-[#4a8c3f]" />
-                                    <span className="text-[10px] font-semibold text-[#6b6560] uppercase tracking-wide">Highlights</span>
-                                </div>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {aiSummary.positive_highlights.slice(0, 4).map((h, i) => (
-                                        <Badge key={i} className="testimonialAITag bg-[#2d5a27]/20 text-[#8fbc8b] border-[#2d5a27]/30 text-[10px] hover:bg-[#2d5a27]/30">
-                                            {h}
-                                        </Badge>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                        {aiSummary.themes?.length > 0 && (
-                            <div className="testimonialAIThemes">
-                                <div className="flex items-center gap-1.5 mb-2">
-                                    <MessageSquare className="w-3.5 h-3.5 text-[#b8945a]" />
-                                    <span className="text-[10px] font-semibold text-[#6b6560] uppercase tracking-wide">Themes</span>
-                                </div>
-                                <div className="flex flex-wrap gap-1.5">
-                                    {aiSummary.themes.slice(0, 4).map((t, i) => (
-                                        <Badge key={i} variant="outline" className="testimonialAIThemeTag border-[#444] text-[#8a8478] text-[10px]">
-                                            {t}
-                                        </Badge>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </motion.div>
-                )}
-
-                {/* Review Cards Carousel */}
-                <div className={`testimonialCards ${aiSummary ? 'lg:col-span-3' : 'lg:col-span-4'}`}>
+            {/* Review Cards */}
+            <div className="testimonialCarouselBody">
+                <div className="testimonialCards">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                         <AnimatePresence mode="wait">
                             {visibleReviews.map((review, idx) => (
