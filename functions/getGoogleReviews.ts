@@ -39,42 +39,11 @@ Deno.serve(async (req) => {
         const totalReviewCount = reviews.length;
         const averageRating = 5.0;
 
-        // Generate AI summary
-        let aiSummary = null;
-        try {
-            const reviewTexts = reviews.map(r => `[${r.source.toUpperCase()}] ${r.reviewer.displayName} (${r.reviewer.city}): ${r.comment}`).join("\n\n");
-            aiSummary = await base44.integrations.Core.InvokeLLM({
-                prompt: `Analyze these customer reviews for Outright Landscape, a licensed landscaping contractor in Covina, CA. Reviews come from Google, Yelp, Angi, and Houzz.
-                Provide a concise, friendly summary.
-                
-                Reviews:
-                ${reviewTexts}`,
-                response_json_schema: {
-                    type: "object",
-                    properties: {
-                        overall_sentiment: { type: "string" },
-                        summary: { type: "string" },
-                        themes: { type: "array", items: { type: "string" } },
-                        positive_highlights: { type: "array", items: { type: "string" } }
-                    }
-                }
-            });
-        } catch (e) {
-            console.error("AI summary failed, using fallback:", e.message);
-            aiSummary = {
-                overall_sentiment: "Overwhelmingly Positive",
-                summary: "Across Google, Yelp, Angi, and Houzz, customers consistently praise Outright Landscape for their professionalism, quality craftsmanship, and excellent communication. From paver patios to irrigation systems, the team delivers outstanding results across the San Gabriel Valley.",
-                themes: ["Quality Craftsmanship", "Professionalism", "Great Communication", "Fair Pricing", "Timely Completion"],
-                positive_highlights: ["Finished ahead of schedule", "Same-day sprinkler repair", "Beautiful paver installations", "Exceeded expectations", "Respectful of property"]
-            };
-        }
-
         return Response.json({
             success: true,
             reviews: reviews,
             totalReviewCount: totalReviewCount,
-            averageRating: averageRating,
-            aiSummary: aiSummary
+            averageRating: averageRating
         });
 
     } catch (error) {

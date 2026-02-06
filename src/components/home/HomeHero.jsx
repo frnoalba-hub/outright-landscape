@@ -80,7 +80,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                 </motion.div>
 
                 {/* Reviews panel - right side on desktop, below on mobile */}
-                <div className="heroReviewsWrapper hidden lg:block">
+                <div className="heroReviewsWrapper lg:block">
                     <HeroReviews reviews={reviews} totalReviewCount={totalReviewCount} averageRating={averageRating} />
                 </div>
                 </div>
