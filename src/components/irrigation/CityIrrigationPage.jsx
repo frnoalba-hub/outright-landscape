@@ -339,6 +339,11 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                 </div>
             </section>
 
+            {/* ── REVIEWS ── */}
+            <section id="reviews">
+                <GoogleReviews />
+            </section>
+
             {/* ── TRUST STATS ── */}
             <section className="cityIrrigationTrust py-0 bg-[#1a1a1a] border-y border-[#333]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
