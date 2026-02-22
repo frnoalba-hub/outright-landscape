@@ -11,7 +11,7 @@ export default function JsonLd({ city }) {
       "url": "https://outrightlandscape.com",
       "telephone": "(626) 343-6028",
       "email": "outrightlandscape@yahoo.com",
-      "image": "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/39c606b34_file_000000002aac61f58b7edad5ad34cd94.png",
+      "image": "/images/39c606b34_file_000000002aac61f58b7edad5ad34cd94.png",
       "priceRange": "$$",
       "areaServed": {
         "@type": "City",

@@ -29,19 +29,19 @@ export const services = [
 
 export const projects = [
   {
-    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+    image: "/images/bbdea4e3f_2025-05-281.jpg",
     title: "Premium Sod Installation",
     description: "Lush lawn transformation",
     alt: "Outright Landscape – Premium Sod Installation"
   },
   {
-    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+    image: "/images/37a148223_2025-05-288.jpg",
     title: "Complete Backyard Makeover",
     description: "Full landscape renovation with fresh turf",
     alt: "Outright Landscape – Complete Backyard Makeover"
   },
   {
-    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+    image: "/images/805f8b55a_2025-05-282.jpg",
     title: "Irrigation System Installation",
     description: "Custom sprinkler system for optimal coverage",
     alt: "Outright Landscape – Irrigation System"

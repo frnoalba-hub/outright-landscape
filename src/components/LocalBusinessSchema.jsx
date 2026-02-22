@@ -7,7 +7,7 @@ export default function LocalBusinessSchema({ cityName, citySlug, services = [] 
       "@type": "LocalBusiness",
       "@id": `https://outrightlandscape.com/ServiceArea?city=${citySlug}#business`,
       "name": `Outright Landscape Construction - ${cityName}`,
-      "image": "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png",
+      "image": "/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png",
       "description": `Licensed C-27 landscape contractor serving ${cityName}, CA. Expert pavers, turf installation, irrigation systems, and complete landscape design. Free estimates available.`,
       "telephone": "+1-626-343-6028",
       "email": "outrightlandscape@yahoo.com",

@@ -38,19 +38,19 @@ export const locations = [
     ],
     projects: [
       {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+        image: "/images/bbdea4e3f_2025-05-281.jpg",
         title: "Premium Sod Installation",
         description: "Lush lawn transformation in Covina",
         alt: "Outright Landscape – Premium Sod Installation in Covina"
       },
       {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+        image: "/images/37a148223_2025-05-288.jpg",
         title: "Complete Backyard Makeover",
         description: "Full landscape renovation with fresh turf",
         alt: "Outright Landscape – Complete Backyard Makeover in Covina"
       },
       {
-        image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+        image: "/images/805f8b55a_2025-05-282.jpg",
         title: "Irrigation System Installation",
         description: "Custom sprinkler system for optimal coverage",
         alt: "Outright Landscape – Irrigation System in Covina"
@@ -65,17 +65,17 @@ export const locations = [
     projects: [
         {
             title: "Premium Turf Installation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "Premium Turf Installation - Outright Landscape Covina"
         },
         {
             title: "Front Yard Landscaping",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            image: "/images/37a148223_2025-05-288.jpg",
             alt: "Front Yard Landscaping - Outright Landscape Covina"
         },
         {
             title: "Paver Walkway & Sod",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Paver Walkway and Sod Installation Covina"
         }
     ]
@@ -95,17 +95,17 @@ export const locations = [
     projects: [
         {
             title: "Irrigation Trenching",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
+            image: "/images/6633fbff6_2025-05-286.jpg",
             alt: "Irrigation Trenching - Outright Landscape West Covina"
         },
         {
              title: "Complete Backyard Makeover",
-             image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+             image: "/images/cdeefde95_2024-09-14.jpg",
              alt: "Complete Backyard Makeover West Covina"
         },
         {
              title: "Sod Installation",
-             image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+             image: "/images/022683aad_2025-05-283.jpg",
              alt: "Sod Installation West Covina"
         }
     ]
@@ -125,17 +125,17 @@ export const locations = [
     projects: [
         {
             title: "Front Yard Driveway Pavers",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Front Yard Driveway Pavers - Outright Landscape Glendora"
         },
         {
             title: "Irrigation Trenching",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            image: "/images/954e6bafa_2024-09-04.jpg",
             alt: "Irrigation Trenching - Outright Landscape Glendora"
         },
         {
             title: "Turf Renovation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "Turf Renovation Glendora"
         }
     ]
@@ -154,17 +154,17 @@ export const locations = [
     projects: [
         {
             title: "Paver Walkway Installation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Paver Walkway Installation Azusa"
         },
         {
             title: "Drip Irrigation System",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            image: "/images/805f8b55a_2025-05-282.jpg",
             alt: "Drip Irrigation System Azusa"
         },
         {
             title: "Front Yard Sod",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+            image: "/images/022683aad_2025-05-283.jpg",
             alt: "Front Yard Sod Azusa"
         }
     ]
@@ -183,17 +183,17 @@ export const locations = [
     projects: [
         {
             title: "Turf & Sprinkler System",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
+            image: "/images/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
             alt: "Turf & Sprinkler System - Outright Landscape Pasadena"
         },
         {
             title: "Paver Patio Design",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Paver Patio Design Pasadena"
         },
         {
             title: "Drought Tolerant Garden",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            image: "/images/805f8b55a_2025-05-282.jpg",
             alt: "Drought Tolerant Garden Pasadena"
         }
     ]
@@ -212,17 +212,17 @@ export const locations = [
     projects: [
         {
             title: "Sod & Drainage Installation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+            image: "/images/022683aad_2025-05-283.jpg",
             alt: "Sod & Drainage Installation - Outright Landscape Diamond Bar"
         },
         {
             title: "Retaining Wall Construction",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Retaining Wall Construction Diamond Bar"
         },
         {
             title: "Complete Lawn Renovation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "Complete Lawn Renovation Diamond Bar"
         }
     ]
@@ -241,17 +241,17 @@ export const locations = [
     projects: [
         {
             title: "Custom Paver Patio",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            image: "/images/cdeefde95_2024-09-14.jpg",
             alt: "Custom Paver Patio Charter Oak"
         },
         {
             title: "Lawn Replacement",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "Lawn Replacement Charter Oak"
         },
         {
             title: "Sprinkler Repair & Install",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            image: "/images/954e6bafa_2024-09-04.jpg",
             alt: "Sprinkler Repair and Install Charter Oak"
         }
     ]
@@ -270,17 +270,17 @@ export const locations = [
     projects: [
         {
             title: "Modern Paver Driveway",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Modern Paver Driveway La Verne"
         },
         {
             title: "Water-Efficient Landscaping",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+            image: "/images/d1c4f81c9_2024-08-29.jpg",
             alt: "Water-Efficient Landscaping La Verne"
         },
         {
             title: "New Turf Installation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+            image: "/images/022683aad_2025-05-283.jpg",
             alt: "New Turf Installation La Verne"
         }
     ]
@@ -299,17 +299,17 @@ export const locations = [
     projects: [
         {
             title: "Irrigation System Installation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            image: "/images/805f8b55a_2025-05-282.jpg",
             alt: "Irrigation System Installation - Outright Landscape San Dimas"
         },
         {
             title: "Side Yard Irrigation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+            image: "/images/d1c4f81c9_2024-08-29.jpg",
             alt: "Side Yard Irrigation - Outright Landscape San Dimas"
         },
         {
             title: "Landscape Demo & Prep",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            image: "/images/954e6bafa_2024-09-04.jpg",
             alt: "Landscape Demo and Prep San Dimas"
         }
     ]
@@ -328,17 +328,17 @@ export const locations = [
     projects: [
         {
             title: "Backyard Pavers & Turf",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            image: "/images/cdeefde95_2024-09-14.jpg",
             alt: "Backyard Pavers and Turf Walnut"
         },
         {
             title: "Sprinkler System Upgrade",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
+            image: "/images/6633fbff6_2025-05-286.jpg",
             alt: "Sprinkler System Upgrade Walnut"
         },
         {
             title: "Landscape Renovation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            image: "/images/37a148223_2025-05-288.jpg",
             alt: "Landscape Renovation Walnut"
         }
     ]
@@ -357,17 +357,17 @@ export const locations = [
     projects: [
         {
             title: "Complete Yard Clean-Up",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            image: "/images/954e6bafa_2024-09-04.jpg",
             alt: "Complete Yard Clean-Up Baldwin Park"
         },
         {
             title: "New Sod Installation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "New Sod Installation Baldwin Park"
         },
         {
             title: "Paver Patio",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Paver Patio Baldwin Park"
         }
     ]
@@ -386,17 +386,17 @@ export const locations = [
     projects: [
         {
             title: "Paver Walkway & Plants",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            image: "/images/37a148223_2025-05-288.jpg",
             alt: "Paver Walkway and Plants El Monte"
         },
         {
             title: "Irrigation Install",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            image: "/images/805f8b55a_2025-05-282.jpg",
             alt: "Irrigation Install El Monte"
         },
         {
             title: "Backyard Turf",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
+            image: "/images/cb31aa31a_467984156_586804077241478_5229306140253639953_n.jpg",
             alt: "Backyard Turf El Monte"
         }
     ]
@@ -415,17 +415,17 @@ export const locations = [
     projects: [
         {
             title: "Premium Hardscape Design",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            image: "/images/cdeefde95_2024-09-14.jpg",
             alt: "Premium Hardscape Design Monrovia"
         },
         {
             title: "Drought Tolerant Landscaping",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+            image: "/images/d1c4f81c9_2024-08-29.jpg",
             alt: "Drought Tolerant Landscaping Monrovia"
         },
         {
             title: "Front Yard Sod & Pavers",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Front Yard Sod and Pavers Monrovia"
         }
     ]
@@ -444,17 +444,17 @@ export const locations = [
     projects: [
         {
             title: "Luxury Estate Landscaping",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            image: "/images/cdeefde95_2024-09-14.jpg",
             alt: "Luxury Estate Landscaping Arcadia"
         },
         {
             title: "Custom Paver Driveway",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Custom Paver Driveway Arcadia"
         },
         {
             title: "Marathon Sod Installation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "Marathon Sod Installation Arcadia"
         }
     ]
@@ -473,17 +473,17 @@ export const locations = [
     projects: [
         {
             title: "Paver Patio & Walkways",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Paver Patio and Walkways Temple City"
         },
         {
             title: "Sprinkler System Installation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/6633fbff6_2025-05-286.jpg",
+            image: "/images/6633fbff6_2025-05-286.jpg",
             alt: "Sprinkler System Installation Temple City"
         },
         {
             title: "Lawn Renovation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/022683aad_2025-05-283.jpg",
+            image: "/images/022683aad_2025-05-283.jpg",
             alt: "Lawn Renovation Temple City"
         }
     ]
@@ -502,17 +502,17 @@ export const locations = [
     projects: [
         {
             title: "Hardscape & Retaining Wall",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            image: "/images/cdeefde95_2024-09-14.jpg",
             alt: "Hardscape and Retaining Wall Rowland Heights"
         },
         {
             title: "Front Yard Irrigation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            image: "/images/954e6bafa_2024-09-04.jpg",
             alt: "Front Yard Irrigation Rowland Heights"
         },
         {
             title: "New Sod Lawn",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "New Sod Lawn Rowland Heights"
         }
     ]
@@ -531,17 +531,17 @@ export const locations = [
     projects: [
         {
             title: "Full Yard Clean-Up",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/954e6bafa_2024-09-04.jpg",
+            image: "/images/954e6bafa_2024-09-04.jpg",
             alt: "Full Yard Clean-Up Pomona"
         },
         {
             title: "Paver Driveway Install",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Paver Driveway Install Pomona"
         },
         {
             title: "Sprinkler System",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            image: "/images/805f8b55a_2025-05-282.jpg",
             alt: "Sprinkler System Pomona"
         }
     ]
@@ -560,17 +560,17 @@ export const locations = [
     projects: [
         {
             title: "Drought Friendly Design",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/d1c4f81c9_2024-08-29.jpg",
+            image: "/images/d1c4f81c9_2024-08-29.jpg",
             alt: "Drought Friendly Design Claremont"
         },
         {
             title: "Premium Paver Walkway",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            image: "/images/37a148223_2025-05-288.jpg",
             alt: "Premium Paver Walkway Claremont"
         },
         {
             title: "Turf & Irrigation",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "Turf and Irrigation Claremont"
         }
     ]
@@ -589,17 +589,17 @@ export const locations = [
     projects: [
         {
             title: "Front Yard Landscape",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/37a148223_2025-05-288.jpg",
+            image: "/images/37a148223_2025-05-288.jpg",
             alt: "Front Yard Landscape Duarte"
         },
         {
             title: "Sprinkler System Install",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg",
+            image: "/images/805f8b55a_2025-05-282.jpg",
             alt: "Sprinkler System Install Duarte"
         },
         {
             title: "Paver Patio Construction",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Paver Patio Construction Duarte"
         }
     ]
@@ -618,17 +618,17 @@ export const locations = [
     projects: [
         {
             title: "Regional Landscape Projects",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
+            image: "/images/cdeefde95_2024-09-14.jpg",
             alt: "Regional Landscape Projects San Gabriel Valley"
         },
         {
             title: "Sod & Irrigation Experts",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg",
+            image: "/images/bbdea4e3f_2025-05-281.jpg",
             alt: "Sod and Irrigation Experts San Gabriel Valley"
         },
         {
             title: "Custom Hardscaping",
-            image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
+            image: "/images/670c050ff_2025-05-284.jpg",
             alt: "Custom Hardscaping San Gabriel Valley"
         }
     ]

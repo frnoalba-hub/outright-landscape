@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const SOURCE_CONFIG = {
     google: { 
-        icon: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/ba08b0eaa_google.png", 
+        icon: "/images/ba08b0eaa_google.png", 
         alt: "Google",
         url: "https://share.google/7R4p12cJP2hQI8Ppy"
     },
@@ -14,12 +14,12 @@ const SOURCE_CONFIG = {
         url: "https://www.yelp.com/biz/outright-landscape-covina"
     },
     angi: { 
-        icon: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/9356455c5_Angi_Symbol_1C_Heart_RGB.png", 
+        icon: "/images/9356455c5_Angi_Symbol_1C_Heart_RGB.png", 
         alt: "Angi",
         url: "https://www.homeadvisor.com/rated.OUTRIGHTLANDSCAPE.112318590.html"
     },
     houzz: { 
-        icon: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/38bcd5dbe_social_circle_green_48px.png", 
+        icon: "/images/38bcd5dbe_social_circle_green_48px.png", 
         alt: "Houzz",
         url: "https://www.houzz.com/professionals/landscape-contractors/outright-landscape-pfvwus-pf~851831346"
     },

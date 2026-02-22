@@ -9,11 +9,11 @@ export default function GlobalSchema() {
       "name": "Outright Landscape Construction",
       "legalName": "Outright Landscape Construction",
       "url": "https://outrightlandscape.com",
-      "logo": "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c125bb3e8_OutrightLandscapeConstructionEmblem1.png",
+      "logo": "/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png",
       "image": [
-        "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg",
-        "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg",
-        "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg"
+        "/images/cdeefde95_2024-09-14.jpg",
+        "/images/670c050ff_2025-05-284.jpg",
+        "/images/bbdea4e3f_2025-05-281.jpg"
       ],
       "description": "Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas and the San Gabriel Valley. Expert turf installation, irrigation systems, hardscaping, and paver installation.",
       "telephone": "+1-626-343-6028",

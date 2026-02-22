@@ -22,42 +22,42 @@ const services = [
     {
         title: 'Professional Irrigation Systems',
         description: 'Expert irrigation and sprinkler system installation for efficient watering and water conservation.',
-        image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/805f8b55a_2025-05-282.jpg',
+        image: '/images/805f8b55a_2025-05-282.jpg',
         icon: Waves,
         features: ['Drip Systems', 'Smart Controllers', 'Water-Efficient Design'],
     },
     {
         title: 'Premium Turf & Sod Installation',
         description: 'Lush, healthy lawns with premium Marathon tall fescue and hybrid Bermuda grass varieties.',
-        image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg',
+        image: '/images/bbdea4e3f_2025-05-281.jpg',
         icon: Leaf,
         features: ['Premium Sod', 'Artificial Turf', 'Lawn Renovation'],
     },
     {
         title: 'Hardscaping & Paver Installation',
         description: 'Beautiful patios, walkways, and custom hardscape features built to last with expert craftsmanship.',
-        image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg',
+        image: '/images/670c050ff_2025-05-284.jpg',
         icon: Hammer,
         features: ['Paver Patios', 'Walkways', 'Retaining Walls'],
     },
     {
         title: 'Complete Landscape Design',
         description: 'Transform your outdoor space with our expert landscape design and construction services.',
-        image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg',
+        image: '/images/cdeefde95_2024-09-14.jpg',
         icon: Palette,
         features: ['Custom Design', 'Professional Installation', 'Native Plants'],
     },
 ];
 
 const projects = [
-    { title: 'Premium Turf Installation', location: 'Covina, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/bbdea4e3f_2025-05-281.jpg', alt: 'Premium Turf Installation - Outright Landscape Covina' },
-    { title: 'Irrigation Valve Installation', location: 'La Verne, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg', alt: 'Irrigation Valve Installation - Outright Landscape La Verne' },
-    { title: 'Professional Irrigation Setup', location: 'Glendora, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c734704d4_IMG_4815-Copy.jpg', alt: 'Professional Irrigation Setup - Outright Landscape Glendora' },
-    { title: 'Irrigation Valve Repair', location: 'San Dimas, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c77326177_IMG_4971-Copy.jpg', alt: 'Irrigation Valve Repair - Outright Landscape San Dimas' },
-    { title: 'Underground Irrigation System', location: 'Covina, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/eb74e1b87_IMG_37521-Copy.jpg', alt: 'Underground Irrigation System - Outright Landscape Covina' },
-    { title: 'Multi-Zone Irrigation Valves', location: 'West Covina, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f03bb2890_IMG_3851-Copy.jpg', alt: 'Multi-Zone Irrigation Valves - Outright Landscape West Covina' },
-    { title: 'Irrigation Valve Box Setup', location: 'Glendora, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/723adf744_IMG_3731-Copy.jpg', alt: 'Irrigation Valve Box Setup - Outright Landscape Glendora' },
-    { title: 'Front Yard Driveway Pavers', location: 'San Dimas, CA', image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/670c050ff_2025-05-284.jpg', alt: 'Front Yard Driveway Pavers - Outright Landscape San Dimas' },
+    { title: 'Premium Turf Installation', location: 'Covina, CA', image: '/images/bbdea4e3f_2025-05-281.jpg', alt: 'Premium Turf Installation - Outright Landscape Covina' },
+    { title: 'Irrigation Valve Installation', location: 'La Verne, CA', image: '/images/01c14d800_unnamed2-Copy.jpg', alt: 'Irrigation Valve Installation - Outright Landscape La Verne' },
+    { title: 'Professional Irrigation Setup', location: 'Glendora, CA', image: '/images/c734704d4_IMG_4815-Copy.jpg', alt: 'Professional Irrigation Setup - Outright Landscape Glendora' },
+    { title: 'Irrigation Valve Repair', location: 'San Dimas, CA', image: '/images/c77326177_IMG_4971-Copy.jpg', alt: 'Irrigation Valve Repair - Outright Landscape San Dimas' },
+    { title: 'Underground Irrigation System', location: 'Covina, CA', image: '/images/eb74e1b87_IMG_37521-Copy.jpg', alt: 'Underground Irrigation System - Outright Landscape Covina' },
+    { title: 'Multi-Zone Irrigation Valves', location: 'West Covina, CA', image: '/images/f03bb2890_IMG_3851-Copy.jpg', alt: 'Multi-Zone Irrigation Valves - Outright Landscape West Covina' },
+    { title: 'Irrigation Valve Box Setup', location: 'Glendora, CA', image: '/images/723adf744_IMG_3731-Copy.jpg', alt: 'Irrigation Valve Box Setup - Outright Landscape Glendora' },
+    { title: 'Front Yard Driveway Pavers', location: 'San Dimas, CA', image: '/images/670c050ff_2025-05-284.jpg', alt: 'Front Yard Driveway Pavers - Outright Landscape San Dimas' },
 ];
 
 const reasons = [
@@ -110,7 +110,7 @@ export default function Home() {
                 description="Professional landscape contractor in Covina serving San Gabriel Valley. Expert paver installation, sod, irrigation systems & hardscaping. Licensed C-27 #1073845. 10+ years experience. Free estimates. Call (626) 343-6028."
                 keywords="landscape contractor covina, licensed landscaping covina, paver installation covina, sod installation covina, irrigation systems covina, hardscape covina, landscaping san gabriel valley, C-27 contractor"
                 canonicalUrl="https://outrightlandscape.com"
-                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/cdeefde95_2024-09-14.jpg"
+                ogImage="/images/cdeefde95_2024-09-14.jpg"
                 ogType="website"
             />
             <ServiceSchema serviceType="paver-installation" />

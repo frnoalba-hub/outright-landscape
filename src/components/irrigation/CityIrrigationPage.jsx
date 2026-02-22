@@ -11,14 +11,14 @@ import { getGoogleReviews } from '@/functions/getGoogleReviews';
 import { useQuery } from '@tanstack/react-query';
 
 const galleryImages = [
-    { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg", alt: "Irrigation valve manifold installation", h: "h-52" },
-    { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c734704d4_IMG_4815-Copy.jpg", alt: "Professional irrigation valve setup", h: "h-64" },
-    { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/c77326177_IMG_4971-Copy.jpg", alt: "Irrigation valve box repair", h: "h-56" },
-    { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/eb74e1b87_IMG_37521-Copy.jpg", alt: "Underground irrigation system", h: "h-72" },
-    { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f03bb2890_IMG_3851-Copy.jpg", alt: "Multi-zone irrigation valve installation", h: "h-60" },
-    { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/723adf744_IMG_3731-Copy.jpg", alt: "Irrigation valve box", h: "h-52" },
-    { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/701510e0a_IMG_2662.jpg", alt: "Irrigation controller installation", h: "h-64" },
-    { src: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/957a12859_IMG_3669.jpg", alt: "Complete irrigation valve manifold", h: "h-56" },
+    { src: "/images/01c14d800_unnamed2-Copy.jpg", alt: "Irrigation valve manifold installation", h: "h-52" },
+    { src: "/images/c734704d4_IMG_4815-Copy.jpg", alt: "Professional irrigation valve setup", h: "h-64" },
+    { src: "/images/c77326177_IMG_4971-Copy.jpg", alt: "Irrigation valve box repair", h: "h-56" },
+    { src: "/images/eb74e1b87_IMG_37521-Copy.jpg", alt: "Underground irrigation system", h: "h-72" },
+    { src: "/images/f03bb2890_IMG_3851-Copy.jpg", alt: "Multi-zone irrigation valve installation", h: "h-60" },
+    { src: "/images/723adf744_IMG_3731-Copy.jpg", alt: "Irrigation valve box", h: "h-52" },
+    { src: "/images/701510e0a_IMG_2662.jpg", alt: "Irrigation controller installation", h: "h-64" },
+    { src: "/images/957a12859_IMG_3669.jpg", alt: "Complete irrigation valve manifold", h: "h-56" },
 ];
 
 export default function CityIrrigationPage({ cityName, citySlug }) {
@@ -133,7 +133,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
     return (
         <div className="cityIrrigationWrapper bg-white">
             <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl}
-                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg"
+                ogImage="/images/01c14d800_unnamed2-Copy.jpg"
                 keywords={`sprinkler installation ${cityName}, sprinkler repair ${cityName}, irrigation repair ${cityName}, drip irrigation ${cityName}, sprinkler valve repair ${cityName}`} />
             <BreadcrumbSchema items={breadcrumbItems} />
             {faqs.length > 0 && <FAQSchema faqs={faqs} cityName={cityName} />}
@@ -141,7 +141,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
             {/* ── HERO ── */}
             <section className="cityIrrigationHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
                 <div className="absolute inset-0 sm:left-[35%] lg:left-[40%]">
-                    <img src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/01c14d800_unnamed2-Copy.jpg" alt={`Sprinkler installation and repair in ${cityName}`} className="w-full h-full object-cover" fetchpriority="high" />
+                    <img src="/images/01c14d800_unnamed2-Copy.jpg" alt={`Sprinkler installation and repair in ${cityName}`} className="w-full h-full object-cover" fetchpriority="high" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
                 </div>
