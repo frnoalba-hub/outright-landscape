@@ -156,7 +156,8 @@ export default function Hardscape() {
                             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
                                 <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Paver Installation</span>
                                 <h2 className="hardscapePaversTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2 mb-5">Professional Paver Installation</h2>
-                                <p className="text-[#6b6560] text-base mb-6 leading-relaxed">Our paver installations are built to last — proper excavation, layered base prep, and tight craftsmanship on every project.</p>
+                                <p className="text-[#6b6560] text-base mb-4 leading-relaxed">Our paver installations are built to last — proper excavation, layered base prep, and tight craftsmanship on every project. We specialize in transforming outdoor spaces with premium interlocking pavers that resist cracking and shifting over time.</p>
+                                <p className="text-[#6b6560] text-base mb-6 leading-relaxed">Whether you're looking to upgrade your driveway for maximum curb appeal, create a stunning backyard patio for entertaining, or design elegant walkways that connect your outdoor living areas, our team ensures a flawless finish. We offer a wide range of colors, textures, and patterns to perfectly match your home's architectural style.</p>
                                 <ul className="hardscapePaversList space-y-2.5 mb-8">
                                     {paverSteps.map((step, i) => (
                                         <li key={i} className="flex items-start gap-2.5 text-sm text-[#4a4540]">
@@ -173,8 +174,8 @@ export default function Hardscape() {
                             </motion.div>
                             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="hardscapePaversImg rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
                                 <img
-                                    src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80"
-                                    alt="Paver patio installation — placeholder"
+                                    src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&q=80"
+                                    alt="Finished paver patio and hardscaping"
                                     className="w-full h-full object-cover"
                                     loading="lazy"
                                 />
@@ -189,8 +190,8 @@ export default function Hardscape() {
                         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="hardscapeConcreteImg rounded-2xl overflow-hidden aspect-[4/3] shadow-xl order-last lg:order-first">
                                 <img
-                                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
-                                    alt="Concrete installation — placeholder"
+                                    src="https://images.unsplash.com/photo-1516158359283-bc286c478a5e?w=800&q=80"
+                                    alt="Finished concrete patio and walkway"
                                     className="w-full h-full object-cover"
                                     loading="lazy"
                                 />
@@ -241,8 +242,8 @@ export default function Hardscape() {
                             </motion.div>
                             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="hardscapeRetainingImg rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
                                 <img
-                                    src="https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=800&q=80"
-                                    alt="Retaining wall construction — placeholder"
+                                    src="https://images.unsplash.com/photo-1558904541-efa843a96f09?w=800&q=80"
+                                    alt="Outdoor retaining wall construction"
                                     className="w-full h-full object-cover"
                                     loading="lazy"
                                 />
@@ -319,8 +320,9 @@ export default function Hardscape() {
                             <p className="mt-3 text-[#6b6560] text-base max-w-3xl">Select your city to view specialized landscaping services available in your area.</p>
                         </motion.div>
                         <div className="hardscapeCitiesGrid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {locations.filter(c => c.slug).map((city, cityIdx) => {
-                                const baseSlug = city.slug.replace(/-landscaping$/, '');
+                            {locations.map((city, cityIdx) => {
+                                const slug = city.slug || city.name.toLowerCase().replace(/ /g, '-');
+                                const baseSlug = slug.replace(/-landscaping$/, '');
                                 return (
                                     <motion.a key={cityIdx} href={createPageUrl(`${baseSlug}-landscaping`)}
                                         initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: cityIdx * 0.03 }}
