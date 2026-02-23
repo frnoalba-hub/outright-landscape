@@ -12,6 +12,7 @@ const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
   { title: "Services", href: createPageUrl("Home") + "#services" },
   { title: "Irrigation", href: createPageUrl("Irrigation") },
+  { title: "Hardscape", href: createPageUrl("Hardscape") },
   { title: "Our Work", href: createPageUrl("Home") + "#work" },
   { title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
   { title: "Contact", href: createPageUrl("Home") + "#contact" }];

@@ -95,6 +95,7 @@ import walnutLandscaping from './pages/walnut-landscaping';
 import walnutSprinklerRepairInstallation from './pages/walnut-sprinkler-repair-installation';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
 import westCovinaSprinklerRepairInstallation from './pages/west-covina-sprinkler-repair-installation';
+import Hardscape from './pages/Hardscape';
 import __Layout from './Layout.jsx';
 
 
@@ -147,6 +148,7 @@ export const PAGES = {
     "walnut-sprinkler-repair-installation": walnutSprinklerRepairInstallation,
     "west-covina-landscaping": westCovinaLandscaping,
     "west-covina-sprinkler-repair-installation": westCovinaSprinklerRepairInstallation,
+    "Hardscape": Hardscape,
 }
 
 export const pagesConfig = {
