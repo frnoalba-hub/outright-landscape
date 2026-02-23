@@ -13,9 +13,8 @@ const navigationItems = [
   { title: "Services", href: createPageUrl("Home") + "#services" },
   { title: "Irrigation", href: createPageUrl("Irrigation") },
   { title: "Hardscape", href: createPageUrl("Hardscape") },
-  { title: "Our Work", href: createPageUrl("Home") + "#work" },
   { title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
-  { title: "Contact", href: createPageUrl("Home") + "#contact" }];
+];
 
 
 export default function Layout({ children }) {
@@ -159,25 +158,25 @@ export default function Layout({ children }) {
               aria-label="Outright Landscape Home">
 
               <img
-                src="/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
-                alt="Outright Landscape Construction Logo"
-                className="h-14 sm:h-[4.5rem] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
-                width="80"
-                height="80"
-                fetchpriority="high"
-                decoding="async" />
+              src="/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
+              alt="Outright Landscape Construction Logo"
+              className="h-11 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+              width="72"
+              height="72"
+              fetchpriority="high"
+              decoding="async" />
 
               <div className="flex flex-col">
-                <span className="headerBrandName font-bold text-lg sm:text-xl leading-tight text-white">Outright Landscape</span>
-                <span className="headerLicense text-[10px] sm:text-xs text-[#b8945a]/70 font-medium tracking-wider">CSLB #1073845</span>
+              <span className="headerBrandName font-bold text-base sm:text-lg leading-tight text-white">Outright Landscape</span>
+              <span className="headerLicense text-[9px] sm:text-[10px] text-[#b8945a]/70 font-medium tracking-wider">CSLB #1073845</span>
               </div>
             </a>
             
-            <ul className="headerNav hidden lg:flex items-center space-x-7">
+            <ul className="headerNav hidden lg:flex items-center space-x-5 xl:space-x-7">
               {navigationItems.map((item) => <li key={item.title}>
                   <a
                     href={item.href}
-                    className="headerNavLink text-white/70 hover:text-[#c45d2c] font-medium transition-colors text-sm tracking-wide py-2">
+                    className="headerNavLink text-white/70 hover:text-[#c45d2c] font-medium transition-colors text-sm tracking-wide py-2 whitespace-nowrap">
                     {item.title}
                   </a>
                 </li>
