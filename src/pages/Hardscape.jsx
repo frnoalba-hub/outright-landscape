@@ -98,7 +98,7 @@ export default function Hardscape() {
                 <section className="hardscapeHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
                     <div className="absolute inset-0 sm:left-[40%]">
                         <img
-                            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80"
+                            src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/15f0a1b84_generated_image.png"
                             alt="Professional paver and hardscape installation"
                             className="w-full h-full object-cover"
                             fetchpriority="high"
@@ -174,7 +174,7 @@ export default function Hardscape() {
                             </motion.div>
                             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="hardscapePaversImg rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
                                 <img
-                                    src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&q=80"
+                                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/3e9548aed_generated_image.png"
                                     alt="Finished paver patio and hardscaping"
                                     className="w-full h-full object-cover"
                                     loading="lazy"
@@ -190,7 +190,7 @@ export default function Hardscape() {
                         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
                             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="hardscapeConcreteImg rounded-2xl overflow-hidden aspect-[4/3] shadow-xl order-last lg:order-first">
                                 <img
-                                    src="https://images.unsplash.com/photo-1516158359283-bc286c478a5e?w=800&q=80"
+                                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/9deab6cfe_generated_image.png"
                                     alt="Finished concrete patio and walkway"
                                     className="w-full h-full object-cover"
                                     loading="lazy"
@@ -242,7 +242,7 @@ export default function Hardscape() {
                             </motion.div>
                             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="hardscapeRetainingImg rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">
                                 <img
-                                    src="https://images.unsplash.com/photo-1558904541-efa843a96f09?w=800&q=80"
+                                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/a8d6d8fe8_generated_image.png"
                                     alt="Outdoor retaining wall construction"
                                     className="w-full h-full object-cover"
                                     loading="lazy"
