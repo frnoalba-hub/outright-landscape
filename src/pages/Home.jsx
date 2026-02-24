@@ -262,7 +262,7 @@ export default function Home() {
                         </a>
                     </motion.div>
 
-                    <div className="whyGrid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                    <div className="whyGrid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
                         {reasons.map((item, index) => (
                             <motion.div
                                 key={index}
@@ -270,10 +270,10 @@ export default function Home() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                                className="reasonCard bg-[#242424] border border-[#333] rounded-xl p-6 hover:border-[#c45d2c]/40 transition-all group"
+                                className={`reasonCard bg-[#242424] border rounded-xl p-6 hover:border-[#c45d2c]/40 transition-all group ${item.isRating ? 'border-[#b8945a]/30 bg-gradient-to-br from-[#242424] to-[#2a2420]' : 'border-[#333]'}`}
                             >
-                                <div className="reasonIcon w-12 h-12 bg-[#c45d2c]/10 rounded-xl flex items-center justify-center mb-5 group-hover:bg-[#c45d2c]/20 transition-colors">
-                                    <item.icon className="w-6 h-6 text-[#c45d2c]" aria-hidden="true" />
+                                <div className={`reasonIcon w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-colors ${item.isRating ? 'bg-[#b8945a]/15 group-hover:bg-[#b8945a]/25' : 'bg-[#c45d2c]/10 group-hover:bg-[#c45d2c]/20'}`}>
+                                    <item.icon className={`w-6 h-6 ${item.isRating ? 'text-[#b8945a] fill-[#b8945a]' : 'text-[#c45d2c]'}`} aria-hidden="true" />
                                 </div>
                                 <h3 className="reasonTitle text-white font-bold text-base mb-2">{item.title}</h3>
                                 <p className="reasonDesc text-[#8a8478] text-sm leading-relaxed">{item.desc}</p>
