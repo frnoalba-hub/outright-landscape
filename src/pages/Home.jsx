@@ -92,6 +92,7 @@ const reasons = [
     { icon: Zap, title: 'Expert Craftsmen', desc: 'Skilled professionals with decades of combined hands-on experience.' },
     { icon: Star, title: 'Premium Materials', desc: 'We source only top-grade products for lasting beauty and durability.' },
     { icon: Target, title: 'Free Estimates', desc: 'Transparent pricing with no hidden fees — know exactly what you\'re paying.' },
+    { icon: Star, title: '4.8★ Rated', desc: '250+ verified 5-star reviews on Google, Angi, and Houzz from happy homeowners.', isRating: true },
 ];
 
 /* ── component ── */
@@ -159,10 +160,10 @@ export default function Home() {
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
                         {[
-                            { value: '10+', label: 'Years Experience' },
-                            { value: reviewsData?.totalReviewCount ? `${reviewsData.totalReviewCount}+` : '250+', label: 'Reviews Posted' },
-                            { value: '4.8★', label: 'Google Rating' },
-                            { value: '100%', label: 'Licensed & Insured' },
+                            { end: 10, suffix: '+', label: 'Years Experience' },
+                            { end: reviewsData?.totalReviewCount || 250, suffix: '+', label: 'Reviews Posted' },
+                            { end: 4.8, suffix: '★', label: 'Google Rating', isDecimal: true },
+                            { end: 100, suffix: '%', label: 'Licensed & Insured' },
                         ].map((stat, i) => (
                             <motion.div
                                 key={i}
@@ -173,7 +174,7 @@ export default function Home() {
                                 className="statItem text-center py-8 sm:py-10"
                             >
                                 <div className="statValue text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
-                                    {stat.value}
+                                    {stat.isDecimal ? `${stat.end}${stat.suffix}` : <CountUp end={stat.end} suffix={stat.suffix} />}
                                 </div>
                                 <div className="statLabel text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">
                                     {stat.label}
