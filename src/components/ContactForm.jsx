@@ -6,8 +6,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Phone, Text, CalendarDays, MessageSquare } from "lucide-react";
 import confetti from 'canvas-confetti';
 import BookingForm from '@/components/booking/BookingForm';
+import { base44 } from '@/api/base44Client';
 
-const EMAIL_RELAY_URL = "https://script.google.com/macros/s/AKfycbzSIl_5RSL2FvaE7uwl4lbLJtMUFfwA-O5XFIt9TaA1-egp4HChAHVMnEWm7Hf-r0Mvtw/exec";
+const NOTIFICATION_EMAILS = ["outrightlandscapecovina@gmail.com", "frno.alba@gmail.com"];
 
 export default function ContactForm({ cityName = "your area" }) {
     const [activeTab, setActiveTab] = useState("quote"); // "quote" or "book"
