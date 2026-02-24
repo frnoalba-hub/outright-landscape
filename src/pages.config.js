@@ -96,6 +96,26 @@ import walnutLandscaping from './pages/walnut-landscaping';
 import walnutSprinklerRepairInstallation from './pages/walnut-sprinkler-repair-installation';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
 import westCovinaSprinklerRepairInstallation from './pages/west-covina-sprinkler-repair-installation';
+import covinaHardscape from './pages/covina-hardscape';
+import glendoraHardscape from './pages/glendora-hardscape';
+import laVerneHardscape from './pages/la-verne-hardscape';
+import sanDimasHardscape from './pages/san-dimas-hardscape';
+import westCovinaHardscape from './pages/west-covina-hardscape';
+import azusaHardscape from './pages/azusa-hardscape';
+import baldwinParkHardscape from './pages/baldwin-park-hardscape';
+import arcadiaHardscape from './pages/arcadia-hardscape';
+import claremontHardscape from './pages/claremont-hardscape';
+import diamondBarHardscape from './pages/diamond-bar-hardscape';
+import duarteHardscape from './pages/duarte-hardscape';
+import elMonteHardscape from './pages/el-monte-hardscape';
+import monroviaHardscape from './pages/monrovia-hardscape';
+import pasadenaHardscape from './pages/pasadena-hardscape';
+import pomonaHardscape from './pages/pomona-hardscape';
+import rowlandHeightsHardscape from './pages/rowland-heights-hardscape';
+import sanGabrielHardscape from './pages/san-gabriel-hardscape';
+import templeCityHardscape from './pages/temple-city-hardscape';
+import walnutHardscape from './pages/walnut-hardscape';
+import charterOakHardscape from './pages/charter-oak-hardscape';
 import __Layout from './Layout.jsx';
 
 
@@ -149,6 +169,26 @@ export const PAGES = {
     "walnut-sprinkler-repair-installation": walnutSprinklerRepairInstallation,
     "west-covina-landscaping": westCovinaLandscaping,
     "west-covina-sprinkler-repair-installation": westCovinaSprinklerRepairInstallation,
+    "covina-hardscape": covinaHardscape,
+    "glendora-hardscape": glendoraHardscape,
+    "la-verne-hardscape": laVerneHardscape,
+    "san-dimas-hardscape": sanDimasHardscape,
+    "west-covina-hardscape": westCovinaHardscape,
+    "azusa-hardscape": azusaHardscape,
+    "baldwin-park-hardscape": baldwinParkHardscape,
+    "arcadia-hardscape": arcadiaHardscape,
+    "claremont-hardscape": claremontHardscape,
+    "diamond-bar-hardscape": diamondBarHardscape,
+    "duarte-hardscape": duarteHardscape,
+    "el-monte-hardscape": elMonteHardscape,
+    "monrovia-hardscape": monroviaHardscape,
+    "pasadena-hardscape": pasadenaHardscape,
+    "pomona-hardscape": pomonaHardscape,
+    "rowland-heights-hardscape": rowlandHeightsHardscape,
+    "san-gabriel-hardscape": sanGabrielHardscape,
+    "temple-city-hardscape": templeCityHardscape,
+    "walnut-hardscape": walnutHardscape,
+    "charter-oak-hardscape": charterOakHardscape,
 }
 
 export const pagesConfig = {
