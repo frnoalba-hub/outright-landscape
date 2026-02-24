@@ -255,8 +255,9 @@ export default function LocationPage({ citySlug }) {
                                 className={`cityProjectCard group relative overflow-hidden rounded-xl break-inside-avoid ${heights[index % heights.length]}`}
                             >
                                 <img src={project.image || project.src} alt={`${project.alt || project.title} - ${name}`} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" width="600" height="600" />
+                                <div className="cityProjectOverlayBase absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/70 via-transparent to-transparent" />
                                 <div className="cityProjectOverlay absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                <div className="cityProjectInfo absolute bottom-0 left-0 right-0 p-4 sm:p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                                <div className="cityProjectInfo absolute bottom-0 left-0 right-0 p-4 sm:p-5">
                                     <h3 className="text-white font-bold text-sm sm:text-base leading-tight">{project.title}</h3>
                                     {project.description && <p className="text-[#c45d2c] text-xs mt-1 font-medium">{project.description}</p>}
                                 </div>
@@ -271,15 +272,17 @@ export default function LocationPage({ citySlug }) {
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#333]">
                         {[
-                            { number: "250+", label: "Projects Completed" },
-                            { number: "10+", label: "Years Experience" },
-                            { number: "4.8★", label: "Google Rating" },
-                            { number: "100%", label: "Licensed & Insured" }
+                            { end: 250, suffix: '+', label: "Projects Completed" },
+                            { end: 10, suffix: '+', label: "Years Experience" },
+                            { end: 4.8, suffix: '★', label: "Google Rating", isDecimal: true },
+                            { end: 100, suffix: '%', label: "Licensed & Insured" }
                         ].map((stat, idx) => (
                             <motion.div key={idx} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
                                 className="cityStatItem text-center py-10 sm:py-12"
                             >
-                                <div className="cityStatValue text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">{stat.number}</div>
+                                <div className="cityStatValue text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
+                                    {stat.isDecimal ? `${stat.end}${stat.suffix}` : <CountUp end={stat.end} suffix={stat.suffix} />}
+                                </div>
                                 <div className="cityStatLabel text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{stat.label}</div>
                             </motion.div>
                         ))}

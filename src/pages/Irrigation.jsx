@@ -110,9 +110,11 @@ export default function Irrigation() {
                 <section className="irrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                     <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                            {[{ value: '250+', label: 'Repairs Completed' }, { value: '24hr', label: 'Response Time' }, { value: '10+', label: 'Years Experience' }, { value: '100%', label: 'Licensed & Insured' }].map((stat, i) => (
+                            {[{ end: 250, suffix: '+', label: 'Repairs Completed' }, { raw: '24hr', label: 'Response Time' }, { end: 10, suffix: '+', label: 'Years Experience' }, { end: 100, suffix: '%', label: 'Licensed & Insured' }].map((stat, i) => (
                                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="irrigationStatItem text-center py-8 sm:py-10">
-                                    <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">{stat.value}</div>
+                                    <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
+                                        {stat.raw ? stat.raw : <CountUp end={stat.end} suffix={stat.suffix} />}
+                                    </div>
                                     <div className="text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{stat.label}</div>
                                 </motion.div>
                             ))}
