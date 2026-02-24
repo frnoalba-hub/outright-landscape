@@ -73,13 +73,22 @@ export default function HomeServices({ services }) {
                                     <p className="serviceDesc text-[#6b6560] text-sm sm:text-base leading-relaxed mb-5">
                                         {service.description}
                                     </p>
-                                    <div className="serviceFeatures flex flex-wrap gap-2">
+                                    <div className="serviceFeatures flex flex-wrap gap-2 mb-5">
                                         {service.features.map((feature, idx) => (
                                             <span key={idx} className="serviceFeaturePill text-xs font-medium bg-[#f5f0e8] text-[#6b6560] px-3 py-1.5 rounded-full border border-[#e0d8cc]">
                                                 {feature}
                                             </span>
                                         ))}
                                     </div>
+                                    {SERVICE_LINKS[service.title] && (
+                                        <a
+                                            href={SERVICE_LINKS[service.title]}
+                                            className="serviceLearnMore inline-flex items-center gap-1.5 text-[#2d5a27] hover:text-[#1a1a1a] font-semibold text-sm transition-colors group/link"
+                                        >
+                                            Learn More
+                                            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-1" />
+                                        </a>
+                                    )}
                                 </div>
                             </motion.article>
                         );
