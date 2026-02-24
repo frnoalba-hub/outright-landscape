@@ -217,9 +217,11 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
             <section className="cityIrrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                        {[{ v: '250+', l: 'Systems Installed & Repaired' }, { v: '24hr', l: 'Response Time' }, { v: '10+', l: 'Years Experience' }, { v: '100%', l: 'Licensed & Insured' }].map((s, i) => (
+                        {[{ end: 250, suffix: '+', l: 'Systems Installed & Repaired' }, { raw: '24hr', l: 'Response Time' }, { end: 10, suffix: '+', l: 'Years Experience' }, { end: 100, suffix: '%', l: 'Licensed & Insured' }].map((s, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="cityIrrigationStatItem text-center py-8 sm:py-10">
-                                <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">{s.v}</div>
+                                <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
+                                    {s.raw ? s.raw : <CountUp end={s.end} suffix={s.suffix} />}
+                                </div>
                                 <div className="text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{s.l}</div>
                             </motion.div>
                         ))}
@@ -390,11 +392,13 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                             <div className="flex gap-0.5 mb-1">{[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 text-yellow-500 fill-yellow-500" />)}</div>
                             <div className="text-white font-bold text-sm">5.0 Rating</div>
                         </div>
-                        {[{ v: '250+', l: 'Sprinkler Jobs' }, { v: '24hr', l: 'Avg Response' }, { v: '100%', l: 'Licensed & Insured' }].map((s, i) => (
-                            <div key={i} className="cityIrrigationTrustStat text-center py-10">
-                                <div className="text-3xl font-bold text-[#c45d2c]">{s.v}</div>
+                        {[{ end: 250, suffix: '+', l: 'Sprinkler Jobs' }, { raw: '24hr', l: 'Avg Response' }, { end: 100, suffix: '%', l: 'Licensed & Insured' }].map((s, i) => (
+                            <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="cityIrrigationTrustStat text-center py-10">
+                                <div className="text-3xl font-bold text-[#c45d2c]">
+                                    {s.raw ? s.raw : <CountUp end={s.end} suffix={s.suffix} />}
+                                </div>
                                 <div className="text-[#8a8478] text-xs mt-1">{s.l}</div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
