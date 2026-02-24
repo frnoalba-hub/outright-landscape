@@ -22,7 +22,7 @@ const services = [
     {
         title: 'Professional Irrigation Systems',
         description: 'Expert irrigation and sprinkler system installation for efficient watering and water conservation.',
-        image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/5824aca26_generated_image.png',
+        image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/781c79e8b_generated_image.png',
         icon: Waves,
         features: ['Drip Systems', 'Smart Controllers', 'Water-Efficient Design'],
     },
