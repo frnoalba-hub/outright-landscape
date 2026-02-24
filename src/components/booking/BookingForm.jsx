@@ -46,19 +46,14 @@ export default function BookingForm({ cityName = "your area" }) {
 
         // Send email notification
         if (!formData.company) {
-            const payload = new URLSearchParams({
-                _subject: `New Appointment Booking — ${cityName}`,
-                name: formData.name,
-                phone: formData.phone,
-                email: formData.email || 'Not provided',
-                city: formData.city,
-                message: `Service: ${formData.service_type.replace(/_/g, ' ')}\nDate: ${format(formData.appointment_date, 'EEEE, MMMM d, yyyy')}\nTime: ${formData.time_slot}\nNotes: ${formData.notes || 'None'}`,
-            });
-            await fetch(EMAIL_RELAY_URL, {
-                method: "POST", mode: "no-cors",
-                headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-                body: payload.toString(),
-            });
+            const emailBody = `New Appointment Booking from ${formData.name}\n\nPhone: ${formData.phone}\nEmail: ${formData.email || 'Not provided'}\nCity: ${formData.city}\n\nService: ${formData.service_type.replace(/_/g, ' ')}\nDate: ${format(formData.appointment_date, 'EEEE, MMMM d, yyyy')}\nTime: ${formData.time_slot}\nNotes: ${formData.notes || 'None'}`;
+            await Promise.all(NOTIFICATION_EMAILS.map(to =>
+                base44.integrations.Core.SendEmail({
+                    to,
+                    subject: `New Appointment Booking — ${cityName}`,
+                    body: emailBody,
+                })
+            ));
         }
 
         // Analytics
