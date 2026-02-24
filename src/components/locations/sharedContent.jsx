@@ -1,3 +1,4 @@
+
 import { Sprout, Droplets, Hammer, Award } from "lucide-react";
 
 export const services = [
@@ -29,13 +30,13 @@ export const services = [
 
 export const projects = [
   {
-    image: "/images/bbdea4e3f_2025-05-281.jpg",
+    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f8652a9f2_generated_image.png",
     title: "Premium Sod Installation",
     description: "Lush lawn transformation",
     alt: "Outright Landscape – Premium Sod Installation"
   },
   {
-    image: "/images/37a148223_2025-05-288.jpg",
+    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1e6fdf4ed_generated_image.png",
     title: "Complete Backyard Makeover",
     description: "Full landscape renovation with fresh turf",
     alt: "Outright Landscape – Complete Backyard Makeover"
