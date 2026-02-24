@@ -26,14 +26,14 @@ const steps = [
 export default function HomeProcess() {
     return (
         <section className="processSection py-20 sm:py-28 bg-[#1a1a1a] relative overflow-hidden">
-            <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
+            <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="processHeader mb-16 sm:mb-20"
+                    className="processHeader text-center mb-16 sm:mb-20"
                 >
                     <span className="processLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">
                         How It Works
@@ -43,43 +43,41 @@ export default function HomeProcess() {
                     </h2>
                 </motion.div>
 
-                {/* Steps — vertical timeline */}
-                <div className="processSteps relative">
-                    {/* Vertical line */}
-                    <div className="processLine hidden sm:block absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#2d5a27] via-[#c45d2c] to-[#b8945a]" />
+                {/* Steps — horizontal on desktop, vertical on mobile */}
+                <div className="processSteps grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative">
+                    {/* Horizontal connector line (desktop only) */}
+                    <div className="processConnector hidden md:block absolute top-[38px] left-[calc(16.67%+24px)] right-[calc(16.67%+24px)] h-px bg-gradient-to-r from-[#2d5a27] via-[#c45d2c] to-[#b8945a]" />
 
-                    <div className="space-y-12 sm:space-y-16">
-                        {steps.map((step, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.15 }}
-                                className="processStep flex gap-6 sm:gap-8 items-start"
-                            >
-                                {/* Number circle */}
-                                <div className="processStepCircle relative flex-shrink-0">
-                                    <div className="w-12 h-12 rounded-full bg-[#2a2a2a] border-2 border-[#c45d2c]/50 flex items-center justify-center z-10 relative">
-                                        <span className="processStepNumber text-[#c45d2c] font-bold text-sm">{step.number}</span>
-                                    </div>
+                    {steps.map((step, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.15 }}
+                            className="processStep flex flex-col items-start md:items-center md:text-center gap-4"
+                        >
+                            {/* Number circle */}
+                            <div className="processStepCircle relative flex-shrink-0 z-10">
+                                <div className="w-14 h-14 rounded-full bg-[#2a2a2a] border-2 border-[#c45d2c] flex items-center justify-center shadow-lg shadow-[#c45d2c]/20">
+                                    <span className="processStepNumber text-[#c45d2c] font-bold text-base">{step.number}</span>
                                 </div>
+                            </div>
 
-                                {/* Content */}
-                                <div className="processStepContent flex-1 pb-2">
-                                    <div className="processStepIcon w-10 h-10 bg-[#2d5a27]/15 rounded-lg flex items-center justify-center mb-3">
-                                        <step.icon className="w-5 h-5 text-[#4a8c3f]" aria-hidden="true" />
-                                    </div>
-                                    <h3 className="processStepTitle text-xl sm:text-2xl font-bold text-white mb-2">
-                                        {step.title}
-                                    </h3>
-                                    <p className="processStepDesc text-[#8a8478] text-sm sm:text-base leading-relaxed max-w-lg">
-                                        {step.description}
-                                    </p>
+                            {/* Content */}
+                            <div className="processStepContent flex-1">
+                                <div className="processStepIcon w-10 h-10 bg-[#2d5a27]/15 rounded-lg flex items-center justify-center mb-3 md:mx-auto">
+                                    <step.icon className="w-5 h-5 text-[#4a8c3f]" aria-hidden="true" />
                                 </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                                <h3 className="processStepTitle text-xl font-bold text-white mb-2">
+                                    {step.title}
+                                </h3>
+                                <p className="processStepDesc text-[#8a8478] text-sm leading-relaxed">
+                                    {step.description}
+                                </p>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>

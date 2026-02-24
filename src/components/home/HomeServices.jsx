@@ -1,7 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { createPageUrl } from '@/utils';
+
+const SERVICE_LINKS = {
+    'Professional Irrigation Systems': createPageUrl('Irrigation'),
+    'Hardscaping & Paver Installation': createPageUrl('Hardscape'),
+};
 
 export default function HomeServices({ services }) {
     return (

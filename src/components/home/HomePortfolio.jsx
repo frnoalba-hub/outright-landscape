@@ -51,9 +51,11 @@ export default function HomePortfolio({ projects, onCtaClick }) {
                                 width="400"
                                 height="300"
                             />
-                            {/* Overlay on hover */}
+                            {/* Always-visible gradient for mobile */}
+                            <div className="projectOverlayBase absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/70 via-transparent to-transparent" />
+                            {/* Hover overlay for desktop */}
                             <div className="projectOverlay absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/90 via-[#1a1a1a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <div className="projectInfo absolute bottom-0 left-0 right-0 p-4 sm:p-5 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                            <div className="projectInfo absolute bottom-0 left-0 right-0 p-4 sm:p-5">
                                 <h3 className="projectTitle text-white font-bold text-sm sm:text-base leading-tight">
                                     {project.title}
                                 </h3>
