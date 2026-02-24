@@ -25,11 +25,11 @@ const defaultServices = [
 ];
 
 const defaultProjects = [
-    { image: "/images/bbdea4e3f_2025-05-281.jpg", title: "Premium Turf Installation", alt: "Premium turf installation by Outright Landscape" },
-    { image: "/images/6633fbff6_2025-05-286.jpg", title: "Paver Walkway", alt: "Paver walkway installation by Outright Landscape" },
-    { image: "/images/670c050ff_2025-05-284.jpg", title: "Backyard Paver Patio", alt: "Paver patio installation by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f8652a9f2_generated_image.png", title: "Premium Turf Installation", alt: "Premium turf installation by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/74b4adffd_generated_image.png", title: "Paver Walkway", alt: "Paver walkway installation by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/03c141f79_generated_image.png", title: "Backyard Paver Patio", alt: "Paver patio installation by Outright Landscape" },
     { image: "/images/805f8b55a_2025-05-282.jpg", title: "Irrigation System Installation", alt: "Irrigation system installation by Outright Landscape" },
-    { image: "/images/37a148223_2025-05-288.jpg", title: "Complete Backyard Makeover", alt: "Backyard makeover by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1e6fdf4ed_generated_image.png", title: "Complete Backyard Makeover", alt: "Backyard makeover by Outright Landscape" },
     { image: "/images/954e6bafa_2024-09-04.jpg", title: "Irrigation Trenching", alt: "Irrigation trenching by Outright Landscape" }
 ];
 
@@ -104,7 +104,7 @@ export default function LocationPage({ citySlug }) {
 
     return (
         <div className="cityPageWrapper bg-white">
-            <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl} ogImage="/images/cdeefde95_2024-09-14.jpg" keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`} />
+            <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl} ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png" keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`} />
             <BreadcrumbSchema items={breadcrumbItems} />
             <LocalBusinessSchema cityName={name} citySlug={slug} services={services} />
             {faqs && faqs.length > 0 && <FAQSchema faqs={faqs} cityName={name} />}
@@ -113,7 +113,7 @@ export default function LocationPage({ citySlug }) {
             <section className="cityHero relative min-h-[85vh] sm:min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
                 <div className="absolute inset-0 sm:left-[35%] lg:left-[40%]">
                     <img
-                        src="/images/cdeefde95_2024-09-14.jpg"
+                        src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png"
                         alt={`Professional landscape project in ${name}`}
                         className="w-full h-full object-cover"
                         fetchpriority="high"

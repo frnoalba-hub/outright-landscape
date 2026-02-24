@@ -50,6 +50,7 @@
 import AdminSEO from './pages/AdminSEO';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import Hardscape from './pages/Hardscape';
 import Home from './pages/Home';
 import Irrigation from './pages/Irrigation';
 import Robots from './pages/Robots';
@@ -95,7 +96,6 @@ import walnutLandscaping from './pages/walnut-landscaping';
 import walnutSprinklerRepairInstallation from './pages/walnut-sprinkler-repair-installation';
 import westCovinaLandscaping from './pages/west-covina-landscaping';
 import westCovinaSprinklerRepairInstallation from './pages/west-covina-sprinkler-repair-installation';
-import Hardscape from './pages/Hardscape';
 import __Layout from './Layout.jsx';
 
 
@@ -103,6 +103,7 @@ export const PAGES = {
     "AdminSEO": AdminSEO,
     "Blog": Blog,
     "BlogPost": BlogPost,
+    "Hardscape": Hardscape,
     "Home": Home,
     "Irrigation": Irrigation,
     "Robots": Robots,
@@ -148,7 +149,6 @@ export const PAGES = {
     "walnut-sprinkler-repair-installation": walnutSprinklerRepairInstallation,
     "west-covina-landscaping": westCovinaLandscaping,
     "west-covina-sprinkler-repair-installation": westCovinaSprinklerRepairInstallation,
-    "Hardscape": Hardscape,
 }
 
 export const pagesConfig = {

@@ -10,7 +10,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
             {/* Background image — right side on desktop, full on mobile */}
             <div className="absolute inset-0 sm:left-[35%] lg:left-[40%]">
                 <img
-                    src="/images/cdeefde95_2024-09-14.jpg"
+                    src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png"
                     alt="Professional landscape project by Outright Landscape in Covina"
                     className="w-full h-full object-cover"
                     fetchpriority="high"
@@ -19,7 +19,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
             </div>
 
-            <link rel="preload" as="image" href="/images/cdeefde95_2024-09-14.jpg" fetchpriority="high" />
+            <link rel="preload" as="image" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png" fetchpriority="high" />
 
             <div className="heroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-12 sm:pt-32 sm:pb-16 sm:py-0">
                 <div className="heroInner flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
