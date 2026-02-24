@@ -28,7 +28,7 @@ const defaultProjects = [
     { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f8652a9f2_generated_image.png", title: "Premium Turf Installation", alt: "Premium turf installation by Outright Landscape" },
     { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/74b4adffd_generated_image.png", title: "Paver Walkway", alt: "Paver walkway installation by Outright Landscape" },
     { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/03c141f79_generated_image.png", title: "Backyard Paver Patio", alt: "Paver patio installation by Outright Landscape" },
-    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/16f85d045_generated_image.png", title: "Irrigation System Installation", alt: "Irrigation system installation by Outright Landscape" },
+    { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/5824aca26_generated_image.png", title: "Irrigation System Installation", alt: "Irrigation system installation by Outright Landscape" },
     { image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1e6fdf4ed_generated_image.png", title: "Complete Backyard Makeover", alt: "Backyard makeover by Outright Landscape" },
     { image: "/images/954e6bafa_2024-09-04.jpg", title: "Irrigation Trenching", alt: "Irrigation trenching by Outright Landscape" }
 ];

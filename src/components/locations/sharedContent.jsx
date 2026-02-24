@@ -41,7 +41,7 @@ export const projects = [
     alt: "Outright Landscape – Complete Backyard Makeover"
   },
   {
-    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/16f85d045_generated_image.png",
+    image: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/5824aca26_generated_image.png",
     title: "Irrigation System Installation",
     description: "Custom sprinkler system for optimal coverage",
     alt: "Outright Landscape – Irrigation System"
