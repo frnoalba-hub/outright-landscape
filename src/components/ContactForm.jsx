@@ -33,21 +33,14 @@ export default function ContactForm({ cityName = "your area" }) {
             await ContactInquiry.create(formData);
             
             if (!formData.company) {
-                const payload = new URLSearchParams({
-                    _subject: `New Quote Request — ${cityName}`,
-                    name: formData.name,
-                    phone: formData.phone,
-                    email: formData.email,
-                    city: formData.city,
-                    message: formData.message,
-                });
-
-                await fetch(EMAIL_RELAY_URL, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-                    body: payload.toString(),
-                });
+                const emailBody = `New Quote Request from ${formData.name}\n\nPhone: ${formData.phone}\nEmail: ${formData.email}\nCity: ${formData.city}\n\nMessage:\n${formData.message}`;
+                await Promise.all(NOTIFICATION_EMAILS.map(to =>
+                    base44.integrations.Core.SendEmail({
+                        to,
+                        subject: `New Quote Request — ${cityName}`,
+                        body: emailBody,
+                    })
+                ));
             }
 
             // Track form submission with multiple events
