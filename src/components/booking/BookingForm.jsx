@@ -10,7 +10,7 @@ import BookingCalendar from './BookingCalendar';
 import TimeSlotPicker from './TimeSlotPicker';
 import ServiceTypeSelect from './ServiceTypeSelect';
 
-const EMAIL_RELAY_URL = "https://script.google.com/macros/s/AKfycbzSIl_5RSL2FvaE7uwl4lbLJtMUFfwA-O5XFIt9TaA1-egp4HChAHVMnEWm7Hf-r0Mvtw/exec";
+const NOTIFICATION_EMAILS = ["outrightlandscapecovina@gmail.com", "frno.alba@gmail.com"];
 
 export default function BookingForm({ cityName = "your area" }) {
     const [step, setStep] = useState(1); // 1: service+date, 2: contact info
