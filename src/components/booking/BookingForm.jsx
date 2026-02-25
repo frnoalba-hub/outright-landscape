@@ -13,10 +13,10 @@ import ServiceTypeSelect from './ServiceTypeSelect';
 const NOTIFICATION_EMAILS = ["outrightlandscapecovina@gmail.com", "frno.alba@gmail.com"];
 
 export default function BookingForm({ cityName = "your area" }) {
-    const [step, setStep] = useState(1); // 1: service+date, 2: contact info
+    const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         name: '', phone: '', email: '', city: cityName,
-        service_type: '', appointment_date: null, time_slot: '', notes: '', company: ''
+        service_type: '', appointment_date: null, time_slot: '', notes: ''
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
@@ -42,19 +42,18 @@ export default function BookingForm({ cityName = "your area" }) {
             status: 'pending'
         };
 
+        // Save to database
         await base44.entities.Appointment.create(appointmentData);
 
-        // Send email notification
-        if (!formData.company) {
-            const emailBody = `New Appointment Booking from ${formData.name}\n\nPhone: ${formData.phone}\nEmail: ${formData.email || 'Not provided'}\nCity: ${formData.city}\n\nService: ${formData.service_type.replace(/_/g, ' ')}\nDate: ${format(formData.appointment_date, 'EEEE, MMMM d, yyyy')}\nTime: ${formData.time_slot}\nNotes: ${formData.notes || 'None'}`;
-            await Promise.all(NOTIFICATION_EMAILS.map(to =>
-                base44.integrations.Core.SendEmail({
-                    to,
-                    subject: `New Appointment Booking — ${cityName}`,
-                    body: emailBody,
-                })
-            ));
-        }
+        // Always send email notifications
+        const emailBody = `New Appointment Booking from ${formData.name}\n\nPhone: ${formData.phone}\nEmail: ${formData.email || 'Not provided'}\nCity: ${formData.city}\n\nService: ${formData.service_type.replace(/_/g, ' ')}\nDate: ${format(formData.appointment_date, 'EEEE, MMMM d, yyyy')}\nTime: ${formData.time_slot}\nNotes: ${formData.notes || 'None'}`;
+        await Promise.all(NOTIFICATION_EMAILS.map(to =>
+            base44.integrations.Core.SendEmail({
+                to,
+                subject: `New Appointment Booking — ${cityName}`,
+                body: emailBody,
+            })
+        ));
 
         // Analytics
         if (window.dataLayer) {
@@ -84,7 +83,6 @@ export default function BookingForm({ cityName = "your area" }) {
 
     return (
         <form onSubmit={handleSubmit} className="bookingForm bg-[#1a1a1a] rounded-2xl p-5 sm:p-7 space-y-5">
-            {/* Step indicator */}
             <div className="bookingSteps flex items-center gap-2 mb-1">
                 <div className={`bookingStepDot h-1.5 flex-1 rounded-full transition-colors duration-300 ${step >= 1 ? 'bg-[#c45d2c]' : 'bg-[#333]'}`} />
                 <div className={`bookingStepDot h-1.5 flex-1 rounded-full transition-colors duration-300 ${step >= 2 ? 'bg-[#c45d2c]' : 'bg-[#333]'}`} />
@@ -104,7 +102,6 @@ export default function BookingForm({ cityName = "your area" }) {
 
             {step === 2 && (
                 <div className="bookingStep2 space-y-3 animate-in fade-in duration-300">
-                    {/* Summary */}
                     <div className="bookingSummary bg-[#242424] border border-[#333] rounded-xl p-4 mb-2">
                         <p className="text-xs text-[#8a8478] mb-1 font-semibold uppercase tracking-wide">Your Appointment</p>
                         <p className="text-white text-sm font-medium">
@@ -126,8 +123,6 @@ export default function BookingForm({ cityName = "your area" }) {
                         className="bookingInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c]" />
                     <Textarea placeholder="Additional notes (optional)" value={formData.notes} onChange={(e) => handleInputChange('notes', e.target.value)}
                         className="bookingTextarea bg-[#242424] border-[#333] text-white rounded-lg p-4 h-20 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c]" />
-
-                    <input type="text" name="company" className="hidden" value={formData.company} onChange={(e) => handleInputChange('company', e.target.value)} tabIndex="-1" autoComplete="off" />
 
                     <Button type="submit" size="lg" disabled={isSubmitting}
                         className="bookingSubmitBtn w-full font-bold text-base h-14 rounded-xl bg-[#c45d2c] hover:bg-[#a94e25] text-white shadow-lg shadow-[#c45d2c]/20 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
