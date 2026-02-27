@@ -46,15 +46,9 @@ export default function BookingForm({ cityName = "your area" }) {
         // Save to database
         await base44.entities.Appointment.create(appointmentData);
 
-        // Always send email notifications
+        // Always send email notifications via backend function
         const emailBody = `New Appointment Booking from ${formData.name}\n\nPhone: ${formData.phone}\nEmail: ${formData.email || 'Not provided'}\nCity: ${formData.city}\n\nService: ${formData.service_type.replace(/_/g, ' ')}\nDate: ${format(formData.appointment_date, 'EEEE, MMMM d, yyyy')}\nTime: ${formData.time_slot}\nNotes: ${formData.notes || 'None'}`;
-        await Promise.all(NOTIFICATION_EMAILS.map(to =>
-            base44.integrations.Core.SendEmail({
-                to,
-                subject: `New Appointment Booking — ${cityName}`,
-                body: emailBody,
-            })
-        ));
+        await sendNotificationEmail({ subject: `New Appointment Booking — ${cityName}`, body: emailBody });
 
         // Analytics
         if (window.dataLayer) {

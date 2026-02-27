@@ -28,15 +28,9 @@ export default function ContactForm({ cityName = "your area" }) {
             // Save to database
             await base44.entities.ContactInquiry.create(formData);
 
-            // Always send email notifications
+            // Always send email notifications via backend function
             const emailBody = `New Quote Request from ${formData.name}\n\nPhone: ${formData.phone}\nEmail: ${formData.email}\nCity: ${formData.city}\n\nMessage:\n${formData.message}`;
-            await Promise.all(NOTIFICATION_EMAILS.map(to =>
-                base44.integrations.Core.SendEmail({
-                    to,
-                    subject: `New Quote Request — ${cityName}`,
-                    body: emailBody,
-                })
-            ));
+            await sendNotificationEmail({ subject: `New Quote Request — ${cityName}`, body: emailBody });
 
             // Analytics
             if (window.dataLayer) {
