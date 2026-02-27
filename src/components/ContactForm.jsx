@@ -100,7 +100,7 @@ export default function ContactForm({ cityName = "your area" }) {
 
                         {activeTab === "quote" ? (
                             isSubmitted ? (
-                                <div className="contactSuccess text-center p-10 bg-[#2d5a27] rounded-b-2xl text-white">
+                                <div className="contactSuccess flex flex-col items-center justify-center text-center p-10 bg-[#2d5a27] rounded-b-2xl text-white min-h-[420px]">
                                     <CheckCircle className="w-14 h-14 mx-auto mb-4" />
                                     <h3 className="text-2xl font-bold mb-2">Thank You, {formData.name}!</h3>
                                     <p className="text-white/80 text-sm">Your quote request has been received. We'll reach out to you shortly at {formData.phone}.</p>
