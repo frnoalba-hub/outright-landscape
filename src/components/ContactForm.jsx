@@ -44,6 +44,7 @@ export default function ContactForm({ cityName = "your area" }) {
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         } catch (err) {
             console.error("Submission failed", err);
+            alert("Something went wrong. Please call (626) 343-6028.");
         }
         setIsSubmitting(false);
     };
