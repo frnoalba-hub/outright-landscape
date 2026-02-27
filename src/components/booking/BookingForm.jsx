@@ -11,7 +11,6 @@ import BookingCalendar from './BookingCalendar';
 import TimeSlotPicker from './TimeSlotPicker';
 import ServiceTypeSelect from './ServiceTypeSelect';
 
-const NOTIFICATION_EMAILS = ["outrightlandscapecovina@gmail.com", "frno.alba@gmail.com"];
 
 export default function BookingForm({ cityName = "your area" }) {
     const [step, setStep] = useState(1);

@@ -8,7 +8,6 @@ import { CheckCircle, Phone, Text, CalendarDays, MessageSquare } from "lucide-re
 import confetti from 'canvas-confetti';
 import BookingForm from '@/components/booking/BookingForm';
 
-const NOTIFICATION_EMAILS = ["outrightlandscapecovina@gmail.com", "frno.alba@gmail.com"];
 
 export default function ContactForm({ cityName = "your area" }) {
     const [activeTab, setActiveTab] = useState("quote");
