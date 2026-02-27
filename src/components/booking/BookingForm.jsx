@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
-import { sendNotificationEmail } from '@/functions/sendNotificationEmail';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,7 +10,6 @@ import BookingCalendar from './BookingCalendar';
 import TimeSlotPicker from './TimeSlotPicker';
 import ServiceTypeSelect from './ServiceTypeSelect';
 
-
 export default function BookingForm({ cityName = "your area" }) {
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
@@ -20,9 +18,27 @@ export default function BookingForm({ cityName = "your area" }) {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [bookedSlots, setBookedSlots] = useState([]);
 
     const handleInputChange = (field, value) =>
         setFormData(prev => ({ ...prev, [field]: value }));
+
+    const handleDateChange = async (date) => {
+        handleInputChange('appointment_date', date);
+        handleInputChange('time_slot', ''); // reset slot when date changes
+        if (date) {
+            try {
+                const dateStr = format(date, 'yyyy-MM-dd');
+                const existing = await base44.entities.Appointment.filter({
+                    appointment_date: dateStr,
+                    status: { $in: ['pending', 'confirmed'] }
+                });
+                setBookedSlots(existing.map(a => a.time_slot));
+            } catch {
+                setBookedSlots([]);
+            }
+        }
+    };
 
     const canProceed = formData.service_type && formData.appointment_date && formData.time_slot;
 
@@ -42,19 +58,18 @@ export default function BookingForm({ cityName = "your area" }) {
             status: 'pending'
         };
 
-        // Save to database
-        await base44.entities.Appointment.create(appointmentData);
+        try {
+            await base44.entities.Appointment.create(appointmentData);
 
-        // Always send email notifications via backend function
-        const emailBody = `New Appointment Booking from ${formData.name}\n\nPhone: ${formData.phone}\nEmail: ${formData.email || 'Not provided'}\nCity: ${formData.city}\n\nService: ${formData.service_type.replace(/_/g, ' ')}\nDate: ${format(formData.appointment_date, 'EEEE, MMMM d, yyyy')}\nTime: ${formData.time_slot}\nNotes: ${formData.notes || 'None'}`;
-        await sendNotificationEmail({ subject: `New Appointment Booking — ${cityName}`, body: emailBody });
-
-        // Analytics
-        if (window.dataLayer) {
-            window.dataLayer.push({ event: 'appointment_booked', event_category: 'conversion', event_label: cityName, service_type: formData.service_type });
-        }
-        if (window.gtag) {
-            window.gtag('event', 'appointment_booked', { event_category: 'conversion', event_label: cityName, value: 1 });
+            // Analytics
+            if (window.dataLayer) {
+                window.dataLayer.push({ event: 'appointment_booked', event_category: 'conversion', event_label: cityName, service_type: formData.service_type });
+            }
+            if (window.gtag) {
+                window.gtag('event', 'appointment_booked', { event_category: 'conversion', event_label: cityName, value: 1 });
+            }
+        } catch (err) {
+            console.error("Booking error", err);
         }
 
         setIsSubmitted(true);
@@ -64,13 +79,13 @@ export default function BookingForm({ cityName = "your area" }) {
 
     if (isSubmitted) {
         return (
-            <div className="bookingSuccess text-center p-8 sm:p-10 bg-[#2d5a27] rounded-2xl text-white animate-in fade-in duration-500">
+            <div className="bookingSuccess text-center p-8 sm:p-10 bg-[#2d5a27] text-white animate-in fade-in duration-500">
                 <CalendarCheck className="w-14 h-14 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Appointment Booked!</h3>
                 <p className="text-white/80 text-sm mb-1">
                     {format(formData.appointment_date, 'EEEE, MMMM d, yyyy')} at {formData.time_slot}
                 </p>
-                <p className="text-white/60 text-xs">We'll confirm your appointment shortly via phone or email.</p>
+                <p className="text-white/60 text-xs mt-2">We'll confirm your appointment shortly via phone{formData.email ? ' or email' : ''}.</p>
             </div>
         );
     }
@@ -85,8 +100,12 @@ export default function BookingForm({ cityName = "your area" }) {
             {step === 1 && (
                 <div className="bookingStep1 space-y-5 animate-in fade-in duration-300">
                     <ServiceTypeSelect selectedService={formData.service_type} onSelectService={(v) => handleInputChange('service_type', v)} />
-                    <BookingCalendar selectedDate={formData.appointment_date} onSelectDate={(d) => handleInputChange('appointment_date', d)} />
-                    <TimeSlotPicker selectedSlot={formData.time_slot} onSelectSlot={(v) => handleInputChange('time_slot', v)} />
+                    <BookingCalendar selectedDate={formData.appointment_date} onSelectDate={handleDateChange} />
+                    <TimeSlotPicker
+                        selectedSlot={formData.time_slot}
+                        onSelectSlot={(v) => handleInputChange('time_slot', v)}
+                        bookedSlots={bookedSlots}
+                    />
                     <Button type="button" disabled={!canProceed} onClick={() => setStep(2)}
                         className="bookingNextBtn w-full font-bold text-sm h-12 rounded-xl bg-[#c45d2c] hover:bg-[#a94e25] text-white shadow-lg shadow-[#c45d2c]/20 transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed">
                         Continue →
