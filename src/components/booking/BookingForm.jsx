@@ -79,7 +79,7 @@ export default function BookingForm({ cityName = "your area" }) {
 
     if (isSubmitted) {
         return (
-            <div className="bookingSuccess text-center p-8 sm:p-10 bg-[#2d5a27] text-white animate-in fade-in duration-500">
+            <div className="bookingSuccess flex flex-col items-center justify-center text-center p-8 sm:p-10 bg-[#2d5a27] rounded-2xl text-white animate-in fade-in duration-500 min-h-[420px]">
                 <CalendarCheck className="w-14 h-14 mx-auto mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Appointment Booked!</h3>
                 <p className="text-white/80 text-sm mb-1">
@@ -91,7 +91,7 @@ export default function BookingForm({ cityName = "your area" }) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="bookingForm bg-[#1a1a1a] rounded-2xl p-5 sm:p-7 space-y-5">
+        <form onSubmit={handleSubmit} className="bookingForm bg-[#1a1a1a] rounded-2xl p-5 sm:p-7 space-y-5 min-h-[420px]">
             <div className="bookingSteps flex items-center gap-2 mb-1">
                 <div className={`bookingStepDot h-1.5 flex-1 rounded-full transition-colors duration-300 ${step >= 1 ? 'bg-[#c45d2c]' : 'bg-[#333]'}`} />
                 <div className={`bookingStepDot h-1.5 flex-1 rounded-full transition-colors duration-300 ${step >= 2 ? 'bg-[#c45d2c]' : 'bg-[#333]'}`} />
