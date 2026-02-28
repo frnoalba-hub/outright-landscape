@@ -23,7 +23,12 @@ export default function ContactForm({ cityName = "your area" }) {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            await base44.entities.ContactInquiry.create(formData);
+            // Try direct SDK first, fallback to backend function for reliability
+            try {
+                await base44.entities.ContactInquiry.create(formData);
+            } catch {
+                await saveContactInquiry(formData);
+            }
 
             // Analytics (best-effort)
             if (window.dataLayer) {
