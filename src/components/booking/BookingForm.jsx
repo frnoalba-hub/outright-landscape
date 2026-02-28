@@ -60,7 +60,12 @@ export default function BookingForm({ cityName = "your area" }) {
         };
 
         try {
-            await base44.entities.Appointment.create(appointmentData);
+            // Try direct SDK first, fallback to backend function for reliability
+            try {
+                await base44.entities.Appointment.create(appointmentData);
+            } catch {
+                await saveAppointment(appointmentData);
+            }
 
             // Analytics
             if (window.dataLayer) {
