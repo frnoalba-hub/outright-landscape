@@ -38,7 +38,7 @@ function HeroReviewCard({ review }) {
             href={source.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="heroReviewCard block bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-3.5 
+            className="heroReviewCard block bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-3.5 lg:p-5
                        hover:bg-white/[0.16] hover:border-white/20 transition-all cursor-pointer group"
         >
             <div className="heroReviewStars flex gap-0.5 mb-1.5">
