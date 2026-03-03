@@ -41,17 +41,37 @@ export default function Layout({ children }) {
       window.performance.mark('layout-mounted');
     }
 
-    // Preconnect to critical origins for performance
-    const preconnectDomains = ['https://www.googletagmanager.com', 'https://fonts.googleapis.com'];
-    preconnectDomains.forEach(domain => {
-      if (!document.querySelector(`link[rel="preconnect"][href="${domain}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'preconnect';
-        link.href = domain;
-        link.crossOrigin = 'anonymous';
-        document.head.appendChild(link);
+    // Preconnect + dns-prefetch for critical third-party origins
+    const hints = [
+      { domain: 'https://www.googletagmanager.com', preconnect: true },
+      { domain: 'https://qtrypzzcjebvfcihiynt.supabase.co', preconnect: true },
+      { domain: 'https://www.google-analytics.com', preconnect: false },
+    ];
+    hints.forEach(({ domain, preconnect }) => {
+      if (preconnect && !document.querySelector(`link[rel="preconnect"][href="${domain}"]`)) {
+        const pc = document.createElement('link');
+        pc.rel = 'preconnect';
+        pc.href = domain;
+        pc.crossOrigin = 'anonymous';
+        document.head.appendChild(pc);
+      }
+      if (!document.querySelector(`link[rel="dns-prefetch"][href="${domain}"]`)) {
+        const dp = document.createElement('link');
+        dp.rel = 'dns-prefetch';
+        dp.href = domain;
+        document.head.appendChild(dp);
       }
     });
+
+    // Preload LCP hero image
+    if (!document.querySelector('link[rel="preload"][as="image"]')) {
+      const preload = document.createElement('link');
+      preload.rel = 'preload';
+      preload.as = 'image';
+      preload.href = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png';
+      preload.setAttribute('fetchpriority', 'high');
+      document.head.appendChild(preload);
+    }
   }, []);
 
   useEffect(() => {
