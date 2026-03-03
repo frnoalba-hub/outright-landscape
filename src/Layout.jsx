@@ -188,9 +188,9 @@ export default function Layout({ children }) {
               <img
               src="/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
               alt="Outright Landscape Construction Logo"
-              className="h-[74px] sm:h-24 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
-              width="106"
-              height="106"
+              className="h-[85px] sm:h-[110px] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+              width="122"
+              height="122"
               fetchpriority="high"
               decoding="async" />
 
