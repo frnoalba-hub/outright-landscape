@@ -8,6 +8,8 @@ export default function Analytics() {
         // Prevent duplicate injection
         if (document.getElementById('gtm-script')) return;
 
+        // Defer analytics until browser is idle to avoid blocking main thread
+        const init = () => {
         // User Timing: mark analytics init start
         if (window.performance && window.performance.mark) {
             window.performance.mark('analytics-init-start');
@@ -52,6 +54,14 @@ export default function Analytics() {
         if (window.performance && window.performance.mark) {
             window.performance.mark('analytics-init-end');
             window.performance.measure('analytics-init', 'analytics-init-start', 'analytics-init-end');
+        }
+        }; // end init
+
+        // Use requestIdleCallback to defer GTM/Ads loading off main thread
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(init, { timeout: 3000 });
+        } else {
+            setTimeout(init, 1000);
         }
     }, []);
 

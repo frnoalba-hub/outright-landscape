@@ -53,8 +53,10 @@ export default function HomeServices({ services }) {
                                         alt={`${service.title} in Covina, Glendora, San Dimas - Outright Landscape`}
                                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                         loading="lazy"
+                                        decoding="async"
                                         width="600"
                                         height="400"
+                                        style={{ willChange: 'transform' }}
                                     />
                                     {/* Number overlay */}
                                     <div className="absolute top-4 left-4 bg-[#1a1a1a]/80 backdrop-blur-sm text-white w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold">

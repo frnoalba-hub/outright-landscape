@@ -48,8 +48,10 @@ export default function HomePortfolio({ projects, onCtaClick }) {
                                 alt={project.alt}
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 loading="lazy"
+                                decoding="async"
                                 width="400"
                                 height="300"
+                                style={{ willChange: 'transform' }}
                             />
                             {/* Always-visible gradient for mobile */}
                             <div className="projectOverlayBase absolute inset-0 bg-gradient-to-t from-[#1a1a1a]/70 via-transparent to-transparent" />

@@ -14,12 +14,13 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     alt="Professional landscape project by Outright Landscape in Covina"
                     className="w-full h-full object-cover"
                     fetchpriority="high"
+                    decoding="sync"
+                    width="1200"
+                    height="900"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/80 sm:to-[#1a1a1a]/60" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
             </div>
-
-            <link rel="preload" as="image" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png" fetchpriority="high" />
 
             <div className="heroContent relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pt-28 pb-12 sm:pt-32 sm:pb-16 sm:py-0">
                 <div className="heroInner flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 lg:gap-12">
