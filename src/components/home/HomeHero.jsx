@@ -34,13 +34,13 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     {/* Badge - hidden on very small screens to save space */}
                     <div className="heroBadge hidden sm:inline-flex items-center gap-2 bg-[#2d5a27]/20 border border-[#2d5a27]/40 rounded-full px-4 py-1.5">
                         <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
-                        <span className="text-[#8fbc8b] text-xs font-semibold tracking-wide uppercase">
+                        <span className="text-[#8fbc8b] text-xs lg:text-sm font-semibold tracking-wide uppercase">
                             Licensed C-27 Contractor
                         </span>
                     </div>
 
                     {/* Headline */}
-                    <h1 className="heroHeadline text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] text-white leading-[1.05] tracking-tight">
+                    <h1 className="heroHeadline text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.75rem] xl:text-[5.5rem] text-white leading-[1.05] tracking-tight">
                         <span className="font-light">We Build</span>
                         <br />
                         <span className="font-bold text-[#c45d2c]">Landscapes</span>
@@ -49,16 +49,16 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     </h1>
 
                     {/* Subtitle */}
-                    <p className="heroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
+                    <p className="heroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-xl leading-relaxed max-w-md lg:max-w-lg">
                         Premier landscape design & construction serving Covina, Glendora,
                         La&nbsp;Verne, San&nbsp;Dimas & the entire San Gabriel Valley.
                     </p>
 
                     {/* Trust badges - compact grid on mobile */}
-                    <div className="heroTrustBadges grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
+                    <div className="heroTrustBadges grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm lg:text-base text-[#8a8478]">
                         {['CSLB #1073845', '10+ Years', '250+ Projects', '4.8★ Google'].map((t) => (
                             <span key={t} className="flex items-center gap-1.5">
-                                <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />
+                                <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4 text-[#4a8c3f] flex-shrink-0" />
                                 {t}
                             </span>
                         ))}
@@ -67,15 +67,15 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     {/* CTAs - stacked on mobile, side-by-side on desktop */}
                     <div className="heroCtas flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1 sm:pt-2">
                         <a href="tel:626-343-6028" onClick={() => onPhoneClick('hero')} className="w-full sm:w-auto">
-                            <Button className="heroCta w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-sm sm:text-base px-6 py-5 sm:px-7 sm:py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:shadow-xl hover:shadow-[#c45d2c]/30 hover:scale-[1.02] sm:min-w-[240px]">
-                                <Phone className="mr-2 w-4 h-4 sm:mr-2.5 sm:w-5 sm:h-5" aria-hidden="true" />
+                            <Button className="heroCta w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-sm sm:text-base lg:text-lg px-6 py-5 sm:px-7 sm:py-6 lg:px-9 lg:py-7 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:shadow-xl hover:shadow-[#c45d2c]/30 hover:scale-[1.02] sm:min-w-[240px] lg:min-w-[280px]">
+                                <Phone className="mr-2 w-4 h-4 sm:mr-2.5 sm:w-5 sm:h-5 lg:w-6 lg:h-6" aria-hidden="true" />
                                 (626) 343-6028
                             </Button>
                         </a>
                         <a href="#contact" onClick={() => onQuoteClick('hero')} className="w-full sm:w-auto">
-                            <Button variant="outline" className="heroCtaSecondary w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-sm sm:text-base px-6 py-5 sm:px-7 sm:py-6 rounded-xl transition-all sm:min-w-[240px]">
+                            <Button variant="outline" className="heroCtaSecondary w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-sm sm:text-base lg:text-lg px-6 py-5 sm:px-7 sm:py-6 lg:px-9 lg:py-7 rounded-xl transition-all sm:min-w-[240px] lg:min-w-[280px]">
                                 Free Estimate
-                                <ArrowRight className="ml-2 w-4 h-4" />
+                                <ArrowRight className="ml-2 w-4 h-4 lg:w-5 lg:h-5" />
                             </Button>
                         </a>
                     </div>
