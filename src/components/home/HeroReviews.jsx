@@ -43,19 +43,19 @@ function HeroReviewCard({ review }) {
         >
             <div className="heroReviewStars flex gap-0.5 mb-1.5">
                 {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 text-yellow-500 fill-yellow-500" />
+                    <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-500 fill-yellow-500" />
                 ))}
             </div>
-            <p className="heroReviewText text-white/80 text-xs leading-relaxed mb-2.5">"{truncated}"</p>
+            <p className="heroReviewText text-white/80 text-xs lg:text-sm leading-relaxed mb-2.5">"{truncated}"</p>
             <div className="heroReviewAuthor flex items-center gap-2">
-                <div className="heroReviewAvatar w-7 h-7 rounded-full bg-gradient-to-br from-[#c45d2c] to-[#b8945a] flex items-center justify-center text-white font-bold text-[10px] flex-shrink-0">
+                <div className="heroReviewAvatar w-7 h-7 lg:w-9 lg:h-9 rounded-full bg-gradient-to-br from-[#c45d2c] to-[#b8945a] flex items-center justify-center text-white font-bold text-[10px] lg:text-xs flex-shrink-0">
                     {initial}
                 </div>
                 <div className="flex-1 min-w-0">
-                    <p className="text-white/90 font-semibold text-[11px] truncate">{name}</p>
-                    {city && <p className="text-white/40 text-[10px]">{city}</p>}
+                    <p className="text-white/90 font-semibold text-[11px] lg:text-sm truncate">{name}</p>
+                    {city && <p className="text-white/40 text-[10px] lg:text-xs">{city}</p>}
                 </div>
-                <img src={source.icon} alt={source.alt} className="w-4 h-4 opacity-50 group-hover:opacity-80 transition-opacity flex-shrink-0" />
+                <img src={source.icon} alt={source.alt} className="w-4 h-4 lg:w-5 lg:h-5 opacity-50 group-hover:opacity-80 transition-opacity flex-shrink-0" />
             </div>
         </a>
     );
