@@ -99,14 +99,14 @@ export default function HeroReviews({ reviews = [], totalReviewCount, averageRat
             {/* Header */}
             <div className="heroReviewsHeader flex items-center justify-between">
                 <div className="flex items-center gap-2.5 flex-wrap">
-                    <h3 className="heroReviewsTitle text-white font-bold text-base sm:text-lg whitespace-nowrap">Check Out Our Reviews</h3>
+                    <h3 className="heroReviewsTitle text-white font-bold text-base sm:text-lg lg:text-xl whitespace-nowrap">Check Out Our Reviews</h3>
                     <div className="flex items-center gap-1.5">
                         <div className="flex gap-0.5">
                             {[...Array(5)].map((_, i) => (
-                                <Star key={i} className="w-3 h-3 text-yellow-500 fill-yellow-500" />
+                                <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-500 fill-yellow-500" />
                             ))}
                         </div>
-                        <span className="text-white/50 text-xs whitespace-nowrap">{averageRating} ({totalReviewCount})</span>
+                        <span className="text-white/50 text-xs lg:text-sm whitespace-nowrap">{averageRating} ({totalReviewCount})</span>
                     </div>
                 </div>
                 {totalPages > 1 && (
