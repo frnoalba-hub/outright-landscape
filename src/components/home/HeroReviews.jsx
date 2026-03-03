@@ -141,6 +141,7 @@ export default function HeroReviews({ reviews = [], totalReviewCount, averageRat
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: -20 }}
                         transition={{ duration: 0.3 }}
+                        style={{ willChange: 'transform, opacity' }}
                         className="space-y-2"
                     >
                         {visibleReviews.map((review, idx) => (
