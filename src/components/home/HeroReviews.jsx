@@ -92,7 +92,7 @@ export default function HeroReviews({ reviews = [], totalReviewCount, averageRat
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: 'easeOut', delay: 0.2 }}
-            className="heroReviewsPanel w-full max-w-sm space-y-2.5"
+            className="heroReviewsPanel w-full max-w-sm lg:max-w-[28rem] space-y-2.5 lg:space-y-3.5"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
         >
