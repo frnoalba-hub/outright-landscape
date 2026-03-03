@@ -113,20 +113,20 @@ export default function HeroReviews({ reviews = [], totalReviewCount, averageRat
                     <div className="heroReviewsNav flex items-center gap-1">
                         <button
                             onClick={prevPage}
-                            className="heroReviewsPrev w-6 h-6 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/60 hover:text-white transition-all"
+                            className="heroReviewsPrev w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/60 hover:text-white transition-all"
                             aria-label="Previous reviews"
                         >
-                            <ChevronLeft className="w-3.5 h-3.5" />
+                            <ChevronLeft className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
                         </button>
-                        <span className="heroReviewsPage text-white/30 text-[10px] font-medium min-w-[28px] text-center">
+                        <span className="heroReviewsPage text-white/30 text-[10px] lg:text-xs font-medium min-w-[28px] text-center">
                             {page + 1}/{totalPages}
                         </span>
                         <button
                             onClick={nextPage}
-                            className="heroReviewsNext w-6 h-6 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/60 hover:text-white transition-all"
+                            className="heroReviewsNext w-6 h-6 lg:w-8 lg:h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white/60 hover:text-white transition-all"
                             aria-label="Next reviews"
                         >
-                            <ChevronRight className="w-3.5 h-3.5" />
+                            <ChevronRight className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
                         </button>
                     </div>
                 )}
