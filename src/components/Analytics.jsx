@@ -8,6 +8,11 @@ export default function Analytics() {
         // Prevent duplicate injection
         if (document.getElementById('gtm-script')) return;
 
+        // User Timing: mark analytics init start
+        if (window.performance && window.performance.mark) {
+            window.performance.mark('analytics-init-start');
+        }
+
         // 1. Inject Google Ads Global Site Tag
         const gtagScript = document.createElement('script');
         gtagScript.async = true;
@@ -42,6 +47,12 @@ export default function Analytics() {
             height="0" width="0" style="display:none;visibility:hidden"></iframe>
         `;
         document.body.insertBefore(noscript, document.body.firstChild);
+
+        // User Timing: mark analytics init end and measure
+        if (window.performance && window.performance.mark) {
+            window.performance.mark('analytics-init-end');
+            window.performance.measure('analytics-init', 'analytics-init-start', 'analytics-init-end');
+        }
     }, []);
 
     return null;

@@ -27,6 +27,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, ease: 'easeOut' }}
+                    style={{ willChange: 'transform, opacity' }}
                     className="max-w-xl space-y-4 sm:space-y-6 lg:space-y-8"
                 >
                     {/* Badge - hidden on very small screens to save space */}

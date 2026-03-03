@@ -36,13 +36,21 @@ export default function Layout({ children }) {
   }, []);
 
   useEffect(() => {
+    // User Timing: mark page interactive
+    if (window.performance && window.performance.mark) {
+      window.performance.mark('layout-mounted');
+    }
+
     // Preconnect to critical origins for performance
-    const preconnectDomains = ['https://app.base44.com'];
+    const preconnectDomains = ['https://www.googletagmanager.com', 'https://fonts.googleapis.com'];
     preconnectDomains.forEach(domain => {
-      const link = document.createElement('link');
-      link.rel = 'preconnect';
-      link.href = domain;
-      document.head.appendChild(link);
+      if (!document.querySelector(`link[rel="preconnect"][href="${domain}"]`)) {
+        const link = document.createElement('link');
+        link.rel = 'preconnect';
+        link.href = domain;
+        link.crossOrigin = 'anonymous';
+        document.head.appendChild(link);
+      }
     });
   }, []);
 
