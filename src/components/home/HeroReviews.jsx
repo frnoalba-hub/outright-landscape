@@ -153,11 +153,11 @@ export default function HeroReviews({ reviews = [], totalReviewCount, averageRat
 
             {/* Platform icons row */}
             <div className="heroReviewsPlatforms flex items-center gap-3 pt-0.5">
-                <span className="text-white/30 text-[10px] uppercase tracking-wider font-medium">Verified on</span>
-                <div className="flex items-center gap-2">
+                <span className="text-white/30 text-[10px] lg:text-xs uppercase tracking-wider font-medium">Verified on</span>
+                <div className="flex items-center gap-2 lg:gap-3">
                     {Object.entries(SOURCE_CONFIG).map(([key, src]) => (
                         <a key={key} href={src.url} target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
-                            <img src={src.icon} alt={src.alt} className="w-4 h-4 opacity-40 hover:opacity-70 transition-opacity" />
+                            <img src={src.icon} alt={src.alt} className="w-4 h-4 lg:w-6 lg:h-6 opacity-40 hover:opacity-70 transition-opacity" />
                         </a>
                     ))}
                 </div>
