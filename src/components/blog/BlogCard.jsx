@@ -9,7 +9,7 @@ export default function BlogCard({ post }) {
     <div className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100">
       <a href={createPageUrl(`BlogPost?slug=${post.slug}`)} className="relative overflow-hidden aspect-video block">
         <img 
-          src={post.cover_image || "https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&q=80&w=800"} 
+          src={post.cover_image || post.image_url || "https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&q=80&w=800"} 
           alt={post.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />

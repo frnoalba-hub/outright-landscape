@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { base44 } from "@/api/base44Client";
-import { useQuery } from "@tanstack/react-query";
 import { Loader2, Search } from "lucide-react";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 import BlogCard from "@/components/blog/BlogCard";
 import SharedHero from "@/components/SharedHero";
 import SEO from "@/components/SEO";
@@ -12,10 +11,7 @@ export default function Blog() {
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("All");
 
-    const { data: posts = [], isLoading } = useQuery({
-        queryKey: ['blog-posts'],
-        queryFn: () => base44.entities.BlogPost.list({ sort: { created_date: -1 } }),
-    });
+    const { posts = [], isLoading } = useBlogPosts();
 
     const categories = ["All", ...new Set(posts.map(p => p.category).filter(Boolean))];
 

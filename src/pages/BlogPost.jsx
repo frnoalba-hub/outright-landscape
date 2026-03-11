@@ -1,6 +1,4 @@
 import React from "react";
-import { base44 } from "@/api/base44Client";
-import { useQuery } from "@tanstack/react-query";
 import { Loader2, Calendar, User, Clock, ChevronLeft, Share2 } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -8,15 +6,13 @@ import { createPageUrl } from "@/utils";
 import SEO from "@/components/SEO";
 import ReactMarkdown from "react-markdown";
 import ContactForm from "@/components/ContactForm";
+import { useBlogPosts } from "@/hooks/useBlogPosts";
 
 export default function BlogPost() {
     const urlParams = new URLSearchParams(window.location.search);
     const slug = urlParams.get("slug");
 
-    const { data: posts = [], isLoading } = useQuery({
-        queryKey: ['blog-posts'],
-        queryFn: () => base44.entities.BlogPost.list({ limit: 100 }),
-    });
+    const { posts = [], isLoading } = useBlogPosts();
 
     const post = posts.find(p => p.slug === slug);
 
@@ -35,7 +31,7 @@ export default function BlogPost() {
                 title={`${post.title} | Outright Landscape`}
                 description={post.excerpt}
                 canonicalUrl={`https://outrightlandscape.com/BlogPost?slug=${post.slug}`}
-                ogImage={post.cover_image}
+                ogImage={post.cover_image || post.image_url}
                 type="article"
             />
 
@@ -46,7 +42,7 @@ export default function BlogPost() {
                 <div className="relative h-[50vh] min-h-[400px] w-full">
                     <div className="absolute inset-0">
                         <img 
-                            src={post.cover_image || "https://images.unsplash.com/photo-1558904541-efa843a96f01"} 
+                            src={post.cover_image || post.image_url || "https://images.unsplash.com/photo-1558904541-efa843a96f01"} 
                             alt={post.title}
                             className="w-full h-full object-cover"
                         />
