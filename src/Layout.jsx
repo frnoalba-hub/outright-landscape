@@ -13,6 +13,7 @@ const navigationItems = [
   { title: "Services", href: createPageUrl("Home") + "#services" },
   { title: "Irrigation", href: createPageUrl("Irrigation") },
   { title: "Hardscape", href: createPageUrl("Hardscape") },
+  { title: "Blog", href: createPageUrl("Blog") },
   { title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
 ];
 
@@ -339,6 +340,7 @@ export default function Layout({ children }) {
                 <li><a href={createPageUrl("Home")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Home</a></li>
                 <li><a href={createPageUrl("Home") + "#services"} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Services</a></li>
                 <li><a href={createPageUrl("Irrigation")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Irrigation</a></li>
+                <li><a href={createPageUrl("Blog")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Blog</a></li>
                 <li><a href={createPageUrl("Home") + "#work"} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Our Work</a></li>
                 <li><a href={createPageUrl("Home") + "#contact"} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Contact</a></li>
                 <li><a href="https://outrightlandscape.com/api/sitemap" target="_blank" rel="noopener noreferrer" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Sitemap</a></li>

@@ -33,12 +33,28 @@ Deno.serve((req) => {
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>\n`;
-    
-    urls += `  <url>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/${city}-hardscape</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://outrightlandscape.com/${city}-sprinkler-repair-installation</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>\n`;
+  });
+
+  // Blog posts (static + add more slugs as needed)
+  const blogSlugs = ['complete-guide-residential-commercial-irrigation-san-diego'];
+  blogSlugs.forEach(slug => {
+    urls += `  <url>
+    <loc>https://outrightlandscape.com/blog/${slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>\n`;
   });

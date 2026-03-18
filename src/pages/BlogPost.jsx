@@ -1,18 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Loader2, Calendar, User, Clock, ChevronLeft, Share2 } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
-import { createPageUrl } from "@/utils";
+import { createPageUrl, createBlogPostUrl } from "@/utils";
 import SEO from "@/components/SEO";
 import ReactMarkdown from "react-markdown";
 import ContactForm from "@/components/ContactForm";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 
 export default function BlogPost() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const slug = urlParams.get("slug");
+    const { slug: paramSlug } = useParams();
+    const urlParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+    const querySlug = urlParams.get("slug");
+    const slug = paramSlug || querySlug;
 
+    const navigate = useNavigate();
     const { posts = [], isLoading } = useBlogPosts();
+
+    // Redirect /BlogPost?slug=x to /blog/x for canonical URLs
+    useEffect(() => {
+        if (querySlug && !paramSlug) {
+            navigate(createBlogPostUrl(querySlug), { replace: true });
+        }
+    }, [querySlug, paramSlug, navigate]);
 
     const post = posts.find(p => p.slug === slug);
 
@@ -30,7 +41,7 @@ export default function BlogPost() {
             <SEO 
                 title={`${post.title} | Outright Landscape`}
                 description={post.excerpt}
-                canonicalUrl={`https://outrightlandscape.com/BlogPost?slug=${post.slug}`}
+                canonicalUrl={`https://outrightlandscape.com/blog/${post.slug}`}
                 ogImage={post.cover_image || post.image_url}
                 type="article"
             />
