@@ -26,22 +26,22 @@ function CountUp({ end, duration = 1500, suffix = '' }) {
     return <span ref={ref}>{count}{suffix}</span>;
 }
 import { Button } from "@/components/ui/button";
-import SEO from '../components/SEO';
+import SEOHead from '@/components/SEOHead';
+import { SERVICE_SCHEMAS, GEO_QUOTES, GEO_STATS, GEO_FAQS } from '@/schemas/geo-schemas';
+import FAQSchema from '@/components/FAQSchema';
+import AttributedQuote from '@/components/AttributedQuote';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import ContactForm from '@/components/ContactForm';
+import ServiceSummaryBox from '@/components/ServiceSummaryBox';
 
 export default function Irrigation() {
     const handlePhoneClick = () => {
         if (window.dataLayer) {
             window.dataLayer.push({ event: 'phone_click', event_category: 'engagement', event_label: 'irrigation-hub', phone_number: '626-343-6028' });
         }
-    };
-
-    const scrollToForm = () => {
-        document.getElementById('contact-section')?.scrollIntoView({ behavior: 'smooth' });
     };
 
     const { data: locations = [] } = useQuery({
@@ -59,18 +59,20 @@ export default function Irrigation() {
 
     return (
         <>
-            <SEO 
+            <SEOHead
                 title="Irrigation & Sprinkler Repair | La Verne, San Dimas, Glendora CA"
                 description="Professional sprinkler repair, irrigation valve service, and drip system installation in La Verne, San Dimas, and Glendora. Licensed C-27 contractor. Same-day service available. Call (626) 343-6028."
                 canonicalUrl="https://outrightlandscape.com/Irrigation"
                 keywords="irrigation repair, sprinkler repair, irrigation valve repair, drip irrigation, sprinkler system repair, la verne irrigation, san dimas sprinkler repair, glendora irrigation"
-                ogImage="/images/01c14d800_unnamed2-Copy.jpg"
+                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/781c79e8b_generated_image.png"
                 ogType="website"
+                schemaData={[SERVICE_SCHEMAS['irrigation-systems']]}
             />
+            <FAQSchema faqs={GEO_FAQS.irrigation} cityName="irrigation" />
 
-            <div className="irrigationPageWrapper min-h-screen bg-white">
+            <div className="irrigationPageWrapper min-h-screen bg-white" role="document">
                 {/* ── HERO ── */}
-                <section className="irrigationHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
+                <section className="irrigationHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]" aria-labelledby="irrigation-hero-heading">
                     <div className="absolute inset-0 sm:left-[40%]">
                         <img src="/images/01c14d800_unnamed2-Copy.jpg" alt="Professional irrigation installation" className="w-full h-full object-cover" fetchpriority="high" />
                         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
@@ -83,23 +85,26 @@ export default function Irrigation() {
                                 <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
                                 <span className="text-[#8fbc8b] text-xs font-semibold tracking-wide uppercase">San Gabriel Valley</span>
                             </div>
-                            <h1 className="irrigationHeroHeadline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
+                            <h1 id="irrigation-hero-heading" className="irrigationHeroHeadline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
                                 <span className="font-light">Sprinkler &</span><br />
                                 <span className="font-bold text-[#c45d2c]">Irrigation Repair</span><br />
                                 <span className="font-light">Services</span>
                             </h1>
                             <p className="irrigationHeroSubtitle text-[#a09a90] text-base sm:text-lg leading-relaxed max-w-md">
-                                Expert irrigation repair, sprinkler valve service, and drip system installation. Licensed C-27 contractor with 10+ years experience.
+                                {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ sprinkler systems installed and repaired in Covina, Glendora, San Dimas, and the San Gabriel Valley. Owner has {GEO_STATS.yearsExperience}+ years industry experience. Licensed C-27 contractor.
                             </p>
+                            <div className="irrigationHeroQuote hidden sm:block py-2">
+                                <AttributedQuote {...GEO_QUOTES.irrigation} compact />
+                            </div>
                             <div className="irrigationHeroCtas flex flex-col sm:flex-row gap-3 pt-2">
                                 <a href="tel:626-343-6028" onClick={handlePhoneClick} className="w-full sm:w-auto">
                                     <Button className="w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-base px-7 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:shadow-xl hover:scale-[1.02] min-w-[240px]">
                                         <Phone className="mr-2.5 w-5 h-5" />(626) 343-6028
                                     </Button>
                                 </a>
-                                <Button variant="outline" onClick={scrollToForm} className="w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-base px-7 py-6 rounded-xl transition-all min-w-[240px]">
+                                <a href="#contact-section" className="w-full sm:w-auto inline-flex items-center justify-center border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-base px-7 py-6 rounded-xl transition-all min-w-[240px]">
                                     Free Estimate <ArrowRight className="ml-2 w-4 h-4" />
-                                </Button>
+                                </a>
                             </div>
                         </motion.div>
                     </div>
@@ -110,7 +115,7 @@ export default function Irrigation() {
                 <section className="irrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                     <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                            {[{ end: 250, suffix: '+', label: 'Repairs Completed' }, { raw: '24hr', label: 'Response Time' }, { end: 10, suffix: '+', label: 'Years Experience' }, { end: 100, suffix: '%', label: 'Licensed & Insured' }].map((stat, i) => (
+                            {[{ end: GEO_STATS.projectsCompleted, suffix: '+', label: 'Systems Installed & Repaired' }, { raw: '24hr', label: 'Response Time' }, { end: GEO_STATS.yearsInBusiness, suffix: '+', label: 'Years Experience' }, { end: 100, suffix: '%', label: 'Licensed & Insured' }].map((stat, i) => (
                                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="irrigationStatItem text-center py-8 sm:py-10">
                                     <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
                                         {stat.raw ? stat.raw : <CountUp end={stat.end} suffix={stat.suffix} />}
@@ -121,6 +126,13 @@ export default function Irrigation() {
                         </div>
                     </div>
                 </section>
+
+                {/* ── SERVICE SUMMARY (GEO) ── */}
+                <ServiceSummaryBox
+                    problem="Broken sprinkler heads, leaking valves, controller issues, and water waste affecting lawn health and water bills."
+                    solution="Expert sprinkler repair, valve service, drip irrigation installation, and same-day emergency repair. Licensed C-27 contractor with commercial-grade parts."
+                    serviceArea="San Gabriel Valley: La Verne, San Dimas, Glendora, Covina, West Covina, Pasadena, Azusa, Diamond Bar, Walnut, Pomona, and surrounding cities."
+                />
 
                 {/* ── SERVICES ── */}
                 <section className="irrigationServices py-20 sm:py-28 bg-white">
@@ -184,8 +196,8 @@ export default function Irrigation() {
                         </motion.div>
                         <div className="grid md:grid-cols-3 gap-5">
                             {[
-                                { title: 'Licensed C-27 Contractor', desc: 'CSLB #1073845 - Fully licensed, bonded, and insured for your protection and peace of mind.' },
-                                { title: '10+ Years Local Experience', desc: 'Serving the San Gabriel Valley since 2003 with expert irrigation repair and installation.' },
+                                { title: 'Licensed C-27 Contractor', desc: 'CSLB #1073845 — Fully licensed, bonded, and insured for your protection and peace of mind.' },
+                                { title: `${GEO_STATS.yearsInBusiness} Years in Business`, desc: `Serving the San Gabriel Valley since ${GEO_STATS.foundingYear}. Over ${GEO_STATS.projectsCompleted}+ sprinkler systems installed and repaired in Covina, Glendora, San Dimas, and surrounding cities.` },
                                 { title: 'Same-Day Service Available', desc: 'Emergency irrigation repair and sprinkler leak detection available with fast response times.' }
                             ].map((item, idx) => (
                                 <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
@@ -198,6 +210,25 @@ export default function Irrigation() {
                                 </motion.div>
                             ))}
                         </div>
+                    </div>
+                </section>
+
+                {/* ── FAQ (AEO) ── */}
+                <section id="faq" className="irrigationFaq py-20 sm:py-28 bg-white" aria-labelledby="irrigation-faq-heading">
+                    <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-12">
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+                            <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">FAQ</span>
+                            <h2 id="irrigation-faq-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Common Irrigation Questions</h2>
+                        </motion.div>
+                        <dl className="space-y-4">
+                            {GEO_FAQS.irrigation.map((faq, idx) => (
+                                <motion.div key={idx} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.05 }}
+                                    className="bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/30 transition-colors">
+                                    <dt className="text-base font-bold text-[#1a1a1a] mb-2">{faq.q}</dt>
+                                    <dd className="text-[#6b6560] text-sm leading-relaxed m-0">{faq.a}</dd>
+                                </motion.div>
+                            ))}
+                        </dl>
                     </div>
                 </section>
 

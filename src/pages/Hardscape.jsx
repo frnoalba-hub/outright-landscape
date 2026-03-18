@@ -26,12 +26,16 @@ function CountUp({ end, duration = 1500, suffix = '' }) {
     return <span ref={ref}>{count}{suffix}</span>;
 }
 import { Button } from "@/components/ui/button";
-import SEO from '../components/SEO';
+import SEOHead from '@/components/SEOHead';
+import { SERVICE_SCHEMAS, GEO_QUOTES, GEO_STATS, GEO_FAQS } from '@/schemas/geo-schemas';
+import FAQSchema from '@/components/FAQSchema';
+import AttributedQuote from '@/components/AttributedQuote';
 import { createPageUrl } from '@/utils';
 import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import ContactForm from '@/components/ContactForm';
+import ServiceSummaryBox from '@/components/ServiceSummaryBox';
 
 export default function Hardscape() {
     const handlePhoneClick = () => {
@@ -99,8 +103,8 @@ export default function Hardscape() {
     ];
 
     const whyUs = [
-        { title: 'Licensed C-27 Contractor', desc: 'CSLB #1073845 — Fully licensed, bonded, and insured for every project.' },
-        { title: 'Proper Base Prep — No Shortcuts', desc: 'Correct excavation depth, compaction, and drainage built in from the start.' },
+        { title: 'Licensed C-27 Contractor', desc: `CSLB #1073845 — Fully licensed, bonded, and insured. Serving the San Gabriel Valley since ${GEO_STATS.foundingYear}.` },
+        { title: 'Proper Base Prep — No Shortcuts', desc: `Over ${GEO_STATS.projectsCompleted} projects completed. Correct excavation depth, compaction, and drainage built in from the start.` },
         { title: 'Drainage-First Construction', desc: 'Every install designed to manage water runoff and prevent long-term damage.' },
         { title: 'Clean Job Site Practices', desc: 'We respect your property and leave every site clean upon completion.' },
         { title: 'Warranty-Backed Workmanship', desc: 'We stand behind our work with a workmanship warranty on all installs.' },
@@ -109,18 +113,21 @@ export default function Hardscape() {
 
     return (
         <>
-            <SEO
+            <SEOHead
                 title="Hardscape & Paver Installation | Outright Landscape"
                 description="Professional hardscaping, paver installation, concrete, and retaining wall construction by a licensed C-27 contractor. Free estimates available."
-                canonicalUrl="https://outrightlandscape.com/hardscape"
+                canonicalUrl="https://outrightlandscape.com/Hardscape"
                 keywords="hardscape, paver installation, concrete installation, retaining walls, outdoor living, San Gabriel Valley hardscape contractor, CSLB 1073845"
+                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/3e9548aed_generated_image.png"
                 ogType="website"
+                schemaData={[SERVICE_SCHEMAS.hardscaping]}
             />
+            <FAQSchema faqs={GEO_FAQS.hardscape} cityName="hardscape" />
 
-            <div className="hardscapePageWrapper min-h-screen bg-white">
+            <div className="hardscapePageWrapper min-h-screen bg-white" role="document">
 
                 {/* ── HERO ── */}
-                <section className="hardscapeHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
+                <section className="hardscapeHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]" aria-labelledby="hardscape-hero-heading">
                     <div className="absolute inset-0 sm:left-[40%]">
                         <img
                             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/15f0a1b84_generated_image.png"
@@ -138,22 +145,25 @@ export default function Hardscape() {
                                 <div className="w-2 h-2 rounded-full bg-[#4a8c3f] animate-pulse" />
                                 <span className="text-[#8fbc8b] text-xs font-semibold tracking-wide uppercase">San Gabriel Valley</span>
                             </div>
-                            <h1 className="hardscapeHeroHeadline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
+                            <h1 id="hardscape-hero-heading" className="hardscapeHeroHeadline text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
                                 <span className="font-light">Hardscaping &</span><br />
                                 <span className="font-bold text-[#c45d2c]">Paver Installation</span>
                             </h1>
                             <p className="hardscapeHeroSubtitle text-[#a09a90] text-base sm:text-lg leading-relaxed max-w-md">
-                                Custom patios, walkways, concrete, and retaining walls built for durability and long-term performance.
+                                {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ custom paver patios, driveways, and retaining walls installed in Covina, Glendora, San Dimas, and the San Gabriel Valley. Owner has {GEO_STATS.yearsExperience}+ years industry experience. Licensed C-27 contractor.
                             </p>
+                            <div className="hardscapeHeroQuote hidden sm:block py-2">
+                                <AttributedQuote {...GEO_QUOTES.hardscape} compact />
+                            </div>
                             <div className="hardscapeHeroCtas flex flex-col sm:flex-row gap-3 pt-2">
                                 <a href="tel:626-343-6028" onClick={handlePhoneClick} className="w-full sm:w-auto">
                                     <Button className="hardscapeHeroCallBtn w-full sm:w-auto bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-base px-7 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:shadow-xl hover:scale-[1.02] min-w-[240px]">
                                         <Phone className="mr-2.5 w-5 h-5" />(626) 343-6028
                                     </Button>
                                 </a>
-                                <Button variant="outline" onClick={scrollToForm} className="hardscapeHeroQuoteBtn w-full sm:w-auto border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-base px-7 py-6 rounded-xl transition-all min-w-[240px]">
+                                <a href="#hardscape-contact" className="hardscapeHeroQuoteBtn w-full sm:w-auto inline-flex items-center justify-center border-2 border-[#b8945a]/50 bg-transparent text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold text-base px-7 py-6 rounded-xl transition-all min-w-[240px]">
                                     Get a Free Estimate <ArrowRight className="ml-2 w-4 h-4" />
-                                </Button>
+                                </a>
                             </div>
                         </motion.div>
                     </div>
@@ -164,7 +174,7 @@ export default function Hardscape() {
                 <section className="hardscapeStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                     <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                            {[{ end: 250, suffix: '+', label: 'Projects Completed' }, { end: 10, suffix: '+', label: 'Years Experience' }, { end: 4.8, suffix: '★', label: 'Google Rating', isDecimal: true }, { end: 100, suffix: '%', label: 'Licensed & Insured' }].map((stat, i) => (
+                            {[{ end: GEO_STATS.projectsCompleted, suffix: '+', label: 'Projects Completed' }, { end: GEO_STATS.yearsInBusiness, suffix: '+', label: 'Years Experience' }, { end: 4.8, suffix: '★', label: 'Google Rating', isDecimal: true }, { end: 100, suffix: '%', label: 'Licensed & Insured' }].map((stat, i) => (
                                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="hardscapeStatItem text-center py-8 sm:py-10">
                                     <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
                                         {stat.isDecimal ? `${stat.end}${stat.suffix}` : <CountUp end={stat.end} suffix={stat.suffix} />}
@@ -176,6 +186,13 @@ export default function Hardscape() {
                     </div>
                 </section>
 
+                {/* ── SERVICE SUMMARY (GEO) ── */}
+                <ServiceSummaryBox
+                    problem="Cracking concrete, uneven pavers, poor drainage, and outdated outdoor spaces requiring professional hardscape construction."
+                    solution="Professional paver installation, concrete work, retaining walls, and proper base prep. Licensed C-27 contractor with drainage-first construction and warranty-backed workmanship."
+                    serviceArea="San Gabriel Valley: Covina, Glendora, San Dimas, Pasadena, West Covina, Diamond Bar, La Verne, Walnut, Pomona, and surrounding cities."
+                />
+
                 {/* ── SECTION A: PAVERS ── */}
                 <section className="hardscapePavers py-20 sm:py-28 bg-white">
                     <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
@@ -183,16 +200,16 @@ export default function Hardscape() {
                             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
                                 <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Paver Installation</span>
                                 <h2 className="hardscapePaversTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2 mb-5">Professional Paver Installation</h2>
-                                <p className="text-[#6b6560] text-base mb-4 leading-relaxed">Our paver installations are built to last — proper excavation, layered base prep, and tight craftsmanship on every project. We specialize in transforming outdoor spaces with premium interlocking pavers that resist cracking and shifting over time.</p>
+                                <p className="text-[#6b6560] text-base mb-4 leading-relaxed">We have installed over {GEO_STATS.projectsCompleted} custom paver patios, driveways, and walkways in the San Gabriel Valley. Our paver installations are built to last — proper excavation, layered base prep, and tight craftsmanship on every project. Premium interlocking pavers that resist cracking and shifting over time.</p>
                                 <p className="text-[#6b6560] text-base mb-6 leading-relaxed">Whether you're looking to upgrade your driveway for maximum curb appeal, create a stunning backyard patio for entertaining, or design elegant walkways that connect your outdoor living areas, our team ensures a flawless finish. We offer a wide range of colors, textures, and patterns to perfectly match your home's architectural style.</p>
-                                <ul className="hardscapePaversList space-y-2.5 mb-8">
+                                <dl className="hardscapePaversList space-y-2.5 mb-8">
                                     {paverSteps.map((step, i) => (
-                                        <li key={i} className="flex items-start gap-2.5 text-sm text-[#4a4540]">
-                                            <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" />
-                                            <span>{step}</span>
-                                        </li>
+                                        <div key={i} className="flex items-start gap-2.5 text-sm text-[#4a4540]">
+                                            <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" aria-hidden />
+                                            <div><dt className="sr-only">Step {i + 1}</dt><dd className="m-0">{step}</dd></div>
+                                        </div>
                                     ))}
-                                </ul>
+                                </dl>
                                 <div className="hardscapePaversCallouts flex flex-wrap gap-2">
                                     {paverCallouts.map((c, i) => (
                                         <span key={i} className="text-xs bg-[#c45d2c]/10 text-[#c45d2c] px-3 py-1.5 rounded-md font-semibold">{c}</span>
@@ -227,14 +244,14 @@ export default function Hardscape() {
                                 <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Concrete</span>
                                 <h2 className="hardscapeConcreteTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2 mb-5">Concrete Installation & Finishes</h2>
                                 <p className="text-[#6b6560] text-base mb-6 leading-relaxed">From demolition to final finish — broom, smooth, stamped, or colored — we deliver clean, durable concrete work.</p>
-                                <ul className="hardscapeConcreteList space-y-2.5 mb-8">
+                                <dl className="hardscapeConcreteList space-y-2.5 mb-8">
                                     {concreteSteps.map((step, i) => (
-                                        <li key={i} className="flex items-start gap-2.5 text-sm text-[#4a4540]">
-                                            <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" />
-                                            <span>{step}</span>
-                                        </li>
+                                        <div key={i} className="flex items-start gap-2.5 text-sm text-[#4a4540]">
+                                            <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" aria-hidden />
+                                            <div><dt className="sr-only">Step {i + 1}</dt><dd className="m-0">{step}</dd></div>
+                                        </div>
                                     ))}
-                                </ul>
+                                </dl>
                                 <div className="hardscapeConcreteCallouts flex flex-wrap gap-2">
                                     {concreteCallouts.map((c, i) => (
                                         <span key={i} className="text-xs bg-[#2d5a27]/10 text-[#2d5a27] px-3 py-1.5 rounded-md font-semibold">{c}</span>
@@ -253,14 +270,14 @@ export default function Hardscape() {
                                 <span className="text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">Retaining Walls</span>
                                 <h2 className="hardscapeRetainingTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2 mb-5">Retaining Wall Construction</h2>
                                 <p className="text-[#6b6560] text-base mb-6 leading-relaxed">Engineered for slope control and long-term stability — drainage, reinforcement, and proper backfill included on every build.</p>
-                                <ul className="hardscapeRetainingList space-y-2.5 mb-8">
+                                <dl className="hardscapeRetainingList space-y-2.5 mb-8">
                                     {retainingSteps.map((step, i) => (
-                                        <li key={i} className="flex items-start gap-2.5 text-sm text-[#4a4540]">
-                                            <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" />
-                                            <span>{step}</span>
-                                        </li>
+                                        <div key={i} className="flex items-start gap-2.5 text-sm text-[#4a4540]">
+                                            <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" aria-hidden />
+                                            <div><dt className="sr-only">Step {i + 1}</dt><dd className="m-0">{step}</dd></div>
+                                        </div>
                                     ))}
-                                </ul>
+                                </dl>
                                 <div className="hardscapeRetainingTypes flex flex-wrap gap-2">
                                     {retainingTypes.map((t, i) => (
                                         <span key={i} className="text-xs bg-[#b8945a]/10 text-[#b8945a] px-3 py-1.5 rounded-md font-semibold">{t}</span>
@@ -361,6 +378,25 @@ export default function Hardscape() {
                                 );
                             })}
                         </div>
+                    </div>
+                </section>
+
+                {/* ── FAQ (AEO) ── */}
+                <section id="faq" className="hardscapeFaq py-20 sm:py-28 bg-white" aria-labelledby="hardscape-faq-heading">
+                    <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-12">
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+                            <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">FAQ</span>
+                            <h2 id="hardscape-faq-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Common Hardscape Questions</h2>
+                        </motion.div>
+                        <dl className="space-y-4">
+                            {GEO_FAQS.hardscape.map((faq, idx) => (
+                                <motion.div key={idx} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.05 }}
+                                    className="bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/30 transition-colors">
+                                    <dt className="text-base font-bold text-[#1a1a1a] mb-2">{faq.q}</dt>
+                                    <dd className="text-[#6b6560] text-sm leading-relaxed m-0">{faq.a}</dd>
+                                </motion.div>
+                            ))}
+                        </dl>
                     </div>
                 </section>
 

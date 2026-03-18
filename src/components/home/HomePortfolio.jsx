@@ -9,7 +9,7 @@ export default function HomePortfolio({ projects, onCtaClick }) {
     const heights = ['h-52', 'h-72', 'h-60', 'h-80', 'h-64', 'h-56', 'h-72', 'h-60'];
 
     return (
-        <section id="work" className="portfolioSection py-20 sm:py-28 bg-white">
+        <section id="work" className="portfolioSection py-20 sm:py-28 bg-white" aria-labelledby="portfolio-heading">
             <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
                 {/* Header */}
                 <motion.div
@@ -23,7 +23,7 @@ export default function HomePortfolio({ projects, onCtaClick }) {
                         <span className="portfolioLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">
                             Our Work
                         </span>
-                        <h2 className="portfolioTitle text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">
+                        <h2 id="portfolio-heading" className="portfolioTitle text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">
                             Recent Projects
                         </h2>
                     </div>

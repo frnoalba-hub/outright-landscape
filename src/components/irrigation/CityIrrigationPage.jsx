@@ -28,11 +28,14 @@ function CountUp({ end, duration = 1500, suffix = '' }) {
 import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
+import { getCityGeo, GEO_QUOTES, GEO_STATS } from '@/schemas/geo-schemas';
+import AttributedQuote from '@/components/AttributedQuote';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import FAQSchema from '@/components/FAQSchema';
 import ContactForm from '@/components/ContactForm';
+import ServiceSummaryBox from '@/components/ServiceSummaryBox';
 import HeroReviews from '@/components/home/HeroReviews';
-import { getGoogleReviews } from '@/functions/getGoogleReviews';
+import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 
 const galleryImages = [
@@ -50,7 +53,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
     const { data: reviewsData } = useQuery({
         queryKey: ['googleReviews'],
         queryFn: async () => {
-            const response = await getGoogleReviews({});
+            const response = await base44.functions.invoke('getGoogleReviews', {});
             return response.data;
         },
         staleTime: 1000 * 60 * 60,
@@ -158,7 +161,8 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
     return (
         <div className="cityIrrigationWrapper bg-white">
             <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl}
-                ogImage="/images/01c14d800_unnamed2-Copy.jpg"
+                ogImage="https://outrightlandscape.com/images/01c14d800_unnamed2-Copy.jpg"
+                geoMeta={getCityGeo(cityName)}
                 keywords={`sprinkler installation ${cityName}, sprinkler repair ${cityName}, irrigation repair ${cityName}, drip irrigation ${cityName}, sprinkler valve repair ${cityName}`} />
             <BreadcrumbSchema items={breadcrumbItems} />
             {faqs.length > 0 && <FAQSchema faqs={faqs} cityName={cityName} />}
@@ -183,10 +187,13 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                             <span className="font-light">& Repair</span>
                         </h1>
                         <p className="cityIrrigationHeroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
-                            Expert sprinkler installation, repair, valve service & drip irrigation for {cityName} homes and businesses. Same-day repair available.
+                            {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ sprinkler systems installed and repaired in {cityName} and the San Gabriel Valley. Same-day repair available.
                         </p>
+                        <div className="cityIrrigationHeroQuote hidden sm:block py-1">
+                            <AttributedQuote {...GEO_QUOTES.irrigation} compact />
+                        </div>
                         <div className="cityIrrigationHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                            {['CSLB #1073845', '10+ Years', '4.8★ Google'].map(t => (
+                            {['CSLB #1073845', `${GEO_STATS.yearsInBusiness} Years`, '4.8★ Google'].map(t => (
                                 <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />{t}</span>
                             ))}
                         </div>
@@ -217,7 +224,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
             <section className="cityIrrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                        {[{ end: 250, suffix: '+', l: 'Systems Installed & Repaired' }, { raw: '24hr', l: 'Response Time' }, { end: 10, suffix: '+', l: 'Years Experience' }, { end: 100, suffix: '%', l: 'Licensed & Insured' }].map((s, i) => (
+                        {[{ end: GEO_STATS.projectsCompleted, suffix: '+', l: 'Systems Installed & Repaired' }, { raw: '24hr', l: 'Response Time' }, { end: GEO_STATS.yearsInBusiness, suffix: '+', l: 'Years Experience' }, { end: 100, suffix: '%', l: 'Licensed & Insured' }].map((s, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="cityIrrigationStatItem text-center py-8 sm:py-10">
                                 <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
                                     {s.raw ? s.raw : <CountUp end={s.end} suffix={s.suffix} />}
@@ -228,6 +235,13 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                     </div>
                 </div>
             </section>
+
+            {/* ── SERVICE SUMMARY (GEO) ── */}
+            <ServiceSummaryBox
+                problem={`Broken sprinkler heads, leaking valves, controller issues, and water waste affecting lawn health in ${cityName}.`}
+                solution={`Expert sprinkler repair, valve service, drip irrigation, and same-day emergency service in ${cityName}. Licensed C-27 contractor.`}
+                serviceArea={`${cityName}, CA and the San Gabriel Valley.`}
+            />
 
             {/* ── SERVICES ── */}
             <section className="cityIrrigationServices py-20 sm:py-28 bg-white">
@@ -338,25 +352,25 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                         <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">How It Works</span>
                         <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">Our Process</h2>
                     </motion.div>
-                    <div className="relative">
-                        <div className="hidden sm:block absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#2d5a27] via-[#c45d2c] to-[#b8945a]" />
+                    <dl className="relative">
+                        <div className="hidden sm:block absolute left-[23px] top-0 bottom-0 w-px bg-gradient-to-b from-[#2d5a27] via-[#c45d2c] to-[#b8945a]" aria-hidden />
                         <div className="space-y-12">
                             {process.map((step, idx) => (
                                 <motion.div key={idx} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.12 }}
                                     className="cityIrrigationProcessStep flex gap-6 sm:gap-8 items-start">
                                     <div className="relative flex-shrink-0">
                                         <div className="w-12 h-12 rounded-full bg-[#2a2a2a] border-2 border-[#c45d2c]/50 flex items-center justify-center z-10 relative">
-                                            <span className="text-[#c45d2c] font-bold text-sm">{String(idx + 1).padStart(2, '0')}</span>
+                                            <span className="text-[#c45d2c] font-bold text-sm" aria-hidden>{String(idx + 1).padStart(2, '0')}</span>
                                         </div>
                                     </div>
                                     <div className="flex-1 pb-2">
-                                        <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{step.title}</h3>
-                                        <p className="text-[#8a8478] text-sm leading-relaxed max-w-lg">{step.desc}</p>
+                                        <dt className="text-lg sm:text-xl font-bold text-white mb-2">{step.title}</dt>
+                                        <dd className="text-[#8a8478] text-sm leading-relaxed max-w-lg m-0">{step.desc}</dd>
                                     </div>
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
+                    </dl>
                 </div>
             </section>
 
@@ -371,15 +385,15 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                         <Clock className="w-10 h-10 text-[#c45d2c] mx-auto mb-4" />
                         <h3 className="text-xl font-bold text-white mb-3">Free Estimates — No Hidden Fees</h3>
                         <p className="text-[#8a8478] mb-8 text-sm">Most sprinkler repairs are completed same-day. New installations typically take 1–3 days depending on property size.</p>
-                        <div className="grid md:grid-cols-3 gap-4">
-                            {[{ t: 'No Trip Charge', d: 'For service calls' }, { t: 'Warranty Included', d: 'On all work' }, { t: 'Fast Response', d: 'Same or next day' }].map((p, i) => (
+                        <dl className="grid md:grid-cols-3 gap-4">
+                            {[{ term: 'No Trip Charge', def: 'For service calls' }, { term: 'Warranty Included', def: 'On all work' }, { term: 'Fast Response', def: 'Same or next day' }].map((p, i) => (
                                 <div key={i} className="cityIrrigationPricingCard bg-[#242424] border border-[#333] p-4 rounded-xl">
-                                    <CheckCircle2 className="w-5 h-5 text-[#4a8c3f] mb-2" />
-                                    <p className="font-bold text-white text-sm">{p.t}</p>
-                                    <p className="text-xs text-[#8a8478]">{p.d}</p>
+                                    <CheckCircle2 className="w-5 h-5 text-[#4a8c3f] mb-2" aria-hidden />
+                                    <dt className="font-bold text-white text-sm mb-1">{p.term}</dt>
+                                    <dd className="text-xs text-[#8a8478] m-0">{p.def}</dd>
                                 </div>
                             ))}
-                        </div>
+                        </dl>
                     </div>
                 </div>
             </section>

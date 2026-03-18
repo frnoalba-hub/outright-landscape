@@ -3,12 +3,13 @@ import { Button } from '@/components/ui/button';
 import { Phone, MapPin, CheckCircle2, ArrowRight, Sprout, Droplets, Hammer, Award, ArrowDown } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 import SEO from '@/components/SEO';
+import { getCityGeo, GEO_QUOTES, GEO_STATS } from '@/schemas/geo-schemas';
+import AttributedQuote from '@/components/AttributedQuote';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import FAQSchema from '@/components/FAQSchema';
 import ContactForm from '@/components/ContactForm';
 import HeroReviews from '@/components/home/HeroReviews';
-import { getGoogleReviews } from '@/functions/getGoogleReviews';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
@@ -67,7 +68,7 @@ export default function LocationPage({ citySlug }) {
     const { data: reviewsData } = useQuery({
         queryKey: ['googleReviews'],
         queryFn: async () => {
-            const response = await getGoogleReviews({});
+            const response = await base44.functions.invoke('getGoogleReviews', {});
             return response.data;
         },
         staleTime: 1000 * 60 * 60,
@@ -129,7 +130,7 @@ export default function LocationPage({ citySlug }) {
 
     return (
         <div className="cityPageWrapper bg-white">
-            <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl} ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png" keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`} />
+            <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl} ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png" geoMeta={getCityGeo(name)} keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`} />
             <BreadcrumbSchema items={breadcrumbItems} />
             <LocalBusinessSchema cityName={name} citySlug={slug} services={services} />
             {faqs && faqs.length > 0 && <FAQSchema faqs={faqs} cityName={name} />}
@@ -162,11 +163,15 @@ export default function LocationPage({ citySlug }) {
                         </h1>
 
                         <p className="cityHeroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
-                            Licensed C-27 landscape contractor serving {name} & the San Gabriel Valley
+                            {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ projects completed in {name} and the San Gabriel Valley. Licensed C-27 contractor.
                         </p>
 
+                        <div className="cityHeroQuote py-1">
+                            <AttributedQuote {...GEO_QUOTES.default} compact />
+                        </div>
+
                         <div className="cityHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                            {['CSLB #1073845', '10+ Years', '4.8★ Google'].map((t) => (
+                            {['CSLB #1073845', `${GEO_STATS.yearsInBusiness} Years`, '4.8★ Google'].map((t) => (
                                 <span key={t} className="flex items-center gap-1.5">
                                     <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />
                                     {t}
@@ -272,8 +277,8 @@ export default function LocationPage({ citySlug }) {
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#333]">
                         {[
-                            { end: 250, suffix: '+', label: "Projects Completed" },
-                            { end: 10, suffix: '+', label: "Years Experience" },
+                            { end: GEO_STATS.projectsCompleted, suffix: '+', label: "Projects Completed" },
+                            { end: GEO_STATS.yearsInBusiness, suffix: '+', label: "Years Experience" },
                             { end: 4.8, suffix: '★', label: "Google Rating", isDecimal: true },
                             { end: 100, suffix: '%', label: "Licensed & Insured" }
                         ].map((stat, idx) => (

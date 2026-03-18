@@ -32,8 +32,9 @@ function CountUp({ end, duration = 1500, suffix = '' }) {
     return <span ref={ref}>{count}{suffix}</span>;
 }
 
-import SEO from '@/components/SEO';
-import ServiceSchema from '@/components/ServiceSchema';
+import SEOHead from '@/components/SEOHead';
+import { SERVICE_SCHEMAS, GEO_STATS, GEO_FAQS } from '@/schemas/geo-schemas';
+import FAQSchema from '@/components/FAQSchema';
 
 import ContactForm from '@/components/ContactForm';
 
@@ -42,27 +43,26 @@ import HomeServices from '@/components/home/HomeServices';
 import HomeProcess from '@/components/home/HomeProcess';
 import HomePortfolio from '@/components/home/HomePortfolio';
 import GoogleReviews from '@/components/GoogleReviews';
-import { getGoogleReviews } from '@/functions/getGoogleReviews';
 
 /* ── static data ── */
 const services = [
     {
         title: 'Professional Irrigation Systems',
-        description: 'Expert irrigation and sprinkler system installation for efficient watering and water conservation.',
+        description: `Over ${GEO_STATS.projectsCompleted}+ sprinkler systems installed and repaired in Covina, Glendora, San Dimas. Same-day repair, drip systems, smart controllers. Licensed C-27 contractor.`,
         image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/781c79e8b_generated_image.png',
         icon: Waves,
         features: ['Drip Systems', 'Smart Controllers', 'Water-Efficient Design'],
     },
     {
         title: 'Premium Turf & Sod Installation',
-        description: 'Lush, healthy lawns with premium Marathon tall fescue and hybrid Bermuda grass varieties.',
+        description: 'Premium Marathon tall fescue and hybrid Bermuda grass. Hundreds of lawns installed across the San Gabriel Valley. Lush, healthy results backed by proper soil prep.',
         image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/f8652a9f2_generated_image.png',
         icon: Leaf,
         features: ['Premium Sod', 'Artificial Turf', 'Lawn Renovation'],
     },
     {
         title: 'Hardscaping & Paver Installation',
-        description: 'Beautiful patios, walkways, and custom hardscape features built to last with expert craftsmanship.',
+        description: `Over ${GEO_STATS.projectsCompleted} paver patios, walkways, and driveways installed in the San Gabriel Valley. Expert craftsmanship, proper base prep, and warranty-backed workmanship.`,
         image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/03c141f79_generated_image.png',
         icon: Hammer,
         features: ['Paver Patios', 'Walkways', 'Retaining Walls'],
@@ -89,10 +89,10 @@ const projects = [
 
 const reasons = [
     { icon: Shield, title: 'Licensed & Insured', desc: 'C-27 License CSLB #1073845 — full liability coverage for your peace of mind.' },
-    { icon: Zap, title: 'Expert Craftsmen', desc: 'Skilled professionals with decades of combined hands-on experience.' },
+    { icon: Zap, title: 'Expert Craftsmen', desc: `Skilled professionals with ${GEO_STATS.yearsExperience}+ years of hands-on landscape and hardscape experience in the San Gabriel Valley.` },
     { icon: Star, title: 'Premium Materials', desc: 'We source only top-grade products for lasting beauty and durability.' },
     { icon: Target, title: 'Free Estimates', desc: 'Transparent pricing with no hidden fees — know exactly what you\'re paying.' },
-    { icon: Star, title: '4.8★ Rated', desc: '250+ verified 5-star reviews on Google, Angi, and Houzz from happy homeowners.', isRating: true },
+    { icon: Star, title: '4.8★ Rated', desc: 'Highly rated on Google, Angi, and Houzz by homeowners across Covina, Glendora, San Dimas, and the San Gabriel Valley.', isRating: true },
 ];
 
 /* ── component ── */
@@ -106,7 +106,7 @@ export default function Home() {
     const { data: reviewsData } = useQuery({
         queryKey: ['googleReviews'],
         queryFn: async () => {
-            const response = await getGoogleReviews({});
+            const response = await base44.functions.invoke('getGoogleReviews', {});
             return response.data;
         },
         staleTime: 1000 * 60 * 60,
@@ -131,20 +131,18 @@ export default function Home() {
     };
 
     return (
-        <div className="homePageWrapper bg-white">
+        <div className="homePageWrapper bg-white" role="document">
             {/* SEO & Schemas */}
-            <SEO
+            <SEOHead
                 title="Outright Landscape | Licensed Covina Landscaping Contractor - Pavers, Sod & Irrigation"
                 description="Professional landscape contractor in Covina serving San Gabriel Valley. Expert paver installation, sod, irrigation systems & hardscaping. Licensed C-27 #1073845. 10+ years experience. Free estimates. Call (626) 343-6028."
-                keywords="landscape contractor covina, licensed landscaping covina, paver installation covina, sod installation covina, irrigation systems covina, hardscape covina, landscaping san gabriel valley, C-27 contractor"
                 canonicalUrl="https://outrightlandscape.com"
+                keywords="landscape contractor covina, licensed landscaping covina, paver installation covina, sod installation covina, irrigation systems covina, hardscape covina, landscaping san gabriel valley, C-27 contractor"
                 ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png"
                 ogType="website"
+                schemaData={[SERVICE_SCHEMAS['paver-installation'], SERVICE_SCHEMAS['turf-installation'], SERVICE_SCHEMAS['irrigation-systems'], SERVICE_SCHEMAS.hardscaping]}
             />
-            <ServiceSchema serviceType="paver-installation" />
-            <ServiceSchema serviceType="turf-installation" />
-            <ServiceSchema serviceType="irrigation-systems" />
-            <ServiceSchema serviceType="hardscaping" />
+            <FAQSchema faqs={GEO_FAQS.home} cityName="home" />
 
             {/* ── 1. HERO ── */}
             <HomeHero 
@@ -156,12 +154,12 @@ export default function Home() {
             />
 
             {/* ── 2. STATS BAR ── */}
-            <section className="statsSection py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
+            <section className="statsSection py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]" aria-label="Company statistics">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
                         {[
-                            { end: 10, suffix: '+', label: 'Years Experience' },
-                            { end: reviewsData?.totalReviewCount || 250, suffix: '+', label: 'Reviews Posted' },
+                            { end: GEO_STATS.yearsInBusiness, suffix: '+', label: 'Years in Business' },
+                            { end: GEO_STATS.projectsCompleted, suffix: '+', label: 'Projects Completed' },
                             { end: 4.8, suffix: '★', label: 'Google Rating', isDecimal: true },
                             { end: 100, suffix: '%', label: 'Licensed & Insured' },
                         ].map((stat, i) => (
@@ -195,7 +193,7 @@ export default function Home() {
             <HomePortfolio projects={projects} onCtaClick={() => handleQuoteClick('projects_section')} />
 
             {/* ── 7. SERVICE AREAS ── */}
-            <section id="service-areas" className="serviceAreasSection py-20 sm:py-28 bg-[#f5f0e8]">
+            <section id="service-areas" className="serviceAreasSection py-20 sm:py-28 bg-[#f5f0e8]" aria-labelledby="service-areas-heading">
                 <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-12">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -207,7 +205,7 @@ export default function Home() {
                         <span className="areasLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">
                             Service Areas
                         </span>
-                        <h2 className="areasTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">
+                        <h2 id="service-areas-heading" className="areasTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">
                             Serving the San Gabriel Valley
                         </h2>
                         <p className="areasSubtitle mt-3 text-[#6b6560] text-base">
@@ -236,7 +234,7 @@ export default function Home() {
             </section>
 
             {/* ── 8. WHY CHOOSE US ── */}
-            <section className="whyChooseSection py-20 sm:py-28 bg-[#1a1a1a] relative overflow-hidden">
+            <section className="whyChooseSection py-20 sm:py-28 bg-[#1a1a1a] relative overflow-hidden" aria-labelledby="why-choose-heading">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -249,7 +247,7 @@ export default function Home() {
                             <span className="whyLabel text-[#b8945a] uppercase tracking-[0.2em] text-xs font-bold">
                                 Why Choose Us
                             </span>
-                            <h2 className="whyTitle text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">
+                            <h2 id="why-choose-heading" className="whyTitle text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">
                                 Built on Trust & Quality
                             </h2>
                         </div>
@@ -283,7 +281,26 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ── 9. CONTACT FORM ── */}
+            {/* ── 9. FAQ (AEO: voice & "near me") ── */}
+            <section id="faq" className="homeFaq py-20 sm:py-28 bg-[#f5f0e8]" aria-labelledby="faq-heading">
+                <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+                        <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">FAQ</span>
+                        <h2 id="faq-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Common Questions</h2>
+                    </motion.div>
+                    <dl className="space-y-4">
+                        {GEO_FAQS.home.map((faq, idx) => (
+                            <motion.div key={idx} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.05 }}
+                                className="bg-white p-6 rounded-xl border border-[#e0d8cc] hover:border-[#c45d2c]/30 transition-colors">
+                                <dt className="text-base font-bold text-[#1a1a1a] mb-2">{faq.q}</dt>
+                                <dd className="text-[#6b6560] text-sm leading-relaxed m-0">{faq.a}</dd>
+                            </motion.div>
+                        ))}
+                    </dl>
+                </div>
+            </section>
+
+            {/* ── 10. CONTACT FORM ── */}
             <ContactForm cityName="Covina & San Gabriel Valley" />
         </div>
     );

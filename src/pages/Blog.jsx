@@ -3,7 +3,7 @@ import { Loader2, Search } from "lucide-react";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import BlogCard from "@/components/blog/BlogCard";
 import SharedHero from "@/components/SharedHero";
-import SEO from "@/components/SEO";
+import SEOHead from "@/components/SEOHead";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -24,10 +24,11 @@ export default function Blog() {
 
     return (
         <div className="bg-white min-h-screen">
-             <SEO 
+             <SEOHead
                 title="Landscaping Tips & News | Outright Landscape Blog"
                 description="Expert advice on lawn care, hardscaping trends, irrigation tips, and landscaping news for the San Gabriel Valley."
-                canonicalUrl="https://outrightlandscape.com/blog"
+                canonicalUrl="https://outrightlandscape.com/Blog"
+                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png"
             />
 
             <SharedHero 
@@ -37,9 +38,9 @@ export default function Blog() {
                 showButtons={false}
             />
 
-            <section className="py-16">
+            <section className="py-16" aria-labelledby="blog-posts-heading">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    
+                    <h2 id="blog-posts-heading" className="sr-only">Landscaping Tips & Articles</h2>
                     {/* Search & Filter Bar */}
                     <div className="flex flex-col md:flex-row gap-4 justify-between items-center mb-12">
                         <div className="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto no-scrollbar">
@@ -78,7 +79,7 @@ export default function Blog() {
                         </div>
                     ) : (
                         <div className="text-center py-20 bg-gray-50 rounded-2xl">
-                            <h3 className="text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
+                            <p className="text-xl font-semibold text-gray-900 mb-2">No articles found</p>
                             <p className="text-gray-500">Try adjusting your search or category filter.</p>
                         </div>
                     )}

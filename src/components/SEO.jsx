@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 
+/** Optional geo meta for city pages. When provided, overrides global Covina defaults. */
 export default function SEO({ 
   title: defaultTitle, 
   description: defaultDescription, 
   keywords: defaultKeywords, 
   canonicalUrl, 
   ogImage,
-  ogType = "website"
+  ogType = "website",
+  geoMeta = null,
 }) {
   const title = defaultTitle;
   const description = defaultDescription;
@@ -116,6 +118,26 @@ export default function SEO({
       }
     });
 
+    // Local SEO geolocation meta — city pages override with city-specific geo
+    if (geoMeta) {
+      const geoTags = [
+        { name: 'geo.region', content: geoMeta.region },
+        { name: 'geo.placename', content: geoMeta.placename },
+        { name: 'geo.position', content: geoMeta.position },
+        { name: 'ICBM', content: geoMeta.icbm },
+      ];
+      geoTags.forEach((tag) => {
+        let el = document.querySelector(`meta[name="${tag.name}"]`);
+        if (el) el.setAttribute('content', tag.content);
+        else {
+          el = document.createElement('meta');
+          el.setAttribute('name', tag.name);
+          el.setAttribute('content', tag.content);
+          document.head.appendChild(el);
+        }
+      });
+    }
+
     // Twitter Card Tags
     const twitterTags = [
       { name: "twitter:card", content: "summary_large_image" },
@@ -150,7 +172,7 @@ export default function SEO({
         // Ignore cleanup errors
       }
     };
-  }, [title, description, keywords, canonicalUrl, ogImage, ogType]);
+  }, [title, description, keywords, canonicalUrl, ogImage, ogType, geoMeta]);
 
   return null;
 }

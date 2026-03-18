@@ -3,10 +3,12 @@ import { Button } from '@/components/ui/button';
 import { Phone, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import HeroReviews from './HeroReviews';
+import AttributedQuote from '@/components/AttributedQuote';
+import { GEO_QUOTES, GEO_STATS } from '@/schemas/geo-schemas';
 
 export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalReviewCount, averageRating }) {
     return (
-        <section className="homeHero relative min-h-[85vh] sm:min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
+        <section className="homeHero relative min-h-[85vh] sm:min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]" aria-labelledby="home-hero-heading">
             {/* Background image — right side on desktop, full on mobile */}
             <div className="absolute inset-0 sm:left-[35%] lg:left-[40%]">
                 <img
@@ -40,7 +42,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     </div>
 
                     {/* Headline */}
-                    <h1 className="heroHeadline text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.75rem] xl:text-[5.5rem] text-white leading-[1.05] tracking-tight">
+                    <h1 id="home-hero-heading" className="heroHeadline text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.75rem] xl:text-[5.5rem] text-white leading-[1.05] tracking-tight">
                         <span className="font-light">We Build</span>
                         <br />
                         <span className="font-bold text-[#c45d2c]">Landscapes</span>
@@ -54,9 +56,14 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                         La&nbsp;Verne, San&nbsp;Dimas & the entire San Gabriel Valley.
                     </p>
 
-                    {/* Trust badges - compact grid on mobile */}
+                    {/* GEO: Attributed quote for E-E-A-T (KDD '24) */}
+                    <div className="heroQuote hidden sm:block">
+                        <AttributedQuote {...GEO_QUOTES.default} compact />
+                    </div>
+
+                    {/* Trust badges - concrete stats (KDD '24) */}
                     <div className="heroTrustBadges grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm lg:text-base text-[#8a8478]">
-                        {['CSLB #1073845', '10+ Years', '250+ Projects', '4.8★ Google'].map((t) => (
+                        {[`CSLB #1073845`, `${GEO_STATS.yearsInBusiness} Years`, `${GEO_STATS.projectsCompleted}+ Projects`, '4.8★ Google'].map((t) => (
                             <span key={t} className="flex items-center gap-1.5">
                                 <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4 text-[#4a8c3f] flex-shrink-0" />
                                 {t}

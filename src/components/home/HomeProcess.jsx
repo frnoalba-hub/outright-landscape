@@ -25,7 +25,7 @@ const steps = [
 
 export default function HomeProcess() {
     return (
-        <section className="processSection py-20 sm:py-28 bg-[#1a1a1a] relative overflow-hidden">
+        <section className="processSection py-20 sm:py-28 bg-[#1a1a1a] relative overflow-hidden" aria-labelledby="process-heading">
             <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12 relative z-10">
                 {/* Header */}
                 <motion.div
@@ -38,13 +38,13 @@ export default function HomeProcess() {
                     <span className="processLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">
                         How It Works
                     </span>
-                    <h2 className="processTitle text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">
+                    <h2 id="process-heading" className="processTitle text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">
                         Three Simple Steps
                     </h2>
                 </motion.div>
 
-                {/* Steps — horizontal on desktop, vertical on mobile */}
-                <div className="processSteps grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative">
+                {/* Steps — semantic dl/dt/dd for GEO (KDD '24: AI parsers extract dl directly) */}
+                <dl className="processSteps grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 relative" aria-label="Our process">
                     {/* Horizontal connector line (desktop only) */}
                     <div className="processConnector hidden md:block absolute top-[38px] left-[calc(16.67%+24px)] right-[calc(16.67%+24px)] h-px bg-gradient-to-r from-[#2d5a27] via-[#c45d2c] to-[#b8945a]" />
 
@@ -64,21 +64,21 @@ export default function HomeProcess() {
                                 </div>
                             </div>
 
-                            {/* Content */}
+                            {/* Content — semantic dt/dd */}
                             <div className="processStepContent flex-1">
                                 <div className="processStepIcon w-10 h-10 bg-[#2d5a27]/15 rounded-lg flex items-center justify-center mb-3 md:mx-auto">
                                     <step.icon className="w-5 h-5 text-[#4a8c3f]" aria-hidden="true" />
                                 </div>
-                                <h3 className="processStepTitle text-xl font-bold text-white mb-2">
+                                <dt className="processStepTitle text-xl font-bold text-white mb-2">
                                     {step.title}
-                                </h3>
-                                <p className="processStepDesc text-[#8a8478] text-sm leading-relaxed">
+                                </dt>
+                                <dd className="processStepDesc text-[#8a8478] text-sm leading-relaxed m-0">
                                     {step.description}
-                                </p>
+                                </dd>
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </dl>
             </div>
         </section>
     );

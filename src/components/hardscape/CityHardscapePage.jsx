@@ -3,11 +3,14 @@ import { Phone, CheckCircle2, ArrowRight, Hammer, Layers, MapPin, Star } from 'l
 import { Button } from "@/components/ui/button";
 import { motion } from 'framer-motion';
 import SEO from '@/components/SEO';
+import { getCityGeo, GEO_QUOTES, GEO_STATS } from '@/schemas/geo-schemas';
+import AttributedQuote from '@/components/AttributedQuote';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import FAQSchema from '@/components/FAQSchema';
 import ContactForm from '@/components/ContactForm';
+import ServiceSummaryBox from '@/components/ServiceSummaryBox';
 import HeroReviews from '@/components/home/HeroReviews';
-import { getGoogleReviews } from '@/functions/getGoogleReviews';
+import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 
 function CountUp({ end, duration = 1500, suffix = '' }) {
@@ -46,7 +49,7 @@ export default function CityHardscapePage({ cityName, citySlug }) {
     const { data: reviewsData } = useQuery({
         queryKey: ['googleReviews'],
         queryFn: async () => {
-            const response = await getGoogleReviews({});
+            const response = await base44.functions.invoke('getGoogleReviews', {});
             return response.data;
         },
         staleTime: 1000 * 60 * 60,
@@ -101,6 +104,7 @@ export default function CityHardscapePage({ cityName, citySlug }) {
         <div className="cityHardscapeWrapper bg-white">
             <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl}
                 ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/3e9548aed_generated_image.png"
+                geoMeta={getCityGeo(cityName)}
                 keywords={`paver installation ${cityName}, hardscape ${cityName}, concrete ${cityName}, retaining walls ${cityName}, hardscape contractor ${cityName}`} />
             <BreadcrumbSchema items={breadcrumbItems} />
             {faqs.length > 0 && <FAQSchema faqs={faqs} cityName={cityName} />}
@@ -127,10 +131,13 @@ export default function CityHardscapePage({ cityName, citySlug }) {
                                 <span className="font-light">Paver Installation</span>
                             </h1>
                             <p className="cityHardscapeHeroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
-                                Custom patios, driveways, concrete, and retaining walls built for durability. Licensed C-27 contractor serving {cityName}.
+                                {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ paver patios, driveways, and retaining walls installed in {cityName} and the San Gabriel Valley. Licensed C-27 contractor.
                             </p>
+                            <div className="cityHardscapeHeroQuote py-1">
+                                <AttributedQuote {...GEO_QUOTES.hardscape} compact />
+                            </div>
                             <div className="cityHardscapeHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                                {['CSLB #1073845', '10+ Years', '4.8★ Google'].map(t => (
+                                {['CSLB #1073845', `${GEO_STATS.yearsInBusiness} Years`, '4.8★ Google'].map(t => (
                                     <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />{t}</span>
                                 ))}
                             </div>
@@ -159,7 +166,7 @@ export default function CityHardscapePage({ cityName, citySlug }) {
             <section className="cityHardscapeStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                        {[{ end: 250, suffix: '+', l: 'Projects Completed' }, { end: 10, suffix: '+', l: 'Years Experience' }, { end: 4.8, suffix: '★', l: 'Google Rating', isDecimal: true }, { end: 100, suffix: '%', l: 'Licensed & Insured' }].map((s, i) => (
+                        {[{ end: GEO_STATS.projectsCompleted, suffix: '+', l: 'Projects Completed' }, { end: GEO_STATS.yearsInBusiness, suffix: '+', l: 'Years Experience' }, { end: 4.8, suffix: '★', l: 'Google Rating', isDecimal: true }, { end: 100, suffix: '%', l: 'Licensed & Insured' }].map((s, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="cityHardscapeStatItem text-center py-8 sm:py-10">
                                 <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
                                     {s.isDecimal ? `${s.end}${s.suffix}` : <CountUp end={s.end} suffix={s.suffix} />}
@@ -170,6 +177,13 @@ export default function CityHardscapePage({ cityName, citySlug }) {
                     </div>
                 </div>
             </section>
+
+            {/* ── SERVICE SUMMARY (GEO) ── */}
+            <ServiceSummaryBox
+                problem={`Cracking concrete, uneven pavers, poor drainage, and outdated outdoor spaces in ${cityName} requiring professional hardscape construction.`}
+                solution={`Professional paver installation, concrete work, and retaining walls in ${cityName}. Licensed C-27 contractor with drainage-first construction.`}
+                serviceArea={`${cityName}, CA and the San Gabriel Valley.`}
+            />
 
             {/* ── SERVICES ── */}
             <section className="cityHardscapeServices py-20 sm:py-28 bg-white">
@@ -210,15 +224,15 @@ export default function CityHardscapePage({ cityName, citySlug }) {
                             <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">How We Build It</span>
                             <h2 className="cityHardscapeProcessTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2 mb-5">Our Paver Installation Process</h2>
                             <p className="text-[#6b6560] text-base mb-6 leading-relaxed">Every paver project starts with proper excavation and base prep — no shortcuts. This is how we ensure your {cityName} hardscape lasts for decades.</p>
-                            <ul className="cityHardscapeProcessList space-y-2.5">
+                            <dl className="cityHardscapeProcessList space-y-2.5">
                                 {paverSteps.map((step, i) => (
-                                    <motion.li key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
+                                    <motion.div key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
                                         className="flex items-start gap-2.5 text-sm text-[#4a4540]">
-                                        <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" />
-                                        <span>{step}</span>
-                                    </motion.li>
+                                        <CheckCircle2 className="w-4 h-4 text-[#4a8c3f] mt-0.5 flex-shrink-0" aria-hidden />
+                                        <div><dt className="sr-only">Step {i + 1}</dt><dd className="m-0">{step}</dd></div>
+                                    </motion.div>
                                 ))}
-                            </ul>
+                            </dl>
                         </motion.div>
                         <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
                             className="cityHardscapeProcessImg rounded-2xl overflow-hidden aspect-[4/3] shadow-xl">

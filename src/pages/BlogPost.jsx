@@ -4,7 +4,7 @@ import { Loader2, Calendar, User, Clock, ChevronLeft, Share2 } from "lucide-reac
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { createPageUrl, createBlogPostUrl } from "@/utils";
-import SEO from "@/components/SEO";
+import SEOHead from "@/components/SEOHead";
 import ReactMarkdown from "react-markdown";
 import ContactForm from "@/components/ContactForm";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
@@ -38,12 +38,12 @@ export default function BlogPost() {
 
     return (
         <div className="bg-white min-h-screen pb-20">
-            <SEO 
+            <SEOHead
                 title={`${post.title} | Outright Landscape`}
                 description={post.excerpt}
                 canonicalUrl={`https://outrightlandscape.com/blog/${post.slug}`}
-                ogImage={post.cover_image || post.image_url}
-                type="article"
+                ogImage={post.cover_image || post.image_url || 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png'}
+                ogType="article"
             />
 
             {/* Progress Bar (Optional could be added here) */}

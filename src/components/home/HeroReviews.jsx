@@ -106,7 +106,7 @@ export default function HeroReviews({ reviews = [], totalReviewCount, averageRat
                                 <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-500 fill-yellow-500" />
                             ))}
                         </div>
-                        <span className="text-white/50 text-xs lg:text-sm whitespace-nowrap">{averageRating} ({totalReviewCount})</span>
+                        <span className="text-white/50 text-xs lg:text-sm whitespace-nowrap">{averageRating} ★</span>
                     </div>
                 </div>
                 {totalPages > 1 && (

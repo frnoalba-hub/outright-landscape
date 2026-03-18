@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { base44 } from '@/api/base44Client';
-import { saveContactInquiry } from '@/functions/saveContactInquiry';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -27,7 +26,7 @@ export default function ContactForm({ cityName = "your area" }) {
             try {
                 await base44.entities.ContactInquiry.create(formData);
             } catch {
-                await saveContactInquiry(formData);
+                await base44.functions.invoke('saveContactInquiry', formData);
             }
 
             // Analytics (best-effort)

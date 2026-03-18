@@ -10,7 +10,7 @@ const SERVICE_LINKS = {
 
 export default function HomeServices({ services }) {
     return (
-        <section id="services" className="servicesSection py-20 sm:py-28 bg-[#f5f0e8]">
+        <section id="services" className="servicesSection py-20 sm:py-28 bg-[#f5f0e8]" aria-labelledby="services-heading">
             <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
                 {/* Header */}
                 <motion.div
@@ -24,7 +24,7 @@ export default function HomeServices({ services }) {
                         <span className="sectionLabel text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">
                             What We Do
                         </span>
-                        <h2 className="sectionTitle text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">
+                        <h2 id="services-heading" className="sectionTitle text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">
                             Our Services
                         </h2>
                     </div>

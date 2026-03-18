@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { base44 } from '@/api/base44Client';
-import { saveAppointment } from '@/functions/saveAppointment';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,7 +63,7 @@ export default function BookingForm({ cityName = "your area" }) {
             try {
                 await base44.entities.Appointment.create(appointmentData);
             } catch {
-                await saveAppointment(appointmentData);
+                await base44.functions.invoke('saveAppointment', appointmentData);
             }
 
             // Analytics

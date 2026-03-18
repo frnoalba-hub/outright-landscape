@@ -59,7 +59,7 @@ export default function TestimonialCarousel({ reviews = [], averageRating, total
                             ))}
                         </div>
                         <span className="text-white font-bold text-lg">{averageRating}</span>
-                        <span className="text-[#6b6560] text-sm">based on {totalReviewCount} reviews across Google, Yelp, Angi & Houzz</span>
+                        <span className="text-[#6b6560] text-sm">on Google, Yelp, Angi & Houzz</span>
                     </div>
                 </div>
 

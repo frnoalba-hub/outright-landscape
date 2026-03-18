@@ -3,7 +3,7 @@ import { Phone, Menu, X, Mail, MapPin, Building, Star, Linkedin, Video } from "l
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
-import GlobalSchema from "@/components/GlobalSchema";
+import GlobalLocalBusinessSchema from "@/components/GlobalLocalBusinessSchema";
 import Analytics from "@/components/Analytics";
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
@@ -141,8 +141,8 @@ export default function Layout({ children }) {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <GlobalSchema />
+    <div className="min-h-screen bg-white" role="document">
+      <GlobalLocalBusinessSchema />
       <Analytics />
 
       <style>{`
@@ -179,7 +179,7 @@ export default function Layout({ children }) {
       <header className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled ? 'bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg py-1 sm:py-1.5' : 'bg-[#1a1a1a]/70 backdrop-blur-sm py-2 sm:py-2.5'}`
       }>
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
           <div className="flex items-center justify-between">
             <a
               href={createPageUrl("Home")}
@@ -259,7 +259,7 @@ export default function Layout({ children }) {
                       height="56"
                       loading="lazy"
                       decoding="async" />
-                    <h3 className="text-lg font-bold text-white">Outright Landscape</h3>
+                    <p className="text-lg font-bold text-white">Outright Landscape</p>
                     <p className="text-sm text-[#b8945a] font-medium">(626) 343-6028</p>
                   </div>
 
@@ -295,7 +295,7 @@ export default function Layout({ children }) {
         </nav>
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main className="flex-1" aria-label="Main content">{children}</main>
 
       <footer className="siteFooter bg-[#111] text-white">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-16">
@@ -335,7 +335,8 @@ export default function Layout({ children }) {
               </div>
 
             <div>
-              <h4 className="footerLinksTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Quick Links</h4>
+              <h2 className="footerLinksTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Quick Links</h2>
+              <nav aria-label="Quick links">
               <ul className="space-y-3 text-sm">
                 <li><a href={createPageUrl("Home")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Home</a></li>
                 <li><a href={createPageUrl("Home") + "#services"} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Services</a></li>
@@ -345,10 +346,11 @@ export default function Layout({ children }) {
                 <li><a href={createPageUrl("Home") + "#contact"} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Contact</a></li>
                 <li><a href="https://outrightlandscape.com/api/sitemap" target="_blank" rel="noopener noreferrer" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Sitemap</a></li>
                 </ul>
+              </nav>
             </div>
 
             <div>
-              <h4 className="footerContactTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Contact</h4>
+              <h2 className="footerContactTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Contact</h2>
               <ul className="space-y-3 text-sm text-[#6b6560]">
                 <li><a href="tel:626-343-6028" onClick={() => handlePhoneClick('footer')} className="footerContactLink hover:text-[#c45d2c] transition-colors flex items-center gap-2">
                   <Phone className="w-4 h-4" aria-hidden="true" /> (626) 343-6028
@@ -368,7 +370,8 @@ export default function Layout({ children }) {
             </div>
 
             <div>
-              <h4 className="footerAreasTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Service Areas</h4>
+              <h2 className="footerAreasTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Service Areas</h2>
+              <nav aria-label="Service area cities">
               <div className="grid grid-cols-1 gap-y-2 text-sm">
                 {locations.slice(0, 8).map(city => {
                   return (
@@ -385,6 +388,7 @@ export default function Layout({ children }) {
                   View All {locations.length} Cities →
                 </a>
               </div>
+              </nav>
             </div>
           </div>
 
