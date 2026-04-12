@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Phone, CheckCircle2, Droplets, Wrench, Clock, MapPin, Star, ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -36,7 +36,7 @@ export default function IrrigationServicePage({ city, service, data }) {
             {/* ── HERO ── */}
             <section className="irrigationDetailHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
                 <div className="absolute inset-0 sm:left-[40%]">
-                    <img src="/images/01c14d800_unnamed2-Copy.jpg" alt={data.h1} className="w-full h-full object-cover" fetchpriority="high" />
+                    <img src="/images/01c14d800_unnamed2-Copy.jpg" alt={data.h1} className="w-full h-full object-cover" fetchPriority="high" />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
                 </div>

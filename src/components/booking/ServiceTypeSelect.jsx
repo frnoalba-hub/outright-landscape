@@ -1,4 +1,3 @@
-import React from 'react';
 import { Wrench, Sprout, Droplets, Palette, Hammer, Leaf, HelpCircle } from 'lucide-react';
 
 const SERVICE_OPTIONS = [

@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Phone, CheckCircle2, MapPin, ArrowRight, Hammer, Layers, Fence, List } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Phone, CheckCircle2, MapPin, ArrowRight } from 'lucide-react';
 
 function CountUp({ end, duration = 1500, suffix = '' }) {
     const [count, setCount] = useState(0);
@@ -133,7 +133,7 @@ export default function Hardscape() {
                             src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/15f0a1b84_generated_image.png"
                             alt="Professional paver and hardscape installation"
                             className="w-full h-full object-cover"
-                            fetchpriority="high"
+                            fetchPriority="high"
                         />
                         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />

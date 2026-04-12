@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -15,7 +14,7 @@ export default function HomeHero({ onPhoneClick, onQuoteClick, reviews, totalRev
                     src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png"
                     alt="Professional landscape project by Outright Landscape in Covina"
                     className="w-full h-full object-cover"
-                    fetchpriority="high"
+                    fetchPriority="high"
                     decoding="sync"
                     width="1200"
                     height="900"

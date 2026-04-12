@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, CalendarCheck, Loader2 } from 'lucide-react';
+import { CalendarCheck, Loader2 } from 'lucide-react';
 import { format } from 'date-fns';
 import confetti from 'canvas-confetti';
 import BookingCalendar from './BookingCalendar';

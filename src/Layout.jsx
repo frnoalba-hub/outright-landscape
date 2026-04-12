@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Phone, Menu, X, Mail, MapPin, Building, Star, Linkedin, Video } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Phone, Menu, X, Mail, MapPin, Building } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { createPageUrl } from "@/utils";
@@ -192,7 +192,7 @@ export default function Layout({ children }) {
               className="h-[85px] sm:h-[110px] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
               width="122"
               height="122"
-              fetchpriority="high"
+              fetchPriority="high"
               decoding="async" />
 
               <div className="flex flex-col">

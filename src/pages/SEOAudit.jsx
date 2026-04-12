@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Button } from '@/components/ui/button';
@@ -7,8 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
-    Loader2, Search, AlertTriangle, AlertCircle, Info, CheckCircle2, 
-    TrendingUp, FileText, Tag, MapPin, Copy, RefreshCw, ChevronRight,
+    Loader2, Search, AlertTriangle, AlertCircle, Info, CheckCircle2, FileText, Tag, MapPin, Copy, RefreshCw, ChevronRight,
     Target, Zap, Clock
 } from 'lucide-react';
 import { toast } from 'sonner';

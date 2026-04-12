@@ -1,4 +1,3 @@
-import React from 'react';
 import LocationPage from './LocationPage';
 
 // This is a wrapper component that uses the updated LocationPage

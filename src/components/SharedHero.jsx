@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Phone, Award, Users, Clock, Sparkles, CheckCircle2 } from 'lucide-react';
 
@@ -81,7 +80,7 @@ export default function SharedHero({
                 ></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60 z-10"></div>
                 {/* Preload critical hero image */}
-                <link rel="preload" as="image" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png" fetchpriority="high" />
+                <link rel="preload" as="image" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png" fetchPriority="high" />
                 
                 <div className="hero-inner relative z-20 text-center px-4 w-full max-w-[380px] md:max-w-4xl mx-auto">
                     <div className="md:max-w-3xl md:mx-auto flex flex-col gap-3 md:gap-5 items-center">

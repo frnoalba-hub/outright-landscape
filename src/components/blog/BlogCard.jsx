@@ -1,4 +1,3 @@
-import React from 'react';
 import { createBlogPostUrl } from '@/utils';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { format } from 'date-fns';

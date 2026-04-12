@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Loader2, Calendar, User, Clock, ChevronLeft, Share2 } from "lucide-react";
+import { Loader2, Calendar, Clock, ChevronLeft, Share2 } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { createPageUrl, createBlogPostUrl } from "@/utils";

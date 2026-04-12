@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Phone, Droplets, Wrench, Settings, Waves, CheckCircle2, MapPin, ArrowRight } from 'lucide-react';
 
 function CountUp({ end, duration = 1500, suffix = '' }) {
@@ -74,7 +74,7 @@ export default function Irrigation() {
                 {/* ── HERO ── */}
                 <section className="irrigationHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]" aria-labelledby="irrigation-hero-heading">
                     <div className="absolute inset-0 sm:left-[40%]">
-                        <img src="/images/01c14d800_unnamed2-Copy.jpg" alt="Professional irrigation installation" className="w-full h-full object-cover" fetchpriority="high" />
+                        <img src="/images/01c14d800_unnamed2-Copy.jpg" alt="Professional irrigation installation" className="w-full h-full object-cover" fetchPriority="high" />
                         <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
                     </div>
