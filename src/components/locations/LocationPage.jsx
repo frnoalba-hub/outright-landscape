@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Phone, MapPin, CheckCircle2, ArrowRight, Sprout, Droplets, Hammer, Award, ArrowDown } from 'lucide-react';
+import { Phone, CheckCircle2, ArrowRight, Sprout, Droplets, Hammer, Award } from 'lucide-react';
 import { createPageUrl } from '@/utils';
-import SEO from '@/components/SEO';
-import { getCityGeo, GEO_QUOTES, GEO_STATS } from '@/schemas/geo-schemas';
+import SEOHead from '@/components/SEOHead';
+import { getCityGeo, GEO_QUOTES, GEO_STATS, SERVICE_SCHEMAS } from '@/schemas/geo-schemas';
 import AttributedQuote from '@/components/AttributedQuote';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
 import FAQSchema from '@/components/FAQSchema';
+import ServiceSummaryBox from '@/components/ServiceSummaryBox';
 import ContactForm from '@/components/ContactForm';
 import HeroReviews from '@/components/home/HeroReviews';
 import { useQuery } from '@tanstack/react-query';
@@ -130,7 +131,14 @@ export default function LocationPage({ citySlug }) {
 
     return (
         <div className="cityPageWrapper bg-white">
-            <SEO title={pageTitle} description={metaDescription} canonicalUrl={canonicalUrl} ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png" geoMeta={getCityGeo(name)} keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, CSLB 1073845`} />
+            <SEOHead
+                title={pageTitle}
+                description={metaDescription}
+                canonicalUrl={canonicalUrl}
+                ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png"
+                keywords={`landscaping ${name}, hardscaping ${name}, pavers ${name}, turf installation ${name}, irrigation ${name}, landscape contractor ${name}, best landscaper ${name}, CSLB 1073845`}
+                schemaData={[SERVICE_SCHEMAS['paver-installation'], SERVICE_SCHEMAS['turf-installation'], SERVICE_SCHEMAS['irrigation-systems'], SERVICE_SCHEMAS.hardscaping]}
+            />
             <BreadcrumbSchema items={breadcrumbItems} />
             <LocalBusinessSchema cityName={name} citySlug={slug} services={services} />
             {faqs && faqs.length > 0 && <FAQSchema faqs={faqs} cityName={name} />}
@@ -142,7 +150,7 @@ export default function LocationPage({ citySlug }) {
                         src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png"
                         alt={`Professional landscape project in ${name}`}
                         className="w-full h-full object-cover"
-                        fetchpriority="high"
+                        fetchPriority="high"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a1a] via-[#1a1a1a]/90 to-[#1a1a1a]/30 sm:from-[#1a1a1a] sm:via-[#1a1a1a]/75 sm:to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-[#1a1a1a]/40 sm:hidden" />
@@ -201,6 +209,13 @@ export default function LocationPage({ citySlug }) {
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#2d5a27] via-[#c45d2c] to-[#b8945a] z-20" />
             </section>
+
+            {/* ── SERVICE SUMMARY (GEO) ── */}
+            <ServiceSummaryBox
+                problem={`Outdated landscaping, dead lawns, broken sprinklers, cracked concrete, and poorly designed outdoor spaces in ${name} that reduce property value and curb appeal.`}
+                solution={`Professional landscaping, paver installation, turf, irrigation repair, and hardscaping in ${name}. Licensed C-27 contractor (CSLB #1073845) with 250+ completed projects, 4.9-star Google rating, and free on-site estimates.`}
+                serviceArea={`${name}, CA and surrounding cities. Covina, West Covina, Glendora, San Dimas, La Verne, Azusa, Claremont, Diamond Bar, Pasadena, Walnut, Pomona, and the San Gabriel Valley.`}
+            />
 
             {/* ── INTRO ── */}
             <section className="cityIntro py-16 sm:py-20 bg-[#f5f0e8]">

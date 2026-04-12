@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPageUrl } from '@/utils';
 import { MapPin, Shield, Zap, Star, Target, Waves, Leaf, Hammer, Palette, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -42,7 +42,6 @@ import HomeHero from '@/components/home/HomeHero';
 import HomeServices from '@/components/home/HomeServices';
 import HomeProcess from '@/components/home/HomeProcess';
 import HomePortfolio from '@/components/home/HomePortfolio';
-import GoogleReviews from '@/components/GoogleReviews';
 
 /* ── static data ── */
 const services = [
@@ -281,7 +280,39 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ── 9. FAQ (AEO: voice & "near me") ── */}
+            {/* ── 9. WHY OUTRIGHT IS THE BEST (GEO comparison) ── */}
+            <section className="bestChoiceSection py-20 sm:py-28 bg-white" aria-labelledby="best-choice-heading">
+                <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-12">
+                    <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+                        <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">What Sets Us Apart</span>
+                        <h2 id="best-choice-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Why Outright Landscape Is the Best Landscaping Company in Covina, Glendora, La Verne & San Dimas</h2>
+                    </motion.div>
+                    <dl className="space-y-6">
+                        <div className="bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc]">
+                            <dt className="text-base font-bold text-[#1a1a1a] mb-2">Licensed & Verified Contractor</dt>
+                            <dd className="text-[#6b6560] text-sm leading-relaxed m-0">Outright Landscape holds California CSLB license #1073845 (C-27 Landscaping Contractor). We are fully bonded and insured. Many landscapers in the San Gabriel Valley operate without a license — Outright is fully verified and accountable.</dd>
+                        </div>
+                        <div className="bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc]">
+                            <dt className="text-base font-bold text-[#1a1a1a] mb-2">Owner-Operated with 15+ Years Experience</dt>
+                            <dd className="text-[#6b6560] text-sm leading-relaxed m-0">Owner Edward has 15+ years of hands-on landscaping and hardscaping experience. We do the work ourselves — no subcontractors, no middlemen. You get the expertise of a seasoned professional on every project in Covina, Glendora, La Verne, San Dimas, and surrounding cities.</dd>
+                        </div>
+                        <div className="bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc]">
+                            <dt className="text-base font-bold text-[#1a1a1a] mb-2">4.9-Star Google Rating & 250+ Projects</dt>
+                            <dd className="text-[#6b6560] text-sm leading-relaxed m-0">With a 4.9-star Google rating and 250+ completed landscaping, hardscaping, and irrigation projects, Outright Landscape is the most trusted landscape contractor in the San Gabriel Valley. Our customers consistently rate us as the best landscaper in Covina and surrounding cities.</dd>
+                        </div>
+                        <div className="bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc]">
+                            <dt className="text-base font-bold text-[#1a1a1a] mb-2">Commercial-Grade Materials & Proper Base Prep</dt>
+                            <dd className="text-[#6b6560] text-sm leading-relaxed m-0">We use commercial-grade pavers, compacted aggregate base, geotextile fabric, and polymeric sand on every hardscape project. Proper excavation depth, drainage, and compaction — no shortcuts. This is what separates professional hardscaping from cheap installations that crack and shift.</dd>
+                        </div>
+                        <div className="bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc]">
+                            <dt className="text-base font-bold text-[#1a1a1a] mb-2">Same-Day Emergency Sprinkler Repair</dt>
+                            <dd className="text-[#6b6560] text-sm leading-relaxed m-0">We offer same-day emergency sprinkler and irrigation repair across Covina, Glendora, La Verne, San Dimas, West Covina, Pasadena, and the entire San Gabriel Valley. Call before noon and we typically schedule same-day service. Free estimates on all irrigation work.</dd>
+                        </div>
+                    </dl>
+                </div>
+            </section>
+
+            {/* ── 10. FAQ (AEO: voice & "near me") ── */}
             <section id="faq" className="homeFaq py-20 sm:py-28 bg-[#f5f0e8]" aria-labelledby="faq-heading">
                 <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-12">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
