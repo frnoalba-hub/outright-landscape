@@ -134,8 +134,73 @@ export default function Irrigation() {
                     serviceArea="San Gabriel Valley: La Verne, San Dimas, Glendora, Covina, West Covina, Pasadena, Azusa, Diamond Bar, Walnut, Pomona, and surrounding cities."
                 />
 
+                {/* ── COMPLETE IRRIGATION GUIDE (GEO: content depth) ── */}
+                <section className="irrigationGuide py-20 sm:py-28 bg-white" aria-labelledby="irrigation-guide-heading">
+                    <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-12">
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
+                            <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">Expert Guide</span>
+                            <h2 id="irrigation-guide-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Complete Sprinkler and Irrigation Guide for San Gabriel Valley Homeowners</h2>
+                            <p className="mt-4 text-[#6b6560] text-base leading-relaxed max-w-3xl">
+                                Outright Landscape Construction is the San Gabriel Valley's top-rated irrigation and sprinkler repair company. With over {GEO_STATS.projectsCompleted} systems installed and repaired, same-day emergency service, and California CSLB license #1073845, we are the most trusted irrigation contractor in Covina, Glendora, San Dimas, La Verne, and 20+ cities. This guide covers everything homeowners need to know about irrigation systems in Southern California.
+                            </p>
+                        </motion.div>
+
+                        <article className="space-y-12">
+                            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Understanding Your Irrigation System</h3>
+                                <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p>A residential irrigation system consists of several interconnected components: the controller (timer), valves, pipes (mainline and lateral lines), and sprinkler heads or drip emitters. Understanding how these components work together helps homeowners identify problems early, reduce water waste, and extend the life of their system.</p>
+                                    <p><strong className="text-[#1a1a1a]">The controller</strong> is the brain of your irrigation system. It sends electrical signals to solenoid valves, telling each zone when to turn on and how long to run. Modern WiFi-enabled smart controllers like the Rain Bird ESP-TM2, Hunter Hydrawise, and Rachio 3 go further — they monitor local weather data, adjust schedules for rain and temperature changes, and allow remote control from your phone. In the San Gabriel Valley, where water costs average $6–$9 per hundred cubic feet and conservation mandates are enforced by local water agencies, smart controllers typically pay for themselves within 6–12 months through water savings of 30–50%.</p>
+                                    <p><strong className="text-[#1a1a1a]">Valves</strong> control water flow to each irrigation zone. Most residential systems in the San Gabriel Valley use 1-inch or 3/4-inch electric solenoid valves, typically installed in underground valve boxes for protection. Common valve problems include stuck valves (solenoid failure), leaking diaphragms (causing zones to run continuously), and wiring issues (corroded connections or damaged wire). Outright Landscape stocks Rain Bird, Hunter, and Irritrol replacement valves and can diagnose and replace failed valves the same day in most cases.</p>
+                                    <p><strong className="text-[#1a1a1a]">Sprinkler heads</strong> come in two main types: pop-up spray heads (for small lawn areas under 15 feet wide) and rotary heads (for larger lawn areas). The most common spray head brands installed in San Gabriel Valley homes are Rain Bird 1800 series and Hunter Pro-Spray. For rotary coverage, Rain Bird 5000 and Hunter PGP rotors are industry standards. Sprinkler heads should be adjusted for proper arc, radius, and precipitation rate to prevent overwatering and runoff — a service Outright Landscape includes with every repair and installation.</p>
+                                    <p><strong className="text-[#1a1a1a]">Drip irrigation</strong> delivers water directly to plant roots through low-flow emitters, typically rated at 0.5–2.0 gallons per hour. Drip is the most water-efficient irrigation method, reducing consumption by 50–70% compared to overhead spray. Drip systems are ideal for garden beds, shrubs, trees, slopes, and narrow planting strips where spray heads would cause overspray and waste. We install pressure-regulated drip systems with inline emitter tubing (Netafim Techline or Rain Bird XFS) for consistent flow across elevation changes common on San Gabriel Valley foothill properties.</p>
+                                </div>
+                            </motion.div>
+
+                            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Common Irrigation Problems and How We Fix Them</h3>
+                                <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p><strong className="text-[#1a1a1a]">Broken or stuck sprinkler heads</strong> are the most common irrigation repair in the San Gabriel Valley. Heads break from lawn mower impact, foot traffic, or age-related plastic degradation from UV exposure. Symptoms include heads that do not pop up, streams of water shooting sideways, or misting instead of spraying. Outright Landscape replaces broken heads with commercial-grade models that match your system's pressure and flow requirements. Cost: $75–$150 per head including labor.</p>
+                                    <p><strong className="text-[#1a1a1a]">Leaking or stuck valves</strong> cause zones to run continuously (stuck open) or not at all (stuck closed). Valve diaphragms wear out from hard water mineral deposits common in San Gabriel Valley municipal water, which has moderate to high calcium carbonate levels. A leaking valve can waste 10–15 gallons per minute — over 14,000 gallons per day. Outright Landscape diagnoses valve issues using electrical testing and manual activation, and replaces diaphragms or entire valve assemblies as needed. Cost: $150–$300 per valve.</p>
+                                    <p><strong className="text-[#1a1a1a]">Pipe leaks and breaks</strong> occur from root intrusion, soil movement, freeze damage (rare but possible in foothill areas during cold snaps), and age-related PVC degradation. Signs include unexplained wet areas, sinkholes in the lawn, unusually high water bills, or loss of pressure on one or more zones. We locate leaks using pressure testing and visual inspection, then repair with schedule 40 PVC and proper primer/cement joints for a lasting fix.</p>
+                                    <p><strong className="text-[#1a1a1a]">Controller or wiring problems</strong> cause zones to skip, run at the wrong times, or not operate at all. Common issues include failed controller backup batteries (causing program loss during power outages), corroded wire connections in valve boxes, and cut wires from digging or rodent damage. We troubleshoot controller and wiring issues systematically using a multimeter to test each station and wire run.</p>
+                                    <p><strong className="text-[#1a1a1a]">Uneven coverage and dry spots</strong> indicate misaligned heads, incorrect nozzle sizes, or pressure problems. Head-to-head coverage (each sprinkler head throws water to the adjacent head) is required for uniform watering. We audit your system's coverage and adjust head spacing, arc, radius, and nozzle selection to eliminate dry spots and reduce water waste.</p>
+                                </div>
+                            </motion.div>
+
+                            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Irrigation Costs in the San Gabriel Valley</h3>
+                                <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p>Understanding irrigation costs helps San Gabriel Valley homeowners budget for repairs and plan system upgrades. These ranges reflect current pricing for licensed, professional installation by Outright Landscape:</p>
+                                </div>
+                                <dl className="mt-4 bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc] space-y-0 text-sm text-[#4a4540]">
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Sprinkler head replacement</dt><dd className="font-semibold text-[#1a1a1a]">$75–$150/head</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Valve replacement</dt><dd className="font-semibold text-[#1a1a1a]">$150–$300/valve</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Controller replacement + programming</dt><dd className="font-semibold text-[#1a1a1a]">$200–$500</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Smart controller upgrade (WiFi)</dt><dd className="font-semibold text-[#1a1a1a]">$300–$600</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Pipe leak repair</dt><dd className="font-semibold text-[#1a1a1a]">$150–$400</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>New zone addition</dt><dd className="font-semibold text-[#1a1a1a]">$400–$1,000</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Drip irrigation installation</dt><dd className="font-semibold text-[#1a1a1a]">$1.50–$4.00/linear ft</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>New irrigation system (full install)</dt><dd className="font-semibold text-[#1a1a1a]">$1,500–$6,000+</dd></div>
+                                    <div className="flex justify-between py-2.5"><dt>Complete system overhaul</dt><dd className="font-semibold text-[#1a1a1a]">$2,000–$5,000</dd></div>
+                                </dl>
+                            </motion.div>
+
+                            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Water Conservation in Southern California</h3>
+                                <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p>Southern California's semi-arid climate makes water efficiency a critical concern for homeowners. The Metropolitan Water District and local agencies like Three Valleys Municipal Water District, San Gabriel Valley Water Company, and Azusa Light &amp; Water enforce tiered water pricing that penalizes overuse. An efficient irrigation system is the single most effective way to reduce outdoor water consumption, which accounts for 50–70% of total residential water use in the San Gabriel Valley.</p>
+                                    <p><strong className="text-[#1a1a1a]">Smart controllers</strong> are the highest-ROI water conservation upgrade. By using weather-based evapotranspiration (ET) data to adjust watering automatically, smart controllers eliminate overwatering during cool or rainy periods — the primary source of residential water waste. Many San Gabriel Valley water agencies offer $50–$200 rebates for installing EPA WaterSense-certified smart controllers.</p>
+                                    <p><strong className="text-[#1a1a1a]">Proper scheduling</strong> is essential even with a smart controller. The San Gabriel Valley's clay-loam soil absorbs water slowly — watering too fast causes runoff. We program controllers with cycle-and-soak schedules: shorter run times repeated 2–3 times with 30–60 minute soak periods between cycles. This allows water to penetrate the root zone without surface runoff. Watering should occur between 4:00 AM and 9:00 AM to minimize evaporation loss.</p>
+                                    <p><strong className="text-[#1a1a1a]">Pressure regulation</strong> prevents misting and fogging that waste water. Most San Gabriel Valley homes have water pressure between 60–80 PSI — higher than the 30–45 PSI that spray heads and drip systems are designed to operate at. We install pressure-regulating devices at each valve or spray head to maintain optimal operating pressure and prevent atomization of water spray.</p>
+                                </div>
+                            </motion.div>
+                        </article>
+                    </div>
+                </section>
+
                 {/* ── SERVICES ── */}
-                <section className="irrigationServices py-20 sm:py-28 bg-white">
+                <section className="irrigationServices py-20 sm:py-28 bg-[#f5f0e8]">
                     <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
                         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="irrigationServicesHeader mb-14">
                             <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">What We Do</span>

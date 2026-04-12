@@ -193,6 +193,74 @@ export default function Hardscape() {
                     serviceArea="San Gabriel Valley: Covina, Glendora, San Dimas, Pasadena, West Covina, Diamond Bar, La Verne, Walnut, Pomona, and surrounding cities."
                 />
 
+                {/* ── COMPLETE HARDSCAPING GUIDE (GEO: content depth) ── */}
+                <section className="hardscapeGuide py-20 sm:py-28 bg-white" aria-labelledby="hardscape-guide-heading">
+                    <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-12">
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
+                            <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">Expert Guide</span>
+                            <h2 id="hardscape-guide-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Complete Hardscaping Guide for San Gabriel Valley Homeowners</h2>
+                            <p className="mt-4 text-[#6b6560] text-base leading-relaxed max-w-3xl">
+                                Outright Landscape Construction is the San Gabriel Valley's most trusted hardscape contractor. With over {GEO_STATS.projectsCompleted} completed paver patios, driveways, retaining walls, and outdoor living spaces, a 4.9-star Google rating, and California CSLB license #1073845, we deliver expert hardscaping across Covina, Glendora, San Dimas, La Verne, and 20+ cities. This guide covers everything homeowners need to know about professional hardscape construction.
+                            </p>
+                        </motion.div>
+
+                        <article className="space-y-12">
+                            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Pavers vs. Concrete: Choosing the Right Material</h3>
+                                <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p>The two most common hardscape materials for patios, driveways, and walkways in the San Gabriel Valley are interlocking pavers and poured concrete. Both are durable options when installed correctly, but they differ significantly in cost, aesthetics, maintenance, and repairability. Understanding these differences helps homeowners make the right choice for their property and budget.</p>
+                                    <p><strong className="text-[#1a1a1a]">Interlocking pavers</strong> cost $15–$30 per square foot installed and offer the widest range of design options. Available in hundreds of colors, shapes, textures, and laying patterns, pavers can replicate the look of natural stone, brick, or cobblestone at a fraction of the cost. Paver patios and driveways are inherently flexible — the interlocking design allows individual units to shift slightly with soil movement without cracking. If a paver cracks or stains, it can be lifted and replaced individually without disturbing the surrounding surface. Premium manufacturers like Belgard, Tremron, and Angelus offer lifetime structural warranties on their pavers. Pavers are the preferred material for patios, pool decks, and outdoor living spaces where design flexibility and aesthetics are priorities.</p>
+                                    <p><strong className="text-[#1a1a1a]">Poured concrete</strong> costs $8–$18 per square foot for standard finishes (broom or smooth) and $12–$25 for decorative options like stamped, stained, or exposed aggregate. Concrete is a monolithic surface — strong and economical for large areas like driveways and slabs, but susceptible to cracking from soil settlement, tree root pressure, and the thermal expansion cycles common in the San Gabriel Valley (where summer surface temperatures exceed 140°F). When concrete cracks, repair requires cutting out and replacing entire sections, which is more disruptive and costly than replacing individual pavers. Outright Landscape installs proper control joints and expansion joints to minimize cracking, but all concrete will eventually develop hairline cracks over time.</p>
+                                    <p><strong className="text-[#1a1a1a]">Stamped concrete</strong> provides the look of pavers, natural stone, or brick at a lower cost per square foot than actual pavers. Stamping is performed immediately after pouring, while the concrete is still wet. Popular stamp patterns for San Gabriel Valley properties include Ashlar slate, herringbone brick, cobblestone, and flagstone. Stamped concrete requires resealing every 2–3 years to maintain color and prevent surface wear — an ongoing maintenance cost that pavers do not require.</p>
+                                </div>
+                            </motion.div>
+
+                            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Why Base Preparation Is the Most Important Part of Any Hardscape Project</h3>
+                                <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p>The base is the foundation of every hardscape installation. It determines whether your patio, driveway, or retaining wall will remain level and stable for decades — or settle, shift, and crack within 2–3 years. The most common reason hardscape fails in the San Gabriel Valley is contractors who skip or shortcut the base preparation to save time and cost.</p>
+                                    <p><strong className="text-[#1a1a1a]">Outright Landscape's base preparation process</strong> follows the Interlocking Concrete Pavement Institute (ICPI) standards used in commercial and municipal projects. For every hardscape installation, we excavate to a minimum depth of 6–8 inches below the finished grade (10–12 inches for driveways that support vehicle weight). We install geotextile filter fabric on the excavated subgrade to prevent native soil from migrating into the aggregate base — a step that cheap installers skip but that prevents long-term settlement. We then place and compact 4–6 inches of Class II road base aggregate in 2-inch lifts, compacting each lift to 95% Proctor density using a plate compactor. For paver installations, we add 1 inch of ASTM C33 concrete sand as a bedding layer, then screed it perfectly level before placing pavers.</p>
+                                    <p><strong className="text-[#1a1a1a]">Edge restraints</strong> are another critical detail that separates professional hardscape from amateur work. Without edge restraints, pavers along the perimeter gradually creep outward, opening joints and allowing sand loss. We install aluminum or plastic edge restraints on all paver installations, securing them with 10-inch galvanized spikes driven into the compacted base at 12-inch intervals.</p>
+                                    <p><strong className="text-[#1a1a1a]">Drainage</strong> must be engineered into every hardscape project. Water that pools on or behind hardscape surfaces causes erosion, foundation damage, and premature failure. We grade all patio and driveway surfaces with a minimum 1% slope (1/8 inch per foot) away from structures. For retaining walls, we install a complete drainage system behind the wall face: 4-inch perforated pipe in a bed of 3/4-inch drainage rock, wrapped in filter fabric to prevent soil clogging. This system captures and redirects groundwater that would otherwise build hydrostatic pressure against the wall.</p>
+                                </div>
+                            </motion.div>
+
+                            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Hardscaping Costs in the San Gabriel Valley</h3>
+                                <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p>Understanding hardscaping costs helps San Gabriel Valley homeowners budget accurately and compare contractor bids. These ranges reflect current pricing for professional, licensed installation by Outright Landscape:</p>
+                                </div>
+                                <dl className="mt-4 bg-[#f5f0e8] p-6 rounded-xl border border-[#e0d8cc] space-y-0 text-sm text-[#4a4540]">
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Interlocking paver patio</dt><dd className="font-semibold text-[#1a1a1a]">$15–$30/sq ft</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Paver driveway</dt><dd className="font-semibold text-[#1a1a1a]">$18–$35/sq ft</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Paver walkway</dt><dd className="font-semibold text-[#1a1a1a]">$15–$25/sq ft</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Concrete patio or driveway (broom finish)</dt><dd className="font-semibold text-[#1a1a1a]">$8–$18/sq ft</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Stamped or colored concrete</dt><dd className="font-semibold text-[#1a1a1a]">$12–$25/sq ft</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Retaining wall (block, per sq ft face)</dt><dd className="font-semibold text-[#1a1a1a]">$20–$40/sq ft</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Outdoor fire pit (paver or block)</dt><dd className="font-semibold text-[#1a1a1a]">$2,000–$5,000</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Outdoor steps (per step, 4 ft wide)</dt><dd className="font-semibold text-[#1a1a1a]">$200–$500</dd></div>
+                                    <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Concrete demolition and removal</dt><dd className="font-semibold text-[#1a1a1a]">$3–$6/sq ft</dd></div>
+                                    <div className="flex justify-between py-2.5"><dt>Paver sealing (after installation)</dt><dd className="font-semibold text-[#1a1a1a]">$1.50–$3.00/sq ft</dd></div>
+                                </dl>
+                                <div className="mt-6 space-y-3 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p>Factors that affect hardscaping cost include property access (narrow side yards, steep lots, and hillside properties in Glendora, La Verne, and Claremont require additional labor), existing surface demolition, drainage requirements, and material selection. Premium pavers from Belgard or natural stone cost more than standard concrete pavers but offer greater aesthetic value and durability.</p>
+                                    <p>Outright Landscape provides free on-site estimates with detailed written breakdowns including material specifications, project timelines, and payment schedules. We are transparent about pricing because we believe homeowners deserve to know exactly what they are paying for — no surprises, no hidden costs, no change orders. Call (626) 343-6028 for your free estimate.</p>
+                                </div>
+                            </motion.div>
+
+                            <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                                <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Climate Considerations for San Gabriel Valley Hardscaping</h3>
+                                <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
+                                    <p>The San Gabriel Valley's climate creates specific challenges for hardscape construction that experienced local contractors understand but out-of-area or unlicensed workers often miss. Summer temperatures regularly exceed 100°F in inland cities like Covina, Glendora, and Azusa, while winter nights can drop below freezing in foothill areas. This 100°F+ temperature swing causes significant thermal expansion and contraction in concrete and paver surfaces.</p>
+                                    <p>Proper joint spacing in concrete (control joints every 8–10 feet) and polymeric sand in paver joints accommodate thermal movement without surface damage. Expansion joints are required wherever hardscape meets structures (house foundations, pool coping, walls) to prevent cracking from differential movement. These are engineering details that matter for the 20–30 year lifespan of your hardscape.</p>
+                                    <p>The San Gabriel Valley's clay-heavy soil also presents unique challenges. Clay soil expands when wet and contracts when dry, creating heaving and settling forces that can crack concrete and shift pavers. Proper base preparation (excavation below the clay layer, geotextile fabric, and compacted aggregate) creates a stable foundation that isolates the hardscape surface from soil movement. This is why base preparation is the most important — and most commonly skipped — step in hardscape construction.</p>
+                                    <p>Los Angeles County's increasing focus on stormwater management means permeable hardscape options are becoming more relevant. Permeable pavers allow rainwater to infiltrate through the joints and into the ground rather than running off into storm drains. Some San Gabriel Valley cities offer incentives or expedited permits for projects that incorporate permeable hardscape. Outright Landscape can advise on permeable options that combine stormwater management with the durability and aesthetics of traditional hardscape.</p>
+                                </div>
+                            </motion.div>
+                        </article>
+                    </div>
+                </section>
+
                 {/* ── SECTION A: PAVERS ── */}
                 <section className="hardscapePavers py-20 sm:py-28 bg-white">
                     <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
