@@ -259,7 +259,7 @@ export default function Home() {
                             <h3 className="text-lg font-bold text-[#1a1a1a] mb-3">Turf and Sod Installation</h3>
                             <dl className="space-y-0 text-sm text-[#4a4540]">
                                 <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Marathon tall fescue sod (installed)</dt><dd className="font-semibold text-[#1a1a1a]">$1.50–$2.50/sq ft</dd></div>
-                                <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Hybrid Bermuda sod (installed)</dt><dd className="font-semibold text-[#1a1a1a]">$1.25–$2.00/sq ft</dd></div>
+                                <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Hybrid Bermuda sod (installed)</dt><dd className="font-semibold text-[#1a1a1a]">$2–$3/sq ft</dd></div>
                                 <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Artificial turf (installed with base prep)</dt><dd className="font-semibold text-[#1a1a1a]">$8–$15/sq ft</dd></div>
                                 <div className="flex justify-between py-2.5"><dt>Average front + back yard (1,500–3,000 sq ft)</dt><dd className="font-semibold text-[#1a1a1a]">$3,000–$7,500</dd></div>
                             </dl>

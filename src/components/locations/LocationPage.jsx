@@ -305,7 +305,8 @@ export default function LocationPage({ citySlug }) {
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Landscaping Costs in {name} (2025–2026)</h3>
                             <dl className="bg-white p-6 rounded-xl border border-[#e0d8cc] space-y-0 text-sm text-[#4a4540]">
-                                <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Sod installation (Marathon fescue)</dt><dd className="font-semibold text-[#1a1a1a]">$1.50–$2.50/sq ft</dd></div>
+                                <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Sod installation (Marathon tall fescue)</dt><dd className="font-semibold text-[#1a1a1a]">$1.50–$2.50/sq ft</dd></div>
+                                <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Sod installation (hybrid Bermuda)</dt><dd className="font-semibold text-[#1a1a1a]">$2–$3/sq ft</dd></div>
                                 <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Paver patio installation</dt><dd className="font-semibold text-[#1a1a1a]">$15–$30/sq ft</dd></div>
                                 <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Concrete driveway</dt><dd className="font-semibold text-[#1a1a1a]">$8–$18/sq ft</dd></div>
                                 <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Sprinkler system installation</dt><dd className="font-semibold text-[#1a1a1a]">$1,500–$6,000+</dd></div>
