@@ -142,6 +142,7 @@ export default function LocationPage({ citySlug }) {
             <BreadcrumbSchema items={breadcrumbItems} />
             <LocalBusinessSchema cityName={name} citySlug={slug} services={services} />
             {faqs && faqs.length > 0 && <FAQSchema faqs={faqs} cityName={name} />}
+            <p className="bg-[#1a1a1a] pt-20 pb-0 px-5 sm:px-8 lg:px-12 text-xs text-white/30">Last updated: April 13, 2026</p>
 
             {/* ── HERO ── */}
             <section className="cityHero relative min-h-[85vh] sm:min-h-screen flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">

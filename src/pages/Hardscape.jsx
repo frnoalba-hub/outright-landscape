@@ -125,6 +125,7 @@ export default function Hardscape() {
             <FAQSchema faqs={GEO_FAQS.hardscape} cityName="hardscape" />
 
             <div className="hardscapePageWrapper min-h-screen bg-white" role="document">
+                <p className="bg-[#1a1a1a] pt-20 pb-0 px-5 sm:px-8 lg:px-12 text-xs text-white/30">Last updated: April 13, 2026</p>
 
                 {/* ── HERO ── */}
                 <section className="hardscapeHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]" aria-labelledby="hardscape-hero-heading">

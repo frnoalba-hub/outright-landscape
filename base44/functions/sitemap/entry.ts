@@ -48,6 +48,34 @@ Deno.serve((req) => {
   </url>\n`;
   });
 
+  // Service hubs
+  const serviceHubs = ['landscaping', 'hardscaping', 'irrigation', 'outdoor-living'];
+  serviceHubs.forEach(slug => {
+    urls += `  <url>
+    <loc>https://outrightlandscape.com/s/${slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>\n`;
+  });
+
+  // Buyer guides
+  const buyerGuides = [
+    'pavers-vs-stamped-concrete',
+    'best-sod-san-gabriel-valley',
+    'sprinkler-repair-vs-replacement',
+    'landscaping-cost-san-gabriel-valley',
+    'hiring-licensed-landscape-contractor',
+  ];
+  buyerGuides.forEach(slug => {
+    urls += `  <url>
+    <loc>https://outrightlandscape.com/guides/${slug}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>\n`;
+  });
+
   // Blog posts (static + add more slugs as needed)
   const blogSlugs = ['complete-guide-residential-commercial-irrigation-san-diego'];
   blogSlugs.forEach(slug => {

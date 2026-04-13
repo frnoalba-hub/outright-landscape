@@ -143,6 +143,10 @@ export default function Home() {
             />
             <FAQSchema faqs={GEO_FAQS.home} cityName="home" />
 
+            <div className="bg-[#1a1a1a] pt-20 pb-0">
+                <p className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 text-xs text-white/30">Last updated: April 13, 2026</p>
+            </div>
+
             {/* ── 1. HERO ── */}
             <HomeHero 
                 onPhoneClick={handlePhoneClick} 

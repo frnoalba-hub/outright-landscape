@@ -33,3 +33,4 @@ Allow: /
 
 Sitemap: https://outrightlandscape.com/api/sitemap
 LLMs: https://outrightlandscape.com/llms.txt
+LLMs-Full: https://outrightlandscape.com/llms-full.txt

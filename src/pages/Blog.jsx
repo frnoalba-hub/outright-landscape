@@ -30,6 +30,7 @@ export default function Blog() {
                 canonicalUrl="https://outrightlandscape.com/Blog"
                 ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png"
             />
+            <p className="bg-[#1a1a1a] pt-20 pb-0 px-5 sm:px-8 lg:px-12 text-xs text-white/30">Last updated: April 13, 2026</p>
 
             <SharedHero 
                 title="Landscape & Living"

@@ -10,9 +10,9 @@ import { base44 } from '@/api/base44Client';
 
 const navigationItems = [
   { title: "Home", href: createPageUrl("Home") },
-  { title: "Services", href: createPageUrl("Home") + "#services" },
-  { title: "Irrigation", href: createPageUrl("Irrigation") },
-  { title: "Hardscape", href: createPageUrl("Hardscape") },
+  { title: "Landscaping", href: "/s/landscaping" },
+  { title: "Hardscaping", href: "/s/hardscaping" },
+  { title: "Irrigation", href: "/s/irrigation" },
   { title: "Blog", href: createPageUrl("Blog") },
   { title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
 ];
@@ -335,16 +335,25 @@ export default function Layout({ children }) {
               </div>
 
             <div>
-              <h2 className="footerLinksTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Quick Links</h2>
-              <nav aria-label="Quick links">
+              <h2 className="footerLinksTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Services</h2>
+              <nav aria-label="Service links">
               <ul className="space-y-3 text-sm">
-                <li><a href={createPageUrl("Home")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Home</a></li>
-                <li><a href={createPageUrl("Home") + "#services"} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Services</a></li>
-                <li><a href={createPageUrl("Irrigation")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Irrigation</a></li>
+                <li><a href="/s/landscaping" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Landscaping & Turf</a></li>
+                <li><a href="/s/hardscaping" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Hardscaping & Pavers</a></li>
+                <li><a href="/s/irrigation" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Irrigation & Sprinklers</a></li>
+                <li><a href="/s/outdoor-living" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Outdoor Living</a></li>
                 <li><a href={createPageUrl("Blog")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Blog</a></li>
-                <li><a href={createPageUrl("Home") + "#work"} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Our Work</a></li>
-                <li><a href={createPageUrl("Home") + "#contact"} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Contact</a></li>
                 <li><a href="https://outrightlandscape.com/api/sitemap" target="_blank" rel="noopener noreferrer" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Sitemap</a></li>
+                </ul>
+              </nav>
+              <h2 className="footerGuidesTitle font-bold text-sm mt-6 mb-4 text-[#b8945a] uppercase tracking-wider">Guides</h2>
+              <nav aria-label="Buyer guides">
+              <ul className="space-y-3 text-sm">
+                <li><a href="/guides/pavers-vs-stamped-concrete" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Pavers vs. Concrete</a></li>
+                <li><a href="/guides/best-sod-san-gabriel-valley" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Best Sod for SGV</a></li>
+                <li><a href="/guides/sprinkler-repair-vs-replacement" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Repair vs. Replace</a></li>
+                <li><a href="/guides/landscaping-cost-san-gabriel-valley" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Cost Guide</a></li>
+                <li><a href="/guides/hiring-licensed-landscape-contractor" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Hiring a Contractor</a></li>
                 </ul>
               </nav>
             </div>

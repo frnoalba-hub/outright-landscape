@@ -6,6 +6,8 @@ import VisualEditAgent from '@/lib/VisualEditAgent'
 import NavigationTracker from '@/lib/NavigationTracker'
 import { pagesConfig } from './pages.config'
 import BlogPost from './pages/BlogPost'
+import ServiceHubPage from './pages/ServiceHubPage'
+import BuyerGuidePage from './pages/BuyerGuidePage'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
@@ -66,6 +68,22 @@ const AuthenticatedApp = () => {
         element={
           <LayoutWrapper currentPageName="BlogPost">
             <BlogPost />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/s/:slug"
+        element={
+          <LayoutWrapper currentPageName="ServiceHub">
+            <ServiceHubPage />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/guides/:slug"
+        element={
+          <LayoutWrapper currentPageName="BuyerGuide">
+            <BuyerGuidePage />
           </LayoutWrapper>
         }
       />

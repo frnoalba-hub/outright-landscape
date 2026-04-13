@@ -166,6 +166,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                 keywords={`sprinkler installation ${cityName}, sprinkler repair ${cityName}, irrigation repair ${cityName}, drip irrigation ${cityName}, sprinkler valve repair ${cityName}`} />
             <BreadcrumbSchema items={breadcrumbItems} />
             {faqs.length > 0 && <FAQSchema faqs={faqs} cityName={cityName} />}
+            <p className="bg-[#1a1a1a] pt-20 pb-0 px-5 sm:px-8 lg:px-12 text-xs text-white/30">Last updated: April 13, 2026</p>
 
             {/* ── HERO ── */}
             <section className="cityIrrigationHero relative min-h-[75vh] sm:min-h-[85vh] flex items-end sm:items-center overflow-hidden bg-[#1a1a1a]">
