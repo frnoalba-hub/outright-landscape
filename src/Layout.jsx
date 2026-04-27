@@ -179,46 +179,46 @@ export default function Layout({ children }) {
       <header className={`site-header fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled ? 'bg-[#1a1a1a]/95 backdrop-blur-md shadow-lg py-1 sm:py-1.5' : 'bg-[#1a1a1a]/70 backdrop-blur-sm py-2 sm:py-2.5'}`
       }>
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8" aria-label="Main navigation">
           <div className="flex items-center justify-between">
             <a
               href={createPageUrl("Home")}
-              className="headerLogo flex items-center gap-3 group"
+              className="headerLogo flex flex-shrink-0 items-center gap-2 xl:gap-3 group"
               aria-label="Outright Landscape Home">
 
               <img
               src="/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
               alt="Outright Landscape Construction Logo"
-              className="h-[85px] sm:h-[110px] w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+              className="h-16 sm:h-[74px] xl:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
               width="122"
               height="122"
               fetchPriority="high"
               decoding="async" />
 
-              <div className="flex flex-col">
-              <span className="headerBrandName font-bold text-lg sm:text-xl leading-tight text-white">Outright Landscape</span>
+              <div className="flex min-w-0 flex-col">
+              <span className="headerBrandName max-w-[8.5rem] xl:max-w-none font-bold text-base sm:text-lg xl:text-xl leading-tight text-white">Outright Landscape</span>
               <span className="headerLicense text-[10px] sm:text-[11px] text-[#b8945a]/70 font-medium tracking-wider">CSLB #1073845</span>
               </div>
             </a>
             
-            <ul className="headerNav hidden lg:flex items-center space-x-5 xl:space-x-8">
+            <ul className="headerNav hidden xl:flex items-center space-x-5 2xl:space-x-8">
               {navigationItems.map((item) => <li key={item.title}>
                   <a
                     href={item.href}
-                    className="headerNavLink text-white/70 hover:text-[#c45d2c] font-medium transition-colors text-base tracking-wide py-2 whitespace-nowrap">
+                    className="headerNavLink text-white/70 hover:text-[#c45d2c] font-medium transition-colors text-sm 2xl:text-base tracking-wide py-2 whitespace-nowrap">
                     {item.title}
                   </a>
                 </li>
               )}
             </ul>
             
-            <div className="headerCtas hidden lg:flex items-center gap-3">
-                <Button asChild variant="outline" className="headerQuoteBtn border border-[#b8945a]/50 text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold px-6 py-2.5 rounded-lg transition-all text-base bg-transparent">
+            <div className="headerCtas hidden xl:flex flex-shrink-0 items-center gap-2 2xl:gap-3">
+                <Button asChild variant="outline" className="headerQuoteBtn border border-[#b8945a]/50 text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold px-4 2xl:px-6 py-2.5 rounded-lg transition-all text-sm 2xl:text-base bg-transparent">
                   <a href="#contact" aria-label="Get a free quote">
                     Get Quote
                   </a>
                 </Button>
-                <Button asChild className="headerCallBtn bg-[#c45d2c] hover:bg-[#a94e25] text-white font-semibold px-6 py-2.5 rounded-lg shadow-lg shadow-[#c45d2c]/20 transition-all border-0 text-base">
+                <Button asChild className="headerCallBtn bg-[#c45d2c] hover:bg-[#a94e25] text-white font-semibold px-4 2xl:px-6 py-2.5 rounded-lg shadow-lg shadow-[#c45d2c]/20 transition-all border-0 text-sm 2xl:text-base">
                   <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
                     <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
                     (626) 343-6028
@@ -227,7 +227,7 @@ export default function Layout({ children }) {
               </div>
 
             <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
-              <SheetTrigger asChild className="lg:hidden">
+              <SheetTrigger asChild className="xl:hidden">
                 <Button
                   type="button"
                   variant="ghost"
