@@ -343,6 +343,8 @@ export default function Layout({ children }) {
                 <li><a href="/s/irrigation" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Irrigation & Sprinklers</a></li>
                 <li><a href="/s/outdoor-living" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Outdoor Living</a></li>
                 <li><a href={createPageUrl("Blog")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Blog</a></li>
+                <li><a href="/About" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">About Us</a></li>
+                <li><a href="/Contact" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Contact</a></li>
                 <li><a href="https://outrightlandscape.com/api/sitemap" target="_blank" rel="noopener noreferrer" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Sitemap</a></li>
                 </ul>
               </nav>

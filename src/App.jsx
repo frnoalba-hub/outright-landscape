@@ -8,6 +8,8 @@ import { pagesConfig } from './pages.config'
 import BlogPost from './pages/BlogPost'
 import ServiceHubPage from './pages/ServiceHubPage'
 import BuyerGuidePage from './pages/BuyerGuidePage'
+import About from './pages/About'
+import Contact from './pages/Contact'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
@@ -84,6 +86,22 @@ const AuthenticatedApp = () => {
         element={
           <LayoutWrapper currentPageName="BuyerGuide">
             <BuyerGuidePage />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/About"
+        element={
+          <LayoutWrapper currentPageName="About">
+            <About />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/Contact"
+        element={
+          <LayoutWrapper currentPageName="Contact">
+            <Contact />
           </LayoutWrapper>
         }
       />
