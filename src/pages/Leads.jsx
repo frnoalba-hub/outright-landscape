@@ -54,6 +54,42 @@ function LeadRow({ lead, onUpdate }) {
         }
     };
 
+    const handleForward = async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!forwardEmail.trim()) {
+            toast.error('Enter a recipient email address');
+            return;
+        }
+        setForwarding(true);
+        try {
+            await base44.integrations.Core.SendEmail({
+                to: forwardEmail.trim(),
+                subject: `Lead from ${lead.name} – Outright Landscape`,
+                body: [
+                    `You have a lead forwarded from Outright Landscape:`,
+                    ``,
+                    `Name: ${lead.name}`,
+                    `Phone: ${lead.phone || '—'}`,
+                    `Email: ${lead.email || '—'}`,
+                    `City: ${lead.city || '—'}`,
+                    `Service: ${SERVICE_LABELS[lead.service_type] || lead.service_type || '—'}`,
+                    `Message: ${lead.message || '—'}`,
+                    `Submitted: ${formatDate(lead.created_date)}`,
+                    `Status: ${lead.status || 'new'}`,
+                    notes ? `\nAdmin Notes: ${notes}` : '',
+                ].join('\n'),
+            });
+            toast.success(`✓ Lead forwarded to ${forwardEmail.trim()}`);
+            setForwardEmail('');
+        } catch (err) {
+            console.error('Forward failed:', err);
+            toast.error(`Failed to send: ${err?.message || 'Unknown error'}`);
+        } finally {
+            setForwarding(false);
+        }
+    };
+
     return (
         <div className="leadRow bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
             {/* Summary row */}
@@ -174,34 +210,10 @@ function LeadRow({ lead, onUpdate }) {
                                         className="h-10 text-sm flex-1"
                                     />
                                     <Button
-                                        onClick={async () => {
-                                            if (!forwardEmail) return toast.error('Enter a recipient email');
-                                            setForwarding(true);
-                                            try {
-                                                await base44.integrations.Core.SendEmail({
-                                                    to: forwardEmail,
-                                                    subject: `Lead from ${lead.name} – Outright Landscape`,
-                                                    body: `You have a new lead forwarded from Outright Landscape:\n\n` +
-                                                        `Name: ${lead.name}\n` +
-                                                        `Phone: ${lead.phone || '—'}\n` +
-                                                        `Email: ${lead.email || '—'}\n` +
-                                                        `City: ${lead.city || '—'}\n` +
-                                                        `Service: ${SERVICE_LABELS[lead.service_type] || lead.service_type || '—'}\n` +
-                                                        `Message: ${lead.message || '—'}\n` +
-                                                        `Submitted: ${formatDate(lead.created_date)}\n` +
-                                                        `Status: ${lead.status || 'new'}\n` +
-                                                        (notes ? `\nAdmin Notes: ${notes}` : ''),
-                                                });
-                                                toast.success(`Lead forwarded to ${forwardEmail}`);
-                                                setForwardEmail('');
-                                            } catch {
-                                                toast.error('Failed to forward lead');
-                                            } finally {
-                                                setForwarding(false);
-                                            }
-                                        }}
-                                        disabled={forwarding}
-                                        className="h-10 px-4 bg-[#1a1a1a] hover:bg-[#333] text-white gap-2 whitespace-nowrap"
+                                       type="button"
+                                       onClick={handleForward}
+                                       disabled={forwarding}
+                                       className="h-10 px-4 bg-[#1a1a1a] hover:bg-[#333] text-white gap-2 whitespace-nowrap"
                                     >
                                         {forwarding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Forward className="w-4 h-4" />}
                                         Forward
