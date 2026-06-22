@@ -1,0 +1,50 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Article title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug (e.g. seasonal-watering-tips)"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short summary for the card view"
+    },
+    "content": {
+      "type": "string",
+      "description": "Main article content (HTML or Markdown)"
+    },
+    "cover_image": {
+      "type": "string",
+      "description": "URL of the cover image"
+    },
+    "author": {
+      "type": "string",
+      "default": "Outright Landscape Team"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Tips",
+        "Projects",
+        "News",
+        "Seasonal",
+        "Design"
+      ],
+      "default": "Tips"
+    },
+    "published": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "content"
+  ]
+}

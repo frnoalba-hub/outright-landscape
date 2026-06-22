@@ -1,0 +1,106 @@
+{
+  "name": "ContactInquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the person making the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for contact"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number for contact"
+    },
+    "city": {
+      "type": "string",
+      "description": "City of the potential project"
+    },
+    "message": {
+      "type": "string",
+      "description": "Detailed message about their landscaping needs"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "landscape_design",
+        "lawn_care",
+        "tree_shrub_care",
+        "hardscaping",
+        "irrigation",
+        "other"
+      ],
+      "description": "Type of service they're interested in"
+    },
+    "property_type": {
+      "type": "string",
+      "enum": [
+        "residential",
+        "commercial"
+      ],
+      "description": "Type of property"
+    },
+    "budget_range": {
+      "type": "string",
+      "enum": [
+        "under_5k",
+        "5k_10k",
+        "10k_25k",
+        "25k_50k",
+        "over_50k"
+      ],
+      "description": "Budget range for the project"
+    },
+    "preferred_contact": {
+      "type": "string",
+      "enum": [
+        "phone",
+        "email"
+      ],
+      "default": "email",
+      "description": "Preferred method of contact"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "contacted",
+        "scheduled",
+        "closed",
+        "lost"
+      ],
+      "default": "new",
+      "description": "Current status of the lead"
+    },
+    "admin_notes": {
+      "type": "string",
+      "description": "Internal notes about the lead"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "message"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

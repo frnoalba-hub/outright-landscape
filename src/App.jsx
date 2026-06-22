@@ -10,6 +10,7 @@ import ServiceHubPage from './pages/ServiceHubPage'
 import BuyerGuidePage from './pages/BuyerGuidePage'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Leads from './pages/Leads'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
@@ -102,6 +103,14 @@ const AuthenticatedApp = () => {
         element={
           <LayoutWrapper currentPageName="Contact">
             <Contact />
+          </LayoutWrapper>
+        }
+      />
+      <Route
+        path="/Leads"
+        element={
+          <LayoutWrapper currentPageName="Leads">
+            <Leads />
           </LayoutWrapper>
         }
       />

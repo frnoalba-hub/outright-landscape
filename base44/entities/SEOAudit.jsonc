@@ -1,0 +1,48 @@
+{
+  "name": "SEOAudit",
+  "type": "object",
+  "properties": {
+    "audit_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the audit was performed"
+    },
+    "total_pages": {
+      "type": "integer",
+      "description": "Total pages audited"
+    },
+    "overall_score": {
+      "type": "number",
+      "description": "Overall SEO health score (0-100)"
+    },
+    "issues_critical": {
+      "type": "integer",
+      "default": 0
+    },
+    "issues_warning": {
+      "type": "integer",
+      "default": 0
+    },
+    "issues_info": {
+      "type": "integer",
+      "default": 0
+    },
+    "results": {
+      "type": "object",
+      "description": "Detailed audit results JSON"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "running",
+        "completed",
+        "failed"
+      ],
+      "default": "running"
+    }
+  },
+  "required": [
+    "audit_date",
+    "status"
+  ]
+}

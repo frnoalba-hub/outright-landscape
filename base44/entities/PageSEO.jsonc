@@ -1,0 +1,40 @@
+{
+  "name": "PageSEO",
+  "type": "object",
+  "properties": {
+    "page_path": {
+      "type": "string",
+      "description": "Page URL path (e.g. /covina-landscaping)"
+    },
+    "meta_title": {
+      "type": "string",
+      "description": "SEO meta title (50-60 chars recommended)"
+    },
+    "meta_description": {
+      "type": "string",
+      "description": "SEO meta description (150-160 chars recommended)"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Relevant keywords for the page"
+    },
+    "ai_generated": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether this was AI-generated"
+    },
+    "last_generated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the SEO data was last generated"
+    }
+  },
+  "required": [
+    "page_path",
+    "meta_title",
+    "meta_description"
+  ]
+}

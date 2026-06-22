@@ -1,0 +1,77 @@
+{
+  "name": "Appointment",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the person booking"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "city": {
+      "type": "string",
+      "description": "City of the project"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "sprinkler_repair",
+        "sprinkler_installation",
+        "drip_irrigation",
+        "landscape_design",
+        "hardscaping",
+        "turf_installation",
+        "general_consultation"
+      ],
+      "description": "Type of service requested"
+    },
+    "appointment_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Selected appointment date"
+    },
+    "time_slot": {
+      "type": "string",
+      "enum": [
+        "9:00 AM",
+        "10:00 AM",
+        "11:00 AM",
+        "12:00 PM",
+        "1:00 PM",
+        "2:00 PM",
+        "3:00 PM",
+        "4:00 PM"
+      ],
+      "description": "Preferred time slot"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes about the appointment"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "completed",
+        "cancelled"
+      ],
+      "default": "pending",
+      "description": "Appointment status"
+    }
+  },
+  "required": [
+    "name",
+    "phone",
+    "service_type",
+    "appointment_date",
+    "time_slot"
+  ]
+}
