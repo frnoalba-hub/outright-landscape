@@ -5,7 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Phone, Mail, MapPin, Calendar, MessageSquare, ChevronDown, ChevronUp, RefreshCw, Loader2 } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Phone, Mail, MapPin, Calendar, MessageSquare, ChevronDown, ChevronUp, RefreshCw, Loader2, Forward } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -35,6 +36,8 @@ function formatDate(dateStr) {
 function LeadRow({ lead, onUpdate }) {
     const [expanded, setExpanded] = useState(false);
     const [saving, setSaving] = useState(false);
+    const [forwarding, setForwarding] = useState(false);
+    const [forwardEmail, setForwardEmail] = useState('');
     const [notes, setNotes] = useState(lead.admin_notes || '');
     const [status, setStatus] = useState(lead.status || 'new');
 
@@ -158,6 +161,52 @@ function LeadRow({ lead, onUpdate }) {
                                     rows={2}
                                     className="text-sm"
                                 />
+                            </div>
+
+                                            <div className="leadForward border-t border-gray-100 pt-4 space-y-2">
+                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Forward Lead via Email</label>
+                                <div className="flex gap-2">
+                                    <Input
+                                        type="email"
+                                        placeholder="Recipient email address..."
+                                        value={forwardEmail}
+                                        onChange={e => setForwardEmail(e.target.value)}
+                                        className="h-10 text-sm flex-1"
+                                    />
+                                    <Button
+                                        onClick={async () => {
+                                            if (!forwardEmail) return toast.error('Enter a recipient email');
+                                            setForwarding(true);
+                                            try {
+                                                await base44.integrations.Core.SendEmail({
+                                                    to: forwardEmail,
+                                                    subject: `Lead from ${lead.name} – Outright Landscape`,
+                                                    body: `You have a new lead forwarded from Outright Landscape:\n\n` +
+                                                        `Name: ${lead.name}\n` +
+                                                        `Phone: ${lead.phone || '—'}\n` +
+                                                        `Email: ${lead.email || '—'}\n` +
+                                                        `City: ${lead.city || '—'}\n` +
+                                                        `Service: ${SERVICE_LABELS[lead.service_type] || lead.service_type || '—'}\n` +
+                                                        `Message: ${lead.message || '—'}\n` +
+                                                        `Submitted: ${formatDate(lead.created_date)}\n` +
+                                                        `Status: ${lead.status || 'new'}\n` +
+                                                        (notes ? `\nAdmin Notes: ${notes}` : ''),
+                                                });
+                                                toast.success(`Lead forwarded to ${forwardEmail}`);
+                                                setForwardEmail('');
+                                            } catch {
+                                                toast.error('Failed to forward lead');
+                                            } finally {
+                                                setForwarding(false);
+                                            }
+                                        }}
+                                        disabled={forwarding}
+                                        className="h-10 px-4 bg-[#1a1a1a] hover:bg-[#333] text-white gap-2 whitespace-nowrap"
+                                    >
+                                        {forwarding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Forward className="w-4 h-4" />}
+                                        Forward
+                                    </Button>
+                                </div>
                             </div>
 
                             <Button onClick={handleSave} disabled={saving} className="bg-[#c45d2c] hover:bg-[#a94e25] text-white h-10 px-6">
