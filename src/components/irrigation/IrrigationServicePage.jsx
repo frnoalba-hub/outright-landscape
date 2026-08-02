@@ -205,9 +205,9 @@ export default function IrrigationServicePage({ city, service, data }) {
                     <div className="bg-[#1a1a1a] rounded-2xl p-8 text-center">
                         <Clock className="w-10 h-10 text-[#c45d2c] mx-auto mb-4" />
                         <h3 className="text-xl font-bold text-white mb-3">Get Your Free Estimate Today</h3>
-                        <p className="text-[#8a8478] mb-8">We provide upfront pricing with no hidden fees. Most {data.serviceDisplay.toLowerCase()} jobs in {city} are completed same-day or next-day.</p>
+                        <p className="text-[#8a8478] mb-8">We provide a written, project-specific estimate. Scheduling for {data.serviceDisplay.toLowerCase()} in {city} depends on scope and current availability.</p>
                         <div className="grid md:grid-cols-3 gap-4">
-                            {[{ title: 'No Trip Charge', desc: 'For service calls' }, { title: 'Warranty Included', desc: 'On all repairs' }, { title: 'Fast Response', desc: 'Same or next day' }].map((p, i) => (
+                            {[{ title: 'Clear Scope', desc: 'Written estimate' }, { title: 'Terms in Writing', desc: 'Project-specific' }, { title: 'Scheduling', desc: 'Confirmed by phone' }].map((p, i) => (
                                 <div key={i} className="bg-[#242424] border border-[#333] p-4 rounded-xl">
                                     <CheckCircle2 className="w-5 h-5 text-[#4a8c3f] mb-2" />
                                     <p className="font-bold text-white text-sm">{p.title}</p>
@@ -324,7 +324,7 @@ export default function IrrigationServicePage({ city, service, data }) {
             <section className="irrigationDetailFinalCta py-20 sm:py-28 bg-gradient-to-br from-[#2d5a27] via-[#1e4a1a] to-[#1a3a15]">
                 <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center">
                     <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 tracking-tight">Ready to Fix Your {data.serviceDisplay}?</h2>
-                    <p className="text-lg text-white/70 mb-8">Call now for same-day service in {city}, La Verne, San Dimas, and Glendora</p>
+                    <p className="text-lg text-white/70 mb-8">Call to request service in {city}, La Verne, San Dimas, and Glendora</p>
                     <a href="tel:626-343-6028" onClick={handlePhoneClick}>
                         <Button className="bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-lg px-10 py-6 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:scale-[1.02]">
                             <Phone className="w-5 h-5 mr-3" />(626) 343-6028

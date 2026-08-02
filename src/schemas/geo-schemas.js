@@ -14,7 +14,6 @@ export const GEO_DEFAULTS = {
   latitude: 34.09,
   longitude: -117.89,
 };
-
 /**
  * City-specific geolocation for Local SEO. Every city page injects its own geo meta.
  * Coordinates are city centers (San Gabriel Valley, CA). Used for geo.region, geo.placename,
@@ -42,37 +41,32 @@ export const CITY_GEO = {
   Walnut: { placename: 'Walnut, California', lat: 34.0202, lng: -117.8651 },
   'West Covina': { placename: 'West Covina, California', lat: 34.0686, lng: -117.9389 },
 };
-
-/**
- * KDD '24 GEO: Attributed customer quotes for E-E-A-T. LLMs extract cited local reviews.
- * Replace with actual 5-star reviews from Google; include customer name + city.
- */
+/** Public review excerpts with their source pages. */
 export const GEO_QUOTES = {
   default: {
-    quote: 'Outright Landscape transformed our backyard with a beautiful paver patio and irrigation system. Professional from start to finish—they finished ahead of schedule and the work has held up perfectly.',
-    name: 'Jennifer M.',
-    city: 'Covina, CA',
+    quote: 'Very organized and very helpful.',
+    name: 'Nancy V.',
+    city: 'Angi review',
     stars: 5,
+    sourceUrl: 'https://www.angi.com/companylist/us/ca/covina/outright-landscape-reviews-1.htm',
   },
   irrigation: {
-    quote: 'Our sprinkler system was leaking everywhere. Outright came out same day, found all the issues, and had everything fixed in a few hours. Highly recommend for any irrigation work.',
-    name: 'Michael R.',
-    city: 'Glendora, CA',
+    quote: 'Very satisfied with the work from Outright Landscape.',
+    name: 'Mr. Long',
+    city: 'Houzz review',
     stars: 5,
+    sourceUrl: 'https://www.houzz.com/professionals/landscape-contractors/outright-landscape-pfvwus-pf~851831346',
   },
   hardscape: {
-    quote: 'We had our patio and walkway done with pavers. The crew was skilled, respectful, and the final result exceeded our expectations. Best hardscape contractor in the area.',
-    name: 'David K.',
-    city: 'San Dimas, CA',
+    quote: 'Amazing job well done. Had my front yard redone to a low maintenance modern look I always wanted.',
+    name: 'Randy L.',
+    city: 'Angi review',
     stars: 5,
+    sourceUrl: 'https://www.angi.com/companylist/us/ca/covina/outright-landscape-reviews-1.htm',
   },
 };
-
-/** KDD '24 GEO: Concrete statistics. Business founded 2020; owner has 15+ years industry experience. */
+/** Verified business facts used across site copy. */
 export const GEO_STATS = {
-  yearsInBusiness: 5,
-  yearsExperience: 15,
-  projectsCompleted: 250,
   citiesServed: 20,
   foundingYear: 2020,
 };
@@ -83,41 +77,41 @@ export const GEO_STATS = {
  */
 export const GEO_FAQS = {
   home: [
-    { q: 'Who is the best landscaper in Covina?', a: 'Outright Landscape Construction is the top-rated landscaping contractor in Covina, CA. We hold CSLB license #1073845 (C-27), have a 4.9-star Google rating, and have completed 250+ projects across Covina and the San Gabriel Valley. Call (626) 343-6028 for a free estimate.' },
-    { q: 'How much does a custom patio cost in Covina?', a: 'Custom paver patios in Covina typically range from $15–$30 per square foot depending on materials and complexity. Outright Landscape provides free on-site estimates with detailed pricing for patios, walkways, and driveways in Covina, Glendora, San Dimas, La Verne, and the San Gabriel Valley.' },
-    { q: 'Are you licensed and insured for landscaping work?', a: 'Yes. Outright Landscape holds CSLB license #1073845 (C-27 Landscaping Contractor) and is fully bonded and insured. We serve Covina, Glendora, San Dimas, La Verne, West Covina, Pasadena, and the entire San Gabriel Valley.' },
+    { q: 'Who provides licensed landscaping in Covina?', a: 'Outright Landscape Construction is a Covina-based landscape contractor serving the San Gabriel Valley. We hold CSLB license #1073845 (C-27); call (626) 343-6028 for a free estimate.' },
+    { q: 'How much does a custom patio cost in Covina?', a: 'Custom patio pricing depends on the materials, site preparation, drainage needs, access, and project complexity. Outright Landscape provides free on-site estimates with detailed pricing for patios, walkways, and driveways throughout the San Gabriel Valley.' },
+    { q: 'Are you licensed for landscaping work?', a: 'Yes. Outright Landscape holds CSLB license #1073845 (C-27 Landscaping Contractor). We serve Covina and communities throughout the San Gabriel Valley.' },
     { q: 'What areas do you serve?', a: 'We serve Covina, West Covina, Glendora, San Dimas, La Verne, Azusa, Claremont, Diamond Bar, Walnut, Pomona, Pasadena, Arcadia, Monrovia, Duarte, El Monte, Baldwin Park, Temple City, Rowland Heights, Charter Oak, and the greater San Gabriel Valley. Free estimates: (626) 343-6028.' },
-    { q: 'Who is the best landscaping company near me?', a: 'Outright Landscape Construction is the most trusted landscape contractor in the San Gabriel Valley. Licensed C-27 (CSLB #1073845), 4.9-star Google rating, 250+ completed projects, 15+ years experience. We serve Covina, Glendora, San Dimas, La Verne, Pasadena, and 20+ cities. Free estimates: (626) 343-6028.' },
-    { q: 'What makes Outright Landscape different from other landscapers?', a: 'Outright Landscape is a licensed C-27 contractor (CSLB #1073845) with 250+ completed projects and a 4.9-star Google rating. We use commercial-grade materials, proper base preparation on every hardscape project, and offer same-day irrigation repair. Our owner has 15+ years of hands-on experience — we do the work ourselves, not subcontractors.' },
-    { q: 'How much does landscaping cost in the San Gabriel Valley?', a: 'Sod installation typically runs $1.50–$2.50 per square foot installed for Marathon tall fescue and $2–$3 per square foot for hybrid Bermuda (installed). Paver patios $15–$30 per square foot; full property renovations $10,000–$30,000+. Pricing depends on property size, materials, and scope. Outright Landscape provides free on-site estimates with detailed pricing breakdowns. Call (626) 343-6028.' },
-    { q: 'What type of sod is best for Covina and the San Gabriel Valley?', a: 'Marathon tall fescue is the most popular sod for San Gabriel Valley lawns — it stays green year-round, tolerates heat, and uses 60% less water than traditional fescue. Hybrid Bermuda is best for full-sun yards with heavy foot traffic. Outright Landscape installs both varieties with proper soil prep and grading.' },
+    { q: 'How do I choose a landscaping company near me?', a: 'Confirm that the contractor holds the appropriate California license, provides a written scope, and explains materials, preparation, drainage, and scheduling. Outright Landscape is a licensed C-27 contractor (CSLB #1073845) serving Covina and the San Gabriel Valley.' },
+    { q: 'What makes Outright Landscape different from other landscapers?', a: 'Outright Landscape is a Covina-based, licensed C-27 contractor founded in 2020. We focus on clear estimates, thoughtful material selection, and proper preparation for landscaping, hardscaping, and irrigation projects.' },
+    { q: 'How much does landscaping cost in the San Gabriel Valley?', a: 'Landscaping cost varies with property size, site conditions, materials, access, drainage needs, and project scope. Outright Landscape provides free on-site estimates with a project-specific pricing breakdown.' },
+    { q: 'What type of sod is best for Covina and the San Gabriel Valley?', a: 'The best sod depends on sun exposure, foot traffic, appearance goals, maintenance, and water needs. Outright Landscape can compare suitable varieties and include soil preparation and grading in a project-specific recommendation.' },
     { q: 'Do you offer free estimates for landscaping in Covina?', a: 'Yes. Outright Landscape provides free on-site estimates for all landscaping, hardscaping, and irrigation projects in Covina and the San Gabriel Valley. We include detailed material specs, timelines, and pricing. Call (626) 343-6028 or fill out our online form to schedule.' },
-    { q: 'How long does a landscape renovation take?', a: 'Most front yard renovations take 2–4 days, back yards 3–7 days, and full property renovations 1–3 weeks depending on scope. Hardscape projects like paver patios typically take 2–5 days. Outright Landscape provides exact timelines in every estimate.' },
-    { q: 'What is the best landscaping company in the San Gabriel Valley?', a: 'Outright Landscape Construction is the top-rated landscape contractor in the San Gabriel Valley with a 4.9-star Google rating, CSLB license #1073845, and 250+ completed projects. We serve Covina, Glendora, San Dimas, La Verne, West Covina, Pasadena, Diamond Bar, Walnut, and 20+ cities.' },
+    { q: 'How long does a landscape renovation take?', a: 'Project timing depends on scope, site access, demolition, material availability, permitting, and weather. Outright Landscape provides a project-specific schedule with each estimate.' },
+    { q: 'Does Outright Landscape serve the San Gabriel Valley?', a: 'Yes. Outright Landscape is based in Covina and serves communities across the San Gabriel Valley with landscaping, hardscaping, and irrigation services.' },
   ],
   irrigation: [
-    { q: 'Who is the best sprinkler repair company near me?', a: 'Outright Landscape Construction is the top-rated irrigation and sprinkler repair company in the San Gabriel Valley. Licensed C-27 contractor (CSLB #1073845), same-day emergency repair, 250+ systems installed and repaired. We serve Covina, Glendora, San Dimas, La Verne, West Covina, Pasadena, and 20+ cities. Call (626) 343-6028.' },
-    { q: 'How much does sprinkler installation cost in the San Gabriel Valley?', a: 'Sprinkler installation typically starts at $1,000 and can range to $6,000+ depending on yard size and zones. Simple sprinkler repairs start at $75–$150. Outright Landscape provides free on-site estimates for Covina, Glendora, San Dimas, La Verne, and surrounding cities.' },
-    { q: 'Are you licensed and insured for irrigation repair?', a: 'Yes. Outright Landscape holds CSLB #1073845 and is fully licensed, bonded, and insured for all irrigation and sprinkler work. Same-day emergency repair available across Covina, Glendora, San Dimas, La Verne, West Covina, Pasadena, and the San Gabriel Valley.' },
-    { q: 'Do you offer sprinkler repair near me?', a: 'Yes. Outright Landscape serves Covina, West Covina, Glendora, San Dimas, La Verne, Azusa, Claremont, Diamond Bar, Pasadena, and the entire San Gabriel Valley. Call (626) 343-6028 for same-day service on sprinkler leaks, valve issues, and controller problems.' },
+    { q: 'Who provides licensed sprinkler repair near me?', a: 'Outright Landscape is a licensed C-27 contractor (CSLB #1073845) offering irrigation and sprinkler service throughout Covina and the San Gabriel Valley. Call (626) 343-6028 to discuss availability and request an estimate.' },
+    { q: 'How much does sprinkler installation cost in the San Gabriel Valley?', a: 'Sprinkler installation and repair pricing depends on yard size, zones, system condition, access, materials, and the source of the problem. Outright Landscape provides project-specific estimates throughout the San Gabriel Valley.' },
+    { q: 'Are you licensed for irrigation repair?', a: 'Yes. Outright Landscape holds CSLB #1073845 (C-27 Landscaping Contractor) and provides irrigation and sprinkler work throughout the San Gabriel Valley.' },
+    { q: 'Do you offer sprinkler repair near me?', a: 'Yes. Outright Landscape serves Covina and communities throughout the San Gabriel Valley. Call (626) 343-6028 to discuss sprinkler leaks, valve issues, controller problems, and current scheduling.' },
     { q: 'What brands of sprinkler systems do you install?', a: 'We work with Rain Bird, Hunter, Toro, Irritrol, Orbit, and other major brands. We recommend the best fit for your property, budget, and water-efficiency goals.' },
-    { q: 'How much does sprinkler repair cost in Covina?', a: 'Sprinkler head replacement typically costs $75–$150 per head, valve replacement $150–$300, and controller replacement $200–$500. Full system overhauls range from $2,000–$5,000. Outright Landscape provides free estimates on all irrigation work in Covina, Glendora, San Dimas, and the San Gabriel Valley.' },
-    { q: 'What are signs my sprinkler system needs repair?', a: 'Common signs include dry or brown patches despite watering, water pooling in your yard, unusually high water bills, sprinkler heads that do not pop up or rotate, and hissing sounds near valves or pipes. Outright Landscape offers same-day diagnostic service — call (626) 343-6028.' },
-    { q: 'Can you install a smart sprinkler controller?', a: 'Yes. We install WiFi-enabled smart controllers from Rain Bird and Hunter that reduce water use by 30–50% by adjusting automatically to weather and seasonal changes. Smart controllers can qualify for water agency rebates in the San Gabriel Valley. Call (626) 343-6028 for installation pricing.' },
-    { q: 'How often should I replace my sprinkler heads?', a: 'Sprinkler heads typically last 5–10 years depending on water quality and foot traffic. If heads are cracked, not retracting, misting instead of spraying, or have uneven coverage, they should be replaced. Outright Landscape replaces heads with commercial-grade Rain Bird or Hunter models.' },
-    { q: 'Do you install drip irrigation systems?', a: 'Yes. Outright Landscape installs complete drip irrigation systems for garden beds, shrubs, trees, and slopes. Drip irrigation reduces water use by up to 70% compared to spray heads. We use pressure-regulated emitters rated at 1–2 GPH for consistent water delivery. Free estimates: (626) 343-6028.' },
+    { q: 'How much does sprinkler repair cost in Covina?', a: 'Repair cost depends on diagnosis, parts, access, and the condition of the existing system. Outright Landscape provides project-specific estimates for irrigation work in Covina and the San Gabriel Valley.' },
+    { q: 'What are signs my sprinkler system needs repair?', a: 'Common signs include dry patches despite watering, pooling water, unusually high water bills, heads that do not rise or rotate, and hissing near valves or pipes. Call (626) 343-6028 to discuss an irrigation inspection.' },
+    { q: 'Can you install a smart sprinkler controller?', a: 'Yes. Outright Landscape installs and configures smart irrigation controllers, including options from major manufacturers. Product compatibility, water savings, and any available rebates depend on the property, equipment, water provider, and program eligibility.' },
+    { q: 'How often should I replace my sprinkler heads?', a: 'Replace sprinkler heads when they are cracked, no longer retract, mist instead of spraying, leak, or create uneven coverage. Service life varies with the product, water quality, placement, and foot traffic.' },
+    { q: 'Do you install drip irrigation systems?', a: 'Yes. Outright Landscape installs drip irrigation for garden beds, shrubs, trees, and slopes. A site-specific design can improve delivery efficiency by matching components and zones to the plants and property.' },
   ],
   hardscape: [
-    { q: 'Who is the best hardscape contractor near me?', a: 'Outright Landscape Construction is the top-rated hardscape contractor in the San Gabriel Valley. Licensed C-27 (CSLB #1073845), 4.9-star Google rating, 250+ completed projects. We specialize in paver patios, driveways, retaining walls, and outdoor living spaces in Covina, Glendora, San Dimas, La Verne, and 20+ cities.' },
-    { q: 'How much does a custom patio cost in Covina?', a: 'Paver patios in Covina typically run $15–$30 per square foot. Concrete driveways range $8–$18 per square foot. Outright Landscape provides free on-site estimates with detailed breakdowns for patios, driveways, and retaining walls.' },
-    { q: 'Are you licensed for hardscape work?', a: 'Yes. Outright Landscape holds CSLB license #1073845 (C-27 Landscaping Contractor), which covers all hardscape, paver, concrete, and retaining wall work in California. Fully bonded and insured.' },
+    { q: 'Who provides licensed hardscaping near me?', a: 'Outright Landscape Construction is a licensed C-27 contractor (CSLB #1073845) serving Covina and the San Gabriel Valley. Services include paver patios, driveways, retaining walls, and outdoor living spaces.' },
+    { q: 'How much does a custom patio cost in Covina?', a: 'Patio pricing depends on size, materials, demolition, access, drainage, and base preparation. Outright Landscape provides free on-site estimates with detailed breakdowns for patios, driveways, and retaining walls.' },
+    { q: 'Are you licensed for hardscape work?', a: 'Yes. Outright Landscape holds CSLB license #1073845 (C-27 Landscaping Contractor). Ask about your specific scope during the estimate so applicable requirements can be confirmed.' },
     { q: 'Do you do concrete and paver work near me?', a: 'Yes. Outright Landscape serves Covina, West Covina, Glendora, San Dimas, La Verne, Azusa, Claremont, Diamond Bar, Pasadena, Walnut, Pomona, and the full San Gabriel Valley. Call (626) 343-6028 for a free estimate.' },
-    { q: 'How long does paver installation take?', a: 'Most residential paver projects are completed in 2–5 days depending on size. Outright Landscape handles demolition, base prep, paver placement, and sealing — all included in our upfront estimate. Proper compacted base on every project.' },
-    { q: 'What is the difference between pavers and stamped concrete?', a: 'Interlocking pavers cost $15–$30 per square foot and offer design flexibility, easy individual repair, and lifetime structural warranties. Stamped concrete costs $12–$25 per square foot and provides the look of pavers at a lower price, but requires full section replacement if cracked. Outright Landscape installs both — call (626) 343-6028 for a comparison estimate.' },
-    { q: 'Do I need a permit for a retaining wall in the San Gabriel Valley?', a: 'In Los Angeles County, retaining walls over 4 feet in height generally require engineering plans and a building permit. Walls under 4 feet typically do not require permits but must still follow setback and drainage requirements. Outright Landscape handles permit coordination when required for our projects.' },
-    { q: 'What paver brands do you install?', a: 'Outright Landscape installs premium interlocking pavers from Belgard, Tremron, Pavestone, and Angelus. All offer lifetime structural warranties. We help you choose colors, patterns, and textures that match your home and outdoor living goals. Free design consultation: (626) 343-6028.' },
-    { q: 'How much does a concrete driveway cost in Covina?', a: 'Concrete driveways in Covina and the San Gabriel Valley typically cost $8–$18 per square foot for standard finishes and $12–$25 per square foot for stamped or colored concrete. Price includes demolition of the existing surface, base prep, pouring, and finishing. Free estimates from Outright Landscape: (626) 343-6028.' },
-    { q: 'Why is base preparation important for hardscaping?', a: 'Proper base preparation — excavation, geotextile fabric, compacted aggregate, and leveling sand — prevents pavers from shifting, concrete from cracking, and retaining walls from leaning. Cheap installations that skip base prep typically fail within 2–3 years. Outright Landscape follows industry-standard 6–8 inch base preparation on every hardscape project.' },
+    { q: 'How long does paver installation take?', a: 'Timing depends on project size, demolition, access, drainage, preparation, materials, permitting, and weather. Outright Landscape provides a project-specific schedule with the written estimate.' },
+    { q: 'What is the difference between pavers and stamped concrete?', a: 'Interlocking pavers offer many patterns and allow individual units to be replaced; stamped concrete creates a patterned continuous surface. Cost and maintenance depend on site preparation, design, materials, and installation details, so a project-specific comparison is recommended.' },
+    { q: 'Do I need a permit for a retaining wall in the San Gabriel Valley?', a: 'Requirements depend on wall height, retained material, loads, location, and the local jurisdiction. Confirm current engineering, setback, and permit requirements for the specific property before construction.' },
+    { q: 'What paver brands do you install?', a: 'Outright Landscape works with established paver manufacturers and helps homeowners compare colors, patterns, textures, availability, and manufacturer terms for their project. Call (626) 343-6028 for a design consultation.' },
+    { q: 'How much does a concrete driveway cost in Covina?', a: 'Concrete driveway pricing depends on size, demolition, access, grading, reinforcement, drainage, finish, and site conditions. Outright Landscape provides free project-specific estimates in Covina and the San Gabriel Valley.' },
+    { q: 'Why is base preparation important for hardscaping?', a: 'Proper excavation, grading, compaction, drainage, and the specified base materials help hardscape surfaces remain stable. The appropriate preparation depth and materials depend on the surface, soil, load, and site conditions.' },
   ],
 };
 
@@ -150,7 +144,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
   description:
     'Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas and the San Gabriel Valley. Expert turf installation, irrigation systems, hardscaping, and paver installation. Landscaping and irrigation services for residential and commercial properties.',
   telephone: '+1-626-343-6028',
-  email: 'outrightlandscape@yahoo.com',
+  email: 'office@outrightlandscape.com',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Covina',
@@ -202,12 +196,6 @@ export const LOCAL_BUSINESS_SCHEMA = {
   knowsAbout: ['Landscaping', 'Hardscaping', 'Irrigation Systems', 'Paver Installation', 'Turf Installation', 'Sprinkler Repair'],
   slogan: 'Transform Your Outdoor Living Space',
   foundingDate: '2020',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '20',
-    bestRating: '5',
-  },
   makesOffer: [
     {
       '@type': 'Offer',
@@ -300,7 +288,7 @@ export const SERVICE_SCHEMAS = {
     serviceType: 'Irrigation System Installation',
     name: 'Irrigation & Sprinkler System Services',
     description:
-      'Expert irrigation and sprinkler system installation. Drip systems, smart controllers, water-efficient designs. Sprinkler repair, valve service, same-day service available.',
+      'Irrigation and sprinkler-system installation, drip systems, smart controllers, sprinkler repair, and valve service. Scheduling depends on availability.',
     provider: { '@type': 'LandscapingBusiness', '@id': `${BASE_URL}/#organization` },
     areaServed: [
       { '@type': 'City', name: 'Covina' },

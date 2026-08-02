@@ -10,8 +10,7 @@ import ServiceHubPage from './pages/ServiceHubPage'
 import BuyerGuidePage from './pages/BuyerGuidePage'
 import About from './pages/About'
 import Contact from './pages/Contact'
-import Leads from './pages/Leads'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -23,6 +22,58 @@ const MainPage = mainPageKey ? Pages[mainPageKey] : <></>;
 const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   <Layout currentPageName={currentPageName}>{children}</Layout>
   : <>{children}</>;
+
+const PAGE_PATHS = {
+  Blog: 'blog',
+  Hardscape: 'hardscape',
+  Irrigation: 'irrigation',
+  PrivacyPolicy: 'privacy-policy',
+};
+
+const LEGACY_PATHS = {
+  '/home': '/',
+  '/s/hardscaping': '/hardscape',
+  '/s/irrigation': '/irrigation',
+};
+
+const pagePath = (pageName) => PAGE_PATHS[pageName] ?? pageName.toLowerCase();
+
+function CanonicalPathRedirect() {
+  const location = useLocation();
+  const pathWithoutTrailingSlash = location.pathname.replace(/\/+$/, '') || '/';
+  const lowercasePath = pathWithoutTrailingSlash.toLowerCase();
+  const searchParams = new URLSearchParams(location.search);
+
+  if (lowercasePath === '/blogpost') {
+    const slug = searchParams.get('slug')?.trim().toLowerCase();
+    return <Navigate to={slug ? `/blog/${encodeURIComponent(slug)}` : '/blog'} replace />;
+  }
+
+  if (lowercasePath === '/servicearea' || lowercasePath === '/service-area') {
+    const city = searchParams.get('city')?.trim().toLowerCase();
+    const cityPage = city && Pages[`${city}-landscaping`];
+    return <Navigate to={cityPage ? `/${city}-landscaping` : '/#service-areas'} replace />;
+  }
+
+  const knownCanonicalPaths = new Set([
+    '/',
+    ...Object.keys(Pages).filter((name) => name !== mainPageKey).map((name) => `/${pagePath(name)}`),
+    '/blog',
+    '/about',
+    '/contact',
+    '/privacy-policy',
+  ]);
+  const dynamicCanonicalPath = /^\/(blog|guides)\/[a-z0-9-]+$/.test(lowercasePath)
+    || /^\/s\/[a-z0-9-]+$/.test(lowercasePath);
+  const canonicalPath = LEGACY_PATHS[lowercasePath]
+    ?? (knownCanonicalPaths.has(lowercasePath) || dynamicCanonicalPath ? lowercasePath : null);
+
+  if (canonicalPath && canonicalPath !== location.pathname) {
+    return <Navigate to={`${canonicalPath}${location.search}${location.hash}`} replace />;
+  }
+
+  return null;
+}
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, isAuthenticated, navigateToLogin } = useAuth();
@@ -49,16 +100,19 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
-    <Routes>
+    <>
+      <CanonicalPathRedirect />
+      <Routes>
       <Route path="/" element={
         <LayoutWrapper currentPageName={mainPageKey}>
           <MainPage />
         </LayoutWrapper>
       } />
-      {Object.entries(Pages).map(([path, Page]) => (
+      {Object.entries(Pages).filter(([path]) => path !== mainPageKey).map(([path, Page]) => (
         <Route
           key={path}
-          path={`/${path}`}
+          path={`/${pagePath(path)}`}
+          caseSensitive
           element={
             <LayoutWrapper currentPageName={path}>
               <Page />
@@ -91,7 +145,7 @@ const AuthenticatedApp = () => {
         }
       />
       <Route
-        path="/About"
+        path="/about"
         element={
           <LayoutWrapper currentPageName="About">
             <About />
@@ -99,23 +153,16 @@ const AuthenticatedApp = () => {
         }
       />
       <Route
-        path="/Contact"
+        path="/contact"
         element={
           <LayoutWrapper currentPageName="Contact">
             <Contact />
           </LayoutWrapper>
         }
       />
-      <Route
-        path="/Leads"
-        element={
-          <LayoutWrapper currentPageName="Leads">
-            <Leads />
-          </LayoutWrapper>
-        }
-      />
       <Route path="*" element={<PageNotFound />} />
-    </Routes>
+      </Routes>
+    </>
   );
 };
 

@@ -61,7 +61,7 @@ function HeroReviewCard({ review }) {
     );
 }
 
-export default function HeroReviews({ reviews = [], totalReviewCount, averageRating }) {
+export default function HeroReviews({ reviews = [], totalReviewCount: _totalReviewCount, averageRating }) {
     const [page, setPage] = useState(0);
     const [paused, setPaused] = useState(false);
     const perPage = 3;

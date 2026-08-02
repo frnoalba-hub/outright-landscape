@@ -6,15 +6,15 @@ export default function SharedHero({
     title = "Transform Your Outdoor Living Space",
     subtitle = "Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas & the San Gabriel Valley",
     description = "Expert Pavers • Turf Installation • Irrigation Systems • Hardscaping",
-    aiCtaText = "Call today for a free AI landscape design preview — see your new yard before we build it.",
     phoneNumber = "626-343-6028",
     backgroundImage = "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/1f85c4c84_generated_image.png",
     backgroundImageAlt = "Outright Landscape - Professional Landscaping Services",
+    showButtons = true,
     onPhoneClick = () => {},
-    trackPhoneClick, // Alias support
-    trackQuoteClick, // Alias support
+    trackPhoneClick = undefined, // Alias support
+    trackQuoteClick = undefined, // Alias support
     onViewServicesClick = () => {},
-    trackViewServicesClick // Alias support
+    trackViewServicesClick = undefined // Alias support
 }) {
     // Normalize handlers
     const handlePhoneClick = trackPhoneClick || onPhoneClick;
@@ -102,19 +102,12 @@ export default function SharedHero({
                             ))}
                         </div>
 
-                        {/* Reviews & Social Proof */}
+                        {/* Review links */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-3">
                             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
                                 <div className="flex items-center">
                                     <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" className="w-5 h-5 mr-1.5" />
-                                    <div className="flex">
-                                        {[...Array(5)].map((_, i) => (
-                                            <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                            </svg>
-                                        ))}
-                                    </div>
-                                    <span className="ml-2 text-white text-sm font-semibold">4.8</span>
+                                    <span className="ml-1 text-white text-sm font-semibold">Reviews</span>
                                 </div>
                             </div>
                             <div className="flex items-center gap-3">
@@ -138,7 +131,7 @@ export default function SharedHero({
                             </div>
                             <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
                                 <CheckCircle2 className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
-                                <span>10+ Years Experience</span>
+                                <span>Founded 2020</span>
                             </div>
                             <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full">
                                 <CheckCircle2 className="w-3.5 h-3.5 text-green-400" aria-hidden="true" />
@@ -146,7 +139,7 @@ export default function SharedHero({
                             </div>
                         </div>
 
-                        {/* Main CTA with prominent phone */}
+                        {showButtons && <>
                         <div className="cta-card bg-black/50 backdrop-blur-md border border-white/20 rounded-xl p-4 max-w-md mx-auto w-full mt-3">
                             <p className="text-white/60 text-xs text-center mb-2">CALL US TODAY</p>
                             <a href={`tel:+1${phoneNumber.replace(/\D/g, '')}`} onClick={() => handlePhoneClick('hero_main_cta')}>
@@ -173,6 +166,7 @@ export default function SharedHero({
                                 </Button>
                             </a>
                         </div>
+                        </>}
 
                         <div className="flex flex-wrap justify-center gap-4 text-white/80 text-xs mt-3">
                             <div className="flex items-center gap-1.5">
@@ -185,7 +179,7 @@ export default function SharedHero({
                             </div>
                             <div className="flex items-center gap-1.5">
                                 <Clock className="w-4 h-4 text-green-400" aria-hidden="true" />
-                                <span>10+ Years</span>
+                                <span>Serving the SGV</span>
                             </div>
                         </div>
                     </div>

@@ -18,6 +18,7 @@ export default function BookingForm({ cityName = "your area" }) {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState('');
     const [bookedSlots, setBookedSlots] = useState([]);
 
     const handleInputChange = (field, value) =>
@@ -45,6 +46,7 @@ export default function BookingForm({ cityName = "your area" }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitError('');
 
         const appointmentData = {
             name: formData.name,
@@ -65,8 +67,15 @@ export default function BookingForm({ cityName = "your area" }) {
             } catch {
                 await base44.functions.invoke('saveAppointment', appointmentData);
             }
+        } catch (err) {
+            console.error("Booking error", err);
+            setSubmitError("We couldn't book your appointment. Please try again or call us at (626) 343-6028.");
+            setIsSubmitting(false);
+            return;
+        }
 
-            // Analytics
+        // Analytics and celebration are best-effort and never change the saved state.
+        try {
             if (window.dataLayer) {
                 window.dataLayer.push({ event: 'appointment_booked', event_category: 'conversion', event_label: cityName, service_type: formData.service_type });
             }
@@ -74,12 +83,16 @@ export default function BookingForm({ cityName = "your area" }) {
                 window.gtag('event', 'appointment_booked', { event_category: 'conversion', event_label: cityName, value: 1 });
             }
         } catch (err) {
-            console.error("Booking error", err);
+            console.error("Booking analytics failed", err);
         }
 
         setIsSubmitted(true);
+        try {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        } catch (err) {
+            console.error("Booking celebration failed", err);
+        }
         setIsSubmitting(false);
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     };
 
     if (isSubmitted) {
@@ -131,21 +144,37 @@ export default function BookingForm({ cityName = "your area" }) {
                         <button type="button" onClick={() => setStep(1)} className="bookingEditBtn text-[#c45d2c] text-xs mt-2 hover:underline font-medium">Edit ←</button>
                     </div>
 
-                    <Input placeholder="Full Name *" required value={formData.name} onChange={(e) => handleInputChange('name', e.target.value)}
+                    {submitError && (
+                        <div role="alert" className="rounded-lg border border-red-400/40 bg-red-950/40 p-4 text-sm text-red-100">
+                            {submitError}{' '}
+                            <a href="tel:626-343-6028" className="font-semibold underline underline-offset-2">Call now</a>
+                        </div>
+                    )}
+
+                    <label htmlFor="booking-name" className="sr-only">Full name</label>
+                    <Input id="booking-name" name="name" autoComplete="name" placeholder="Full Name *" required value={formData.name} onChange={(e) => handleInputChange('name', e.target.value)}
                         className="bookingInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c]" />
-                    <Input placeholder="Phone *" required type="tel" value={formData.phone} onChange={(e) => handleInputChange('phone', e.target.value)}
+                    <label htmlFor="booking-phone" className="sr-only">Phone number</label>
+                    <Input id="booking-phone" name="phone" autoComplete="tel" placeholder="Phone *" required type="tel" value={formData.phone} onChange={(e) => handleInputChange('phone', e.target.value)}
                         className="bookingInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c]" />
-                    <Input placeholder="Email (optional)" type="email" value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)}
+                    <label htmlFor="booking-email" className="sr-only">Email address (optional)</label>
+                    <Input id="booking-email" name="email" autoComplete="email" placeholder="Email (optional)" type="email" value={formData.email} onChange={(e) => handleInputChange('email', e.target.value)}
                         className="bookingInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c]" />
-                    <Input placeholder="City" value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)}
+                    <label htmlFor="booking-city" className="sr-only">City</label>
+                    <Input id="booking-city" name="city" autoComplete="address-level2" placeholder="City" value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)}
                         className="bookingInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c]" />
-                    <Textarea placeholder="Additional notes (optional)" value={formData.notes} onChange={(e) => handleInputChange('notes', e.target.value)}
+                    <label htmlFor="booking-notes" className="sr-only">Additional notes (optional)</label>
+                    <Textarea id="booking-notes" name="notes" autoComplete="off" placeholder="Additional notes (optional)" value={formData.notes} onChange={(e) => handleInputChange('notes', e.target.value)}
                         className="bookingTextarea bg-[#242424] border-[#333] text-white rounded-lg p-4 h-20 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c]" />
 
                     <Button type="submit" size="lg" disabled={isSubmitting}
                         className="bookingSubmitBtn w-full font-bold text-base h-14 rounded-xl bg-[#c45d2c] hover:bg-[#a94e25] text-white shadow-lg shadow-[#c45d2c]/20 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
                         {isSubmitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" />Booking...</> : 'Book Appointment'}
                     </Button>
+                    <p className="text-xs leading-relaxed text-[#8a8478]">
+                        By submitting, you ask us to contact you about this appointment. See our{' '}
+                        <a href="/privacy-policy" className="underline underline-offset-2 hover:text-white">Privacy Policy</a>.
+                    </p>
                 </div>
             )}
         </form>

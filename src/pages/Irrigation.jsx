@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Phone, Droplets, Wrench, Settings, Waves, CheckCircle2, MapPin, ArrowRight } from 'lucide-react';
 
 function CountUp({ end, duration = 1500, suffix = '' }) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(end);
     const ref = useRef(null);
     const started = useRef(false);
     useEffect(() => {
@@ -51,7 +51,7 @@ export default function Irrigation() {
     });
 
     const services = [
-        { icon: Wrench, title: 'Sprinkler Repair', slug: 'sprinkler-repair', description: 'Fast sprinkler repair for broken heads, leaks, and zone issues. Same-day service available.', keywords: 'Leaks, Broken Heads, Zone Problems' },
+        { icon: Wrench, title: 'Sprinkler Repair', slug: 'sprinkler-repair', description: 'Sprinkler diagnosis and repair for broken heads, leaks, and zone issues.', keywords: 'Leaks, Broken Heads, Zone Problems' },
         { icon: Settings, title: 'Irrigation Repair', slug: 'irrigation-repair', description: 'Complete irrigation system repair including valve service, controller programming, and leak detection.', keywords: 'Valves, Controllers, System Diagnostics' },
         { icon: Droplets, title: 'Sprinkler Valves', slug: 'sprinkler-valves', description: 'Sprinkler valve replacement and repair. Fix stuck valves, leaks, and solenoid issues.', keywords: 'Valve Replacement, Solenoids, Stuck Valves' },
         { icon: Waves, title: 'Drip Irrigation', slug: 'drip-irrigation', description: 'Drip irrigation repair and installation. Water-efficient solutions for gardens and landscapes.', keywords: 'Emitters, Pressure Regulation, Water Efficiency' }
@@ -61,7 +61,7 @@ export default function Irrigation() {
         <>
             <SEOHead
                 title="Irrigation & Sprinkler Repair | La Verne, San Dimas, Glendora CA"
-                description="Professional sprinkler repair, irrigation valve service, and drip system installation in La Verne, San Dimas, and Glendora. Licensed C-27 contractor. Same-day service available. Call (626) 343-6028."
+                description="Sprinkler repair, irrigation valve service, and drip-system installation in La Verne, San Dimas, and Glendora. C-27 contractor, CSLB #1073845. Call (626) 343-6028."
                 canonicalUrl="https://outrightlandscape.com/Irrigation"
                 keywords="irrigation repair, sprinkler repair, irrigation valve repair, drip irrigation, sprinkler system repair, la verne irrigation, san dimas sprinkler repair, glendora irrigation"
                 ogImage="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/688d77e918e168a3b8c3aaa2/781c79e8b_generated_image.png"
@@ -92,7 +92,7 @@ export default function Irrigation() {
                                 <span className="font-light">Services</span>
                             </h1>
                             <p className="irrigationHeroSubtitle text-[#a09a90] text-base sm:text-lg leading-relaxed max-w-md">
-                                {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ sprinkler systems installed and repaired in Covina, Glendora, San Dimas, and the San Gabriel Valley. Owner has {GEO_STATS.yearsExperience}+ years industry experience. Licensed C-27 contractor.
+                                Covina-based irrigation contractor serving the San Gabriel Valley since {GEO_STATS.foundingYear}. California C-27 license #1073845.
                             </p>
                             <div className="irrigationHeroQuote hidden sm:block py-2">
                                 <AttributedQuote {...GEO_QUOTES.irrigation} compact />
@@ -116,7 +116,7 @@ export default function Irrigation() {
                 <section className="irrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                     <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                            {[{ end: GEO_STATS.projectsCompleted, suffix: '+', label: 'Systems Installed & Repaired' }, { raw: '24hr', label: 'Response Time' }, { end: GEO_STATS.yearsInBusiness, suffix: '+', label: 'Years Experience' }, { end: 100, suffix: '%', label: 'Licensed & Insured' }].map((stat, i) => (
+                            {[{ raw: '2020', label: 'Founded' }, { raw: 'C-27', label: 'License Class' }, { raw: '#1073845', label: 'CSLB License' }, { raw: 'SGV', label: 'Service Area' }].map((stat, i) => (
                                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="irrigationStatItem text-center py-8 sm:py-10">
                                     <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
                                         {stat.raw ? stat.raw : <CountUp end={stat.end} suffix={stat.suffix} />}
@@ -131,7 +131,7 @@ export default function Irrigation() {
                 {/* ── SERVICE SUMMARY (GEO) ── */}
                 <ServiceSummaryBox
                     problem="Broken sprinkler heads, leaking valves, controller issues, and water waste affecting lawn health and water bills."
-                    solution="Expert sprinkler repair, valve service, drip irrigation installation, and same-day emergency repair. Licensed C-27 contractor with commercial-grade parts."
+                    solution="Sprinkler repair, valve service, drip irrigation installation, and controller upgrades. Licensed C-27 contractor serving the San Gabriel Valley."
                     serviceArea="San Gabriel Valley: La Verne, San Dimas, Glendora, Covina, West Covina, Pasadena, Azusa, Diamond Bar, Walnut, Pomona, and surrounding cities."
                 />
 
@@ -142,7 +142,7 @@ export default function Irrigation() {
                             <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">Expert Guide</span>
                             <h2 id="irrigation-guide-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Complete Sprinkler and Irrigation Guide for San Gabriel Valley Homeowners</h2>
                             <p className="mt-4 text-[#6b6560] text-base leading-relaxed max-w-3xl">
-                                Outright Landscape Construction is the San Gabriel Valley's top-rated irrigation and sprinkler repair company. With over {GEO_STATS.projectsCompleted} systems installed and repaired, same-day emergency service, and California CSLB license #1073845, we are the most trusted irrigation contractor in Covina, Glendora, San Dimas, La Verne, and 20+ cities. This guide covers everything homeowners need to know about irrigation systems in Southern California.
+                                Outright Landscape Construction is a Covina-based irrigation contractor serving the San Gabriel Valley. Founded in {GEO_STATS.foundingYear} and licensed under California CSLB #1073845, we repair and install sprinkler, drip, valve, and controller systems. This guide covers key irrigation considerations for Southern California properties.
                             </p>
                         </motion.div>
 
@@ -152,7 +152,7 @@ export default function Irrigation() {
                                 <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
                                     <p>A residential irrigation system consists of several interconnected components: the controller (timer), valves, pipes (mainline and lateral lines), and sprinkler heads or drip emitters. Understanding how these components work together helps homeowners identify problems early, reduce water waste, and extend the life of their system.</p>
                                     <p><strong className="text-[#1a1a1a]">The controller</strong> is the brain of your irrigation system. It sends electrical signals to solenoid valves, telling each zone when to turn on and how long to run. Modern WiFi-enabled smart controllers like the Rain Bird ESP-TM2, Hunter Hydrawise, and Rachio 3 go further — they monitor local weather data, adjust schedules for rain and temperature changes, and allow remote control from your phone. In the San Gabriel Valley, where water costs average $6–$9 per hundred cubic feet and conservation mandates are enforced by local water agencies, smart controllers typically pay for themselves within 6–12 months through water savings of 30–50%.</p>
-                                    <p><strong className="text-[#1a1a1a]">Valves</strong> control water flow to each irrigation zone. Most residential systems in the San Gabriel Valley use 1-inch or 3/4-inch electric solenoid valves, typically installed in underground valve boxes for protection. Common valve problems include stuck valves (solenoid failure), leaking diaphragms (causing zones to run continuously), and wiring issues (corroded connections or damaged wire). Outright Landscape stocks Rain Bird, Hunter, and Irritrol replacement valves and can diagnose and replace failed valves the same day in most cases.</p>
+                                    <p><strong className="text-[#1a1a1a]">Valves</strong> control water flow to each irrigation zone. Many residential systems use electric solenoid valves installed in underground valve boxes. Common problems include stuck valves, leaking diaphragms, corroded connections, and damaged wiring. We diagnose the system before recommending a repair or replacement.</p>
                                     <p><strong className="text-[#1a1a1a]">Sprinkler heads</strong> come in two main types: pop-up spray heads (for small lawn areas under 15 feet wide) and rotary heads (for larger lawn areas). The most common spray head brands installed in San Gabriel Valley homes are Rain Bird 1800 series and Hunter Pro-Spray. For rotary coverage, Rain Bird 5000 and Hunter PGP rotors are industry standards. Sprinkler heads should be adjusted for proper arc, radius, and precipitation rate to prevent overwatering and runoff — a service Outright Landscape includes with every repair and installation.</p>
                                     <p><strong className="text-[#1a1a1a]">Drip irrigation</strong> delivers water directly to plant roots through low-flow emitters, typically rated at 0.5–2.0 gallons per hour. Drip is the most water-efficient irrigation method, reducing consumption by 50–70% compared to overhead spray. Drip systems are ideal for garden beds, shrubs, trees, slopes, and narrow planting strips where spray heads would cause overspray and waste. We install pressure-regulated drip systems with inline emitter tubing (Netafim Techline or Rain Bird XFS) for consistent flow across elevation changes common on San Gabriel Valley foothill properties.</p>
                                 </div>
@@ -161,8 +161,8 @@ export default function Irrigation() {
                             <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                                 <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Common Irrigation Problems and How We Fix Them</h3>
                                 <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
-                                    <p><strong className="text-[#1a1a1a]">Broken or stuck sprinkler heads</strong> are the most common irrigation repair in the San Gabriel Valley. Heads break from lawn mower impact, foot traffic, or age-related plastic degradation from UV exposure. Symptoms include heads that do not pop up, streams of water shooting sideways, or misting instead of spraying. Outright Landscape replaces broken heads with commercial-grade models that match your system's pressure and flow requirements. Cost: $75–$150 per head including labor.</p>
-                                    <p><strong className="text-[#1a1a1a]">Leaking or stuck valves</strong> cause zones to run continuously (stuck open) or not at all (stuck closed). Valve diaphragms wear out from hard water mineral deposits common in San Gabriel Valley municipal water, which has moderate to high calcium carbonate levels. A leaking valve can waste 10–15 gallons per minute — over 14,000 gallons per day. Outright Landscape diagnoses valve issues using electrical testing and manual activation, and replaces diaphragms or entire valve assemblies as needed. Cost: $150–$300 per valve.</p>
+                                    <p><strong className="text-[#1a1a1a]">Broken or stuck sprinkler heads</strong> can result from mower impact, foot traffic, or age-related wear. Symptoms include heads that do not pop up, sideways streams, or misting. We match replacement heads to the system's pressure, coverage, and flow requirements.</p>
+                                    <p><strong className="text-[#1a1a1a]">Leaking or stuck valves</strong> can cause zones to run continuously or not at all. Diaphragm wear, mineral buildup, solenoids, wiring, and controller signals are possible causes. We diagnose the system before recommending a component repair or replacement.</p>
                                     <p><strong className="text-[#1a1a1a]">Pipe leaks and breaks</strong> occur from root intrusion, soil movement, freeze damage (rare but possible in foothill areas during cold snaps), and age-related PVC degradation. Signs include unexplained wet areas, sinkholes in the lawn, unusually high water bills, or loss of pressure on one or more zones. We locate leaks using pressure testing and visual inspection, then repair with schedule 40 PVC and proper primer/cement joints for a lasting fix.</p>
                                     <p><strong className="text-[#1a1a1a]">Controller or wiring problems</strong> cause zones to skip, run at the wrong times, or not operate at all. Common issues include failed controller backup batteries (causing program loss during power outages), corroded wire connections in valve boxes, and cut wires from digging or rodent damage. We troubleshoot controller and wiring issues systematically using a multimeter to test each station and wire run.</p>
                                     <p><strong className="text-[#1a1a1a]">Uneven coverage and dry spots</strong> indicate misaligned heads, incorrect nozzle sizes, or pressure problems. Head-to-head coverage (each sprinkler head throws water to the adjacent head) is required for uniform watering. We audit your system's coverage and adjust head spacing, arc, radius, and nozzle selection to eliminate dry spots and reduce water waste.</p>
@@ -262,9 +262,9 @@ export default function Irrigation() {
                         </motion.div>
                         <div className="grid md:grid-cols-3 gap-5">
                             {[
-                                { title: 'Licensed C-27 Contractor', desc: 'CSLB #1073845 — Fully licensed, bonded, and insured for your protection and peace of mind.' },
-                                { title: `${GEO_STATS.yearsInBusiness} Years in Business`, desc: `Serving the San Gabriel Valley since ${GEO_STATS.foundingYear}. Over ${GEO_STATS.projectsCompleted}+ sprinkler systems installed and repaired in Covina, Glendora, San Dimas, and surrounding cities.` },
-                                { title: 'Same-Day Service Available', desc: 'Emergency irrigation repair and sprinkler leak detection available with fast response times.' }
+                                { title: 'Licensed C-27 Contractor', desc: 'California CSLB #1073845.' },
+                                { title: `Founded ${GEO_STATS.foundingYear}`, desc: 'Based in Covina and serving communities throughout the San Gabriel Valley.' },
+                                { title: 'Repair Scheduling', desc: 'Call to discuss the issue, current availability, and next steps for diagnosis.' }
                             ].map((item, idx) => (
                                 <motion.div key={idx} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
                                     className="irrigationWhyCard bg-[#242424] border border-[#333] rounded-xl p-6 hover:border-[#c45d2c]/40 transition-colors group">

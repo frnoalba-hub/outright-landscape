@@ -1,6 +1,6 @@
 import SEO from '@/components/SEO';
 import ContactForm from '@/components/ContactForm';
-import { Phone, Mail, MapPin, Clock, Star } from 'lucide-react';
+import { Phone, Mail, MapPin, Star } from 'lucide-react';
 
 const contactDetails = [
   {
@@ -21,21 +21,15 @@ const contactDetails = [
     value: 'Covina, CA 91722',
     href: 'https://maps.google.com/?q=Covina,CA+91722',
   },
-  {
-    icon: Clock,
-    label: 'Hours',
-    value: 'Mon–Sat: 7 AM – 6 PM',
-    href: null,
-  },
 ];
 
 export default function Contact() {
   return (
     <>
       <SEO
-        title="Contact Outright Landscape | Free Estimate – Covina, CA"
+        title="Contact Outright Landscape | Project Estimate — Covina, CA"
         description="Contact Outright Landscape Construction for a free landscape estimate. Call (626) 343-6028 or fill out our online form. Serving Covina, Glendora, San Dimas, and the San Gabriel Valley."
-        canonical="/contact"
+        canonicalUrl="https://outrightlandscape.com/contact"
       />
 
       <div className="contactPage pt-28 pb-20 bg-white min-h-screen">
@@ -45,14 +39,14 @@ export default function Contact() {
           <header className="contactHeader text-center mb-14">
             <span className="contactBadge inline-flex items-center gap-2 bg-[#2d5a27]/10 border border-[#2d5a27]/30 rounded-full px-4 py-1.5 text-[#2d5a27] text-sm font-semibold mb-6">
               <Star className="w-4 h-4 fill-current" />
-              Free Estimates — No Obligation
+              Request a Project Estimate
             </span>
             <h1 className="contactHeading text-4xl sm:text-5xl font-bold text-[#1a1a1a] leading-tight mb-5">
               Get in <span className="text-[#c45d2c]">Touch</span>
             </h1>
             <p className="contactSubtitle text-lg sm:text-xl text-[#6b6560] leading-relaxed max-w-2xl mx-auto">
-              Ready to start your landscape project? Reach out and one of our team members will get back to you
-              within one business day — usually sooner.
+              Ready to discuss your landscape project? Call, email, or send the form below and our team will follow
+              up about the property, scope, and scheduling availability.
             </p>
           </header>
 
@@ -80,9 +74,9 @@ export default function Contact() {
 
               {/* Social proof */}
               <div className="contactSocialProof bg-[#1a1a1a] rounded-xl p-5 text-center mt-4">
-                <p className="text-[#b8945a] text-sm font-semibold uppercase tracking-wider mb-2">Licensed & Trusted</p>
+                <p className="text-[#b8945a] text-sm font-semibold uppercase tracking-wider mb-2">C-27 Contractor</p>
                 <p className="text-white font-bold text-lg">CSLB #1073845</p>
-                <p className="text-[#a09a90] text-sm mt-1">4.8★ on Google · 500+ Projects</p>
+                <p className="text-[#a09a90] text-sm mt-1">Founded in 2020 · Based in Covina</p>
               </div>
             </aside>
 

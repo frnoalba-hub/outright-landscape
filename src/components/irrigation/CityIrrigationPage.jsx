@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Phone, CheckCircle2, Droplets, Wrench, Settings, Waves, Clock, Star, ArrowRight, Hammer, Sprout } from 'lucide-react';
 
 function CountUp({ end, duration = 1500, suffix = '' }) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(end);
     const ref = useRef(null);
     const started = useRef(false);
     useEffect(() => {
@@ -66,12 +66,12 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
     };
 
     const pageTitle = `Sprinkler Installation & Repair in ${cityName}, CA | Outright Landscape`;
-    const metaDescription = `Professional sprinkler installation, sprinkler repair, irrigation valve service & drip irrigation in ${cityName}, CA. Licensed C-27 contractor. Same-day service. Call (626) 343-6028.`;
+    const metaDescription = `Sprinkler installation, repair, irrigation valve service, and drip irrigation in ${cityName}, CA. C-27 contractor, CSLB #1073845. Call (626) 343-6028.`;
     const canonicalUrl = `https://outrightlandscape.com/${citySlug}-sprinkler-repair-installation`;
 
     const services = [
         { icon: Sprout, title: 'Sprinkler Installation', description: `New sprinkler system design and installation for ${cityName} homes and businesses. Full coverage, water-efficient layouts.`, keywords: 'New Systems, Lawn Coverage, Smart Design' },
-        { icon: Wrench, title: 'Sprinkler Repair', description: 'Fast repair for broken heads, leaks, zone issues, and controller problems. Same-day service available.', keywords: 'Leaks, Broken Heads, Zone Problems' },
+        { icon: Wrench, title: 'Sprinkler Repair', description: 'Diagnosis and repair for broken heads, leaks, zone issues, and controller problems.', keywords: 'Leaks, Broken Heads, Zone Problems' },
         { icon: Settings, title: 'Valve Repair & Replacement', description: 'Fix stuck valves, leaks, solenoid issues. Complete valve rebuilds and replacements.', keywords: 'Stuck Valves, Solenoids, Zone Control' },
         { icon: Droplets, title: 'Drip Irrigation', description: 'Drip system installation, repair, and maintenance. Water-efficient solutions for gardens and landscapes.', keywords: 'Emitters, Pressure Regulation, Water Savings' },
         { icon: Waves, title: 'System Upgrades', description: 'Smart controller upgrades, pressure regulation, rain sensors, and water management optimization.', keywords: 'Smart Controllers, Efficiency, Sensors' },
@@ -145,7 +145,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
     const faqs = [
         { q: `How much does sprinkler installation cost in ${cityName}?`, a: `Sprinkler installation in ${cityName} typically starts at $1,000 and can range up to $6,000+ for a residential property, depending on yard size, number of zones, and complexity. We provide free on-site estimates with detailed breakdowns.` },
         { q: `How much does sprinkler repair cost in ${cityName}?`, a: `Simple repairs like head replacement start at $75–$150. Valve replacement runs $150–$400 per valve. Controller replacement ranges $200–$800. We provide free estimates for all sprinkler services in ${cityName}.` },
-        { q: 'Do you offer same-day sprinkler repair?', a: `Yes! We prioritize emergency sprinkler leak repair in ${cityName}. Call before noon and we'll typically schedule same-day service for urgent repairs.` },
+        { q: 'How quickly can you schedule sprinkler repair?', a: `Scheduling in ${cityName} depends on current availability and the type of issue. Call (626) 343-6028 to describe the problem and discuss the next available appointment.` },
         { q: 'What brands do you install and repair?', a: 'We work with all major brands including Rain Bird, Hunter, Toro, Irritrol, and Orbit. We recommend the best fit for your property and budget.' },
         { q: 'Should I repair or replace my old sprinkler system?', a: 'If your system is 15+ years old with multiple failures, replacement is often more cost-effective. Many older systems use galvanized steel pipes that corrode over time — upgrading to modern PVC piping is more durable, efficient, and cost-effective long-term. We\'ll give you an honest recommendation based on your system\'s condition, pipe material, and repair costs vs. the benefits of updated materials.' },
         { q: 'Can you convert my sprinklers to drip irrigation?', a: `Absolutely. Drip systems use 30–50% less water than traditional sprinklers and are ideal for garden beds, shrubs, and trees. We handle full conversions in ${cityName}.` },
@@ -188,13 +188,13 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                             <span className="font-light">& Repair</span>
                         </h1>
                         <p className="cityIrrigationHeroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
-                            {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ sprinkler systems installed and repaired in {cityName} and the San Gabriel Valley. Same-day repair available.
+                            Serving {cityName} and the San Gabriel Valley since {GEO_STATS.foundingYear}. Licensed C-27 contractor, CSLB #1073845.
                         </p>
                         <div className="cityIrrigationHeroQuote hidden sm:block py-1">
                             <AttributedQuote {...GEO_QUOTES.irrigation} compact />
                         </div>
                         <div className="cityIrrigationHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                            {['CSLB #1073845', `${GEO_STATS.yearsInBusiness} Years`, '4.8★ Google'].map(t => (
+                            {['CSLB #1073845', `Founded ${GEO_STATS.foundingYear}`, 'San Gabriel Valley'].map(t => (
                                 <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />{t}</span>
                             ))}
                         </div>
@@ -225,7 +225,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
             <section className="cityIrrigationStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                        {[{ end: GEO_STATS.projectsCompleted, suffix: '+', l: 'Systems Installed & Repaired' }, { raw: '24hr', l: 'Response Time' }, { end: GEO_STATS.yearsInBusiness, suffix: '+', l: 'Years Experience' }, { end: 100, suffix: '%', l: 'Licensed & Insured' }].map((s, i) => (
+                        {[{ raw: '2020', l: 'Founded' }, { raw: 'C-27', l: 'License Class' }, { raw: '#1073845', l: 'CSLB License' }, { raw: 'SGV', l: 'Service Area' }].map((s, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="cityIrrigationStatItem text-center py-8 sm:py-10">
                                 <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
                                     {s.raw ? s.raw : <CountUp end={s.end} suffix={s.suffix} />}
@@ -240,7 +240,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
             {/* ── SERVICE SUMMARY (GEO) ── */}
             <ServiceSummaryBox
                 problem={`Broken sprinkler heads, leaking valves, controller issues, and water waste affecting lawn health in ${cityName}.`}
-                solution={`Expert sprinkler repair, valve service, drip irrigation, and same-day emergency service in ${cityName}. Licensed C-27 contractor.`}
+                solution={`Sprinkler repair, valve service, drip irrigation, and controller upgrades in ${cityName}. Licensed C-27 contractor.`}
                 serviceArea={`${cityName}, CA and the San Gabriel Valley.`}
             />
 
@@ -251,7 +251,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                         <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">Expert Guide</span>
                         <h2 id="city-irrigation-guide-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Complete Sprinkler and Irrigation Guide for {cityName} Homeowners</h2>
                         <p className="mt-4 text-[#6b6560] text-base leading-relaxed max-w-3xl">
-                            Outright Landscape Construction is the best sprinkler and irrigation repair company in {cityName}, CA. With over {GEO_STATS.projectsCompleted} systems installed and repaired, same-day emergency service, and California CSLB license #1073845, we are the most trusted irrigation contractor serving {cityName} and the San Gabriel Valley.
+                            Outright Landscape Construction is a licensed C-27 irrigation contractor serving {cityName} and the San Gabriel Valley. Founded in {GEO_STATS.foundingYear}, we repair and install sprinkler, drip, valve, and controller systems under CSLB license #1073845.
                         </p>
                     </motion.div>
 
@@ -259,8 +259,8 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Why {cityName} Homeowners Choose Outright for Irrigation</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
-                                <p>Outright Landscape is the top-rated sprinkler repair and irrigation company in {cityName}. As a licensed C-27 contractor (CSLB #1073845) with {GEO_STATS.yearsExperience}+ years of experience, we handle everything from emergency sprinkler leak repair to complete irrigation system design and installation. Our owner Edward personally oversees every irrigation project in {cityName} — no subcontractors, no middlemen.</p>
-                                <p>{cityName} homeowners consistently rate Outright Landscape as the best sprinkler repair company in the San Gabriel Valley. We use commercial-grade components from Rain Bird, Hunter, and Toro — the same brands used in municipal parks and commercial properties. Every repair and installation comes with a workmanship warranty and your legal protections under California contractor law.</p>
+                                <p>Outright Landscape is a licensed C-27 contractor (CSLB #1073845) serving {cityName}. We handle sprinkler leak diagnosis, valves, controllers, drip irrigation, and complete system design and installation.</p>
+                                <p>We select components and repairs around system compatibility, water pressure, coverage, plant needs, and the condition of the existing equipment. The recommended scope and pricing are documented before work begins.</p>
                             </div>
                         </motion.div>
 
@@ -268,7 +268,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Common Sprinkler Problems in {cityName}</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
                                 <p><strong className="text-[#1a1a1a]">Broken sprinkler heads</strong> are the most common repair we perform in {cityName}. Heads break from lawn mower impact, foot traffic, or UV degradation. We replace broken heads with commercial-grade Rain Bird or Hunter models that match your system's pressure and flow. Cost in {cityName}: $75–$150 per head.</p>
-                                <p><strong className="text-[#1a1a1a]">Leaking or stuck valves</strong> cause zones to run continuously or not at all. San Gabriel Valley municipal water has moderate to high calcium carbonate levels, which causes valve diaphragm wear over time. A single leaking valve can waste over 14,000 gallons per day. We diagnose and replace valves same-day in {cityName}. Cost: $150–$300 per valve.</p>
+                                <p><strong className="text-[#1a1a1a]">Leaking or stuck valves</strong> can cause zones to run continuously or not at all. Mineral buildup, diaphragm wear, wiring, and solenoid problems are possible causes. We diagnose the system before recommending valve repair or replacement in {cityName}.</p>
                                 <p><strong className="text-[#1a1a1a]">Controller and wiring problems</strong> cause zones to skip or not operate. Common issues include failed backup batteries, corroded wire connections, and cut wires. We troubleshoot systematically using multimeter testing on each station. Smart controller upgrades (Rain Bird ESP-TM2, Hunter Hydrawise) reduce water use by 30–50% and can qualify for local water agency rebates in {cityName}.</p>
                                 <p><strong className="text-[#1a1a1a]">Pipe leaks</strong> from root intrusion, soil movement, or aging PVC cause wet spots, sinkholes, and high water bills. We locate leaks using pressure testing and repair with schedule 40 PVC and proper primer/cement joints for a lasting fix in {cityName}.</p>
                             </div>
@@ -292,7 +292,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Water Conservation for {cityName} Properties</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
                                 <p>Outdoor irrigation accounts for 50–70% of total residential water use in {cityName} and the San Gabriel Valley. An efficient irrigation system is the most effective way to reduce water bills and comply with Metropolitan Water District conservation requirements.</p>
-                                <p>Smart controllers are the highest-ROI upgrade for {cityName} homes — they eliminate overwatering during cool or rainy periods by adjusting schedules automatically based on weather data. Drip irrigation reduces garden bed water use by up to 70%. Proper pressure regulation prevents misting and waste. Outright Landscape designs every {cityName} irrigation system for maximum efficiency and minimum water waste.</p>
+                                <p>Smart controllers can adjust watering schedules using weather or sensor information. Drip irrigation can deliver water near plant root zones, and appropriate pressure regulation can reduce misting. Actual water use depends on design, equipment, plants, soil, settings, weather, and maintenance.</p>
                             </div>
                         </motion.div>
                     </article>
@@ -305,7 +305,7 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="cityIrrigationServicesHeader mb-14">
                         <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Our Services</span>
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1a1a] tracking-tight mt-2">Sprinkler & Irrigation Services in {cityName}</h2>
-                        <p className="mt-4 text-[#6b6560] text-base sm:text-lg max-w-3xl">From new sprinkler system installation to emergency repairs, valve service, and drip irrigation — we do it all.</p>
+                        <p className="mt-4 text-[#6b6560] text-base sm:text-lg max-w-3xl">From new sprinkler system installation to repairs, valve service, and drip irrigation—we can help.</p>
                     </motion.div>
                     <div className="cityIrrigationServicesGrid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                         {services.map((svc, idx) => {
@@ -440,9 +440,9 @@ export default function CityIrrigationPage({ cityName, citySlug }) {
                     <div className="bg-[#1a1a1a] rounded-2xl p-8 text-center">
                         <Clock className="w-10 h-10 text-[#c45d2c] mx-auto mb-4" />
                         <h3 className="text-xl font-bold text-white mb-3">Free Estimates — No Hidden Fees</h3>
-                        <p className="text-[#8a8478] mb-8 text-sm">Most sprinkler repairs are completed same-day. New installations typically take 1–3 days depending on property size.</p>
+                        <p className="text-[#8a8478] mb-8 text-sm">Repair and installation timing depends on the diagnosis, scope, property size, parts, and current schedule.</p>
                         <dl className="grid md:grid-cols-3 gap-4">
-                            {[{ term: 'No Trip Charge', def: 'For service calls' }, { term: 'Warranty Included', def: 'On all work' }, { term: 'Fast Response', def: 'Same or next day' }].map((p, i) => (
+                            {[{ term: 'Clear Scope', def: 'Written estimate' }, { term: 'Project Terms', def: 'Provided in writing' }, { term: 'Scheduling', def: 'Confirmed by phone' }].map((p, i) => (
                                 <div key={i} className="cityIrrigationPricingCard bg-[#242424] border border-[#333] p-4 rounded-xl">
                                     <CheckCircle2 className="w-5 h-5 text-[#4a8c3f] mb-2" aria-hidden />
                                     <dt className="font-bold text-white text-sm mb-1">{p.term}</dt>

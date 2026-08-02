@@ -3,6 +3,7 @@ import SEOHead from '@/components/SEOHead';
 import FAQSchema from '@/components/FAQSchema';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import AttributedQuote from '@/components/AttributedQuote';
+import ContactForm from '@/components/ContactForm';
 import { getServiceHubBySlug, BUYER_GUIDES } from '@/lib/serviceHubContent';
 import { GEO_QUOTES, SERVICE_SCHEMAS } from '@/schemas/geo-schemas';
 import { Phone, ArrowRight, Calendar } from 'lucide-react';
@@ -57,23 +58,13 @@ export default function ServiceHubPage() {
     { name: hub.serviceName, url: `https://outrightlandscape.com/s/${hub.slug}` },
   ];
 
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: hub.faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.question,
-      acceptedAnswer: { '@type': 'Answer', text: f.answer },
-    })),
-  };
-
   return (
     <article className="bg-white">
       <SEOHead
         title={hub.title}
         description={hub.description}
         canonicalUrl={`https://outrightlandscape.com/s/${hub.slug}`}
-        schemaData={[serviceSchema, faqSchema].filter(Boolean)}
+        schemaData={[serviceSchema].filter(Boolean)}
       />
       <BreadcrumbSchema items={breadcrumbs} />
 
@@ -84,7 +75,7 @@ export default function ServiceHubPage() {
             {hub.serviceName}
           </h1>
           <p className="text-lg text-[#b8945a] font-medium mb-4">
-            Licensed C-27 Contractor &middot; CSLB #1073845 &middot; 4.9-star Google Rating
+            C-27 Contractor &middot; CSLB #1073845 &middot; Founded in 2020
           </p>
           <p className="text-base text-white/70 max-w-3xl mx-auto leading-relaxed">{hub.lead}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
@@ -128,7 +119,7 @@ export default function ServiceHubPage() {
 
         {/* Customer Quote */}
         <section className="mb-12">
-          <AttributedQuote quote={quote.quote} name={quote.name} city={quote.city} stars={quote.stars} />
+          <AttributedQuote quote={quote.quote} name={quote.name} city={quote.city} stars={quote.stars} sourceUrl={quote.sourceUrl} />
         </section>
 
         {/* FAQs */}
@@ -187,6 +178,7 @@ export default function ServiceHubPage() {
         </section>
       </div>
 
+      <ContactForm cityName="the San Gabriel Valley" />
       <FAQSchema faqs={hub.faqs.map((f) => ({ q: f.question, a: f.answer }))} cityName={`hub-${hub.slug}`} />
     </article>
   );

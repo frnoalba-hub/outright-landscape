@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Phone, CheckCircle2, ArrowRight, Sprout, Droplets, Hammer, Award } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 import SEOHead from '@/components/SEOHead';
-import { getCityGeo, GEO_QUOTES, GEO_STATS, SERVICE_SCHEMAS } from '@/schemas/geo-schemas';
+import { GEO_QUOTES, GEO_STATS, SERVICE_SCHEMAS } from '@/schemas/geo-schemas';
 import AttributedQuote from '@/components/AttributedQuote';
 import BreadcrumbSchema from '@/components/BreadcrumbSchema';
 import LocalBusinessSchema from '@/components/LocalBusinessSchema';
@@ -16,7 +16,7 @@ import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
 
 function CountUp({ end, duration = 1500, suffix = '' }) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(end);
     const ref = useRef(null);
     const started = useRef(false);
     useEffect(() => {
@@ -48,7 +48,7 @@ const defaultServices = [
     { title: "Irrigation Systems", description: "Professional sprinkler and drip irrigation for water efficiency.", iconName: "Droplets" },
     { title: "Landscape Design", description: "Complete design and build services from concept to completion.", iconName: "Award" },
     { title: "Yard Cleanup", description: "Demolition, debris removal, and site preparation services.", iconName: "CheckCircle2" },
-    { title: "Free Estimates", description: "Honest, competitive pricing with no hidden fees.", iconName: "CheckCircle2" }
+    { title: "Free Estimates", description: "Project-specific scope and pricing in writing.", iconName: "CheckCircle2" }
 ];
 
 const defaultProjects = [
@@ -120,8 +120,6 @@ export default function LocationPage({ citySlug }) {
         }
     };
 
-    const filteredNearbyCities = isLoading ? [] : locations.filter(l => l.slug !== slug).slice(0, 8);
-
     const getIcon = (iconName) => {
         const Icon = iconMap[iconName] || CheckCircle2;
         return <Icon className="w-6 h-6 text-[#c45d2c]" />;
@@ -167,12 +165,12 @@ export default function LocationPage({ citySlug }) {
 
                         <h1 className="cityHeroHeadline text-[2.5rem] sm:text-4xl md:text-5xl lg:text-6xl text-white leading-[1.08] tracking-tight">
                             <span className="font-light">{name}'s</span><br />
-                            <span className="font-bold text-[#c45d2c]">Most Trusted</span><br />
+                            <span className="font-bold text-[#c45d2c]">Licensed Local</span><br />
                             <span className="font-light">Landscape Contractor</span>
                         </h1>
 
                         <p className="cityHeroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
-                            {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ projects completed in {name} and the San Gabriel Valley. Licensed C-27 contractor.
+                            Serving {name} and the San Gabriel Valley since {GEO_STATS.foundingYear}. Licensed C-27 contractor, CSLB #1073845.
                         </p>
 
                         <div className="cityHeroQuote py-1">
@@ -180,7 +178,7 @@ export default function LocationPage({ citySlug }) {
                         </div>
 
                         <div className="cityHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                            {['CSLB #1073845', `${GEO_STATS.yearsInBusiness} Years`, '4.8★ Google'].map((t) => (
+                            {['CSLB #1073845', `Founded ${GEO_STATS.foundingYear}`, 'San Gabriel Valley'].map((t) => (
                                 <span key={t} className="flex items-center gap-1.5">
                                     <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />
                                     {t}
@@ -214,7 +212,7 @@ export default function LocationPage({ citySlug }) {
             {/* ── SERVICE SUMMARY (GEO) ── */}
             <ServiceSummaryBox
                 problem={`Outdated landscaping, dead lawns, broken sprinklers, cracked concrete, and poorly designed outdoor spaces in ${name} that reduce property value and curb appeal.`}
-                solution={`Professional landscaping, paver installation, turf, irrigation repair, and hardscaping in ${name}. Licensed C-27 contractor (CSLB #1073845) with 250+ completed projects, 4.9-star Google rating, and free on-site estimates.`}
+                solution={`Professional landscaping, paver installation, turf, irrigation repair, and hardscaping in ${name}. Licensed C-27 contractor (CSLB #1073845) with free on-site estimates.`}
                 serviceArea={`${name}, CA and surrounding cities. Covina, West Covina, Glendora, San Dimas, La Verne, Azusa, Claremont, Diamond Bar, Pasadena, Walnut, Pomona, and the San Gabriel Valley.`}
             />
 
@@ -266,7 +264,7 @@ export default function LocationPage({ citySlug }) {
                         <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">Expert Guide</span>
                         <h2 id="city-guide-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Complete Landscaping Guide for {name} Homeowners</h2>
                         <p className="mt-4 text-[#6b6560] text-base leading-relaxed max-w-3xl">
-                            Outright Landscape Construction is the most trusted landscape contractor in {name}, CA. With over {GEO_STATS.projectsCompleted} completed projects, a 4.9-star Google rating, and California CSLB license #1073845, we deliver expert landscaping, hardscaping, and irrigation services throughout {name} and the San Gabriel Valley.
+                            Outright Landscape Construction is a licensed C-27 contractor serving {name} and the San Gabriel Valley. Founded in {GEO_STATS.foundingYear}, we provide landscaping, hardscaping, and irrigation services under California CSLB license #1073845.
                         </p>
                     </motion.div>
 
@@ -274,15 +272,15 @@ export default function LocationPage({ citySlug }) {
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Why {name} Homeowners Choose Outright Landscape</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
-                                <p>Outright Landscape Construction is the best landscaping company in {name} for residential and commercial properties. We are a licensed C-27 contractor (CSLB #1073845), fully bonded and insured, with {GEO_STATS.yearsExperience}+ years of hands-on experience in the San Gabriel Valley. Our owner Edward personally oversees every project in {name} — no subcontractors, no middlemen.</p>
-                                <p>Unlike unlicensed landscapers who operate without accountability, Outright Landscape provides {name} homeowners with the legal protections of a California-licensed contractor: workmanship warranty, liability coverage, and recourse through the Contractors State License Board. We have completed over {GEO_STATS.projectsCompleted} landscaping, hardscaping, and irrigation projects across {name} and surrounding cities, earning a 4.9-star Google rating from verified customers.</p>
+                                <p>Outright Landscape Construction provides residential and commercial landscaping in {name}. We hold California C-27 license #1073845 and serve communities throughout the San Gabriel Valley.</p>
+                                <p>Homeowners can verify our license with the Contractors State License Board. We provide a written, project-specific estimate describing the planned scope, materials, preparation, timing, and pricing before work begins.</p>
                             </div>
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Professional Turf and Sod Installation in {name}</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
-                                <p>A lush, healthy lawn starts with proper soil preparation and the right grass variety for {name}'s Mediterranean climate. We install two proven varieties for Southern California: Marathon tall fescue (stays green year-round, requires 60% less water than traditional fescue, thrives in sun and shade) and hybrid Bermuda grass (dense, low-maintenance, best for full-sun yards with heavy foot traffic).</p>
+                                <p>A healthy lawn starts with suitable soil preparation, grading, irrigation, and a turf variety matched to {name}'s conditions. Marathon tall fescue and hybrid Bermuda differ in sun needs, seasonal appearance, traffic tolerance, irrigation, and maintenance; we compare those factors for the property.</p>
                                 <p>Our turf installation process in {name} includes complete removal of existing material, rototilling soil to 4–6 inches, organic soil amendments, precision grading for drainage, and laying sod in a staggered brick pattern. Most {name} front and back yard installations are completed in 1–2 days. We provide a custom watering schedule based on your property's sun exposure and irrigation system.</p>
                             </div>
                         </motion.div>
@@ -290,15 +288,15 @@ export default function LocationPage({ citySlug }) {
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Irrigation and Sprinkler Systems in {name}</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
-                                <p>An efficient irrigation system is essential in {name}, where annual rainfall averages only 15–20 inches. Outright Landscape designs and installs complete sprinkler and drip irrigation systems using commercial-grade components from Rain Bird, Hunter, and Toro. We offer same-day emergency sprinkler repair for {name} residents — call (626) 343-6028 before noon for same-day service.</p>
-                                <p>Smart irrigation controllers like the Rain Bird ESP-TM2 and Hunter Hydrawise reduce water consumption by 30–50% and can qualify for local water agency rebates. Drip irrigation for garden beds reduces water use by up to 70% compared to overhead spray. Whether you need a new system, a repair, or a smart controller upgrade in {name}, Outright Landscape is the most experienced irrigation contractor in the area.</p>
+                                <p>An efficient irrigation system is important in Southern California's dry climate. Outright Landscape designs, installs, and repairs sprinkler and drip irrigation systems in {name}. Call (626) 343-6028 to discuss the issue and current scheduling.</p>
+                                <p>Smart controllers can adjust schedules using weather or sensor information, while drip irrigation can deliver water near plant root zones. Compatibility, water use, and rebate eligibility depend on the property, equipment, configuration, water provider, and current program rules.</p>
                             </div>
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Hardscaping and Paver Installation in {name}</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
-                                <p>Outright Landscape is the top-rated hardscape contractor in {name}. We install custom paver patios, driveways, walkways, retaining walls, and outdoor living spaces using commercial-grade materials from Belgard, Tremron, and Angelus. Every hardscape project in {name} includes proper base preparation: 6–8 inch excavation, geotextile fabric, compacted Class II aggregate base, and edge restraints — the engineering that prevents shifting and cracking.</p>
+                                <p>Outright Landscape installs custom paver patios, driveways, walkways, retaining walls, and outdoor living spaces in {name}. The proposed excavation, drainage, base preparation, materials, and edge restraints are selected for the site and documented in the estimate.</p>
                                 <p>Paver patios in {name} typically cost $15–$30 per square foot installed. Concrete driveways run $8–$18 per square foot. Retaining walls cost $20–$40 per square foot of wall face. We provide free on-site estimates with detailed material specifications and project timelines. Call (626) 343-6028 for your free {name} hardscape estimate.</p>
                             </div>
                         </motion.div>
@@ -355,16 +353,16 @@ export default function LocationPage({ citySlug }) {
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#333]">
                         {[
-                            { end: GEO_STATS.projectsCompleted, suffix: '+', label: "Projects Completed" },
-                            { end: GEO_STATS.yearsInBusiness, suffix: '+', label: "Years Experience" },
-                            { end: 4.8, suffix: '★', label: "Google Rating", isDecimal: true },
-                            { end: 100, suffix: '%', label: "Licensed & Insured" }
+                            { raw: '2020', label: "Founded" },
+                            { raw: 'C-27', label: "License Class" },
+                            { raw: '#1073845', label: "CSLB License" },
+                            { raw: 'SGV', label: "Service Area" }
                         ].map((stat, idx) => (
                             <motion.div key={idx} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
                                 className="cityStatItem text-center py-10 sm:py-12"
                             >
                                 <div className="cityStatValue text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
-                                    {stat.isDecimal ? `${stat.end}${stat.suffix}` : <CountUp end={stat.end} suffix={stat.suffix} />}
+                                    {stat.raw || <CountUp end={stat.end} suffix={stat.suffix} />}
                                 </div>
                                 <div className="cityStatLabel text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{stat.label}</div>
                             </motion.div>

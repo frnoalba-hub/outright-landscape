@@ -1,14 +1,10 @@
 import { Star } from 'lucide-react';
 
-/**
- * KDD '24 GEO: Attributed customer quote for E-E-A-T.
- * LLMs heavily extract cited local reviews. Quote must include name + city.
- */
-export default function AttributedQuote({ quote, name, city, stars = 5, compact = false }) {
+export default function AttributedQuote({ quote, name, city, stars = 5, compact = false, sourceUrl }) {
   return (
     <blockquote
       className={`attributedQuote ${compact ? 'py-2' : 'py-3'} border-l-2 border-[#c45d2c]/60 pl-4 pr-0`}
-      cite="https://www.google.com/maps/place/Outright+Landscape"
+      cite={sourceUrl}
     >
       <p className="text-white/90 text-xs sm:text-sm leading-relaxed mb-1.5">
         &ldquo;{quote}&rdquo;
@@ -22,6 +18,16 @@ export default function AttributedQuote({ quote, name, city, stars = 5, compact 
         <cite className="not-italic text-white/70 text-xs font-medium">
           — {name}, {city}
         </cite>
+        {sourceUrl && (
+          <a
+            href={sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/60 text-xs underline underline-offset-2 hover:text-white"
+          >
+            View source
+          </a>
+        )}
       </footer>
     </blockquote>
   );

@@ -7,7 +7,7 @@ export const getPageData = (city, service) => {
         'sprinkler-repair': {
             serviceDisplay: 'Sprinkler Repair',
             h1: `Expert Sprinkler Repair in ${cityName}, CA`,
-            heroSubhead: `Fast, professional sprinkler repair and sprinkler system repair services in ${cityName}. We fix leaks, broken heads, valve issues, and controller problems. Call today for same-day irrigation repair service.`,
+            heroSubhead: `Sprinkler repair and sprinkler-system service in ${cityName}. We diagnose leaks, broken heads, valve issues, and controller problems. Call to check scheduling availability.`,
             issuesTitle: 'Common Sprinkler Problems We Fix Fast',
             commonIssues: [
                 {
@@ -102,15 +102,15 @@ export const getPageData = (city, service) => {
             faqs: [
                 {
                     q: `How much does sprinkler repair cost in ${cityName}?`,
-                    a: `Sprinkler repair costs vary based on the issue. Simple sprinkler head replacement starts around $75-$150, while sprinkler valve replacement or irrigation valve repair typically ranges $150-$400 per valve. Sprinkler controller repair or replacement ranges $200-$800. We provide free estimates for all sprinkler system repair in ${cityName}.`
+                    a: `Sprinkler repair pricing depends on the problem, parts, system condition, access, and labor required. We inspect the system and provide a project-specific estimate in ${cityName}.`
                 },
                 {
                     q: 'How long does sprinkler repair take?',
-                    a: 'Most sprinkler repairs in La Verne, San Dimas, and Glendora are completed in 2-4 hours. Sprinkler leak repair and valve replacement can often be done same-day. More extensive sprinkler system repairs may require a return visit.'
+                    a: 'Repair time depends on diagnosis, system condition, parts availability, and the number of affected zones. We will explain the expected timing after inspecting the system.'
                 },
                 {
-                    q: 'Do you offer same-day sprinkler repair service?',
-                    a: `Yes! We prioritize emergency sprinkler leak repair and irrigation repair requests in ${cityName}. Call before noon and we'll typically schedule same-day service for urgent repairs.`
+                    q: 'How quickly can you schedule sprinkler repair?',
+                    a: `Scheduling in ${cityName} depends on current availability and the nature of the problem. Call (626) 343-6028 and we will confirm the next available appointment.`
                 },
                 {
                     q: 'What brands of sprinkler controllers and valves do you service?',
@@ -252,7 +252,7 @@ export const getPageData = (city, service) => {
                 },
                 {
                     q: 'Do you offer warranties on irrigation repairs?',
-                    a: 'Yes, all irrigation repair work includes a warranty on both labor and parts. Specific warranty terms depend on the type of repair and parts used.'
+                    a: 'Warranty terms depend on the repair and parts selected. Any applicable workmanship or manufacturer terms will be included in the written proposal.'
                 }
             ]
         },
@@ -492,7 +492,7 @@ export const getPageData = (city, service) => {
                 },
                 {
                     q: 'Can you convert my sprinklers to drip irrigation?',
-                    a: `Yes, converting sprinkler zones to drip irrigation is one of our specialties. Drip systems use 30-50% less water than sprinklers and are ideal for gardens, shrubs, and trees throughout ${cityName}.`
+                    a: `We can evaluate converting appropriate sprinkler zones to drip irrigation for gardens, shrubs, and trees in ${cityName}. Actual water use depends on the design, plants, controller settings, climate, and maintenance.`
                 },
                 {
                     q: 'What PSI should drip irrigation run at?',

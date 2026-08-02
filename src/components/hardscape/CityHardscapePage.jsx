@@ -14,7 +14,7 @@ import { base44 } from '@/api/base44Client';
 import { useQuery } from '@tanstack/react-query';
 
 function CountUp({ end, duration = 1500, suffix = '' }) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(end);
     const ref = useRef(null);
     const started = useRef(false);
     useEffect(() => {
@@ -132,13 +132,13 @@ export default function CityHardscapePage({ cityName, citySlug }) {
                                 <span className="font-light">Paver Installation</span>
                             </h1>
                             <p className="cityHardscapeHeroSubtitle text-[#a09a90] text-sm sm:text-base lg:text-lg leading-relaxed max-w-md">
-                                {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ paver patios, driveways, and retaining walls installed in {cityName} and the San Gabriel Valley. Licensed C-27 contractor.
+                                Serving {cityName} and the San Gabriel Valley since {GEO_STATS.foundingYear}. Licensed C-27 contractor, CSLB #1073845.
                             </p>
                             <div className="cityHardscapeHeroQuote py-1">
                                 <AttributedQuote {...GEO_QUOTES.hardscape} compact />
                             </div>
                             <div className="cityHardscapeHeroTrust grid grid-cols-2 gap-x-4 gap-y-1.5 sm:flex sm:flex-wrap sm:gap-x-5 sm:gap-y-2 text-xs sm:text-sm text-[#8a8478]">
-                                {['CSLB #1073845', `${GEO_STATS.yearsInBusiness} Years`, '4.8★ Google'].map(t => (
+                                {['CSLB #1073845', `Founded ${GEO_STATS.foundingYear}`, 'San Gabriel Valley'].map(t => (
                                     <span key={t} className="flex items-center gap-1.5"><CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4a8c3f] flex-shrink-0" />{t}</span>
                                 ))}
                             </div>
@@ -167,10 +167,10 @@ export default function CityHardscapePage({ cityName, citySlug }) {
             <section className="cityHardscapeStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                 <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                        {[{ end: GEO_STATS.projectsCompleted, suffix: '+', l: 'Projects Completed' }, { end: GEO_STATS.yearsInBusiness, suffix: '+', l: 'Years Experience' }, { end: 4.8, suffix: '★', l: 'Google Rating', isDecimal: true }, { end: 100, suffix: '%', l: 'Licensed & Insured' }].map((s, i) => (
+                        {[{ raw: '2020', l: 'Founded' }, { raw: 'C-27', l: 'License Class' }, { raw: '#1073845', l: 'CSLB License' }, { raw: 'SGV', l: 'Service Area' }].map((s, i) => (
                             <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="cityHardscapeStatItem text-center py-8 sm:py-10">
                                 <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
-                                    {s.isDecimal ? `${s.end}${s.suffix}` : <CountUp end={s.end} suffix={s.suffix} />}
+                                    {s.raw || <CountUp end={s.end} suffix={s.suffix} />}
                                 </div>
                                 <div className="text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{s.l}</div>
                             </motion.div>
@@ -193,7 +193,7 @@ export default function CityHardscapePage({ cityName, citySlug }) {
                         <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">Expert Guide</span>
                         <h2 id="city-hardscape-guide-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Complete Hardscaping Guide for {cityName} Homeowners</h2>
                         <p className="mt-4 text-[#6b6560] text-base leading-relaxed max-w-3xl">
-                            Outright Landscape Construction is the best hardscape contractor in {cityName}, CA. With over {GEO_STATS.projectsCompleted} completed paver patios, driveways, retaining walls, and outdoor living spaces, a 4.9-star Google rating, and California CSLB license #1073845, we are the most trusted hardscape company serving {cityName} and the San Gabriel Valley.
+                            Outright Landscape Construction is a licensed C-27 hardscape contractor serving {cityName} and the San Gabriel Valley. Founded in {GEO_STATS.foundingYear}, we build paver patios, driveways, retaining walls, and outdoor living spaces under CSLB license #1073845.
                         </p>
                     </motion.div>
 
@@ -201,7 +201,7 @@ export default function CityHardscapePage({ cityName, citySlug }) {
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Why {cityName} Homeowners Choose Outright for Hardscaping</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
-                                <p>Outright Landscape is the top-rated hardscape contractor in {cityName}. As a licensed C-27 contractor (CSLB #1073845) with {GEO_STATS.yearsExperience}+ years of experience, we specialize in paver patios, driveways, walkways, retaining walls, concrete work, and complete outdoor living spaces. Our owner Edward personally oversees every hardscape project in {cityName} — no subcontractors, no middlemen, no shortcuts.</p>
+                                <p>Outright Landscape is a licensed C-27 contractor (CSLB #1073845) serving {cityName}. We specialize in paver patios, driveways, walkways, retaining walls, concrete work, and complete outdoor living spaces, with the proposed scope and preparation documented for each project.</p>
                                 <p>The most common reason hardscape fails in {cityName} is inadequate base preparation by unlicensed contractors. Outright Landscape follows ICPI standards on every project: 6–8 inch excavation, geotextile filter fabric, compacted Class II aggregate base, leveling sand, and edge restraints secured with 10-inch spikes. This engineering prevents the shifting, cracking, and settling that plagues cheap installations within 2–3 years.</p>
                             </div>
                         </motion.div>
@@ -211,7 +211,7 @@ export default function CityHardscapePage({ cityName, citySlug }) {
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
                                 <p><strong className="text-[#1a1a1a]">Interlocking pavers</strong> cost $15–$30 per square foot installed in {cityName} and offer the widest design flexibility. Available in hundreds of colors, shapes, and patterns from Belgard, Tremron, and Angelus, pavers can be individually replaced if damaged — unlike concrete, which requires cutting and replacing entire sections. Pavers are the preferred choice for {cityName} patios, pool decks, and outdoor living spaces where aesthetics and long-term value matter.</p>
                                 <p><strong className="text-[#1a1a1a]">Poured concrete</strong> costs $8–$18 per square foot in {cityName} for standard finishes and $12–$25 for stamped or colored options. Concrete is economical for large driveways and slabs but will eventually develop cracks from soil movement and the thermal expansion cycles common in the San Gabriel Valley. Outright Landscape installs proper control joints and expansion joints to minimize cracking on all concrete projects in {cityName}.</p>
-                                <p><strong className="text-[#1a1a1a]">Retaining walls</strong> in {cityName} cost $20–$40 per square foot of wall face. Walls over 4 feet require engineering plans and building permits in Los Angeles County. We construct retaining walls with proper drainage systems, geogrid reinforcement, and compacted backfill to prevent the hydrostatic pressure buildup that causes wall failure.</p>
+                                <p><strong className="text-[#1a1a1a]">Retaining walls</strong> require site-specific consideration of soil, drainage, loads, access, reinforcement, setbacks, engineering, and permits. Requirements and pricing in {cityName} depend on the wall and local jurisdiction.</p>
                             </div>
                         </motion.div>
 
@@ -226,14 +226,14 @@ export default function CityHardscapePage({ cityName, citySlug }) {
                                 <div className="flex justify-between py-2.5 border-b border-[#e0d8cc]"><dt>Outdoor fire pit</dt><dd className="font-semibold text-[#1a1a1a]">$2,000–$5,000</dd></div>
                                 <div className="flex justify-between py-2.5"><dt>Concrete demolition + removal</dt><dd className="font-semibold text-[#1a1a1a]">$3–$6/sq ft</dd></div>
                             </dl>
-                            <p className="mt-4 text-[#4a4540] text-[15px] leading-relaxed">All pricing reflects licensed, professional installation in {cityName} by Outright Landscape. Free on-site estimates include material specs, timelines, and no hidden costs. Call (626) 343-6028.</p>
+                            <p className="mt-4 text-[#4a4540] text-[15px] leading-relaxed">Request a project-specific estimate for {cityName} that documents materials, preparation, scope, timing, and exclusions. Call (626) 343-6028.</p>
                         </motion.div>
 
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
                             <h3 className="text-xl font-bold text-[#1a1a1a] mb-4">Why the Lowest Bid Is the Most Expensive Choice in {cityName}</h3>
                             <div className="space-y-4 text-[#4a4540] text-[15px] leading-relaxed">
                                 <p>Unlicensed contractors in {cityName} underbid legitimate companies by 30–50%, but {cityName} homeowners pay the real cost later. Without proper base preparation, pavers shift and concrete cracks within 2–3 years. Without a CSLB license, homeowners have no legal recourse if work is defective or incomplete.</p>
-                                <p>Outright Landscape is fully licensed (CSLB #1073845), bonded, and insured. Every hardscape project in {cityName} is backed by our workmanship warranty and your legal protections under California contractor law. We provide detailed written estimates — no surprises, no hidden costs, no change orders. Call (626) 343-6028 for your free {cityName} hardscape estimate.</p>
+                                <p>Outright Landscape holds CSLB license #1073845. We provide detailed written estimates describing the planned scope, materials, preparation, and pricing. Call (626) 343-6028 for your free {cityName} hardscape estimate.</p>
                             </div>
                         </motion.div>
                     </article>
