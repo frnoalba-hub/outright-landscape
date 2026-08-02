@@ -9,9 +9,9 @@
   "theme_color": "#1a1a1a",
   "icons": [
     {
-      "src": "/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png",
-      "sizes": "1024x1024",
-      "type": "image/png",
+      "src": "/images/outright-landscape-logo-256.jpg",
+      "sizes": "256x256",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     }
   ]

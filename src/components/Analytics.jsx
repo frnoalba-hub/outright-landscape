@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const GTM_ID = 'GTM-P6G5DP8K';
 const GOOGLE_ADS_ID = 'AW-10836591498';
@@ -14,15 +15,16 @@ function ensureGtagStub() {
             window.dataLayer.push(arguments);
         };
     window.gtag('js', new Date());
-    window.gtag('config', GOOGLE_ADS_ID);
+    window.gtag('config', GOOGLE_ADS_ID, { send_page_view: false });
 }
 
 export default function Analytics() {
+    const location = useLocation();
+
     useEffect(() => {
         if (typeof window === 'undefined') return;
-        if (document.getElementById('gtm-script')) return;
-
         ensureGtagStub();
+        if (document.getElementById('gtm-script')) return;
 
         const init = () => {
             if (document.getElementById('gtm-script')) return;
@@ -71,6 +73,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
                 window.clearTimeout(idleHandle);
             }
         };
+    }, []);
+
+    useEffect(() => {
+        if (typeof window === 'undefined') return;
+        ensureGtagStub();
+
+        window.gtag('event', 'page_view', {
+            page_title: document.title,
+            page_location: window.location.href,
+            page_path: `${location.pathname}${location.search}`,
+        });
+    }, [location.pathname, location.search]);
+
+    useEffect(() => {
+        if (typeof document === 'undefined') return;
+
+        const handleContactClick = (event) => {
+            const anchor = event.target.closest('a[href]');
+            if (!anchor) return;
+
+            const href = anchor.getAttribute('href') || '';
+            const contactMethod = href.startsWith('tel:')
+                ? 'phone'
+                : href.startsWith('sms:')
+                    ? 'text'
+                    : href.startsWith('mailto:')
+                        ? 'email'
+                        : null;
+            if (!contactMethod) return;
+
+            const eventData = {
+                contact_method: contactMethod,
+                click_location: anchor.dataset.trackingLocation || window.location.pathname,
+                link_text: anchor.textContent?.trim().replace(/\s+/g, ' ').slice(0, 80) || contactMethod,
+            };
+
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'contact_click', ...eventData });
+            window.dataLayer.push({ event: `${contactMethod}_click`, ...eventData });
+            window.gtag?.('event', 'contact_click', eventData);
+            window.gtag?.('event', `${contactMethod}_click`, eventData);
+        };
+
+        document.addEventListener('click', handleContactClick);
+        return () => document.removeEventListener('click', handleContactClick);
     }, []);
 
     return null;

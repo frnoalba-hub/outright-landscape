@@ -1,11 +1,12 @@
 ﻿import { useState } from "react";
 import { base44 } from '@/api/base44Client';
+import { lazy, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Phone, Text, CalendarDays, MessageSquare, Loader2 } from "lucide-react";
-import confetti from 'canvas-confetti';
-import BookingForm from '@/components/booking/BookingForm';
+
+const BookingForm = lazy(() => import('@/components/booking/BookingForm'));
 
 export default function ContactForm({ cityName = "your area" }) {
     const [activeTab, setActiveTab] = useState("quote");
@@ -52,6 +53,7 @@ export default function ContactForm({ cityName = "your area" }) {
 
         setIsSubmitted(true);
         try {
+            const { default: confetti } = await import('canvas-confetti');
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         } catch (err) {
             console.error("Submission celebration failed", err);
@@ -161,7 +163,9 @@ export default function ContactForm({ cityName = "your area" }) {
                             )
                         ) : (
                             <div className="contactBookingWrapper rounded-b-2xl overflow-hidden">
-                                <BookingForm cityName={cityName} />
+                                <Suspense fallback={<div className="min-h-[420px] bg-[#1a1a1a]" aria-label="Loading appointment form" />}>
+                                    <BookingForm cityName={cityName} />
+                                </Suspense>
                             </div>
                         )}
                     </div>

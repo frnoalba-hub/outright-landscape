@@ -1,27 +1,43 @@
 import './App.css'
+import { lazy, Suspense } from 'react'
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import VisualEditAgent from '@/lib/VisualEditAgent'
 import NavigationTracker from '@/lib/NavigationTracker'
-import { pagesConfig } from './pages.config'
-import BlogPost from './pages/BlogPost'
-import ServiceHubPage from './pages/ServiceHubPage'
-import BuyerGuidePage from './pages/BuyerGuidePage'
-import About from './pages/About'
-import Contact from './pages/Contact'
+import Layout from './Layout.jsx'
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
-import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
-const { Pages, Layout, mainPage } = pagesConfig;
-const mainPageKey = mainPage ?? Object.keys(Pages)[0];
-const MainPage = mainPageKey ? Pages[mainPageKey] : <></>;
+const pageModules = import.meta.glob('./pages/*.jsx');
+const lazyPage = (name) => lazy(pageModules[`./pages/${name}.jsx`]);
+const SPECIAL_PAGE_NAMES = new Set(['About', 'BlogPost', 'BuyerGuidePage', 'Contact', 'ServiceHubPage']);
+const Pages = Object.fromEntries(
+  Object.entries(pageModules)
+    .map(([path, loader]) => [path.split('/').pop().replace(/\.jsx$/, ''), lazy(loader)])
+    .filter(([name]) => !SPECIAL_PAGE_NAMES.has(name))
+);
+
+const mainPageKey = 'Home';
+const MainPage = Pages[mainPageKey];
+const About = lazyPage('About');
+const BlogPost = lazyPage('BlogPost');
+const BuyerGuidePage = lazyPage('BuyerGuidePage');
+const Contact = lazyPage('Contact');
+const ServiceHubPage = lazyPage('ServiceHubPage');
+const PageNotFound = lazy(() => import('./lib/PageNotFound'));
+const UserNotRegisteredError = lazy(() => import('@/components/UserNotRegisteredError'));
+const VisualEditAgent = lazy(() => import('@/lib/VisualEditAgent'));
 
 const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   <Layout currentPageName={currentPageName}>{children}</Layout>
   : <>{children}</>;
+
+const PageLoading = () => (
+  <div className="fixed inset-0 flex items-center justify-center bg-white" role="status" aria-live="polite">
+    <span className="sr-only">Loading page</span>
+    <div className="h-8 w-8 animate-spin rounded-full border-4 border-slate-200 border-t-slate-800" aria-hidden="true" />
+  </div>
+);
 
 const PAGE_PATHS = {
   Blog: 'blog',
@@ -102,6 +118,7 @@ const AuthenticatedApp = () => {
   return (
     <>
       <CanonicalPathRedirect />
+      <Suspense fallback={<PageLoading />}>
       <Routes>
       <Route path="/" element={
         <LayoutWrapper currentPageName={mainPageKey}>
@@ -162,12 +179,14 @@ const AuthenticatedApp = () => {
       />
       <Route path="*" element={<PageNotFound />} />
       </Routes>
+      </Suspense>
     </>
   );
 };
 
 
 function App() {
+  const isEmbeddedEditor = typeof window !== 'undefined' && window.self !== window.top;
 
   return (
     <AuthProvider>
@@ -177,7 +196,11 @@ function App() {
           <AuthenticatedApp />
         </Router>
         <Toaster />
-        <VisualEditAgent />
+        {isEmbeddedEditor && (
+          <Suspense fallback={null}>
+            <VisualEditAgent />
+          </Suspense>
+        )}
       </QueryClientProvider>
     </AuthProvider>
   )
