@@ -10,7 +10,7 @@ export default function LocalBusinessSchema({ cityName, citySlug, services = [] 
       "image": "/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png",
       "description": `Licensed C-27 landscape contractor serving ${cityName}, CA. Expert pavers, turf installation, irrigation systems, and complete landscape design. Free estimates available.`,
       "telephone": "+1-626-343-6028",
-      "email": "outrightlandscape@yahoo.com",
+      "email": "office@outrightlandscape.com",
       "url": `https://outrightlandscape.com/ServiceArea?city=${citySlug}`,
       "priceRange": "$$",
       "address": {
@@ -41,7 +41,7 @@ export default function LocalBusinessSchema({ cityName, citySlug, services = [] 
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": `Landscaping Services in ${cityName}`,
-        "itemListElement": services.length > 0 ? services.map((service, idx) => ({
+        "itemListElement": services.length > 0 ? services.map((service) => ({
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
@@ -100,17 +100,11 @@ export default function LocalBusinessSchema({ cityName, citySlug, services = [] 
         "Landscape Design"
       ],
       "slogan": "Transform Your Outdoor Living Space",
-      "foundingDate": "2010",
+      "foundingDate": "2020",
       "founder": {
         "@type": "Person",
         "name": "Outright Landscape Construction"
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "50",
-        "bestRating": "5"
-      }
     };
 
     const script = document.createElement('script');

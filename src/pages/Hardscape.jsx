@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Phone, CheckCircle2, MapPin, ArrowRight } from 'lucide-react';
 
 function CountUp({ end, duration = 1500, suffix = '' }) {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(end);
     const ref = useRef(null);
     const started = useRef(false);
     useEffect(() => {
@@ -42,10 +42,6 @@ export default function Hardscape() {
         if (window.dataLayer) {
             window.dataLayer.push({ event: 'phone_click', event_category: 'engagement', event_label: 'hardscape-hub', phone_number: '626-343-6028' });
         }
-    };
-
-    const scrollToForm = () => {
-        document.getElementById('hardscape-contact')?.scrollIntoView({ behavior: 'smooth' });
     };
 
     const { data: locations = [] } = useQuery({
@@ -103,11 +99,11 @@ export default function Hardscape() {
     ];
 
     const whyUs = [
-        { title: 'Licensed C-27 Contractor', desc: `CSLB #1073845 — Fully licensed, bonded, and insured. Serving the San Gabriel Valley since ${GEO_STATS.foundingYear}.` },
-        { title: 'Proper Base Prep — No Shortcuts', desc: `Over ${GEO_STATS.projectsCompleted} projects completed. Correct excavation depth, compaction, and drainage built in from the start.` },
+        { title: 'Licensed C-27 Contractor', desc: `CSLB #1073845. Serving the San Gabriel Valley since ${GEO_STATS.foundingYear}.` },
+        { title: 'Proper Base Preparation', desc: 'Excavation, compaction, and drainage are planned around the project and site conditions.' },
         { title: 'Drainage-First Construction', desc: 'Every install designed to manage water runoff and prevent long-term damage.' },
         { title: 'Clean Job Site Practices', desc: 'We respect your property and leave every site clean upon completion.' },
-        { title: 'Warranty-Backed Workmanship', desc: 'We stand behind our work with a workmanship warranty on all installs.' },
+        { title: 'Clear Written Scope', desc: 'Project materials, preparation, and planned work are documented in the estimate.' },
         { title: 'Durable Materials & Quality', desc: 'We use commercial-grade materials selected for longevity and performance.' },
     ];
 
@@ -151,7 +147,7 @@ export default function Hardscape() {
                                 <span className="font-bold text-[#c45d2c]">Paver Installation</span>
                             </h1>
                             <p className="hardscapeHeroSubtitle text-[#a09a90] text-base sm:text-lg leading-relaxed max-w-md">
-                                {GEO_STATS.yearsInBusiness} years in business. Over {GEO_STATS.projectsCompleted}+ custom paver patios, driveways, and retaining walls installed in Covina, Glendora, San Dimas, and the San Gabriel Valley. Owner has {GEO_STATS.yearsExperience}+ years industry experience. Licensed C-27 contractor.
+                                Covina-based hardscape contractor serving the San Gabriel Valley since {GEO_STATS.foundingYear}. California C-27 license #1073845.
                             </p>
                             <div className="hardscapeHeroQuote hidden sm:block py-2">
                                 <AttributedQuote {...GEO_QUOTES.hardscape} compact />
@@ -175,10 +171,10 @@ export default function Hardscape() {
                 <section className="hardscapeStats py-0 bg-[#f5f0e8] border-b border-[#e0d8cc]">
                     <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
                         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e0d8cc]">
-                            {[{ end: GEO_STATS.projectsCompleted, suffix: '+', label: 'Projects Completed' }, { end: GEO_STATS.yearsInBusiness, suffix: '+', label: 'Years Experience' }, { end: 4.8, suffix: '★', label: 'Google Rating', isDecimal: true }, { end: 100, suffix: '%', label: 'Licensed & Insured' }].map((stat, i) => (
+                            {[{ raw: '2020', label: 'Founded' }, { raw: 'C-27', label: 'License Class' }, { raw: '#1073845', label: 'CSLB License' }, { raw: 'SGV', label: 'Service Area' }].map((stat, i) => (
                                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="hardscapeStatItem text-center py-8 sm:py-10">
                                     <div className="text-3xl sm:text-4xl font-bold text-[#c45d2c] tracking-tight">
-                                        {stat.isDecimal ? `${stat.end}${stat.suffix}` : <CountUp end={stat.end} suffix={stat.suffix} />}
+                                        {stat.raw || <CountUp end={stat.end} suffix={stat.suffix} />}
                                     </div>
                                     <div className="text-[#8a8478] text-xs sm:text-sm mt-1 font-medium">{stat.label}</div>
                                 </motion.div>
@@ -190,7 +186,7 @@ export default function Hardscape() {
                 {/* ── SERVICE SUMMARY (GEO) ── */}
                 <ServiceSummaryBox
                     problem="Cracking concrete, uneven pavers, poor drainage, and outdated outdoor spaces requiring professional hardscape construction."
-                    solution="Professional paver installation, concrete work, retaining walls, and proper base prep. Licensed C-27 contractor with drainage-first construction and warranty-backed workmanship."
+                    solution="Professional paver installation, concrete work, retaining walls, and site-specific base preparation. Licensed C-27 contractor serving the San Gabriel Valley."
                     serviceArea="San Gabriel Valley: Covina, Glendora, San Dimas, Pasadena, West Covina, Diamond Bar, La Verne, Walnut, Pomona, and surrounding cities."
                 />
 
@@ -201,7 +197,7 @@ export default function Hardscape() {
                             <span className="text-[#2d5a27] uppercase tracking-[0.2em] text-xs font-bold">Expert Guide</span>
                             <h2 id="hardscape-guide-heading" className="text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2">Complete Hardscaping Guide for San Gabriel Valley Homeowners</h2>
                             <p className="mt-4 text-[#6b6560] text-base leading-relaxed max-w-3xl">
-                                Outright Landscape Construction is the San Gabriel Valley's most trusted hardscape contractor. With over {GEO_STATS.projectsCompleted} completed paver patios, driveways, retaining walls, and outdoor living spaces, a 4.9-star Google rating, and California CSLB license #1073845, we deliver expert hardscaping across Covina, Glendora, San Dimas, La Verne, and 20+ cities. This guide covers everything homeowners need to know about professional hardscape construction.
+                                Outright Landscape Construction is a Covina-based hardscape contractor serving the San Gabriel Valley. Founded in {GEO_STATS.foundingYear} and licensed under California CSLB #1073845, we build paver patios, driveways, retaining walls, and outdoor living spaces. This guide covers important hardscape planning and construction considerations.
                             </p>
                         </motion.div>
 
@@ -269,7 +265,7 @@ export default function Hardscape() {
                             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
                                 <span className="text-[#c45d2c] uppercase tracking-[0.2em] text-xs font-bold">Paver Installation</span>
                                 <h2 className="hardscapePaversTitle text-3xl sm:text-4xl font-bold text-[#1a1a1a] tracking-tight mt-2 mb-5">Professional Paver Installation</h2>
-                                <p className="text-[#6b6560] text-base mb-4 leading-relaxed">We have installed over {GEO_STATS.projectsCompleted} custom paver patios, driveways, and walkways in the San Gabriel Valley. Our paver installations are built to last — proper excavation, layered base prep, and tight craftsmanship on every project. Premium interlocking pavers that resist cracking and shifting over time.</p>
+                                <p className="text-[#6b6560] text-base mb-4 leading-relaxed">We install custom paver patios, driveways, and walkways across the San Gabriel Valley. Each proposal considers excavation, base preparation, drainage, edge restraints, paver selection, and the conditions of the property.</p>
                                 <p className="text-[#6b6560] text-base mb-6 leading-relaxed">Whether you're looking to upgrade your driveway for maximum curb appeal, create a stunning backyard patio for entertaining, or design elegant walkways that connect your outdoor living areas, our team ensures a flawless finish. We offer a wide range of colors, textures, and patterns to perfectly match your home's architectural style.</p>
                                 <dl className="hardscapePaversList space-y-2.5 mb-8">
                                     {paverSteps.map((step, i) => (

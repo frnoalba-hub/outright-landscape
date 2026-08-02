@@ -3,7 +3,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-# AI Model Crawlers — explicitly allowed
+# AI Model Crawlers - explicitly allowed
 User-agent: GPTBot
 Allow: /
 
@@ -31,6 +31,6 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://outrightlandscape.com/api/sitemap
+Sitemap: https://outrightlandscape.com/sitemap.xml
 LLMs: https://outrightlandscape.com/llms.txt
 LLMs-Full: https://outrightlandscape.com/llms-full.txt

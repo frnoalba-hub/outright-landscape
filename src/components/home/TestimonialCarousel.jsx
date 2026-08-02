@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import TestimonialCard from './TestimonialCard';
 
-export default function TestimonialCarousel({ reviews = [], averageRating, totalReviewCount }) {
+export default function TestimonialCarousel({ reviews = [], averageRating, totalReviewCount: _totalReviewCount }) {
     const [currentPage, setCurrentPage] = useState(0);
     const [autoplay, setAutoplay] = useState(true);
 

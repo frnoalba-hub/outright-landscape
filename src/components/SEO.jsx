@@ -4,9 +4,9 @@ import { useEffect } from 'react';
 export default function SEO({ 
   title: defaultTitle, 
   description: defaultDescription, 
-  keywords: defaultKeywords, 
-  canonicalUrl, 
-  ogImage,
+  keywords: defaultKeywords = '',
+  canonicalUrl = '',
+  ogImage = '',
   ogType = "website",
   geoMeta = null,
 }) {
@@ -168,7 +168,7 @@ export default function SEO({
         // But for canonical/keywords which are page-specific:
         
         // Don't aggressively remove canonical as next page will update it
-      } catch (e) {
+      } catch {
         // Ignore cleanup errors
       }
     };

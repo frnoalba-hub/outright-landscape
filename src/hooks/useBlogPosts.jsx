@@ -32,7 +32,7 @@ export function useBlogPosts() {
     // Load base44 posts
     const { data: base44Posts = [], isLoading: base44Loading, error: base44Error } = useQuery({
         queryKey: ['blog-posts'],
-        queryFn: () => base44.entities.BlogPost.list({ sort: { created_date: -1 } }),
+        queryFn: () => base44.entities.BlogPost.list('-created_date'),
     });
 
     // Merge posts: static posts first (featured), then base44 posts
@@ -42,8 +42,8 @@ export function useBlogPosts() {
     ];
 
     // Sort by created_date descending
-    const sortedPosts = mergedPosts.sort((a, b) => 
-        new Date(b.created_date) - new Date(a.created_date)
+    const sortedPosts = mergedPosts.sort((a, b) =>
+        new Date(b.created_date).getTime() - new Date(a.created_date).getTime()
     );
 
     return {

@@ -102,7 +102,7 @@ export default function BlogPost() {
                         </p>
                         <ReactMarkdown 
                             components={{
-                                img: ({node, ...props}) => <img {...props} className="rounded-xl shadow-lg my-8" />
+                                img: ({ node: _node, ...props }) => <img {...props} className="rounded-xl shadow-lg my-8" />
                             }}
                         >
                             {post.content}

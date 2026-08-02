@@ -1,10 +1,12 @@
-import { motion } from 'framer-motion';
+﻿import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 
 const SERVICE_LINKS = {
     'Professional Irrigation Systems': createPageUrl('Irrigation'),
+    'Premium Turf & Sod Installation': '/s/landscaping',
     'Hardscaping & Paver Installation': createPageUrl('Hardscape'),
+    'Complete Landscape Design': '/s/outdoor-living',
 };
 
 export default function HomeServices({ services }) {
@@ -28,7 +30,7 @@ export default function HomeServices({ services }) {
                         </h2>
                     </div>
                     <p className="sectionSubtitle text-[#6b6560] text-base max-w-md">
-                        Expert craftsmanship for every aspect of your outdoor space — from design to build.
+                        Expert craftsmanship for every aspect of your outdoor space—from design to build.
                     </p>
                 </motion.div>
 
@@ -107,7 +109,7 @@ export default function HomeServices({ services }) {
                         ].map((c) => (
                             <a
                                 key={c.slug}
-                                href={`${createPageUrl('ServiceArea')}?city=${c.slug}`}
+                                href={`/${c.slug}-landscaping`}
                                 className="seoLink text-[#2d5a27] hover:text-[#1a1a1a] font-medium text-sm underline underline-offset-4 decoration-[#2d5a27]/30 hover:decoration-[#2d5a27] transition-colors inline-flex items-center gap-1"
                             >
                                 Landscaping in {c.label}

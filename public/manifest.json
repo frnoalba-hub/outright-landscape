@@ -1,0 +1,18 @@
+{
+  "name": "Outright Landscape Construction",
+  "short_name": "Outright Landscape",
+  "description": "Licensed landscape construction, irrigation, turf, and hardscape services in Covina and the San Gabriel Valley.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

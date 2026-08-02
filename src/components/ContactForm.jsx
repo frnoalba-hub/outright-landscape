@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,7 @@ export default function ContactForm({ cityName = "your area" }) {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [submitError, setSubmitError] = useState("");
 
     const handleInputChange = (field, value) =>
         setFormData((prev) => ({ ...prev, [field]: value }));
@@ -21,6 +22,7 @@ export default function ContactForm({ cityName = "your area" }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitError("");
         try {
             // Try direct SDK first, fallback to backend function for reliability
             try {
@@ -28,8 +30,15 @@ export default function ContactForm({ cityName = "your area" }) {
             } catch {
                 await base44.functions.invoke('saveContactInquiry', formData);
             }
+        } catch (err) {
+            console.error("Submission failed", err);
+            setSubmitError("We couldn't send your request. Please try again or call us at (626) 343-6028.");
+            setIsSubmitting(false);
+            return;
+        }
 
-            // Analytics (best-effort)
+        // Analytics and celebration are best-effort and never change the saved state.
+        try {
             if (window.dataLayer) {
                 window.dataLayer.push({ event: 'service_inquiry_form_submit', event_category: 'conversion', event_label: cityName });
                 window.dataLayer.push({ event: 'free_quote_request', event_category: 'lead_generation', event_label: cityName });
@@ -37,13 +46,15 @@ export default function ContactForm({ cityName = "your area" }) {
             if (window.gtag) {
                 window.gtag('event', 'generate_lead', { event_category: 'conversion', value: 1 });
             }
+        } catch (err) {
+            console.error("Submission analytics failed", err);
+        }
 
-            setIsSubmitted(true);
+        setIsSubmitted(true);
+        try {
             confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
         } catch (err) {
-            console.error("Submission failed", err);
-            // Still show success if data was saved — don't alarm the customer
-            setIsSubmitted(true);
+            console.error("Submission celebration failed", err);
         }
         setIsSubmitting(false);
     };
@@ -80,7 +91,7 @@ export default function ContactForm({ cityName = "your area" }) {
                             </div>
                         </a>
                         <div className="contactTrust bg-[#1a1a1a] rounded-xl p-5 space-y-3">
-                            {['Licensed C-27 CSLB #1073845', '10+ Years of Experience', 'Fully Insured & Bonded'].map((t, i) => (
+                            {['C-27 contractor · CSLB #1073845', 'Serving the San Gabriel Valley', 'Founded in 2020'].map((t, i) => (
                                 <div key={i} className="flex items-center gap-2.5 text-sm text-[#a09a90]">
                                     <CheckCircle className="w-4 h-4 text-[#4a8c3f] flex-shrink-0" />
                                     {t}
@@ -112,25 +123,40 @@ export default function ContactForm({ cityName = "your area" }) {
                                 </div>
                             ) : (
                                 <form onSubmit={handleSubmit} className="contactForm bg-[#1a1a1a] rounded-b-2xl p-6 sm:p-8 space-y-4">
-                                    <Input id="name" type="text" placeholder="Full Name" required
+                                    {submitError && (
+                                        <div role="alert" className="rounded-lg border border-red-400/40 bg-red-950/40 p-4 text-sm text-red-100">
+                                            {submitError}{' '}
+                                            <a href="tel:626-343-6028" className="font-semibold underline underline-offset-2">Call now</a>
+                                        </div>
+                                    )}
+                                    <label htmlFor="name" className="sr-only">Full name</label>
+                                    <Input id="name" name="name" type="text" autoComplete="name" placeholder="Full Name" required
                                         value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)}
                                         className="contactInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all" />
-                                    <Input id="phone" type="tel" placeholder="Phone" required
+                                    <label htmlFor="phone" className="sr-only">Phone number</label>
+                                    <Input id="phone" name="phone" type="tel" autoComplete="tel" placeholder="Phone" required
                                         value={formData.phone} onChange={(e) => handleInputChange("phone", e.target.value)}
                                         className="contactInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all" />
-                                    <Input id="email" type="email" placeholder="Email" required
+                                    <label htmlFor="email" className="sr-only">Email address</label>
+                                    <Input id="email" name="email" type="email" autoComplete="email" placeholder="Email" required
                                         value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)}
                                         className="contactInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all" />
-                                    <Input id="city" type="text" placeholder="City" required
+                                    <label htmlFor="city" className="sr-only">City</label>
+                                    <Input id="city" name="city" type="text" autoComplete="address-level2" placeholder="City" required
                                         value={formData.city} onChange={(e) => handleInputChange("city", e.target.value)}
                                         className="contactInput bg-[#242424] border-[#333] text-white h-12 rounded-lg px-4 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all" />
-                                    <Textarea id="message" placeholder="Brief project description..." required
+                                    <label htmlFor="message" className="sr-only">Project description</label>
+                                    <Textarea id="message" name="message" autoComplete="off" placeholder="Brief project description..." required
                                         value={formData.message} onChange={(e) => handleInputChange("message", e.target.value)}
                                         className="contactTextarea bg-[#242424] border-[#333] text-white rounded-lg p-4 h-28 placeholder:text-[#6b6560] focus:ring-2 focus:ring-[#c45d2c] focus:border-[#c45d2c] transition-all" />
                                     <Button type="submit" size="lg" disabled={isSubmitting}
                                         className="contactSubmit w-full font-bold text-base h-14 rounded-xl bg-[#c45d2c] hover:bg-[#a94e25] text-white shadow-lg shadow-[#c45d2c]/20 hover:shadow-xl hover:shadow-[#c45d2c]/30 transition-all duration-300 transform hover:scale-[1.02]">
                                         {isSubmitting ? <><Loader2 className="w-4 h-4 mr-2 animate-spin inline" />Sending...</> : "Request My Free Quote"}
                                     </Button>
+                                    <p className="text-xs leading-relaxed text-[#8a8478]">
+                                        By submitting, you ask us to contact you about your project. See our{' '}
+                                        <a href="/privacy-policy" className="underline underline-offset-2 hover:text-white">Privacy Policy</a>.
+                                    </p>
                                 </form>
                             )
                         ) : (

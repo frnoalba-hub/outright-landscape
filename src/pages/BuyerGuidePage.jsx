@@ -39,26 +39,13 @@ export default function BuyerGuidePage() {
     },
   };
 
-  const faqSchema =
-    guide.faqs && guide.faqs.length > 0
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: guide.faqs.map((f) => ({
-            '@type': 'Question',
-            name: f.question,
-            acceptedAnswer: { '@type': 'Answer', text: f.answer },
-          })),
-        }
-      : null;
-
   return (
     <article className="bg-white">
       <SEOHead
         title={guide.title}
         description={guide.description}
         canonicalUrl={`https://outrightlandscape.com/guides/${guide.slug}`}
-        schemaData={[articleSchema, faqSchema].filter(Boolean)}
+        schemaData={[articleSchema].filter(Boolean)}
         ogType="article"
       />
       <BreadcrumbSchema items={breadcrumbs} />

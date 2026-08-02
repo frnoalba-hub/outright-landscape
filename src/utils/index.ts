@@ -2,11 +2,11 @@
 
 
 /**
- * Builds URL path for a page. Preserves case to match React Router paths
- * (e.g. /Blog, /BlogPost, /pasadena-landscaping).
+ * Builds canonical, lowercase public paths.
  */
 export function createPageUrl(pageName: string) {
-    return '/' + pageName.replace(/ /g, '-');
+    const slug = pageName.trim().replace(/ /g, '-').toLowerCase();
+    return slug === 'home' ? '/' : `/${slug}`;
 }
 
 /**

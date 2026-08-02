@@ -10,7 +10,7 @@ export default function JsonLd({ city }) {
       "name": "Outright Landscape",
       "url": "https://outrightlandscape.com",
       "telephone": "(626) 343-6028",
-      "email": "outrightlandscape@yahoo.com",
+      "email": "office@outrightlandscape.com",
       "image": "/images/39c606b34_file_000000002aac61f58b7edad5ad34cd94.png",
       "priceRange": "$$",
       "areaServed": {
@@ -48,7 +48,7 @@ export default function JsonLd({ city }) {
     return () => {
       try {
         document.head.removeChild(script);
-      } catch (e) {
+      } catch {
         // Script might have been removed by other means
       }
     };

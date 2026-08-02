@@ -17,7 +17,7 @@ export default function GlobalSchema() {
       ],
       "description": "Licensed C-27 landscape contractor serving Covina, Glendora, San Dimas and the San Gabriel Valley. Expert turf installation, irrigation systems, hardscaping, and paver installation.",
       "telephone": "+1-626-343-6028",
-      "email": "outrightlandscape@yahoo.com",
+      "email": "office@outrightlandscape.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "",

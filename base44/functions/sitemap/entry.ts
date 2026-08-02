@@ -1,4 +1,11 @@
 Deno.serve((req) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    return new Response('Method Not Allowed', {
+      status: 405,
+      headers: { Allow: 'GET, HEAD' },
+    });
+  }
+
   const today = new Date().toISOString().split('T')[0];
   
   const cities = [
@@ -15,7 +22,25 @@ Deno.serve((req) => {
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://outrightlandscape.com/about</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/contact</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://outrightlandscape.com/irrigation</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/hardscape</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -25,6 +50,12 @@ Deno.serve((req) => {
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://outrightlandscape.com/privacy-policy</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>\n`;
   
   cities.forEach(city => {
@@ -48,8 +79,8 @@ Deno.serve((req) => {
   </url>\n`;
   });
 
-  // Service hubs
-  const serviceHubs = ['landscaping', 'hardscaping', 'irrigation', 'outdoor-living'];
+  // Service hubs that do not duplicate the primary hardscape or irrigation pages.
+  const serviceHubs = ['landscaping', 'outdoor-living'];
   serviceHubs.forEach(slug => {
     urls += `  <url>
     <loc>https://outrightlandscape.com/s/${slug}</loc>
@@ -77,7 +108,7 @@ Deno.serve((req) => {
   });
 
   // Blog posts (static + add more slugs as needed)
-  const blogSlugs = ['complete-guide-residential-commercial-irrigation-san-diego'];
+  const blogSlugs = ['complete-guide-residential-commercial-irrigation-san-gabriel-valley'];
   blogSlugs.forEach(slug => {
     urls += `  <url>
     <loc>https://outrightlandscape.com/blog/${slug}</loc>
@@ -91,11 +122,12 @@ Deno.serve((req) => {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls}</urlset>`;
 
-  return new Response(xml, {
+  return new Response(req.method === 'HEAD' ? null : xml, {
     status: 200,
     headers: {
       'Content-Type': 'application/xml',
-      'Cache-Control': 'public, max-age=3600'
+      'Cache-Control': 'public, max-age=3600',
+      'X-Content-Type-Options': 'nosniff'
     }
   });
 });

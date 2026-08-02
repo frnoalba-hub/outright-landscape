@@ -17,6 +17,8 @@ const navigationItems = [
   { title: "Service Areas", href: createPageUrl("Home") + "#service-areas" },
 ];
 
+const cityLandscapingUrl = (slug) => `/${slug === 'san-gabriel-valley' ? 'san-gabriel' : slug}-landscaping`;
+
 
 export default function Layout({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -214,7 +216,7 @@ export default function Layout({ children }) {
             
             <div className="headerCtas hidden xl:flex flex-shrink-0 items-center gap-2 2xl:gap-3">
                 <Button asChild variant="outline" className="headerQuoteBtn border border-[#b8945a]/50 text-[#b8945a] hover:bg-[#b8945a] hover:text-[#1a1a1a] font-semibold px-4 2xl:px-6 py-2.5 rounded-lg transition-all text-sm 2xl:text-base bg-transparent">
-                  <a href="#contact" aria-label="Get a free quote">
+                  <a href="/#contact" aria-label="Get a free quote">
                     Get Quote
                   </a>
                 </Button>
@@ -343,9 +345,10 @@ export default function Layout({ children }) {
                 <li><a href="/s/irrigation" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Irrigation & Sprinklers</a></li>
                 <li><a href="/s/outdoor-living" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Outdoor Living</a></li>
                 <li><a href={createPageUrl("Blog")} className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Blog</a></li>
-                <li><a href="/About" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">About Us</a></li>
-                <li><a href="/Contact" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Contact</a></li>
-                <li><a href="https://outrightlandscape.com/api/sitemap" target="_blank" rel="noopener noreferrer" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Sitemap</a></li>
+                <li><a href="/about" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">About Us</a></li>
+                <li><a href="/contact" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Contact</a></li>
+                <li><a href="/sitemap.xml" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Sitemap</a></li>
+                <li><a href="/privacy-policy" className="footerLink text-[#6b6560] hover:text-[#c45d2c] transition-colors">Privacy Policy</a></li>
                 </ul>
               </nav>
               <h2 className="footerGuidesTitle font-bold text-sm mt-6 mb-4 text-[#b8945a] uppercase tracking-wider">Guides</h2>
@@ -388,7 +391,7 @@ export default function Layout({ children }) {
                   return (
                     <a 
                       key={city.name}
-                      href={`${createPageUrl('ServiceArea')}?city=${city.slug}`}
+                      href={cityLandscapingUrl(city.slug)}
                       className="footerAreaLink text-[#6b6560] hover:text-[#c45d2c] transition-colors"
                     >
                       {city.name}

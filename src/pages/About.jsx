@@ -1,12 +1,11 @@
 import SEO from '@/components/SEO';
-import ContactForm from '@/components/ContactForm';
 import { CheckCircle2, Phone, Star } from 'lucide-react';
 
 const values = [
-  { title: 'Licensed & Insured', desc: 'CSLB #1073845 — fully licensed C-27 landscape contractor.' },
-  { title: 'Local Expertise', desc: 'Born and bred in the San Gabriel Valley; we know the soil, climate, and city codes.' },
-  { title: 'Quality Craftsmanship', desc: 'Every project is built to last, using premium materials and proven installation methods.' },
-  { title: 'Transparent Pricing', desc: 'No hidden fees. You receive a detailed written estimate before any work begins.' },
+  { title: 'C-27 Contractor', desc: 'Outright Landscape lists CSLB #1073845. Verify the current status with the CSLB.' },
+  { title: 'Local Service', desc: 'Based in Covina and serving communities across the San Gabriel Valley.' },
+  { title: 'Project Planning', desc: 'Recommendations account for the site, materials, drainage, access, and intended use.' },
+  { title: 'Written Estimates', desc: 'Project scope, pricing, timing, and applicable terms are documented before work begins.' },
 ];
 
 export default function About() {
@@ -14,8 +13,8 @@ export default function About() {
     <>
       <SEO
         title="About Outright Landscape Construction | Covina, CA"
-        description="Learn about Outright Landscape Construction — a licensed C-27 contractor serving Covina, Glendora, San Dimas, and the San Gabriel Valley with expert landscaping, hardscaping, and irrigation services."
-        canonical="/about"
+        description="Learn about Outright Landscape Construction, a Covina-based C-27 contractor serving the San Gabriel Valley with landscaping, hardscaping, and irrigation services."
+        canonicalUrl="https://outrightlandscape.com/about"
       />
 
       <div className="aboutPage pt-28 pb-20 bg-white min-h-screen">
@@ -25,7 +24,7 @@ export default function About() {
           <header className="aboutHeader text-center mb-16">
             <span className="aboutBadge inline-flex items-center gap-2 bg-[#2d5a27]/10 border border-[#2d5a27]/30 rounded-full px-4 py-1.5 text-[#2d5a27] text-sm font-semibold mb-6">
               <Star className="w-4 h-4 fill-current" />
-              Trusted Since 2015
+              Founded in 2020
             </span>
             <h1 className="aboutHeading text-4xl sm:text-5xl font-bold text-[#1a1a1a] leading-tight mb-6">
               About <span className="text-[#c45d2c]">Outright Landscape</span>
@@ -41,22 +40,19 @@ export default function About() {
             <h2 className="aboutSectionTitle text-2xl sm:text-3xl font-bold text-[#1a1a1a] mb-6">Who We Are</h2>
             <div className="aboutBodyText space-y-4 text-[#4a4540] text-base sm:text-lg leading-relaxed">
               <p>
-                Outright Landscape Construction was founded with one mission: to transform ordinary outdoor spaces
-                into beautiful, functional landscapes that homeowners love and that stand the test of time.
-                Holding CSLB license #1073845, we operate as a C-27 specialty contractor — a designation that
-                reflects our deep commitment to professional standards in every project we touch.
+                Outright Landscape Construction was founded in 2020 to plan and build functional outdoor spaces for
+                properties in Covina and the San Gabriel Valley. The company lists CSLB license #1073845,
+                classification C-27; customers should verify the current license status with the CSLB.
               </p>
               <p>
-                Our team of experienced designers, horticulturists, and installation crews has completed more than
-                500 projects across Covina, Glendora, La Verne, San Dimas, West Covina, Arcadia, and dozens of
-                surrounding communities. Whether you need a complete backyard transformation, a new sprinkler system,
-                a paver patio, or drought-tolerant turf, we have the skills and equipment to deliver exceptional results.
+                Services include landscape renovation, turf and sod, irrigation installation and repair, pavers,
+                patios, walkways, retaining walls, and coordinated outdoor-living projects. Availability and scope
+                are confirmed for each property during the estimate process.
               </p>
               <p>
-                We build for the long term. That means using premium materials, following best horticultural
-                practices for Southern California's climate, and standing behind our work with industry-leading
-                craftsmanship guarantees. From the first consultation through project completion, our goal is a
-                stress-free experience and an outdoor space you're proud to call your own.
+                Each proposal is based on the site's conditions, selected materials, access, preparation, drainage,
+                and project requirements. Applicable workmanship or manufacturer terms are provided in writing for
+                the specific project.
               </p>
             </div>
           </section>
@@ -66,15 +62,15 @@ export default function About() {
             <h2 className="aboutForTitle text-2xl sm:text-3xl font-bold text-[#1a1a1a] mb-6">Who We Serve</h2>
             <p className="aboutForBody text-[#4a4540] text-base sm:text-lg leading-relaxed mb-4">
               Our clients range from first-time homeowners looking to boost curb appeal, to seasoned property
-              investors seeking reliable commercial landscape maintenance partners. If you own or manage a property
-              in the San Gabriel Valley and want a yard that looks great year-round while conserving water, you've
-              come to the right place. We work with:
+              investors and property managers considering landscape improvements. If you own or manage a property
+              in the San Gabriel Valley, contact us to confirm whether the project fits our current service area and
+              schedule. We consider work for:
             </p>
             <ul className="aboutForList list-disc list-inside space-y-2 text-[#4a4540] text-base sm:text-lg leading-relaxed pl-2">
               <li>Residential homeowners planning front- or back-yard renovations</li>
-              <li>HOAs and property management companies needing reliable upkeep</li>
+              <li>HOAs and property management companies planning landscape projects</li>
               <li>Commercial property owners who want professional curb appeal</li>
-              <li>New construction developers requiring final landscape grading and planting</li>
+              <li>New construction projects requiring landscape grading and planting</li>
             </ul>
           </section>
 

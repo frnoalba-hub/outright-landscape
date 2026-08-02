@@ -1,4 +1,4 @@
-/**
+﻿/**
  * pages.config.js - Page routing configuration
  * 
  * This file is AUTO-GENERATED. Do not add imports or modify PAGES manually.
@@ -47,15 +47,11 @@
  *
  * The mainPage value must match a key in the PAGES object exactly.
  */
-import AdminSEO from './pages/AdminSEO';
 import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
 import Hardscape from './pages/Hardscape';
 import Home from './pages/Home';
 import Irrigation from './pages/Irrigation';
-import Robots from './pages/Robots';
-import SEOAudit from './pages/SEOAudit';
-import ServiceArea from './pages/ServiceArea';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 import arcadiaHardscape from './pages/arcadia-hardscape';
 import arcadiaLandscaping from './pages/arcadia-landscaping';
 import arcadiaSprinklerRepairInstallation from './pages/arcadia-sprinkler-repair-installation';
@@ -120,15 +116,11 @@ import __Layout from './Layout.jsx';
 
 
 export const PAGES = {
-    "AdminSEO": AdminSEO,
     "Blog": Blog,
-    "BlogPost": BlogPost,
     "Hardscape": Hardscape,
     "Home": Home,
     "Irrigation": Irrigation,
-    "Robots": Robots,
-    "SEOAudit": SEOAudit,
-    "ServiceArea": ServiceArea,
+    "PrivacyPolicy": PrivacyPolicy,
     "arcadia-hardscape": arcadiaHardscape,
     "arcadia-landscaping": arcadiaLandscaping,
     "arcadia-sprinkler-repair-installation": arcadiaSprinklerRepairInstallation,
