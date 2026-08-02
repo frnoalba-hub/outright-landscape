@@ -135,7 +135,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
   name: 'Outright Landscape Construction',
   legalName: 'Outright Landscape Construction',
   url: BASE_URL,
-  logo: `${BASE_URL}/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png`,
+  logo: `${BASE_URL}/images/outright-landscape-logo-256.jpg`,
   image: [
     `${BASE_URL}/images/cdeefde95_2024-09-14.jpg`,
     `${BASE_URL}/images/670c050ff_2025-05-284.jpg`,

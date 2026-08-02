@@ -102,46 +102,6 @@ export default function Layout({ children }) {
 
 
 
-  const handlePhoneClick = (location) => {
-      if (window.dataLayer) {
-          window.dataLayer.push({
-              event: 'phone_click',
-              event_category: 'engagement',
-              event_label: location,
-              phone_number: '626-343-6028'
-          });
-
-          // Track call now button clicks specifically
-          window.dataLayer.push({
-              event: 'call_now_button_click',
-              event_category: 'conversion',
-              event_label: location,
-              phone_number: '626-343-6028'
-          });
-
-          // Track call initiated
-          window.dataLayer.push({
-              event: 'call_initiated',
-              event_category: 'engagement',
-              event_label: location,
-              click_location: location
-          });
-      }
-      if (window.gtag) {
-          window.gtag('event', 'phone_click', {
-              event_category: 'engagement',
-              event_label: location,
-              value: 1
-          });
-
-          window.gtag('event', 'call_button_click', {
-              event_category: 'conversion',
-              phone_number: '626-343-6028',
-              location: location
-          });
-      }
-  };
-
   return (
     <div className="min-h-screen bg-white" role="document">
       <GlobalLocalBusinessSchema />
@@ -189,7 +149,7 @@ export default function Layout({ children }) {
               aria-label="Outright Landscape Home">
 
               <img
-              src="/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
+              src="/images/outright-landscape-logo-256.jpg"
               alt="Outright Landscape Construction Logo"
               className="h-16 sm:h-[74px] xl:h-20 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
               width="122"
@@ -221,7 +181,7 @@ export default function Layout({ children }) {
                   </a>
                 </Button>
                 <Button asChild className="headerCallBtn bg-[#c45d2c] hover:bg-[#a94e25] text-white font-semibold px-4 2xl:px-6 py-2.5 rounded-lg shadow-lg shadow-[#c45d2c]/20 transition-all border-0 text-sm 2xl:text-base">
-                  <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" onClick={() => handlePhoneClick('header')}>
+                  <a href="tel:626-343-6028" aria-label="Call Outright Landscape at (626) 343-6028" data-tracking-location="header">
                     <Phone className="w-4 h-4 mr-2" aria-hidden="true" />
                     (626) 343-6028
                   </a>
@@ -254,7 +214,7 @@ export default function Layout({ children }) {
                 <div className="flex flex-col h-full">
                   <div className="mobileMenuHeader text-center pb-6 border-b border-[#333] mt-6">
                     <img
-                      src="/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
+                      src="/images/outright-landscape-logo-256.jpg"
                       alt="Outright Landscape Construction Logo"
                       className="w-14 h-14 mx-auto mb-3"
                       width="56"
@@ -283,7 +243,7 @@ export default function Layout({ children }) {
                     <SheetClose asChild>
                       <a
                         href="tel:626-343-6028"
-                        onClick={() => handlePhoneClick('mobile_menu')}
+                        data-tracking-location="mobile_menu"
                         className="mobileCallBtn inline-flex w-full items-center justify-center gap-3 rounded-xl bg-[#c45d2c] px-5 py-4 font-semibold text-white shadow-lg shadow-[#c45d2c]/20 transition-all hover:bg-[#a94e25]">
                         <Phone className="w-5 h-5" aria-hidden="true" />
                         Call (626) 343-6028
@@ -306,7 +266,7 @@ export default function Layout({ children }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             <div>
               <img
-                src="/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png"
+                src="/images/outright-landscape-logo-256.jpg"
                 alt="Outright Landscape Construction Logo"
                 className="footerLogo h-14 w-auto mb-4"
                 width="56"
@@ -366,7 +326,7 @@ export default function Layout({ children }) {
             <div>
               <h2 className="footerContactTitle font-bold text-sm mb-5 text-[#b8945a] uppercase tracking-wider">Contact</h2>
               <ul className="space-y-3 text-sm text-[#6b6560]">
-                <li><a href="tel:626-343-6028" onClick={() => handlePhoneClick('footer')} className="footerContactLink hover:text-[#c45d2c] transition-colors flex items-center gap-2">
+                <li><a href="tel:626-343-6028" data-tracking-location="footer" className="footerContactLink hover:text-[#c45d2c] transition-colors flex items-center gap-2">
                   <Phone className="w-4 h-4" aria-hidden="true" /> (626) 343-6028
                 </a></li>
                 <li>

@@ -9,7 +9,7 @@ export default function GlobalSchema() {
       "name": "Outright Landscape Construction",
       "legalName": "Outright Landscape Construction",
       "url": "https://outrightlandscape.com",
-      "logo": "/images/c125bb3e8_OutrightLandscapeConstructionEmblem1.png",
+      "logo": "/images/outright-landscape-logo-256.jpg",
       "image": [
         "/images/cdeefde95_2024-09-14.jpg",
         "/images/670c050ff_2025-05-284.jpg",
