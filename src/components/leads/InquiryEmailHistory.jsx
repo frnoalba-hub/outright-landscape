@@ -12,7 +12,7 @@ export default function InquiryEmailHistory({ inquiryId }) {
   });
   const { send, busy, error } = useInquiryEmail();
   const rows = data?.pages.flatMap(page => page.items) ?? [];
-  const sources = { automatic: 'Automatic copy', batch: 'Batch send', resend: 'Individual resend', retry: 'Batch retry' };
+  const sources = { automatic: 'Automatic copy', batch: 'Batch send', resend: 'Individual resend', retry: 'Batch retry', historical: 'Historical copy' };
   return (
     <section className="inquiryEmailHistory space-y-2" aria-label="Email history" aria-busy={isFetching || busy}>
       <div className="flex items-center justify-between gap-2">

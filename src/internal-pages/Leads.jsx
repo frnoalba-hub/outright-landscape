@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import InquiryBatchEmail from '@/components/leads/InquiryBatchEmail';
+import OwnerRecordCopies from '@/components/leads/OwnerRecordCopies';
 import InquiryResend from '@/components/leads/InquiryResend';
 import InquiryEmailHistory from '@/components/leads/InquiryEmailHistory';
 import { Button } from '@/components/ui/button';
@@ -64,7 +65,7 @@ function LeadRow({ lead, onUpdate, selected, selectionDisabled, onSelect }) {
             <button
                 type="button"
                 aria-expanded={expanded}
-                className="leadRowHeader flex-1 min-w-0 break-words text-left pr-4 py-4 sm:pr-5 sm:py-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5"
+                className="leadRowHeader flex min-h-11 flex-1 min-w-0 flex-col gap-3 pr-4 py-4 text-left [overflow-wrap:anywhere] md:flex-row md:items-center md:gap-5"
                 onClick={() => setExpanded(v => !v)}
             >
                 <div className="leadRowMain flex-1 min-w-0">
@@ -86,8 +87,8 @@ function LeadRow({ lead, onUpdate, selected, selectionDisabled, onSelect }) {
                             </span>
                         )}
                         {lead.email && (
-                            <span className="flex items-center gap-1">
-                                <Mail className="w-3.5 h-3.5" /> {lead.email}
+                            <span className="flex min-w-0 items-center gap-1">
+                                <Mail className="size-3.5 shrink-0" aria-hidden="true" /> <span className="min-w-0 [overflow-wrap:anywhere]">{lead.email}</span>
                             </span>
                         )}
                         {lead.city && (
@@ -106,6 +107,14 @@ function LeadRow({ lead, onUpdate, selected, selectionDisabled, onSelect }) {
                 </div>
             </button>
             </div>
+            {lead.message && (
+                <div className="leadMessage mx-4 mb-4 min-w-0 rounded-lg bg-muted p-4 sm:mx-5">
+                    <p className="mb-1 flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                        <MessageSquare className="size-3.5" aria-hidden="true" /> Message
+                    </p>
+                    <p className="whitespace-pre-wrap [overflow-wrap:anywhere] text-sm leading-relaxed text-foreground">{lead.message}</p>
+                </div>
+            )}
 
             {/* Expanded details */}
             <AnimatePresence>
@@ -118,15 +127,6 @@ function LeadRow({ lead, onUpdate, selected, selectionDisabled, onSelect }) {
                         className="leadDetails border-t border-gray-100"
                     >
                         <div className="p-4 sm:p-5 space-y-4">
-                            {lead.message && (
-                                <div className="leadMessage bg-gray-50 rounded-lg p-4">
-                                    <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1">
-                                        <MessageSquare className="w-3.5 h-3.5" /> Message
-                                    </p>
-                                    <p className="text-sm text-gray-700 leading-relaxed">{lead.message}</p>
-                                </div>
-                            )}
-
                             <div className="leadActions grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Status</label>
@@ -228,6 +228,8 @@ export default function Leads() {
                         <RefreshCw className="w-4 h-4" /> Refresh
                     </Button>
                 </div>
+
+                <OwnerRecordCopies />
 
                 {/* Status filters */}
                 <div className="leadsFilters flex flex-wrap gap-2 mb-6">

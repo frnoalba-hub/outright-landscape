@@ -15,13 +15,15 @@
         "automatic",
         "batch",
         "resend",
-        "retry"
+        "retry",
+        "historical"
       ],
       "enumColors": [
         "blue",
         "purple",
         "pink",
-        "yellow"
+        "yellow",
+        "gray"
       ]
     },
     "status": {
