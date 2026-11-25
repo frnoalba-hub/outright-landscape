@@ -25,12 +25,7 @@ export default function ContactForm({ cityName = "your area" }) {
         setIsSubmitting(true);
         setSubmitError("");
         try {
-            // Try direct SDK first, fallback to backend function for reliability
-            try {
-                await base44.entities.ContactInquiry.create(formData);
-            } catch {
-                await base44.functions.invoke('saveContactInquiry', formData);
-            }
+            await base44.functions.invoke('saveContactInquiry', formData);
         } catch (err) {
             console.error("Submission failed", err);
             setSubmitError("We couldn't send your request. Please try again or call us at (626) 343-6028.");

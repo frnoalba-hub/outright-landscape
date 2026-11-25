@@ -10,6 +10,7 @@ export default function IrrigationServicePage({ city, service, data }) {
     const [formData, setFormData] = useState({ name: '', phone: '', email: '', city: city, service_type: service, message: '' });
     const [submitted, setSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState('');
 
     const handlePhoneClick = () => {
         if (window.dataLayer) { window.dataLayer.push({ event: 'phone_click', event_category: 'engagement', event_label: `${service}-${city}`, phone_number: '626-343-6028' }); }
@@ -18,15 +19,17 @@ export default function IrrigationServicePage({ city, service, data }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitError('');
         try {
             await base44.functions.invoke('submitLead', formData);
-            if (window.dataLayer) { window.dataLayer.push({ event: 'form_submit', event_category: 'conversion', event_label: `${service}-${city}` }); }
             setSubmitted(true);
-        } catch (error) {
-            console.error('Form submission error:', error);
+        } catch {
+            setSubmitError('We couldn’t save your request. Please try again or call (626) 343-6028.');
+            return;
         } finally {
             setIsSubmitting(false);
         }
+        if (window.dataLayer) { window.dataLayer.push({ event: 'form_submit', event_category: 'conversion', event_label: `${service}-${city}` }); }
     };
 
     const scrollToForm = () => { document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' }); };
@@ -289,7 +292,8 @@ export default function IrrigationServicePage({ city, service, data }) {
                             <p className="text-white/60 text-sm">Need immediate assistance? <a href="tel:626-343-6028" className="text-[#c45d2c] font-semibold hover:underline">(626) 343-6028</a></p>
                         </div>
                     ) : (
-                        <form onSubmit={handleSubmit} className="bg-[#1a1a1a] rounded-2xl p-6 sm:p-8 space-y-4">
+                        <form onSubmit={handleSubmit} className="irrigationInquiryForm bg-[#1a1a1a] rounded-2xl p-6 sm:p-8 space-y-4">
+                            {submitError && <p className="irrigationInquiryError text-sm text-red-200" role="alert">{submitError}</p>}
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Name *</label>
@@ -301,16 +305,16 @@ export default function IrrigationServicePage({ city, service, data }) {
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Email</label>
-                                <Input type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="your@email.com" className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] h-12 rounded-lg" />
+                                <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Email *</label>
+                                <Input required type="email" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} placeholder="your@email.com" className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] h-12 rounded-lg" />
                             </div>
                             <div>
                                 <label className="block text-xs font-medium text-[#8a8478] mb-1.5">City</label>
                                 <Input value={formData.city} onChange={(e) => setFormData({ ...formData, city: e.target.value })} placeholder="Your city" className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] h-12 rounded-lg" />
                             </div>
                             <div>
-                                <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Tell us about your project</label>
-                                <Textarea value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Describe your irrigation repair needs..." rows={4} className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] rounded-lg" />
+                                <label className="block text-xs font-medium text-[#8a8478] mb-1.5">Tell us about your project *</label>
+                                <Textarea required value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} placeholder="Describe your irrigation repair needs..." rows={4} className="bg-[#242424] border-[#333] text-white placeholder:text-[#6b6560] focus:ring-[#c45d2c] focus:border-[#c45d2c] rounded-lg" />
                             </div>
                             <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-[#c45d2c] hover:bg-[#a94e25] text-white font-bold text-base h-14 rounded-xl shadow-lg shadow-[#c45d2c]/20 transition-all hover:scale-[1.02]">
                                 {isSubmitting ? 'Sending...' : 'Get Free Estimate'}

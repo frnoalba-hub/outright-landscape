@@ -1,0 +1,77 @@
+{
+  "name": "InquiryEmailAttempt",
+  "type": "object",
+  "properties": {
+    "inquiry_id": {
+      "type": "string"
+    },
+    "recipient": {
+      "type": "string",
+      "format": "email"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "automatic",
+        "batch",
+        "resend",
+        "retry"
+      ],
+      "enumColors": [
+        "blue",
+        "purple",
+        "pink",
+        "yellow"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "failed",
+        "unconfirmed"
+      ],
+      "enumColors": [
+        "gray",
+        "green",
+        "red",
+        "yellow"
+      ]
+    },
+    "detail": {
+      "type": "string"
+    },
+    "retry_of": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "inquiry_id",
+    "recipient",
+    "source",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { base44 } from '@/api/base44Client';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Badge } from '@/components/ui/badge';
+import InquiryBatchEmail from '@/components/leads/InquiryBatchEmail';
+import InquiryResend from '@/components/leads/InquiryResend';
+import InquiryEmailHistory from '@/components/leads/InquiryEmailHistory';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Input } from '@/components/ui/input';
-import { Phone, Mail, MapPin, Calendar, MessageSquare, ChevronDown, ChevronUp, RefreshCw, Loader2, Forward } from 'lucide-react';
+import { Phone, Mail, MapPin, Calendar, MessageSquare, ChevronDown, ChevronUp, RefreshCw, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -33,11 +34,9 @@ function formatDate(dateStr) {
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
 
-function LeadRow({ lead, onUpdate }) {
+function LeadRow({ lead, onUpdate, selected, selectionDisabled, onSelect }) {
     const [expanded, setExpanded] = useState(false);
     const [saving, setSaving] = useState(false);
-    const [forwarding, setForwarding] = useState(false);
-    const [forwardEmail, setForwardEmail] = useState('');
     const [notes, setNotes] = useState(lead.admin_notes || '');
     const [status, setStatus] = useState(lead.status || 'new');
 
@@ -54,47 +53,18 @@ function LeadRow({ lead, onUpdate }) {
         }
     };
 
-    const handleForward = async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        if (!forwardEmail.trim()) {
-            toast.error('Enter a recipient email address');
-            return;
-        }
-        setForwarding(true);
-        try {
-            await base44.integrations.Core.SendEmail({
-                to: forwardEmail.trim(),
-                subject: `Lead from ${lead.name} – Outright Landscape`,
-                body: [
-                    `You have a lead forwarded from Outright Landscape:`,
-                    ``,
-                    `Name: ${lead.name}`,
-                    `Phone: ${lead.phone || '—'}`,
-                    `Email: ${lead.email || '—'}`,
-                    `City: ${lead.city || '—'}`,
-                    `Service: ${SERVICE_LABELS[lead.service_type] || lead.service_type || '—'}`,
-                    `Message: ${lead.message || '—'}`,
-                    `Submitted: ${formatDate(lead.created_date)}`,
-                    `Status: ${lead.status || 'new'}`,
-                    notes ? `\nAdmin Notes: ${notes}` : '',
-                ].join('\n'),
-            });
-            toast.success(`✓ Lead forwarded to ${forwardEmail.trim()}`);
-            setForwardEmail('');
-        } catch (err) {
-            console.error('Forward failed:', err);
-            toast.error(`Failed to send: ${err?.message || 'Unknown error'}`);
-        } finally {
-            setForwarding(false);
-        }
-    };
+
 
     return (
         <div className="leadRow bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-            {/* Summary row */}
+            <div className="leadSummary flex items-start">
+            <label className="leadSelection inline-flex size-11 shrink-0 items-center justify-center cursor-pointer">
+                <input type="checkbox" className="size-4 accent-current" aria-label={`Select inquiry from ${lead.name} for batch email`} checked={selected} disabled={selectionDisabled} onChange={() => onSelect(lead)} />
+            </label>
             <button
-                className="leadRowHeader w-full text-left p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5"
+                type="button"
+                aria-expanded={expanded}
+                className="leadRowHeader flex-1 min-w-0 break-words text-left pr-4 py-4 sm:pr-5 sm:py-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5"
                 onClick={() => setExpanded(v => !v)}
             >
                 <div className="leadRowMain flex-1 min-w-0">
@@ -135,6 +105,7 @@ function LeadRow({ lead, onUpdate }) {
                     {expanded ? <ChevronUp className="w-4 h-4 text-gray-400" /> : <ChevronDown className="w-4 h-4 text-gray-400" />}
                 </div>
             </button>
+            </div>
 
             {/* Expanded details */}
             <AnimatePresence>
@@ -199,27 +170,10 @@ function LeadRow({ lead, onUpdate }) {
                                 />
                             </div>
 
-                                            <div className="leadForward border-t border-gray-100 pt-4 space-y-2">
-                                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider">Forward Lead via Email</label>
-                                <div className="flex gap-2">
-                                    <Input
-                                        type="email"
-                                        placeholder="Recipient email address..."
-                                        value={forwardEmail}
-                                        onChange={e => setForwardEmail(e.target.value)}
-                                        className="h-10 text-sm flex-1"
-                                    />
-                                    <Button
-                                       type="button"
-                                       onClick={handleForward}
-                                       disabled={forwarding}
-                                       className="h-10 px-4 bg-[#1a1a1a] hover:bg-[#333] text-white gap-2 whitespace-nowrap"
-                                    >
-                                        {forwarding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Forward className="w-4 h-4" />}
-                                        Forward
-                                    </Button>
-                                </div>
-                            </div>
+                                            <div className="leadEmailActions border-t border-border pt-4 space-y-3">
+                                                <InquiryResend lead={lead} />
+                                                <InquiryEmailHistory inquiryId={lead.id} />
+                                            </div>
 
                             <Button onClick={handleSave} disabled={saving} className="bg-[#c45d2c] hover:bg-[#a94e25] text-white h-10 px-6">
                                 {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : null}
@@ -235,7 +189,18 @@ function LeadRow({ lead, onUpdate }) {
 
 export default function Leads() {
     const [statusFilter, setStatusFilter] = useState('all');
+    const [selection, setSelection] = useState({});
+    const [batchBusy, setBatchBusy] = useState(false);
     const queryClient = useQueryClient();
+
+    function toggleSelection(lead) {
+        setSelection(current => {
+            const next = { ...current };
+            if (Object.hasOwn(next, lead.id)) delete next[lead.id];
+            else if (Object.keys(next).length < 5) next[lead.id] = lead.name;
+            return next;
+        });
+    }
 
     const { data: leads = [], isLoading, refetch } = useQuery({
         queryKey: ['contactInquiries'],
@@ -281,6 +246,8 @@ export default function Leads() {
                     ))}
                 </div>
 
+                <InquiryBatchEmail selection={selection} onBusyChange={setBatchBusy} />
+
                 {/* List */}
                 {isLoading ? (
                     <div className="flex items-center justify-center py-20">
@@ -294,7 +261,7 @@ export default function Leads() {
                 ) : (
                     <div className="leadsList space-y-3">
                         {filtered.map(lead => (
-                            <LeadRow key={lead.id} lead={lead} onUpdate={() => queryClient.invalidateQueries({ queryKey: ['contactInquiries'] })} />
+                            <LeadRow key={lead.id} lead={lead} selected={Object.hasOwn(selection, lead.id)} selectionDisabled={batchBusy || (!Object.hasOwn(selection, lead.id) && Object.keys(selection).length >= 5)} onSelect={toggleSelection} onUpdate={() => queryClient.invalidateQueries({ queryKey: ['contactInquiries'] })} />
                         ))}
                     </div>
                 )}
