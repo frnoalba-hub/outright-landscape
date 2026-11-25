@@ -15,7 +15,7 @@ export default function InquiryEmailHistory({ inquiryId }) {
   const sources = { automatic: 'Automatic copy', batch: 'Batch send', resend: 'Individual resend', retry: 'Batch retry', historical: 'Historical copy' };
   return (
     <section className="inquiryEmailHistory space-y-2" aria-label="Email history" aria-busy={isFetching || busy}>
-      <div className="flex items-center justify-between gap-2">
+      <div className="inquiryEmailHistoryHeader flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-sm font-semibold">Email history</h3>
         <Button type="button" size="sm" variant="outline" className="min-h-11" disabled={isFetching} onClick={() => refetch()}>Refresh history</Button>
       </div>
