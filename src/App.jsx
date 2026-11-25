@@ -7,6 +7,16 @@ import NavigationTracker from '@/lib/NavigationTracker'
 import Layout from './Layout.jsx'
 import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
+import ProtectedRoute from '@/components/ProtectedRoute';
+
+const Leads = lazy(() => import('@/internal-pages/Leads'));
+const AUTH_PATHS = { Login: 'login', Register: 'register', ForgotPassword: 'forgot-password', ResetPassword: 'reset-password', Mfa: 'mfa' };
+
+function AdminLeads() {
+  const { user } = useAuth();
+  if (user?.role !== 'admin') return <p className="mx-auto max-w-4xl px-4 py-28" role="alert">Only administrators can access inquiries.</p>;
+  return <Leads />;
+}
 
 const pageModules = import.meta.glob('./pages/*.jsx');
 const lazyPage = (name) => lazy(pageModules[`./pages/${name}.jsx`]);
@@ -40,6 +50,7 @@ const PageLoading = () => (
 );
 
 const PAGE_PATHS = {
+  ...AUTH_PATHS,
   Blog: 'blog',
   Hardscape: 'hardscape',
   Irrigation: 'irrigation',
@@ -177,6 +188,9 @@ const AuthenticatedApp = () => {
           </LayoutWrapper>
         }
       />
+      <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login?returnTo=%2Fleads" replace />} />}>
+        <Route path="/leads" element={<LayoutWrapper currentPageName="Leads"><AdminLeads /></LayoutWrapper>} />
+      </Route>
       <Route path="*" element={<PageNotFound />} />
       </Routes>
       </Suspense>
